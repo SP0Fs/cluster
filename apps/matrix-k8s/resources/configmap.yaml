@@ -1,0 +1,67 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: matrix-config
+  namespace: matrix
+data:
+  homeserver.yaml: |
+    server_name: "matrix.leibold.tech"
+    public_baseurl: "https://matrix.leibold.tech/"
+    serve_client_wellknown: true
+    pid_file: /data/homeserver.pid
+    report_stats: false
+
+    listeners:
+      - port: 8008
+        tls: false
+        type: http
+        x_forwarded: true
+        resources:
+          - names: [client]
+            compress: false
+
+    federation_domain_whitelist: []
+
+    log_config: "/data/log.config"
+
+    media_store_path: /data/media_store
+    uploads_path: /data/uploads
+
+    enable_registration: true
+    enable_registration_without_verification: true
+    registration_requires_token: true
+
+    url_preview_enabled: true
+    url_preview_ip_range_blacklist:
+      - "127.0.0.0/8"
+      - "10.0.0.0/8"
+      - "172.16.0.0/12"
+      - "192.168.0.0/16"
+      - "100.64.0.0/10"
+      - "192.0.0.0/24"
+      - "169.254.0.0/16"
+      - "::1/128"
+      - "fe80::/10"
+      - "fc00::/7"
+
+    signing_key_path: "/data/matrix.leibold.tech.signing.key"
+    trusted_key_servers: []
+
+    suppress_key_server_warning: true
+  log.config: |
+    version: 1
+    formatters:
+      precise:
+        format: '%(asctime)s - %(name)s - %(lineno)d - %(levelname)s - %(request)s - %(message)s'
+    handlers:
+      console:
+        class: logging.StreamHandler
+        formatter: precise
+        stream: ext://sys.stdout
+    loggers:
+      synapse.storage.SQL:
+        level: WARNING
+    root:
+      level: INFO
+      handlers: [console]
+    disable_existing_loggers: false

@@ -1,0 +1,27 @@
+disableLoadSecrets: true
+
+ingress:
+  enabled: true
+  className: nginx
+  annotations:
+    cert-manager.io/cluster-issuer: ca-issuer
+    nginx.ingress.kubernetes.io/backend-protocol: HTTP
+    nginx.ingress.kubernetes.io/auth-tls-verify-client: "on"
+    nginx.ingress.kubernetes.io/auth-tls-secret: "sealed-secrets/spof-cert"
+    nginx.ingress.kubernetes.io/auth-tls-verify-depth: "1"
+    nginx.ingress.kubernetes.io/auth-tls-error-page: "https://insult.mattbas.org/api/insult.html"
+    nginx.ingress.kubernetes.io/auth-tls-pass-certificate-to-upstream: "true"
+  hosts:
+    # - host: sealed-secrets.spof.tech
+    #   paths:
+    #     - path: /
+    #       pathType: Prefix
+    - host: sealed-secrets.leibold.tech
+      paths:
+        - path: /
+          pathType: Prefix
+  tls:
+    - hosts:
+        # - sealed-secrets.spof.tech
+        - sealed-secrets.leibold.tech
+      secretName: sealed-secrets-web-certs

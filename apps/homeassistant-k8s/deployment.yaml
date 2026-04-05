@@ -1,0 +1,63 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: homeassistant
+  name: homeassistant
+  namespace: homeassistant
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: homeassistant
+  template:
+    metadata:
+      labels:
+        app: homeassistant
+    spec:
+      nodeSelector:
+        kubernetes.io/arch: amd64
+      volumes:
+        - name: ha-storage
+          persistentVolumeClaim:
+            claimName: ha-pvc
+        - name: ha-lock
+          emptyDir:
+            medium: Memory
+      initContainers:
+        - name: fix-nfs-lock
+          image: busybox
+          command:
+            - sh
+            - -c
+            - |
+              rm -f /config/.ha_run.lock
+              touch /lock/.ha_run.lock
+              ln -sf /lock/.ha_run.lock /config/.ha_run.lock
+          volumeMounts:
+            - mountPath: "/config"
+              name: ha-storage
+            - mountPath: "/lock"
+              name: ha-lock
+      containers:
+        - image: ghcr.io/home-assistant/home-assistant:stable
+          imagePullPolicy: Always
+          name: home-assistant
+          resources:
+            requests:
+              cpu: 2
+              memory: "3Gi"
+            limits:
+              cpu: 4
+              memory: "6Gi"
+          volumeMounts:
+            - mountPath: "/config"
+              name: ha-storage
+            - mountPath: "/lock"
+              name: ha-lock
+          ports:
+            - containerPort: 8123
+              name: http
+              protocol: TCP
+          # HACS is already installed on the PVC. To reinstall, exec into the pod:
+          # wget -O - https://get.hacs.xyz | bash -

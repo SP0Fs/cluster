@@ -1,0 +1,20 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: matrix
+  namespace: argo-cd
+spec:
+  project: spof-cluster
+  source:
+    repoURL: "https://github.com/SP0Fs/cluster.git"
+    targetRevision: HEAD
+    path: apps/matrix/resources
+  destination:
+    server: "https://kubernetes.default.svc"
+    namespace: matrix
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+    syncOptions:
+      - CreateNamespace=true

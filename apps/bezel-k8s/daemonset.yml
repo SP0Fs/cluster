@@ -1,0 +1,39 @@
+apiVersion: apps/v1
+kind: DaemonSet
+metadata:
+  name: beszel-agent
+  namespace: monitoring
+spec:
+  selector:
+    matchLabels:
+      app: beszel-agent
+  template:
+    metadata:
+      labels:
+        app: beszel-agent
+    spec:
+      hostNetwork: true
+      tolerations:
+        - key: "node-role.kubernetes.io/master"
+          operator: Exists
+          effect: NoSchedule
+        - key: "node-role.kubernetes.io/control-plane"
+          operator: Exists
+          effect: NoSchedule
+      containers:
+      - name: agent
+        image: henrygd/beszel-agent:latest
+        imagePullPolicy: IfNotPresent
+        env:
+          - name: LISTEN
+            value: "45876"
+          - name: HUB_URL
+            value: "http://beszel-hub.monitoring.svc.cluster.local:8090"
+          - name: KEY
+            value: "<hub-public-key>"
+          - name: TOKEN
+            value: "<hub-token-if-used>"
+        ports:
+          - containerPort: 45876
+            hostPort: 45876
+            protocol: TCP

@@ -1,0 +1,10 @@
+nfs:
+  server: 192.168.178.37
+  path: /ssd
+  reclaimPolicy: Delete # Backups solved externally
+
+storageClass:
+  name: ssd
+  archiveOnDelete: false
+  volumeBindingMode: Immediate
+  accessModes: ReadWriteMany

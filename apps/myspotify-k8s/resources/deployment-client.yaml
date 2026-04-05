@@ -1,0 +1,33 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: your-spotify-client
+  namespace: your-spotify
+  labels:
+    app: your-spotify-client
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: your-spotify-client
+  template:
+    metadata:
+      labels:
+        app: your-spotify-client
+    spec:
+      containers:
+        - name: your-spotify-client
+          image: yooooomi/your_spotify_client
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 80
+          env:
+            - name: API_ENDPOINT
+              value: "https://spotify.leibold.tech"
+          resources:
+            requests:
+              cpu: "100m"
+              memory: "128Mi"
+            limits:
+              cpu: "500m"
+              memory: "512Mi"

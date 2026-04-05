@@ -1,0 +1,35 @@
+crds:
+  install: true
+  keep: false
+
+createClusterRoles: true
+createAggregateRoles: true
+
+server:
+  autoscaling:
+    enabled: true
+    minReplicas: 2
+  ingress:
+    enabled: true
+    ingressClassName: nginx
+    hostname: argocd.leibold.tech
+    # extraHosts:
+    #   - name: argocd.leibold.tech
+    #     path: /
+    annotations:
+      nginx.ingress.kubernetes.io/force-ssl-redirect: "true"
+      nginx.ingress.kubernetes.io/ssl-passthrough: "true"
+      nginx.ingress.kubernetes.io/rewrite-target: /
+      cert-manager.io/cluster-issuer: ca-issuer
+      nginx.ingress.kubernetes.io/backend-protocol: HTTPS
+      nginx.ingress.kubernetes.io/auth-tls-verify-client: "on"
+      nginx.ingress.kubernetes.io/auth-tls-secret: "argo-cd/spof-cert"
+      nginx.ingress.kubernetes.io/auth-tls-verify-depth: "1"
+      nginx.ingress.kubernetes.io/auth-tls-error-page: "https://insult.mattbas.org/api/insult.html"
+      nginx.ingress.kubernetes.io/auth-tls-pass-certificate-to-upstream: "true"
+    tls: true
+
+repoServer:
+  autoscaling:
+    enabled: true
+    minReplicas: 3

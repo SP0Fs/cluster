@@ -1,0 +1,46 @@
+serviceDns:
+  type: NodePort
+  mixedService: true
+  nodePort: 30053
+
+doh:
+  enabled: true
+  pullPolicy: Always
+  envVars: { DOH_UPSTREAM: "https://1.1.1.1/dns-query" }
+
+persistentVolumeClaim:
+  enabled: true
+  size: 500Mi
+  storageClass: ssd
+
+serviceWeb:
+  loadBalancerIP: 192.168.178.99
+  type: ClusterIP
+
+dnsHostPort:
+  enabled: true
+  port: 53
+
+admin:
+  existingSecret: pihole-webpassword
+  passwordKey: password
+
+nodeSelector:
+  kubernetes.io/hostname: "hp-elitedesk"
+
+ingress:
+  enabled: true
+  annotations:
+    cert-manager.io/cluster-issuer: ca-issuer
+    nginx.ingress.kubernetes.io/backend-protocol: HTTP
+    nginx.ingress.kubernetes.io/auth-tls-verify-client: "on"
+    nginx.ingress.kubernetes.io/auth-tls-secret: "pihole/spof-cert"
+    nginx.ingress.kubernetes.io/auth-tls-verify-depth: "1"
+    nginx.ingress.kubernetes.io/auth-tls-error-page: "https://insult.mattbas.org/api/insult.html"
+  ingressClassName: nginx
+  hosts:
+    - pihole.leibold.tech
+  tls:
+    - hosts:
+        - pihole.leibold.tech
+      secretName: pihole-certs

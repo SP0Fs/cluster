@@ -1,0 +1,73 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: nanobot
+  namespace: nanobot
+  labels:
+    app: nanobot
+spec:
+  selector:
+    matchLabels:
+      app: nanobot
+  replicas: 1
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      labels:
+        app: nanobot
+    spec:
+      nodeSelector:
+        kubernetes.io/hostname: hp-elitedesk
+      containers:
+        - name: nanobot
+          image: ghcr.io/marcleibold/nanobot:latest # TODO: pin to a specific tag after first build
+          command: ["nanobot"]
+          args: ["gateway"]
+          env:
+            - name: TZ
+              value: "Europe/Berlin"
+          startupProbe:
+            exec:
+              command: ["python3", "-c", "import os, signal; os.kill(1, 0)"]
+            initialDelaySeconds: 10
+            periodSeconds: 5
+            failureThreshold: 12
+          livenessProbe:
+            exec:
+              command: ["python3", "-c", "import os, signal; os.kill(1, 0)"]
+            periodSeconds: 30
+            timeoutSeconds: 5
+            failureThreshold: 3
+          volumeMounts:
+            - name: config
+              mountPath: /root/.nanobot/config.json
+              subPath: config.json
+              readOnly: true
+            - name: data
+              mountPath: /root/.nanobot
+            - name: security-patch
+              mountPath: /usr/local/lib/python3.12/site-packages/nanobot/security/network.py
+              subPath: network.py
+              readOnly: true
+          resources:
+            requests:
+              cpu: 1m
+              memory: 32Mi
+            limits:
+              cpu: 1
+              memory: 1Gi
+      volumes:
+        - name: config
+          secret:
+            secretName: nanobot-config
+            items:
+              - key: config.json
+                path: config.json
+        - name: data
+          persistentVolumeClaim:
+            claimName: nanobot-data
+        - name: security-patch
+          configMap:
+            name: nanobot-security-patch
+      restartPolicy: Always

@@ -1,0 +1,88 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: matrix
+  namespace: matrix
+  labels:
+    app: matrix
+spec:
+  selector:
+    matchLabels:
+      app: matrix
+  replicas: 1
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      labels:
+        app: matrix
+    spec:
+      containers:
+        - name: synapse
+          image: matrixdotorg/synapse:v1.127.1
+          args:
+            - run
+            - --config-path=/data/homeserver.yaml
+            - --config-path=/data/secrets.yaml
+          env:
+            - name: TZ
+              value: "Europe/Berlin"
+          ports:
+            - containerPort: 8008
+              name: http
+          startupProbe:
+            httpGet:
+              path: /health
+              port: http
+            initialDelaySeconds: 10
+            periodSeconds: 10
+            failureThreshold: 30
+          livenessProbe:
+            httpGet:
+              path: /health
+              port: http
+            periodSeconds: 15
+            timeoutSeconds: 5
+            failureThreshold: 5
+          readinessProbe:
+            httpGet:
+              path: /health
+              port: http
+            periodSeconds: 10
+            timeoutSeconds: 5
+          volumeMounts:
+            - name: data
+              mountPath: /data
+            - name: config
+              mountPath: /data/homeserver.yaml
+              subPath: homeserver.yaml
+              readOnly: true
+            - name: config
+              mountPath: /data/log.config
+              subPath: log.config
+              readOnly: true
+            - name: secrets
+              mountPath: /data/secrets.yaml
+              subPath: secrets.yaml
+              readOnly: true
+          resources:
+            requests:
+              cpu: 500m
+              memory: "512Mi"
+            limits:
+              cpu: 2
+              memory: "2Gi"
+      volumes:
+        - name: data
+          persistentVolumeClaim:
+            claimName: matrix-data
+        - name: config
+          configMap:
+            name: matrix-config
+        - name: secrets
+          secret:
+            secretName: matrix-secret
+            items:
+              - key: secrets.yaml
+                path: secrets.yaml
+      restartPolicy: Always

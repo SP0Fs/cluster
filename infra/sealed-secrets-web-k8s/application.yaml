@@ -1,0 +1,27 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: sealed-secrets-web
+  namespace: argo-cd
+spec:
+  project: spof-cluster
+  sources:
+    - chart: sealed-secrets-web
+      repoURL: https://charts.bakito.net
+      targetRevision: 3.1.3
+      helm:
+        releaseName: sealed-secrets-web
+        valueFiles:
+          - $values/values.yaml
+    - repoURL: "https://github.com/SP0Fs/cluster.git"
+      targetRevision: HEAD
+      ref: values
+  destination:
+    server: "https://kubernetes.default.svc"
+    namespace: sealed-secrets
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+    syncOptions:
+      - CreateNamespace=true

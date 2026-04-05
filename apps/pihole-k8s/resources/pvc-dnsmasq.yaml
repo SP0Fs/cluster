@@ -1,0 +1,12 @@
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: pihole-pvc-dnsmasq
+  namespace: pihole
+spec:
+  storageClassName: ssd
+  accessModes:
+    - ReadWriteMany
+  resources:
+    requests:
+      storage: 50Mi

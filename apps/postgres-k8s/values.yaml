@@ -1,0 +1,77 @@
+auth:
+  username: spof
+  existingSecret: postgres-auth
+
+architecture: replication
+
+replication:
+  synchronous_commit: "on"
+  numSynchronousReplicas: 1
+  application_name: spof_pgsql
+
+persistence:
+  storageClass: ssd
+
+primary:
+  nodeSelector:
+    kubernetes.io/hostname: hp-elitedesk
+
+  extraEnvVars:
+    - name: SYNAPSE_DB_PASSWORD
+      valueFrom:
+        secretKeyRef:
+          name: postgres-synapse
+          key: password
+    - name: HOMEASSISTANT_DB_PASSWORD
+      valueFrom:
+        secretKeyRef:
+          name: postgres-homeassistant
+          key: password
+
+  initdb:
+    scripts:
+      01-synapse.sh: |
+        #!/bin/bash
+        set -e
+        psql -v ON_ERROR_STOP=1 --username postgres --dbname postgres <<-EOSQL
+          DO \$\$
+          BEGIN
+            IF NOT EXISTS (SELECT FROM pg_roles WHERE rolname = 'synapse') THEN
+              CREATE ROLE synapse LOGIN PASSWORD '$SYNAPSE_DB_PASSWORD';
+            ELSE
+              ALTER ROLE synapse PASSWORD '$SYNAPSE_DB_PASSWORD';
+            END IF;
+          END
+          \$\$;
+          SELECT 'CREATE DATABASE synapse
+            ENCODING ''UTF8''
+            LC_COLLATE = ''C''
+            LC_CTYPE = ''C''
+            TEMPLATE template0
+            OWNER synapse'
+          WHERE NOT EXISTS (SELECT FROM pg_database WHERE datname = 'synapse')\gexec
+          GRANT ALL PRIVILEGES ON DATABASE synapse TO synapse;
+        EOSQL
+
+      02-homeassistant.sh: |
+        #!/bin/bash
+        set -e
+        psql -v ON_ERROR_STOP=1 --username postgres --dbname postgres <<-EOSQL
+          DO \$\$
+          BEGIN
+            IF NOT EXISTS (SELECT FROM pg_roles WHERE rolname = 'homeassistant') THEN
+              CREATE ROLE homeassistant LOGIN PASSWORD '$HOMEASSISTANT_DB_PASSWORD';
+            ELSE
+              ALTER ROLE homeassistant PASSWORD '$HOMEASSISTANT_DB_PASSWORD';
+            END IF;
+          END
+          \$\$;
+          SELECT 'CREATE DATABASE homeassistant_db
+            ENCODING ''UTF8''
+            LC_COLLATE = ''C''
+            LC_CTYPE = ''C''
+            TEMPLATE template0
+            OWNER homeassistant'
+          WHERE NOT EXISTS (SELECT FROM pg_database WHERE datname = 'homeassistant_db')\gexec
+          GRANT ALL PRIVILEGES ON DATABASE homeassistant_db TO homeassistant;
+        EOSQL

@@ -1,0 +1,31 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: beszel-hub
+  namespace: monitoring
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: beszel-hub
+  template:
+    metadata:
+      labels:
+        app: beszel-hub
+    spec:
+      containers:
+      - name: hub
+        image: henrygd/beszel:latest
+        imagePullPolicy: IfNotPresent
+        resources:
+          requests:
+            cpu: 500m
+        ports:
+        - containerPort: 8090
+        volumeMounts:
+        - name: data
+          mountPath: /beszel_data
+      volumes:
+      - name: data
+        persistentVolumeClaim:
+          claimName: beszel-pvc

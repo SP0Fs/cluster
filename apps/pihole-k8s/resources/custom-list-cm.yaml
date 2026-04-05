@@ -1,0 +1,10 @@
+kind: ConfigMap
+apiVersion: v1
+metadata:
+  name: pihole-custom-list
+  namespace: pihole
+data:
+  custom.list: |
+    # format is ip-address fqdn
+    # 192.168.100.1 gateway.foo.net
+    # 192.168.100.2 dns.foo.net

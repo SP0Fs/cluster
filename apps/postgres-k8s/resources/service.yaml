@@ -1,0 +1,18 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: postgres
+  namespace: postgres
+spec:
+  selector:
+    app.kubernetes.io/instance: postgres
+  type: ClusterIP
+  trafficDistribution: PreferClose
+  sessionAffinity: ClientIP
+  sessionAffinityConfig:
+    clientIP:
+      timeoutSeconds: 10800 # 3 hours
+  ports:
+    - name: postgres
+      protocol: TCP
+      port: 5432

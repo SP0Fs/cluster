@@ -1,0 +1,102 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: pihole
+  name: pihole
+  namespace: pihole
+spec:
+  replicas: 1
+  strategy:
+    rollingUpdate:
+      maxSurge: 1
+      maxUnavailable: 1
+    type: RollingUpdate
+  selector:
+    matchLabels:
+      app: pihole
+  template:
+    metadata:
+      labels:
+        app: pihole
+    spec:
+      nodeSelector:
+        kubernetes.io/hostname: hp-elitedesk
+      dnsPolicy: ClusterFirst
+      restartPolicy: Always
+      volumes:
+        - name: pihole-config
+          persistentVolumeClaim:
+            claimName: pihole-pvc-pihole
+        - name: pihole-dnsmasq
+          persistentVolumeClaim:
+            claimName: pihole-pvc-dnsmasq
+        - name: pihole-custom-list
+          configMap:
+            name: pihole-custom-list
+        - name: pihole-adlists-list
+          configMap:
+            name: pihole-adlists-list
+      containers:
+        - name: cloudflared
+          image: visibilityspots/cloudflared
+          env:
+            - name: PORT
+              value: "5053"
+          resources:
+            requests:
+              memory: "500Mi"
+              cpu: "500m"
+            limits:
+              memory: "1Gi"
+              cpu: "1"
+          ports:
+            - containerPort: 5053
+              name: cf-tcp
+              protocol: TCP
+            - containerPort: 5053
+              name: cf-udp
+              protocol: UDP
+        - name: pihole
+          image: pihole/pihole:latest
+          imagePullPolicy: Always
+          resources:
+            requests:
+              memory: "500Mi"
+              cpu: "250m"
+            limits:
+              memory: "1Gi"
+              cpu: "500m"
+          env:
+            - name: TZ
+              value: Europe/Berlin
+            - name: DNS1
+              value: 127.0.0.1#5053
+            - name: DNSMASQ_LISTENING
+              value: all
+            - name: FTLCONF_CHECK_DISK
+              value: "0"
+          envFrom:
+            - secretRef:
+                name: pihole-webpassword
+          ports:
+            - containerPort: 53
+              name: pihole-dns-tcp
+              protocol: TCP
+            - containerPort: 53
+              name: pihole-dns-udp
+              protocol: UDP
+            - containerPort: 67
+              name: pihole-67-udp
+              protocol: UDP
+            - containerPort: 80
+              name: http
+              protocol: TCP
+            - containerPort: 443
+              name: https
+              protocol: TCP
+          volumeMounts:
+            - mountPath: /etc/pihole
+              name: pihole-config
+            - mountPath: /etc/dnsmasq.d
+              name: pihole-dnsmasq

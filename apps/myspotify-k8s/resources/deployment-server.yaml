@@ -1,0 +1,72 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: your-spotify
+  namespace: your-spotify
+  labels:
+    app: your-spotify
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: your-spotify
+  template:
+    metadata:
+      labels:
+        app: your-spotify
+    spec:
+      containers:
+        - name: your-spotify
+          image: yooooomi/your_spotify_server
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 8080
+
+          env:
+            - name: MONGODB_SERVER
+              value: "mongodb://$(MONGO_USER):$(MONGO_PASSWORD)@mongodb.mongodb.svc.cluster.local:27017/your_spotify"
+
+            - name: API_ENDPOINT
+              value: "https://spotify.leibold.tech"
+
+            - name: CLIENT_ENDPOINT
+              value: "http://your-spotify-client.your-spotify.svc.cluster.local"
+
+            - name: SPOTIFY_PUBLIC
+              valueFrom:
+                secretKeyRef:
+                  name: your-spotify-secrets
+                  key: SPOTIFY_CLIENT_ID
+
+            - name: SPOTIFY_SECRET
+              valueFrom:
+                secretKeyRef:
+                  name: your-spotify-secrets
+                  key: SPOTIFY_CLIENT_SECRET
+
+            - name: JWT_SECRET
+              valueFrom:
+                secretKeyRef:
+                  name: your-spotify-secrets
+                  key: JWT_SECRET
+
+            - name: MONGO_USER
+              valueFrom: 
+                secretKeyRef:
+                  name: mongodb-root-user
+                  key: MONGO_INITDB_ROOT_USERNAME
+
+            - name: MONGO_PASSWORD
+              valueFrom: 
+                secretKeyRef:
+                  name: mongodb-root-user
+                  key: MONGO_INITDB_ROOT_PASSWORD
+
+
+          resources:
+            requests:
+              cpu: "100m"
+              memory: "128Mi"
+            limits:
+              cpu: "500m"
+              memory: "512Mi"

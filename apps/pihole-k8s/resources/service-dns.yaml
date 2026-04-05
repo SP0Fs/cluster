@@ -1,0 +1,27 @@
+kind: Service
+apiVersion: v1
+metadata:
+  name: pihole-dns
+  namespace: pihole
+  annotations:
+    metallb.universe.tf/address-pool: marc-local
+spec:
+  selector:
+    app: pihole
+  ports:
+    - port: 53
+      targetPort: 53
+      name: pihole-dns-udp
+      protocol: UDP
+    - port: 53
+      targetPort: 53
+      name: pihole-dns-tcp
+      protocol: TCP
+    - port: 67
+      targetPort: 67
+      name: pihole-67-udp
+      protocol: UDP
+  type: LoadBalancer
+  loadBalancerIP: 192.168.178.128
+  sessionAffinity: ClientIP
+  externalTrafficPolicy: Local
