@@ -17,6 +17,7 @@ spec:
       labels:
         app: nanobot
     spec:
+      serviceAccountName: nanobot
       nodeSelector:
         kubernetes.io/hostname: hp-elitedesk
       containers:
