@@ -8,11 +8,13 @@
 
 ## Medium Priority
 
+- [x] ~~Fix kubectl RBAC for nanobot service account~~ → completed 2026-04-06
 - [ ] Set up monitoring stack (Prometheus + Grafana)
 - [ ] Configure Loki for log aggregation
 - [ ] Set up alerting with Alertmanager
 - [ ] Regular backup schedule for databases
 - [ ] Document backup/restore procedures
+- [ ] Pin nanobot image to a specific tag (not `latest`) in `apps/nanobot/resources/deployment.yaml`
 
 ## Low Priority
 
@@ -35,4 +37,4 @@
 
 ---
 
-*Last updated: 2026-04-05*
+*Last updated: 2026-04-06*
