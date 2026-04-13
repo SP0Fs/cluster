@@ -1,0 +1,11 @@
+apiVersion: actions.summerwind.dev/v1alpha1
+kind: RunnerDeployment
+metadata:
+  name: macos-action-runner
+  namespace: github-actions-runner
+spec:
+  replicas: 1
+  image:
+  template:
+    spec:
+      repository: Datapods/Datapods

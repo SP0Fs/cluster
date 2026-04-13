@@ -1,0 +1,50 @@
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: factorio-server
+  namespace: factorio-server
+  labels:
+    app: factorio-server
+spec:
+  serviceName: factorio-server
+  replicas: 1
+  selector:
+    matchLabels:
+      app: factorio-server
+  template:
+    metadata:
+      labels:
+        app: factorio-server
+    spec:
+      hostNetwork: true
+      nodeSelector:
+        kubernetes.io/arch: amd64
+        kubernetes.io/hostname: c-nuc7
+      containers:
+        - name: factorio-server
+          image: "factoriotools/factorio:1.1.104"
+          imagePullPolicy: IfNotPresent
+          ports:
+            - name: factorio-udp
+              containerPort: 34197
+              protocol: UDP
+            - name: factorio-tcp
+              containerPort: 27015
+              protocol: TCP
+          env:
+            - name: BIND
+              valueFrom:
+                fieldRef:
+                  fieldPath: status.podIP
+          envFrom:
+            - configMapRef:
+                name: factorio-config
+          volumeMounts:
+            - name: factorio-data
+              mountPath: /factorio
+          securityContext:
+            runAsUser: 0
+      volumes:
+        - name: factorio-data
+          persistentVolumeClaim:
+            claimName: factorio-server-data

@@ -1,0 +1,39 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: bastion
+  name: bastion
+  namespace: bastion
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: bastion
+  template:
+    metadata:
+      labels:
+        app: bastion
+    spec:
+      nodeSelector:
+        kubernetes.io/arch: amd64
+      volumes:
+        - name: authorized-keys
+          configMap:
+            name: authorized-keys
+      containers:
+        - image: cloudposse/bastion:latest
+          name: bastion
+          env:
+            - name: MFA_PROVIDER
+              value: google-authenticator
+            - 
+          volumeMounts:
+            - mountPath: "/root/.ssh"
+              name: authorized-keys
+          ports:
+            - containerPort: 22
+              name: ssh
+              protocol: TCP
+
+https://github.com/cloudposse/charts/blob/master/incubator/bastion/values.yaml

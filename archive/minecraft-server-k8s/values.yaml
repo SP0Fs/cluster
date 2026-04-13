@@ -1,0 +1,70 @@
+resources:
+  limits:
+    memory: 4096Mi
+    cpu: 3
+
+nodeSelector:
+  kubernetes.io/hostname: c-nuc7
+
+livenessProbe:
+  initialDelaySeconds: 100
+  periodSeconds: 10
+  timeoutSeconds: 5
+readinessProbe:
+  initialDelaySeconds: 100
+  periodSeconds: 10
+  timeoutSeconds: 5
+
+minecraftServer:
+  eula: "true"
+  version: "1.20.4"
+  type: "VANILLA"
+  difficulty: hard
+  whitelist: Nicchus97,BadestFlopHD,user3,user4
+  ops: Nicchus97
+  maxPlayers: 6
+  maxWorldSize: 10000
+  allowNether: true
+  announcePlayerAchievements: true
+  enableCommandBlock: true
+  forcegameMode: false
+  generateStructures: true
+  hardcore: false
+  maxBuildHeight: 256
+  maxTickTime: 60000
+  spawnAnimals: true
+  spawnMonsters: true
+  spawnNPCs: true
+  spawnProtection: 0
+  viewDistance: 12
+  levelSeed: 2705254700866455343
+  gameMode: survival
+  pvp: true
+  memory: ""
+
+  #modUrls: 
+  # - "https://mediafilez.forgecdn.net/files/4930/701/fabric-carpet-1.20.3-1.4.128%2Bv231205.jar"
+
+  rcon:
+    enabled: true
+    withGeneratedPassword: false
+    existingSecret: rcon-password-secret
+    secretKey: password
+
+extraEnv:
+  INIT_MEMORY: 2G
+  MAX_MEMORY: 4G
+
+persistence:
+  dataDir:
+    enabled: true
+  existingClaim: minecraft-pvc
+
+mcbackup:
+  enabled: true
+  persistence:
+    #TODO: change to HDD when available and increase size
+    storageClass: ssd
+    backupDir:
+      enabled: true
+      Size: 10Gi
