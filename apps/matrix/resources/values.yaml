@@ -1,0 +1,32 @@
+# Reference: ESS Helm values for matrix-k8s
+# This file documents the configuration for the ESS Helm deployment
+# Values are inlined in application.yaml for ArgoCD OCI chart support
+
+serverName: matrix.leibold.tech
+
+# DNS Records Required:
+# - account.matrix.leibold.tech -> ingress IP (MAS)
+# - admin.matrix.leibold.tech   -> ingress IP (Admin UI)
+# - matrix.leibold.tech         -> ingress IP (Synapse + Well-Known)
+
+# Secrets Required:
+# Create ess-secrets secret in matrix namespace with keys:
+# - db_password: from existing synapse deployment
+# - signing_key: from existing synapse deployment
+# - registration_shared_secret: from existing synapse deployment
+# - macaroon_secret_key: from existing synapse deployment
+
+# Database:
+# CREATE DATABASE mas;
+# GRANT ALL PRIVILEGES ON DATABASE mas TO synapse;
+
+# Components Enabled:
+# - Synapse (homeserver)
+# - MAS (authentication)
+# - Well-Known Delegation
+# - Element Admin (with mTLS)
+
+# Components Disabled:
+# - Element Web (use Element X instead)
+# - Matrix RTC
+# - Hookshot

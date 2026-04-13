@@ -1,0 +1,125 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: matrix-ess
+  namespace: argo-cd
+spec:
+  project: spof-cluster
+  sources:
+    - repoURL: "oci://ghcr.io/element-hq/ess-helm/matrix-stack"
+      targetRevision: "26.3.2"
+      helm:
+        valueFiles:
+          - /dev/null
+        values: |
+          serverName: matrix.leibold.tech
+
+          ingress:
+            className: nginx
+            annotations:
+              cert-manager.io/cluster-issuer: ca-issuer
+            tlsEnabled: true
+
+          postgres:
+            enabled: false
+
+          synapse:
+            enabled: true
+            ingress:
+              host: matrix.leibold.tech
+              annotations:
+                cert-manager.io/cluster-issuer: ca-issuer
+                nginx.ingress.kubernetes.io/backend-protocol: HTTP
+              tlsEnabled: true
+
+            postgres:
+              host: postgres-postgresql-primary.postgres.svc.cluster.local
+              port: 5432
+              user: synapse
+              password:
+                secret: ess-secrets
+                secretKey: db_password
+              database: synapse
+              sslMode: prefer
+
+            media:
+              storage:
+                existingClaim: matrix-data
+                size: 10Gi
+
+            signingKey:
+              secret: ess-secrets
+              secretKey: signing_key
+
+            registrationSharedSecret:
+              secret: ess-secrets
+              secretKey: registration_shared_secret
+
+            macaroon:
+              secret: ess-secrets
+              secretKey: macaroon_secret_key
+
+          matrixAuthenticationService:
+            enabled: true
+            replicas: 1
+            ingress:
+              host: account.matrix.leibold.tech
+              annotations:
+                cert-manager.io/cluster-issuer: ca-issuer
+              tlsEnabled: true
+
+            postgres:
+              host: postgres-postgresql-primary.postgres.svc.cluster.local
+              port: 5432
+              user: synapse
+              password:
+                secret: ess-secrets
+                secretKey: db_password
+              database: mas
+              sslMode: prefer
+
+            synapseSharedSecret:
+              secret: ess-secrets
+              secretKey: registration_shared_secret
+
+          wellKnownDelegation:
+            enabled: true
+            ingress:
+              host: matrix.leibold.tech
+              annotations:
+                cert-manager.io/cluster-issuer: ca-issuer
+              tlsEnabled: true
+
+          elementAdmin:
+            enabled: true
+            ingress:
+              host: admin.matrix.leibold.tech
+              annotations:
+                cert-manager.io/cluster-issuer: ca-issuer
+                nginx.ingress.kubernetes.io/auth-tls-verify-client: "on"
+                nginx.ingress.kubernetes.io/auth-tls-secret: "matrix/spof-cert"
+                nginx.ingress.kubernetes.io/auth-tls-verify-depth: "1"
+                nginx.ingress.kubernetes.io/auth-tls-error-page: "https://insult.mattbas.org/api/insult.html"
+                nginx.ingress.kubernetes.io/auth-tls-pass-certificate-to-upstream: "true"
+              tlsEnabled: true
+
+          elementWeb:
+            enabled: false
+
+          matrixRTC:
+            enabled: false
+
+          hookshot:
+            enabled: false
+
+          labels:
+            app.kubernetes.io/managed-by: ArgoCD
+  destination:
+    server: "https://kubernetes.default.svc"
+    namespace: matrix
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+    syncOptions:
+      - CreateNamespace=true
