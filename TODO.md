@@ -2,13 +2,25 @@
 
 ## High Priority
 
+- [ ] Complete ESS migration - sync ArgoCD and verify deployment
+- [ ] Add DNS records for ESS (account.matrix.leibold.tech, admin.matrix.leibold.tech)
+- [ ] Create admin user in MAS after deployment
+- [ ] Test Element X login with OIDC
 - [ ] Fix kubectl RBAC for nanobot service account
 - [ ] Verify all apps sync correctly in Argo CD
 - [ ] Test disaster recovery (restore from Git)
 
 ## Medium Priority
 
-- [x] ~~Fix kubectl RBAC for nanobot service account~~ → completed 2026-04-06
+### Matrix / ESS
+
+- [ ] Verify Synapse data integrity after migration
+- [ ] Configure email verification in MAS (optional)
+- [ ] Test Element Web login as fallback
+- [ ] Enable Matrix RTC for voice/video calls
+- [ ] Clean up old matrix deployment files after successful migration
+
+### openclaw
 - [ ] Set up monitoring stack (Prometheus + Grafana)
 - [ ] Configure Loki for log aggregation
 - [ ] Set up alerting with Alertmanager
