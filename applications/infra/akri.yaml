@@ -7,8 +7,8 @@ spec:
   project: spof-cluster
   sources:
     - chart: akri
-      repoURL: https://deislabs.github.io/akri
-      targetRevision: 0.13.2
+      repoURL: https://project-akri.github.io/akri/
+      targetRevision: v0.13.8
       helm:
         releaseName: akri
         valueFiles:
@@ -16,12 +16,13 @@ spec:
     - repoURL: "https://github.com/SP0Fs/cluster.git"
       targetRevision: HEAD
       ref: values
+      path: infra/akri
     - repoURL: "https://github.com/SP0Fs/cluster.git"
       targetRevision: HEAD
       path: infra/akri/resources
   destination:
     server: "https://kubernetes.default.svc"
-    namespace: akri-system
+    namespace: akri
   syncPolicy:
     automated:
       prune: true
