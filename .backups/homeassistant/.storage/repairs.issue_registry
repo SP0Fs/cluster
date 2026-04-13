@@ -1,0 +1,65 @@
+{
+  "version": 1,
+  "minor_version": 2,
+  "key": "repairs.issue_registry",
+  "data": {
+    "issues": [
+      {
+        "created": "2024-12-15T23:18:18.826304+00:00",
+        "dismissed_version": "2024.12.5",
+        "domain": "homeassistant",
+        "is_persistent": false,
+        "issue_id": "integration_not_found.hacs"
+      },
+      {
+        "created": "2024-12-24T13:56:47.021918+00:00",
+        "dismissed_version": null,
+        "domain": "hacs",
+        "is_persistent": false,
+        "issue_id": "restart_required_254347436_tags/2.5.0"
+      },
+      {
+        "created": "2025-01-10T10:36:11.588528+00:00",
+        "dismissed_version": null,
+        "domain": "hacs",
+        "is_persistent": false,
+        "issue_id": "restart_required_290261325_tags/v1.25.0"
+      },
+      {
+        "created": "2025-01-10T10:36:31.315848+00:00",
+        "dismissed_version": null,
+        "domain": "hacs",
+        "is_persistent": false,
+        "issue_id": "restart_required_254347436_tags/2.6.0"
+      },
+      {
+        "created": "2025-07-06T08:24:45.511531+00:00",
+        "dismissed_version": null,
+        "domain": "hacs",
+        "is_persistent": false,
+        "issue_id": "restart_required_254347436_tags/2.9.0"
+      },
+      {
+        "created": "2025-09-08T14:22:22.984369+00:00",
+        "dismissed_version": null,
+        "domain": "hacs",
+        "is_persistent": false,
+        "issue_id": "restart_required_254347436_tags/2.10.0"
+      },
+      {
+        "created": "2025-11-28T08:16:25.583483+00:00",
+        "dismissed_version": null,
+        "domain": "hacs",
+        "is_persistent": false,
+        "issue_id": "restart_required_290261325_tags/v1.28.0"
+      },
+      {
+        "created": "2026-04-03T11:06:49.100062+00:00",
+        "dismissed_version": null,
+        "domain": "hacs",
+        "is_persistent": false,
+        "issue_id": "restart_required_254347436_tags/2.12.1"
+      }
+    ]
+  }
+}

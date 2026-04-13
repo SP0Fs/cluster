@@ -1,0 +1,185 @@
+{
+  "version": 1,
+  "minor_version": 1,
+  "key": "lovelace",
+  "data": {
+    "config": {
+      "title": "Marc",
+      "views": [
+        {
+          "path": "default_view",
+          "title": "Home",
+          "cards": [
+            {
+              "square": false,
+              "type": "grid",
+              "cards": [
+                {
+                  "square": false,
+                  "type": "grid",
+                  "cards": [
+                    {
+                      "show_name": false,
+                      "show_icon": true,
+                      "type": "button",
+                      "tap_action": {
+                        "action": "toggle"
+                      },
+                      "entity": "light.lampe_schlafzimmer",
+                      "icon": "mdi:ceiling-light"
+                    },
+                    {
+                      "show_name": false,
+                      "show_icon": true,
+                      "type": "button",
+                      "tap_action": {
+                        "action": "toggle"
+                      },
+                      "entity": "light.lampe_schlafzimmer_ambient",
+                      "icon": "mdi:lamp"
+                    },
+                    {
+                      "show_name": false,
+                      "show_icon": true,
+                      "type": "button",
+                      "tap_action": {
+                        "action": "toggle"
+                      },
+                      "icon": "mdi:string-lights",
+                      "show_state": false,
+                      "entity": "switch.steckdose_lichterkette"
+                    },
+                    {
+                      "show_name": false,
+                      "show_icon": true,
+                      "type": "button",
+                      "tap_action": {
+                        "action": "toggle"
+                      },
+                      "icon": "mdi:television",
+                      "entity": "switch.steckdose_tv"
+                    },
+                    {
+                      "show_name": false,
+                      "show_icon": true,
+                      "type": "button",
+                      "tap_action": {
+                        "action": "toggle"
+                      },
+                      "entity": "light.esp_flurbeleuchtung_led_flur",
+                      "icon": "mdi:led-strip-variant"
+                    },
+                    {
+                      "show_name": false,
+                      "show_icon": true,
+                      "type": "button",
+                      "tap_action": {
+                        "action": "toggle"
+                      },
+                      "entity": "light.lampe_wohnzimmer",
+                      "icon": "mdi:chandelier"
+                    }
+                  ]
+                },
+                {
+                  "square": false,
+                  "type": "grid",
+                  "cards": [
+                    {
+                      "type": "custom:mushroom-light-card",
+                      "entity": "light.lampe_wohnzimmer",
+                      "name": "Wohnzimmer",
+                      "icon": "mdi:chandelier",
+                      "use_light_color": true,
+                      "show_brightness_control": true,
+                      "show_color_temp_control": false,
+                      "show_color_control": false
+                    },
+                    {
+                      "type": "custom:mushroom-light-card",
+                      "entity": "light.lampe_schlafzimmer",
+                      "use_light_color": true,
+                      "show_brightness_control": true,
+                      "show_color_control": true,
+                      "collapsible_controls": false,
+                      "fill_container": false,
+                      "name": "Deckenlampe"
+                    },
+                    {
+                      "type": "custom:mushroom-light-card",
+                      "entity": "light.lampe_schlafzimmer_ambient",
+                      "use_light_color": true,
+                      "show_brightness_control": true,
+                      "show_color_control": true,
+                      "collapsible_controls": false,
+                      "fill_container": false,
+                      "name": "Ambient"
+                    },
+                    {
+                      "type": "custom:mushroom-light-card",
+                      "name": "Flurbeleuchtung",
+                      "entity": "light.esp_flurbeleuchtung_led_flur",
+                      "use_light_color": true,
+                      "show_brightness_control": true,
+                      "show_color_control": true,
+                      "collapsible_controls": false,
+                      "fill_container": false
+                    }
+                  ],
+                  "columns": 1
+                },
+                {
+                  "type": "custom:mushroom-climate-card",
+                  "entity": "climate.heizungen",
+                  "show_temperature_control": true,
+                  "hvac_modes": [
+                    "heat",
+                    "auto",
+                    "off"
+                  ],
+                  "tap_action": {
+                    "action": "toggle"
+                  }
+                }
+              ],
+              "columns": 1
+            },
+            {
+              "type": "entities",
+              "entities": [
+                "sensor.esp_flur_bewegungsmelder_detection_distance",
+                "sensor.esp_flur_bewegungsmelder_g0_move_energy",
+                "sensor.esp_flur_bewegungsmelder_g0_still_energy",
+                "sensor.esp_flur_bewegungsmelder_g1_move_energy",
+                "sensor.esp_flur_bewegungsmelder_g1_still_energy",
+                "sensor.esp_flur_bewegungsmelder_g2_move_energy",
+                "sensor.esp_flur_bewegungsmelder_g2_still_energy",
+                "sensor.esp_flur_bewegungsmelder_g3_move_energy",
+                "sensor.esp_flur_bewegungsmelder_g3_still_energy",
+                "sensor.esp_flur_bewegungsmelder_g4_move_energy",
+                "sensor.esp_flur_bewegungsmelder_g4_still_energy",
+                "sensor.esp_flur_bewegungsmelder_g5_move_energy",
+                "sensor.esp_flur_bewegungsmelder_g5_still_energy",
+                "sensor.esp_flur_bewegungsmelder_g6_move_energy",
+                "sensor.esp_flur_bewegungsmelder_g6_still_energy",
+                "sensor.esp_flur_bewegungsmelder_g7_move_energy",
+                "sensor.esp_flur_bewegungsmelder_g7_still_energy",
+                "sensor.esp_flur_bewegungsmelder_g8_move_energy",
+                "sensor.esp_flur_bewegungsmelder_g8_still_energy",
+                "sensor.esp_flur_bewegungsmelder_light",
+                "sensor.esp_flur_bewegungsmelder_move_energy",
+                "sensor.esp_flur_bewegungsmelder_moving_distance",
+                "binary_sensor.esp_flur_bewegungsmelder_moving_target",
+                "binary_sensor.esp_flur_bewegungsmelder_out_pin_presence_status",
+                "binary_sensor.esp_flur_bewegungsmelder_presence",
+                "sensor.esp_flur_bewegungsmelder_still_distance",
+                "sensor.esp_flur_bewegungsmelder_still_energy",
+                "binary_sensor.esp_flur_bewegungsmelder_still_target"
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  }
+}

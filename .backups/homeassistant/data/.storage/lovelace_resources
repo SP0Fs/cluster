@@ -1,0 +1,49 @@
+{
+  "version": 1,
+  "minor_version": 1,
+  "key": "lovelace_resources",
+  "data": {
+    "items": [
+      {
+        "id": "79d058a0ef1a40018317b549203bd9b5",
+        "url": "/hacsfiles/mini-graph-card/mini-graph-card-bundle.js?hacstag=1512800620121",
+        "type": "module"
+      },
+      {
+        "id": "aecb088588cc400bb2bdfc7bd9246f4c",
+        "url": "/hacsfiles/lovelace-plotly-graph-card/plotly-graph-card.js?hacstag=413812496334",
+        "type": "module"
+      },
+      {
+        "id": "2d2eae9cb48744bdbfdb72ed872dc592",
+        "url": "/hacsfiles/lovelace-mushroom/mushroom.js?hacstag=444350375420",
+        "type": "module"
+      },
+      {
+        "id": "59ea8de9901640169317ab4155fb5a63",
+        "url": "/hacsfiles/lovelace-card-mod/card-mod.js?hacstag=190927524343",
+        "type": "module"
+      },
+      {
+        "id": "7f4c8337a8374c2093fd4357762d194b",
+        "url": "/hacsfiles/lovelace-layout-card/layout-card.js?hacstag=156434866245",
+        "type": "module"
+      },
+      {
+        "id": "0083111d8a3943cf9fbb866a6b252a40",
+        "url": "/hacsfiles/power-flow-card-plus/power-flow-card-plus.js?hacstag=618081815024",
+        "type": "module"
+      },
+      {
+        "id": "91fcbee0d8214596bb32597baa804077",
+        "url": "/hacsfiles/lovelace-xiaomi-vacuum-map-card/xiaomi-vacuum-map-card.js?hacstag=193372044224",
+        "type": "module"
+      },
+      {
+        "id": "800c805bccbe47ebacb5d7602cf6e963",
+        "url": "/hacsfiles/vacuum-card/vacuum-card.js?hacstag=2612912952101",
+        "type": "module"
+      }
+    ]
+  }
+}

@@ -1,0 +1,22 @@
+Looking in indexes: https://pypi.org/simple, https://wheels.home-assistant.io/musllinux-index/
+Collecting icalevents
+  Downloading icalevents-0.1.29-py3-none-any.whl.metadata (1.8 kB)
+Collecting httplib2<0.23.0,>=0.22.0 (from icalevents)
+  Downloading https://wheels.home-assistant.io/musllinux-index/httplib2-0.22.0-py3-none-any.whl (96 kB)
+Collecting icalendar==5.0.13 (from icalevents)
+  Downloading https://wheels.home-assistant.io/musllinux-index/icalendar-5.0.13-py3-none-any.whl (118 kB)
+Requirement already satisfied: python-dateutil<3.0.0,>=2.9.0 in /usr/local/lib/python3.13/site-packages (from icalevents) (2.9.0.post0)
+Requirement already satisfied: pytz<2025.0,>=2024.1 in /usr/local/lib/python3.13/site-packages (from icalevents) (2024.2)
+Requirement already satisfied: pyparsing!=3.0.0,!=3.0.1,!=3.0.2,!=3.0.3,<4,>=2.4.2 in /usr/local/lib/python3.13/site-packages (from httplib2<0.23.0,>=0.22.0->icalevents) (3.2.0)
+Requirement already satisfied: six>=1.5 in /usr/local/lib/python3.13/site-packages (from python-dateutil<3.0.0,>=2.9.0->icalevents) (1.17.0)
+Downloading icalevents-0.1.29-py3-none-any.whl (10 kB)
+Installing collected packages: httplib2, icalendar, icalevents
+  Attempting uninstall: httplib2
+    Found existing installation: httplib2 0.20.4
+    Uninstalling httplib2-0.20.4:
+      Successfully uninstalled httplib2-0.20.4
+  Attempting uninstall: icalendar
+    Found existing installation: icalendar 6.1.0
+    Uninstalling icalendar-6.1.0:
+      Successfully uninstalled icalendar-6.1.0
+Successfully installed httplib2-0.22.0 icalendar-5.0.13 icalevents-0.1.29

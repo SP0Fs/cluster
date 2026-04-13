@@ -1,0 +1,24 @@
+{
+  "version": 2,
+  "minor_version": 1,
+  "key": "person",
+  "data": {
+    "items": [
+      {
+        "id": "marc_leibold",
+        "name": "Marc Leibold",
+        "user_id": "16678233a36d408c97b1dff64f437879",
+        "device_trackers": [
+          "device_tracker.sm_s911b"
+        ]
+      },
+      {
+        "id": "christian_veit",
+        "name": "Christian Veit",
+        "device_trackers": [],
+        "user_id": "54f1329af3474b2485e4c467d31961f9",
+        "picture": null
+      }
+    ]
+  }
+}

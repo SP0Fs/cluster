@@ -1,0 +1,284 @@
+{
+  "version": 1,
+  "minor_version": 3,
+  "key": "core.config_entries",
+  "data": {
+    "entries": [
+      {
+        "created_at": "1970-01-01T00:00:00+00:00",
+        "data": {},
+        "disabled_by": null,
+        "domain": "sun",
+        "entry_id": "ee9da4329af841927f6623808ccf4c0c",
+        "minor_version": 1,
+        "modified_at": "1970-01-01T00:00:00+00:00",
+        "options": {},
+        "pref_disable_new_entities": false,
+        "pref_disable_polling": false,
+        "source": "import",
+        "title": "Sun",
+        "unique_id": null,
+        "version": 1
+      },
+      {
+        "created_at": "1970-01-01T00:00:00+00:00",
+        "data": {},
+        "disabled_by": null,
+        "domain": "shopping_list",
+        "entry_id": "37b4c5e470da26a7e785b4c0c906b7a5",
+        "minor_version": 1,
+        "modified_at": "1970-01-01T00:00:00+00:00",
+        "options": {},
+        "pref_disable_new_entities": false,
+        "pref_disable_polling": false,
+        "source": "onboarding",
+        "title": "Shopping list",
+        "unique_id": "shopping_list",
+        "version": 1
+      },
+      {
+        "created_at": "1970-01-01T00:00:00+00:00",
+        "data": {},
+        "disabled_by": null,
+        "domain": "radio_browser",
+        "entry_id": "ef055b7effffa835ce7269b52e39e8bb",
+        "minor_version": 1,
+        "modified_at": "1970-01-01T00:00:00+00:00",
+        "options": {},
+        "pref_disable_new_entities": false,
+        "pref_disable_polling": false,
+        "source": "onboarding",
+        "title": "Radio Browser",
+        "unique_id": null,
+        "version": 1
+      },
+      {
+        "created_at": "1970-01-01T00:00:00+00:00",
+        "data": {
+          "track_home": true
+        },
+        "disabled_by": null,
+        "domain": "met",
+        "entry_id": "5db9154307824ab8ce08f3b7a6efa4aa",
+        "minor_version": 1,
+        "modified_at": "1970-01-01T00:00:00+00:00",
+        "options": {},
+        "pref_disable_new_entities": false,
+        "pref_disable_polling": false,
+        "source": "onboarding",
+        "title": "Home",
+        "unique_id": null,
+        "version": 1
+      },
+      {
+        "created_at": "1970-01-01T00:00:00+00:00",
+        "data": {
+          "language": "en",
+          "tld": "com"
+        },
+        "disabled_by": null,
+        "domain": "google_translate",
+        "entry_id": "77b0db02f1c0fd77b90f8fd8492b4ee8",
+        "minor_version": 1,
+        "modified_at": "1970-01-01T00:00:00+00:00",
+        "options": {},
+        "pref_disable_new_entities": false,
+        "pref_disable_polling": false,
+        "source": "onboarding",
+        "title": "Google Translate text-to-speech",
+        "unique_id": null,
+        "version": 1
+      },
+      {
+        "created_at": "1970-01-01T00:00:00+00:00",
+        "data": {
+          "app_id": "io.homeassistant.companion.android",
+          "app_name": "Home Assistant",
+          "app_version": "2024.10.3-full (14058)",
+          "device_name": "S23",
+          "manufacturer": "samsung",
+          "model": "SM-S911B",
+          "os_name": "Android",
+          "os_version": "34",
+          "supports_encryption": false,
+          "app_data": {
+            "push_websocket_channel": true,
+            "push_url": "https://mobile-apps.home-assistant.io/api/sendPush/android/v1",
+            "push_token": "drSmR9I0Q0i7mT_vgGNyd1:APA91bEC9e2gDisE1E9QHffd7L0IhuS_XG1yFqulOaCLb8h8hqVXwTi6fgsuPOaGR0QhD_Nx08J2I0J9I9u2IhG3U4usz3YmZkBVqjSszbLFxq44vtl5P6u9K6-4e-3vS2EBHTEQY8dm"
+          },
+          "device_id": "e1495b527ddfade9",
+          "webhook_id": "f12d0cb5aa6957336949badc6fa21564114ac251dd3f39124deb624cb5df782b",
+          "user_id": "16678233a36d408c97b1dff64f437879"
+        },
+        "disabled_by": null,
+        "domain": "mobile_app",
+        "entry_id": "cf7f646ff94674ae5453671ff878b552",
+        "minor_version": 1,
+        "modified_at": "2024-10-22T03:21:40.825484+00:00",
+        "options": {},
+        "pref_disable_new_entities": false,
+        "pref_disable_polling": false,
+        "source": "registration",
+        "title": "SM-S911B",
+        "unique_id": "io.homeassistant.companion.android-e1495b527ddfade9",
+        "version": 1
+      },
+      {
+        "created_at": "1970-01-01T00:00:00+00:00",
+        "data": {
+          "token": "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"
+        },
+        "disabled_by": null,
+        "domain": "hacs",
+        "entry_id": "bf013a8e0aa6caa1c1b2a21b5c7e345b",
+        "minor_version": 1,
+        "modified_at": "1970-01-01T00:00:00+00:00",
+        "options": {
+          "experimental": true
+        },
+        "pref_disable_new_entities": false,
+        "pref_disable_polling": false,
+        "source": "user",
+        "title": "",
+        "unique_id": null,
+        "version": 1
+      },
+      {
+        "created_at": "1970-01-01T00:00:00+00:00",
+        "data": {},
+        "disabled_by": null,
+        "domain": "min_max",
+        "entry_id": "a33660b96060c88a5c725b82dd0ed6be",
+        "minor_version": 1,
+        "modified_at": "1970-01-01T00:00:00+00:00",
+        "options": {
+          "name": "Tonaten",
+          "entity_ids": [
+            "sensor.esp_balcony_3_story_pot_tomate_l",
+            "sensor.esp_balcony_3_story_pot_tomate_m",
+            "sensor.esp_balcony_3_story_pot_tomate_r"
+          ],
+          "type": "mean",
+          "round_digits": 2.0
+        },
+        "pref_disable_new_entities": false,
+        "pref_disable_polling": false,
+        "source": "user",
+        "title": "Tonaten",
+        "unique_id": null,
+        "version": 1
+      },
+      {
+        "created_at": "1970-01-01T00:00:00+00:00",
+        "data": {
+          "host": "192.168.178.41",
+          "port": 6053,
+          "password": "",
+          "noise_psk": "bWh90rpGlfR8YYCRZXkedR9OiqcOJB7Mo2Chick3RWg=",
+          "device_name": "esp-flurbeleuchtung"
+        },
+        "disabled_by": null,
+        "domain": "esphome",
+        "entry_id": "500e7a2dff2b499ca332364133e406b0",
+        "minor_version": 1,
+        "modified_at": "1970-01-01T00:00:00+00:00",
+        "options": {
+          "allow_service_calls": false
+        },
+        "pref_disable_new_entities": false,
+        "pref_disable_polling": false,
+        "source": "user",
+        "title": "ESP Flurbeleuchtung",
+        "unique_id": "50:02:91:fd:eb:59",
+        "version": 1
+      },
+      {
+        "created_at": "2024-09-08T11:24:08.325051+00:00",
+        "data": {
+          "broker": "mosquitto.mosquitto",
+          "port": 1883,
+          "discovery": true
+        },
+        "disabled_by": null,
+        "domain": "mqtt",
+        "entry_id": "01J78P108529M0B4S7GHNR41FX",
+        "minor_version": 1,
+        "modified_at": "2024-09-08T11:24:08.325054+00:00",
+        "options": {},
+        "pref_disable_new_entities": false,
+        "pref_disable_polling": false,
+        "source": "user",
+        "title": "mosquitto.mosquitto",
+        "unique_id": null,
+        "version": 1
+      },
+      {
+        "created_at": "2024-11-07T18:11:41.131048+00:00",
+        "data": {
+          "host": "192.168.178.48",
+          "port": 6053,
+          "password": "",
+          "noise_psk": "tHD6/KSDA44EZzyXBs2cIrjEiMJRC0Qq0tH7aG5av48=",
+          "device_name": "esp-flur-bewegungsmelder"
+        },
+        "disabled_by": null,
+        "domain": "esphome",
+        "entry_id": "01JC3X6BYB9WGQM9AGRRD8JX83",
+        "minor_version": 1,
+        "modified_at": "2024-11-07T18:11:41.131052+00:00",
+        "options": {
+          "allow_service_calls": false
+        },
+        "pref_disable_new_entities": false,
+        "pref_disable_polling": false,
+        "source": "user",
+        "title": "ESP Flur Bewegungsmelder",
+        "unique_id": "08:3a:8d:cf:c4:a8",
+        "version": 1
+      },
+      {
+        "created_at": "2024-11-28T10:21:43.592430+00:00",
+        "data": {
+          "username": "leibold485@gmail.com",
+          "user_data": {
+            "uid": 7147710,
+            "tokentype": "",
+            "token": "23c2716b40154273b0e627cddb9bf3e1-DoNtgEPwoLoTdP0EkI7bMw==",
+            "rruid": "rr64dbb087b59830",
+            "region": "eu",
+            "countrycode": "49",
+            "country": "DE",
+            "nickname": "Bkc1254080",
+            "rriot": {
+              "u": "10DlnI6g7EoV9TE6fb42ep",
+              "s": "WIvwlr",
+              "h": "c62JwjeJMd",
+              "k": "6QzqlqZZ",
+              "r": {
+                "r": "EU",
+                "a": "https://api-eu.roborock.com",
+                "m": "ssl://mqtt-eu-3.roborock.com:8883",
+                "l": "https://wood-eu.roborock.com"
+              }
+            },
+            "tuyaDeviceState": 0,
+            "avatarurl": "https://files.roborock.com/iottest/default_avatar.png"
+          },
+          "base_url": "https://euiot.roborock.com"
+        },
+        "disabled_by": null,
+        "domain": "roborock",
+        "entry_id": "01JDS4MY98ECWY311BEQAKGZW9",
+        "minor_version": 1,
+        "modified_at": "2024-11-28T10:21:43.592434+00:00",
+        "options": {},
+        "pref_disable_new_entities": false,
+        "pref_disable_polling": false,
+        "source": "user",
+        "title": "leibold485@gmail.com",
+        "unique_id": "leibold485@gmail.com",
+        "version": 1
+      }
+    ]
+  }
+}

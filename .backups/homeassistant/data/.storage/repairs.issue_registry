@@ -1,0 +1,44 @@
+{
+  "version": 1,
+  "minor_version": 2,
+  "key": "repairs.issue_registry",
+  "data": {
+    "issues": [
+      {
+        "created": "2024-05-30T11:06:51.493073+00:00",
+        "dismissed_version": "2024.1.6",
+        "domain": "hacs",
+        "is_persistent": false,
+        "issue_id": "deprecated_yaml_configuration"
+      },
+      {
+        "created": "2024-08-17T16:49:15.125263+00:00",
+        "dismissed_version": null,
+        "domain": "homeassistant",
+        "is_persistent": false,
+        "issue_id": "integration_not_found.hacs"
+      },
+      {
+        "created": "2024-09-11T18:38:43.907223+00:00",
+        "dismissed_version": null,
+        "domain": "hacs",
+        "is_persistent": false,
+        "issue_id": "restart_required_413798425_tags/v1.3.10"
+      },
+      {
+        "created": "2024-10-16T11:12:53.281420+00:00",
+        "dismissed_version": null,
+        "domain": "hacs",
+        "is_persistent": false,
+        "issue_id": "restart_required_195459345_tags/0.6.0"
+      },
+      {
+        "created": "2024-11-08T16:35:09.792758+00:00",
+        "dismissed_version": null,
+        "domain": "hacs",
+        "is_persistent": false,
+        "issue_id": "restart_required_401282856_tags/v13.1.0"
+      }
+    ]
+  }
+}

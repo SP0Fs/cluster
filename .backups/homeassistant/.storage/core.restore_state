@@ -1,0 +1,756 @@
+{
+  "version": 1,
+  "minor_version": 1,
+  "key": "core.restore_state",
+  "data": [
+    {
+      "state": {"entity_id":"conversation.home_assistant","state":"unknown","attributes":{"friendly_name":"Home Assistant","supported_features":1},"last_changed":"2026-04-10T16:19:48.943485+00:00","last_reported":"2026-04-10T16:19:48.943485+00:00","last_updated":"2026-04-10T16:19:48.943485+00:00","context":{"id":"01KNW32J2FZD9KAKME5RCD0QJC","parent_id":null,"user_id":null}},
+      "extra_data": null,
+      "last_seen": "2026-04-13T18:37:33.163691+00:00"
+    },
+    {
+      "state": {"entity_id":"event.backup_automatic_backup","state":"2026-04-13T02:56:03.536+00:00","attributes":{"event_types":["completed","failed","in_progress"],"event_type":"completed","backup_stage":null,"failed_reason":null,"friendly_name":"Backup Automatic backup"},"last_changed":"2026-04-13T02:56:03.536888+00:00","last_reported":"2026-04-13T02:56:03.536888+00:00","last_updated":"2026-04-13T02:56:03.536888+00:00","context":{"id":"01KP2C8ZYGV4XJ6FQQG2535W6A","parent_id":null,"user_id":null}},
+      "extra_data": {
+        "last_event_type": "completed",
+        "last_event_attributes": {
+          "backup_stage": null,
+          "failed_reason": null
+        }
+      },
+      "last_seen": "2026-04-13T18:37:33.163691+00:00"
+    },
+    {
+      "state": {"entity_id":"person.marc_leibold","state":"home","attributes":{"editable":true,"id":"marc_leibold","device_trackers":["device_tracker.sm_s911b"],"latitude":50.7201246,"longitude":7.0923234,"gps_accuracy":100,"source":"device_tracker.sm_s911b","user_id":"65a369b02a184ce2a82c00a032eb765a","entity_picture":"/api/image/serve/4f7dbae1f3b9b4bb8ab4cabd8257492b/512x512","friendly_name":"Marc Leibold"},"last_changed":"2026-04-13T16:24:32.933447+00:00","last_reported":"2026-04-13T18:25:28.478815+00:00","last_updated":"2026-04-13T18:25:28.478815+00:00","context":{"id":"01KP41ESWYHYSSF248VFDXH2QB","parent_id":null,"user_id":null}},
+      "extra_data": null,
+      "last_seen": "2026-04-13T18:37:33.163691+00:00"
+    },
+    {
+      "state": {"entity_id":"sensor.temperatur_innen_2","state":"20.0","attributes":{"state_class":"measurement","unit_of_measurement":"°C","device_class":"temperature","friendly_name":"Temperatur Innen"},"last_changed":"2026-04-13T17:30:57.726228+00:00","last_reported":"2026-04-13T17:30:57.726228+00:00","last_updated":"2026-04-13T17:30:57.726228+00:00","context":{"id":"01KP3YAZSWYQ0M51V3HZ4S3XHT","parent_id":null,"user_id":null}},
+      "extra_data": {
+        "native_value": 20.0,
+        "native_unit_of_measurement": "°C"
+      },
+      "last_seen": "2026-04-13T18:37:33.163691+00:00"
+    },
+    {
+      "state": {"entity_id":"device_tracker.sm_s911b","state":"home","attributes":{"source_type":"gps","latitude":50.7201246,"longitude":7.0923234,"gps_accuracy":100,"altitude":117.0,"course":0,"speed":0,"vertical_accuracy":100,"friendly_name":"SM-S911B"},"last_changed":"2026-04-13T18:25:28.478562+00:00","last_reported":"2026-04-13T18:25:28.478562+00:00","last_updated":"2026-04-13T18:25:28.478562+00:00","context":{"id":"01KP41ESWY4NJH4WEE40MK5W01","parent_id":null,"user_id":null}},
+      "extra_data": null,
+      "last_seen": "2026-04-13T18:37:33.163691+00:00"
+    },
+    {
+      "state": {"entity_id":"sensor.sm_s911b_sleep_confidence","state":"90","attributes":{"state_class":"measurement","light":3,"motion":1,"timestamp":1776105371000,"unit_of_measurement":"%","icon":"mdi:sleep","friendly_name":"SM-S911B Sleep confidence"},"last_changed":"2026-04-13T18:36:14.505138+00:00","last_reported":"2026-04-13T18:36:14.505138+00:00","last_updated":"2026-04-13T18:36:14.505138+00:00","context":{"id":"01KP422GS945S32Z31ANWJFX0X","parent_id":null,"user_id":null}},
+      "extra_data": {
+        "native_value": 90,
+        "native_unit_of_measurement": "%"
+      },
+      "last_seen": "2026-04-13T18:37:33.163691+00:00"
+    },
+    {
+      "state": {"entity_id":"sensor.sm_s911b_sleep_segment","state":"8.1","attributes":{"end":1776056919201,"start":1776027759201,"status":"successful","unit_of_measurement":"h","device_class":"duration","icon":"mdi:sleep","friendly_name":"SM-S911B Sleep segment"},"last_changed":"2026-04-13T05:37:06.754086+00:00","last_reported":"2026-04-13T05:37:06.754086+00:00","last_updated":"2026-04-13T05:37:06.754086+00:00","context":{"id":"01KP2NFWP2P5P0F6EGZ45SKYHT","parent_id":null,"user_id":null}},
+      "extra_data": {
+        "native_value": 29160000.0,
+        "native_unit_of_measurement": "ms"
+      },
+      "last_seen": "2026-04-13T18:37:33.163691+00:00"
+    },
+    {
+      "state": {"entity_id":"sensor.sm_s911b_battery_level","state":"88","attributes":{"state_class":"measurement","unit_of_measurement":"%","device_class":"battery","icon":"mdi:battery-charging-80","friendly_name":"SM-S911B Battery level"},"last_changed":"2026-04-13T18:36:14.505542+00:00","last_reported":"2026-04-13T18:36:14.505542+00:00","last_updated":"2026-04-13T18:36:14.505542+00:00","context":{"id":"01KP422GS9DNW2W6435DXKW1YN","parent_id":null,"user_id":null}},
+      "extra_data": {
+        "native_value": 88,
+        "native_unit_of_measurement": "%"
+      },
+      "last_seen": "2026-04-13T18:37:33.163691+00:00"
+    },
+    {
+      "state": {"entity_id":"sensor.sm_s911b_battery_state","state":"charging","attributes":{"options":["charging","discharging","full","not_charging"],"device_class":"enum","icon":"mdi:battery-plus","friendly_name":"SM-S911B Battery state"},"last_changed":"2026-04-13T17:33:39.886296+00:00","last_reported":"2026-04-13T17:33:39.886296+00:00","last_updated":"2026-04-13T17:33:39.886296+00:00","context":{"id":"01KP3YFY5EJ77TAH2QA4Z7AP2Y","parent_id":null,"user_id":null}},
+      "extra_data": {
+        "native_value": "charging",
+        "native_unit_of_measurement": null
+      },
+      "last_seen": "2026-04-13T18:37:33.163691+00:00"
+    },
+    {
+      "state": {"entity_id":"sensor.sm_s911b_charger_type","state":"ac","attributes":{"options":["ac","usb","wireless","dock","none"],"device_class":"enum","icon":"mdi:power-plug","friendly_name":"SM-S911B Charger type"},"last_changed":"2026-04-13T17:33:39.886482+00:00","last_reported":"2026-04-13T17:33:39.886482+00:00","last_updated":"2026-04-13T17:33:39.886482+00:00","context":{"id":"01KP3YFY5EFCA2QFDFSGVXFE63","parent_id":null,"user_id":null}},
+      "extra_data": {
+        "native_value": "ac",
+        "native_unit_of_measurement": null
+      },
+      "last_seen": "2026-04-13T18:37:33.163691+00:00"
+    },
+    {
+      "state": {"entity_id":"sensor.sm_s911b_daily_steps","state":"4533.0","attributes":{"state_class":"total_increasing","endTime":"2026-04-13T18:36:14.148Z","sources":["android","com.google.android.apps.fitness","com.fitbit.FitbitMobile"],"unit_of_measurement":"steps","icon":"mdi:walk","friendly_name":"SM-S911B Daily steps"},"last_changed":"2026-04-13T18:18:27.090637+00:00","last_reported":"2026-04-13T18:36:14.505708+00:00","last_updated":"2026-04-13T18:36:14.505708+00:00","context":{"id":"01KP422GS9TR4AY8HZ8RF6Y7GS","parent_id":null,"user_id":null}},
+      "extra_data": {
+        "native_value": 4533.0,
+        "native_unit_of_measurement": "steps"
+      },
+      "last_seen": "2026-04-13T18:37:33.163691+00:00"
+    },
+    {
+      "state": {"entity_id":"tts.google_translate_en_com","state":"unknown","attributes":{"friendly_name":"Google Translate en com"},"last_changed":"2026-04-10T16:19:58.003783+00:00","last_reported":"2026-04-10T16:19:58.003783+00:00","last_updated":"2026-04-10T16:19:58.003783+00:00","context":{"id":"01KNW32TXK2WM3BNHPEV12J1AV","parent_id":null,"user_id":null}},
+      "extra_data": null,
+      "last_seen": "2026-04-13T18:37:33.163691+00:00"
+    },
+    {
+      "state": {"entity_id":"update.climate_group_update","state":"off","attributes":{"auto_update":false,"display_precision":0,"installed_version":"1.0.8","in_progress":false,"latest_version":"1.0.8","release_summary":null,"release_url":"https://github.com/bjrnptrsn/climate_group/releases/1.0.8","skipped_version":null,"title":null,"update_percentage":null,"entity_picture":"https://brands.home-assistant.io/_/climate_group/icon.png","friendly_name":"Climate Group Update","supported_features":23},"last_changed":"2026-04-10T16:19:58.214983+00:00","last_reported":"2026-04-10T16:19:58.214983+00:00","last_updated":"2026-04-10T16:19:58.214983+00:00","context":{"id":"01KNW32V46E5A424ZZQN94X174","parent_id":null,"user_id":null}},
+      "extra_data": null,
+      "last_seen": "2026-04-13T18:37:33.163691+00:00"
+    },
+    {
+      "state": {"entity_id":"update.adaptive_lighting_update","state":"off","attributes":{"auto_update":false,"display_precision":0,"installed_version":"v1.30.1","in_progress":false,"latest_version":"v1.30.1","release_summary":null,"release_url":"https://github.com/basnijholt/adaptive-lighting/releases/v1.30.1","skipped_version":null,"title":null,"update_percentage":null,"entity_picture":"https://brands.home-assistant.io/_/adaptive_lighting/icon.png","friendly_name":"Adaptive Lighting Update","supported_features":23},"last_changed":"2026-04-10T16:19:58.215449+00:00","last_reported":"2026-04-10T16:19:58.215449+00:00","last_updated":"2026-04-10T16:19:58.215449+00:00","context":{"id":"01KNW32V47DBK6574Y7MMAW2ED","parent_id":null,"user_id":null}},
+      "extra_data": null,
+      "last_seen": "2026-04-13T18:37:33.163691+00:00"
+    },
+    {
+      "state": {"entity_id":"update.plotly_graph_card_update","state":"off","attributes":{"auto_update":false,"display_precision":0,"installed_version":"v3.3.5","in_progress":false,"latest_version":"v3.3.5","release_summary":null,"release_url":"https://github.com/dbuezas/lovelace-plotly-graph-card/releases/v3.3.5","skipped_version":null,"title":null,"update_percentage":null,"friendly_name":"Plotly Graph Card Update","supported_features":23},"last_changed":"2026-04-10T16:19:58.215797+00:00","last_reported":"2026-04-10T16:19:58.215797+00:00","last_updated":"2026-04-10T16:19:58.215797+00:00","context":{"id":"01KNW32V4732WH3FT6DE87NGJ9","parent_id":null,"user_id":null}},
+      "extra_data": null,
+      "last_seen": "2026-04-13T18:37:33.163691+00:00"
+    },
+    {
+      "state": {"entity_id":"update.catppuccin_theme_update","state":"off","attributes":{"auto_update":false,"display_precision":0,"installed_version":"v2.1.3","in_progress":false,"latest_version":"v2.1.3","release_summary":null,"release_url":"https://github.com/catppuccin/home-assistant/releases/v2.1.3","skipped_version":null,"title":null,"update_percentage":null,"friendly_name":"Catppuccin Theme Update","supported_features":23},"last_changed":"2026-04-10T16:19:58.216109+00:00","last_reported":"2026-04-10T16:19:58.216109+00:00","last_updated":"2026-04-10T16:19:58.216109+00:00","context":{"id":"01KNW32V487J85R76GNGMS763H","parent_id":null,"user_id":null}},
+      "extra_data": null,
+      "last_seen": "2026-04-13T18:37:33.163691+00:00"
+    },
+    {
+      "state": {"entity_id":"update.bubble_card_update","state":"off","attributes":{"auto_update":false,"display_precision":0,"installed_version":"v3.1.6","in_progress":false,"latest_version":"v3.1.6","release_summary":null,"release_url":"https://github.com/Clooos/Bubble-Card/releases/v3.1.6","skipped_version":null,"title":null,"update_percentage":null,"friendly_name":"Bubble Card Update","supported_features":23},"last_changed":"2026-04-10T16:19:58.216468+00:00","last_reported":"2026-04-10T16:19:58.216468+00:00","last_updated":"2026-04-10T16:19:58.216468+00:00","context":{"id":"01KNW32V48HEVMH4D6N0AQGWDF","parent_id":null,"user_id":null}},
+      "extra_data": null,
+      "last_seen": "2026-04-13T18:37:33.163691+00:00"
+    },
+    {
+      "state": {"entity_id":"update.local_tuya_update","state":"off","attributes":{"auto_update":false,"display_precision":0,"installed_version":"v5.2.5","in_progress":false,"latest_version":"v5.2.5","release_summary":null,"release_url":"https://github.com/rospogrigio/localtuya/releases/v5.2.5","skipped_version":null,"title":null,"update_percentage":null,"entity_picture":"https://brands.home-assistant.io/_/localtuya/icon.png","friendly_name":"Local Tuya Update","supported_features":23},"last_changed":"2026-04-10T16:19:58.216779+00:00","last_reported":"2026-04-10T16:19:58.216779+00:00","last_updated":"2026-04-10T16:19:58.216779+00:00","context":{"id":"01KNW32V48M4DSJTAPWZBD3HZM","parent_id":null,"user_id":null}},
+      "extra_data": null,
+      "last_seen": "2026-04-13T18:37:33.163691+00:00"
+    },
+    {
+      "state": {"entity_id":"update.mushroom_update","state":"off","attributes":{"auto_update":false,"display_precision":0,"installed_version":"v5.1.1","in_progress":false,"latest_version":"v5.1.1","release_summary":null,"release_url":"https://github.com/piitaya/lovelace-mushroom/releases/v5.1.1","skipped_version":null,"title":null,"update_percentage":null,"friendly_name":"Mushroom Update","supported_features":23},"last_changed":"2026-04-10T16:19:58.217078+00:00","last_reported":"2026-04-10T16:19:58.217078+00:00","last_updated":"2026-04-10T16:19:58.217078+00:00","context":{"id":"01KNW32V49KAMYDABTSGX0CXDN","parent_id":null,"user_id":null}},
+      "extra_data": null,
+      "last_seen": "2026-04-13T18:37:33.163691+00:00"
+    },
+    {
+      "state": {"entity_id":"update.waste_collection_schedule_update","state":"on","attributes":{"auto_update":false,"display_precision":0,"installed_version":"v2.18.0","in_progress":false,"latest_version":"v2.19.0","release_summary":null,"release_url":"https://github.com/mampfes/hacs_waste_collection_schedule/releases/v2.19.0","skipped_version":null,"title":null,"update_percentage":null,"entity_picture":"https://brands.home-assistant.io/_/waste_collection_schedule/icon.png","friendly_name":"Waste Collection Schedule Update","supported_features":23},"last_changed":"2026-04-13T04:22:33.274606+00:00","last_reported":"2026-04-13T04:22:33.274606+00:00","last_updated":"2026-04-13T04:22:33.274606+00:00","context":{"id":"01KP2H7C1T9GHQNSFQ474ZYR42","parent_id":null,"user_id":null}},
+      "extra_data": null,
+      "last_seen": "2026-04-13T18:37:33.163691+00:00"
+    },
+    {
+      "state": {"entity_id":"update.mini_graph_card_update","state":"off","attributes":{"auto_update":false,"display_precision":0,"installed_version":"v0.13.0","in_progress":false,"latest_version":"v0.13.0","release_summary":null,"release_url":"https://github.com/kalkih/mini-graph-card/releases/v0.13.0","skipped_version":null,"title":null,"update_percentage":null,"friendly_name":"mini-graph-card Update","supported_features":23},"last_changed":"2026-04-10T16:19:58.217724+00:00","last_reported":"2026-04-10T16:19:58.217724+00:00","last_updated":"2026-04-10T16:19:58.217724+00:00","context":{"id":"01KNW32V49AFSJR8CVVA609W7F","parent_id":null,"user_id":null}},
+      "extra_data": null,
+      "last_seen": "2026-04-13T18:37:33.163691+00:00"
+    },
+    {
+      "state": {"entity_id":"update.apexcharts_card_update","state":"off","attributes":{"auto_update":false,"display_precision":0,"installed_version":"v2.2.3","in_progress":false,"latest_version":"v2.2.3","release_summary":null,"release_url":"https://github.com/RomRider/apexcharts-card/releases/v2.2.3","skipped_version":null,"title":null,"update_percentage":null,"friendly_name":"apexcharts-card Update","supported_features":23},"last_changed":"2026-04-10T16:19:58.218021+00:00","last_reported":"2026-04-10T16:19:58.218021+00:00","last_updated":"2026-04-10T16:19:58.218021+00:00","context":{"id":"01KNW32V4ARCB7GBZ0AR21G37H","parent_id":null,"user_id":null}},
+      "extra_data": null,
+      "last_seen": "2026-04-13T18:37:33.163691+00:00"
+    },
+    {
+      "state": {"entity_id":"update.rgb_light_card_update","state":"off","attributes":{"auto_update":false,"display_precision":0,"installed_version":"1.14.0","in_progress":false,"latest_version":"1.14.0","release_summary":null,"release_url":"https://github.com/bokub/rgb-light-card/releases/1.14.0","skipped_version":null,"title":null,"update_percentage":null,"friendly_name":"RGB Light Card Update","supported_features":23},"last_changed":"2026-04-10T16:19:58.218318+00:00","last_reported":"2026-04-10T16:19:58.218318+00:00","last_updated":"2026-04-10T16:19:58.218318+00:00","context":{"id":"01KNW32V4ATT5QZ0GQAXTJMC8J","parent_id":null,"user_id":null}},
+      "extra_data": null,
+      "last_seen": "2026-04-13T18:37:33.163691+00:00"
+    },
+    {
+      "state": {"entity_id":"update.graphite_theme_update","state":"off","attributes":{"auto_update":false,"display_precision":0,"installed_version":"2.7.4","in_progress":false,"latest_version":"2.7.4","release_summary":null,"release_url":"https://github.com/TilmanGriesel/graphite/releases/2.7.4","skipped_version":null,"title":null,"update_percentage":null,"friendly_name":"Graphite Theme Update","supported_features":23},"last_changed":"2026-04-10T16:19:58.218642+00:00","last_reported":"2026-04-10T16:19:58.218642+00:00","last_updated":"2026-04-10T16:19:58.218642+00:00","context":{"id":"01KNW32V4A72SW1F31M3B2VVAQ","parent_id":null,"user_id":null}},
+      "extra_data": null,
+      "last_seen": "2026-04-13T18:37:33.163691+00:00"
+    },
+    {
+      "state": {"entity_id":"update.mushroom_themes_update","state":"off","attributes":{"auto_update":false,"display_precision":0,"installed_version":"v0.0.11","in_progress":false,"latest_version":"v0.0.11","release_summary":null,"release_url":"https://github.com/piitaya/lovelace-mushroom-themes/releases/v0.0.11","skipped_version":null,"title":null,"update_percentage":null,"friendly_name":"Mushroom Themes Update","supported_features":23},"last_changed":"2026-04-10T16:19:58.218928+00:00","last_reported":"2026-04-10T16:19:58.218928+00:00","last_updated":"2026-04-10T16:19:58.218928+00:00","context":{"id":"01KNW32V4ADQHVQZVV7MHVQQQ9","parent_id":null,"user_id":null}},
+      "extra_data": null,
+      "last_seen": "2026-04-13T18:37:33.163691+00:00"
+    },
+    {
+      "state": {"entity_id":"update.hacs_update","state":"off","attributes":{"auto_update":false,"display_precision":0,"installed_version":"2.0.5","in_progress":false,"latest_version":"2.0.5","release_summary":null,"release_url":"https://github.com/hacs/integration/releases/2.0.5","skipped_version":null,"title":null,"update_percentage":null,"entity_picture":"https://brands.home-assistant.io/_/hacs/icon.png","friendly_name":"HACS Update","supported_features":23},"last_changed":"2026-04-10T16:19:58.219472+00:00","last_reported":"2026-04-10T16:19:58.219472+00:00","last_updated":"2026-04-10T16:19:58.219472+00:00","context":{"id":"01KNW32V4BRNS34A51P240F6DX","parent_id":null,"user_id":null}},
+      "extra_data": null,
+      "last_seen": "2026-04-13T18:37:33.163691+00:00"
+    },
+    {
+      "state": {"entity_id":"update.roborock_update","state":"off","attributes":{"auto_update":false,"display_precision":0,"installed_version":"1.0.16","in_progress":false,"latest_version":"1.0.16","release_summary":null,"release_url":"https://github.com/humbertogontijo/homeassistant-roborock/releases/1.0.16","skipped_version":null,"title":null,"update_percentage":null,"entity_picture":"https://brands.home-assistant.io/_/roborock/icon.png","friendly_name":"Roborock Update","supported_features":23},"last_changed":"2026-04-10T16:19:58.219786+00:00","last_reported":"2026-04-10T16:19:58.219786+00:00","last_updated":"2026-04-10T16:19:58.219786+00:00","context":{"id":"01KNW32V4BD5AR506K5ZX97FAC","parent_id":null,"user_id":null}},
+      "extra_data": null,
+      "last_seen": "2026-04-13T18:37:33.163691+00:00"
+    },
+    {
+      "state": {"entity_id":"update.rose_pine_for_home_assistant_update","state":"off","attributes":{"auto_update":false,"display_precision":0,"installed_version":"483684b","in_progress":false,"latest_version":"483684b","release_summary":null,"release_url":"https://github.com/juliamertz/homeassistant-rosepine-theme","skipped_version":null,"title":null,"update_percentage":null,"friendly_name":"Rosé Pine for Home Assistant Update","supported_features":23},"last_changed":"2026-04-10T16:19:58.220081+00:00","last_reported":"2026-04-10T16:19:58.220081+00:00","last_updated":"2026-04-10T16:19:58.220081+00:00","context":{"id":"01KNW32V4C35X0H91ES81F2FX3","parent_id":null,"user_id":null}},
+      "extra_data": null,
+      "last_seen": "2026-04-13T18:37:33.163691+00:00"
+    },
+    {
+      "state": {"entity_id":"automation.aufheizen_morgens","state":"on","attributes":{"id":"1736506280300","last_triggered":"2026-04-13T03:30:00.425363+00:00","mode":"single","current":0,"friendly_name":"Aufheizen morgens"},"last_changed":"2026-04-10T16:19:58.286995+00:00","last_reported":"2026-04-13T03:30:00.427721+00:00","last_updated":"2026-04-13T03:30:00.427721+00:00","context":{"id":"01KP2E7539TYNA045NC57Y4KKS","parent_id":null,"user_id":null}},
+      "extra_data": null,
+      "last_seen": "2026-04-13T18:37:33.163691+00:00"
+    },
+    {
+      "state": {"entity_id":"automation.aufheizen_zuhause","state":"off","attributes":{"id":"1737737185911","last_triggered":"2025-07-02T15:23:20.460059+00:00","mode":"single","current":0,"friendly_name":"Kommen - Heizung an"},"last_changed":"2026-04-10T16:19:58.287205+00:00","last_reported":"2026-04-10T16:19:58.287205+00:00","last_updated":"2026-04-10T16:19:58.287205+00:00","context":{"id":"01KNW32V6F4G509NDQX7YVVFMD","parent_id":null,"user_id":null}},
+      "extra_data": null,
+      "last_seen": "2026-04-13T18:37:33.163691+00:00"
+    },
+    {
+      "state": {"entity_id":"automation.gehen_heizung_aus","state":"on","attributes":{"id":"1737737346099","last_triggered":"2026-04-13T16:15:20.469468+00:00","mode":"single","current":0,"friendly_name":"Gehen - Heizung & Licht aus"},"last_changed":"2026-04-10T16:19:58.287360+00:00","last_reported":"2026-04-13T16:15:20.474887+00:00","last_updated":"2026-04-13T16:15:20.474887+00:00","context":{"id":"01KP3T0GWN03W97MXQ73C21EMK","parent_id":"01KP3SYP9KBKJ9T2CV89WF5DB5","user_id":null}},
+      "extra_data": null,
+      "last_seen": "2026-04-13T18:37:33.163691+00:00"
+    },
+    {
+      "state": {"entity_id":"binary_sensor.zigbee2mqtt_bridge_connection_state","state":"on","attributes":{"device_class":"connectivity","friendly_name":"Zigbee2MQTT Bridge Connection state"},"last_changed":"2026-04-10T16:20:00.683129+00:00","last_reported":"2026-04-10T16:20:00.683129+00:00","last_updated":"2026-04-10T16:20:00.683129+00:00","context":{"id":"01KNW32XHBM5QM5JTW1G5FN7H8","parent_id":null,"user_id":null}},
+      "extra_data": null,
+      "last_seen": "2026-04-13T18:37:33.163691+00:00"
+    },
+    {
+      "state": {"entity_id":"binary_sensor.heizung_bad_battery_low","state":"off","attributes":{"device_class":"battery","friendly_name":"Heizung Bad Battery"},"last_changed":"2026-04-10T16:23:08.429933+00:00","last_reported":"2026-04-10T16:23:08.429933+00:00","last_updated":"2026-04-10T16:23:08.429933+00:00","context":{"id":"01KNW38MWDM5KS20ETJC3PF5HK","parent_id":null,"user_id":null}},
+      "extra_data": null,
+      "last_seen": "2026-04-13T18:37:33.163691+00:00"
+    },
+    {
+      "state": {"entity_id":"binary_sensor.heizung_flur_battery_low","state":"off","attributes":{"device_class":"battery","friendly_name":"Heizung Flur Battery"},"last_changed":"2026-04-10T16:23:08.470102+00:00","last_reported":"2026-04-10T16:23:08.470102+00:00","last_updated":"2026-04-10T16:23:08.470102+00:00","context":{"id":"01KNW38MXPPJHNW7QRWPGFCFK2","parent_id":null,"user_id":null}},
+      "extra_data": null,
+      "last_seen": "2026-04-13T18:37:33.163691+00:00"
+    },
+    {
+      "state": {"entity_id":"binary_sensor.heizung_kuche_battery_low","state":"off","attributes":{"device_class":"battery","friendly_name":"Heizung Küche Battery"},"last_changed":"2026-04-10T16:23:08.475030+00:00","last_reported":"2026-04-10T16:23:08.475030+00:00","last_updated":"2026-04-10T16:23:08.475030+00:00","context":{"id":"01KNW38MXVSGEFDCH9YET5QXC0","parent_id":null,"user_id":null}},
+      "extra_data": null,
+      "last_seen": "2026-04-13T18:37:33.163691+00:00"
+    },
+    {
+      "state": {"entity_id":"binary_sensor.heizung_schlafzimmer_battery_low","state":"off","attributes":{"device_class":"battery","friendly_name":"Heizung Schlafzimmer Battery"},"last_changed":"2026-04-10T16:23:08.478262+00:00","last_reported":"2026-04-10T16:23:08.478262+00:00","last_updated":"2026-04-10T16:23:08.478262+00:00","context":{"id":"01KNW38MXYB7DCTN824EKCB933","parent_id":null,"user_id":null}},
+      "extra_data": null,
+      "last_seen": "2026-04-13T18:37:33.163691+00:00"
+    },
+    {
+      "state": {"entity_id":"binary_sensor.heizung_arbeitszimmer_battery_low","state":"off","attributes":{"device_class":"battery","friendly_name":"Heizung Arbeitszimmer Battery"},"last_changed":"2026-04-10T16:23:08.480761+00:00","last_reported":"2026-04-10T16:23:08.480761+00:00","last_updated":"2026-04-10T16:23:08.480761+00:00","context":{"id":"01KNW38MY062W9Q0QD49SDT5XV","parent_id":null,"user_id":null}},
+      "extra_data": null,
+      "last_seen": "2026-04-13T18:37:33.163691+00:00"
+    },
+    {
+      "state": {"entity_id":"binary_sensor.heizung_wohnzimmer_battery_low","state":"off","attributes":{"device_class":"battery","friendly_name":"Heizung Wohnzimmer Battery"},"last_changed":"2026-04-10T16:23:08.484519+00:00","last_reported":"2026-04-10T16:23:08.484519+00:00","last_updated":"2026-04-10T16:23:08.484519+00:00","context":{"id":"01KNW38MY45JFW6ESH04A8ER6V","parent_id":null,"user_id":null}},
+      "extra_data": null,
+      "last_seen": "2026-04-13T18:37:33.163691+00:00"
+    },
+    {
+      "state": {"entity_id":"button.lampe_wohnzimer_identify","state":"unknown","attributes":{"device_class":"identify","friendly_name":"Lampe Wohnzimer Identify"},"last_changed":"2026-04-10T16:20:00.680699+00:00","last_reported":"2026-04-10T16:20:00.680699+00:00","last_updated":"2026-04-10T16:20:00.680699+00:00","context":{"id":"01KNW32XH8GZ1BHG56A6KZ8E6T","parent_id":null,"user_id":null}},
+      "extra_data": null,
+      "last_seen": "2026-04-13T18:37:33.163691+00:00"
+    },
+    {
+      "state": {"entity_id":"button.lampe_arbeitszimmer_identify","state":"unknown","attributes":{"device_class":"identify","friendly_name":"Lampe Arbeitszimmer Identify"},"last_changed":"2026-04-10T16:20:00.688674+00:00","last_reported":"2026-04-10T16:20:00.688674+00:00","last_updated":"2026-04-10T16:20:00.688674+00:00","context":{"id":"01KNW32XHGE0472TS39FKNNB2Q","parent_id":null,"user_id":null}},
+      "extra_data": null,
+      "last_seen": "2026-04-13T18:37:33.163691+00:00"
+    },
+    {
+      "state": {"entity_id":"button.zigbee2mqtt_bridge_restart","state":"unknown","attributes":{"device_class":"restart","friendly_name":"Zigbee2MQTT Bridge Restart"},"last_changed":"2026-04-10T16:20:00.687255+00:00","last_reported":"2026-04-10T16:20:00.687255+00:00","last_updated":"2026-04-10T16:20:00.687255+00:00","context":{"id":"01KNW32XHFSB4HGZ1VHWNZPB2A","parent_id":null,"user_id":null}},
+      "extra_data": null,
+      "last_seen": "2026-04-13T18:37:33.163691+00:00"
+    },
+    {
+      "state": {"entity_id":"button.lampe_schlafzimmer_ambient_identify","state":"unknown","attributes":{"device_class":"identify","friendly_name":"Lampe Schlafzimmer Ambient Identify"},"last_changed":"2026-04-10T16:20:00.688328+00:00","last_reported":"2026-04-10T16:20:00.688328+00:00","last_updated":"2026-04-10T16:20:00.688328+00:00","context":{"id":"01KNW32XHGDEE1PTPVN68XJYBX","parent_id":null,"user_id":null}},
+      "extra_data": null,
+      "last_seen": "2026-04-13T18:37:33.163691+00:00"
+    },
+    {
+      "state": {"entity_id":"light.lampe_wohnzimer","state":"off","attributes":{"min_color_temp_kelvin":2202,"max_color_temp_kelvin":4000,"effect_list":["blink","breathe","okay","channel_change","finish_effect","stop_effect"],"supported_color_modes":["color_temp"],"effect":null,"color_mode":null,"brightness":null,"color_temp_kelvin":null,"hs_color":null,"rgb_color":null,"xy_color":null,"friendly_name":"Lampe Wohnzimer","supported_features":44},"last_changed":"2026-04-13T16:20:18.866823+00:00","last_reported":"2026-04-13T16:20:18.866823+00:00","last_updated":"2026-04-13T16:20:18.866823+00:00","context":{"id":"01KP3T9M5V2NW5M9CC4MKK4BJA","parent_id":null,"user_id":"65a369b02a184ce2a82c00a032eb765a"}},
+      "extra_data": null,
+      "last_seen": "2026-04-13T18:37:33.163691+00:00"
+    },
+    {
+      "state": {"entity_id":"light.lampe_arbeitszimmer","state":"on","attributes":{"min_color_temp_kelvin":2202,"max_color_temp_kelvin":4000,"effect_list":["blink","breathe","okay","channel_change","finish_effect","stop_effect"],"supported_color_modes":["color_temp"],"effect":null,"color_mode":"color_temp","brightness":255,"color_temp_kelvin":2702,"hs_color":[28.391,65.659],"rgb_color":[255,167,88],"xy_color":[0.524,0.388],"friendly_name":"Lampe Arbeitszimmer","supported_features":44},"last_changed":"2026-04-10T16:23:08.496448+00:00","last_reported":"2026-04-10T16:23:08.496448+00:00","last_updated":"2026-04-10T16:23:08.496448+00:00","context":{"id":"01KNW38MYGFAPWV94MFB848247","parent_id":null,"user_id":null}},
+      "extra_data": null,
+      "last_seen": "2026-04-13T18:37:33.163691+00:00"
+    },
+    {
+      "state": {"entity_id":"light.lampe_schlafzimmer","state":"on","attributes":{"min_color_temp_kelvin":2202,"max_color_temp_kelvin":4504,"effect_list":["blink","breathe","okay","channel_change","candle","finish_effect","stop_effect","stop_hue_effect"],"supported_color_modes":["color_temp"],"effect":null,"color_mode":"color_temp","brightness":255,"color_temp_kelvin":2732,"hs_color":[28.327,64.71],"rgb_color":[255,168,90],"xy_color":[0.522,0.387],"friendly_name":"Lampe Schlafzimmer","supported_features":44},"last_changed":"2026-04-10T16:23:08.487550+00:00","last_reported":"2026-04-10T16:23:08.487550+00:00","last_updated":"2026-04-10T16:23:08.487550+00:00","context":{"id":"01KNW38MY7PTRK4KNJ98WCJA4P","parent_id":null,"user_id":null}},
+      "extra_data": null,
+      "last_seen": "2026-04-13T18:37:33.163691+00:00"
+    },
+    {
+      "state": {"entity_id":"light.lampe_schlafzimmer_ambient","state":"off","attributes":{"min_color_temp_kelvin":2202,"max_color_temp_kelvin":4000,"effect_list":["blink","breathe","okay","channel_change","finish_effect","stop_effect","colorloop","stop_colorloop"],"supported_color_modes":["color_temp","xy"],"effect":null,"color_mode":null,"brightness":null,"color_temp_kelvin":null,"hs_color":null,"rgb_color":null,"xy_color":null,"friendly_name":"Lampe Schlafzimmer Ambient","supported_features":44},"last_changed":"2026-04-12T20:38:49.575686+00:00","last_reported":"2026-04-12T20:38:49.575686+00:00","last_updated":"2026-04-12T20:38:49.575686+00:00","context":{"id":"01KP1PP8BYY22DAQ8383EX4278","parent_id":null,"user_id":"65a369b02a184ce2a82c00a032eb765a"}},
+      "extra_data": null,
+      "last_seen": "2026-04-13T18:37:33.163691+00:00"
+    },
+    {
+      "state": {"entity_id":"number.heizung_bad_local_temperature_calibration","state":"4","attributes":{"min":-9.0,"max":9.0,"step":1.0,"mode":"auto","unit_of_measurement":"°C","device_class":"temperature","icon":"mdi:math-compass","friendly_name":"Heizung Bad Temperature"},"last_changed":"2026-04-10T16:23:08.430129+00:00","last_reported":"2026-04-10T16:23:08.430129+00:00","last_updated":"2026-04-10T16:23:08.430129+00:00","context":{"id":"01KNW38MWES6F19WCYANFD2FDP","parent_id":null,"user_id":null}},
+      "extra_data": {
+        "native_max_value": 9.0,
+        "native_min_value": -9.0,
+        "native_step": 1.0,
+        "native_unit_of_measurement": "°C",
+        "native_value": 4
+      },
+      "last_seen": "2026-04-13T18:37:33.163691+00:00"
+    },
+    {
+      "state": {"entity_id":"number.heizung_flur_local_temperature_calibration","state":"4","attributes":{"min":-9.0,"max":9.0,"step":1.0,"mode":"auto","unit_of_measurement":"°C","device_class":"temperature","icon":"mdi:math-compass","friendly_name":"Heizung Flur Temperature"},"last_changed":"2026-04-10T16:23:08.470409+00:00","last_reported":"2026-04-10T16:23:08.470409+00:00","last_updated":"2026-04-10T16:23:08.470409+00:00","context":{"id":"01KNW38MXPQ31X0XNZ42MM7F9P","parent_id":null,"user_id":null}},
+      "extra_data": {
+        "native_max_value": 9.0,
+        "native_min_value": -9.0,
+        "native_step": 1.0,
+        "native_unit_of_measurement": "°C",
+        "native_value": 4
+      },
+      "last_seen": "2026-04-13T18:37:33.163691+00:00"
+    },
+    {
+      "state": {"entity_id":"number.heizung_kuche_local_temperature_calibration","state":"0","attributes":{"min":-9.0,"max":9.0,"step":1.0,"mode":"auto","unit_of_measurement":"°C","device_class":"temperature","icon":"mdi:math-compass","friendly_name":"Heizung Küche Temperature"},"last_changed":"2026-04-10T16:23:08.475194+00:00","last_reported":"2026-04-10T16:23:08.475194+00:00","last_updated":"2026-04-10T16:23:08.475194+00:00","context":{"id":"01KNW38MXVDSCEKCR2S8VJJWZC","parent_id":null,"user_id":null}},
+      "extra_data": {
+        "native_max_value": 9.0,
+        "native_min_value": -9.0,
+        "native_step": 1.0,
+        "native_unit_of_measurement": "°C",
+        "native_value": 0
+      },
+      "last_seen": "2026-04-13T18:37:33.163691+00:00"
+    },
+    {
+      "state": {"entity_id":"number.heizung_schlafzimmer_local_temperature_calibration","state":"0","attributes":{"min":-9.0,"max":9.0,"step":1.0,"mode":"auto","unit_of_measurement":"°C","device_class":"temperature","icon":"mdi:math-compass","friendly_name":"Heizung Schlafzimmer Temperature"},"last_changed":"2026-04-10T16:23:08.478206+00:00","last_reported":"2026-04-10T16:23:08.478206+00:00","last_updated":"2026-04-10T16:23:08.478206+00:00","context":{"id":"01KNW38MXYQ9C93FXS3FZ3PYYM","parent_id":null,"user_id":null}},
+      "extra_data": {
+        "native_max_value": 9.0,
+        "native_min_value": -9.0,
+        "native_step": 1.0,
+        "native_unit_of_measurement": "°C",
+        "native_value": 0
+      },
+      "last_seen": "2026-04-13T18:37:33.163691+00:00"
+    },
+    {
+      "state": {"entity_id":"number.heizung_arbeitszimmer_local_temperature_calibration","state":"0","attributes":{"min":-9.0,"max":9.0,"step":1.0,"mode":"auto","unit_of_measurement":"°C","device_class":"temperature","icon":"mdi:math-compass","friendly_name":"Heizung Arbeitszimmer Temperature"},"last_changed":"2026-04-10T16:23:08.480902+00:00","last_reported":"2026-04-10T16:23:08.480902+00:00","last_updated":"2026-04-10T16:23:08.480902+00:00","context":{"id":"01KNW38MY0M6CY3RAFST7RVNHV","parent_id":null,"user_id":null}},
+      "extra_data": {
+        "native_max_value": 9.0,
+        "native_min_value": -9.0,
+        "native_step": 1.0,
+        "native_unit_of_measurement": "°C",
+        "native_value": 0
+      },
+      "last_seen": "2026-04-13T18:37:33.163691+00:00"
+    },
+    {
+      "state": {"entity_id":"number.heizung_wohnzimmer_local_temperature_calibration","state":"0","attributes":{"min":-9.0,"max":9.0,"step":1.0,"mode":"auto","unit_of_measurement":"°C","device_class":"temperature","icon":"mdi:math-compass","friendly_name":"Heizung Wohnzimmer Temperature"},"last_changed":"2026-04-10T16:23:08.484891+00:00","last_reported":"2026-04-10T16:23:08.484891+00:00","last_updated":"2026-04-10T16:23:08.484891+00:00","context":{"id":"01KNW38MY4C9MV1MTZFZ8HHJ1K","parent_id":null,"user_id":null}},
+      "extra_data": {
+        "native_max_value": 9.0,
+        "native_min_value": -9.0,
+        "native_step": 1.0,
+        "native_unit_of_measurement": "°C",
+        "native_value": 0
+      },
+      "last_seen": "2026-04-13T18:37:33.163691+00:00"
+    },
+    {
+      "state": {"entity_id":"select.lampe_wohnzimer_power_on_behavior","state":"unknown","attributes":{"options":["off","on","toggle","previous"],"icon":"mdi:power-settings","friendly_name":"Lampe Wohnzimer Power-on behavior"},"last_changed":"2026-04-10T16:20:00.683680+00:00","last_reported":"2026-04-10T16:20:00.683680+00:00","last_updated":"2026-04-10T16:20:00.683680+00:00","context":{"id":"01KNW32XHBQJCVX9813FD4QQRM","parent_id":null,"user_id":null}},
+      "extra_data": null,
+      "last_seen": "2026-04-13T18:37:33.163691+00:00"
+    },
+    {
+      "state": {"entity_id":"select.lampe_arbeitszimmer_power_on_behavior","state":"unknown","attributes":{"options":["off","on","toggle","previous"],"icon":"mdi:power-settings","friendly_name":"Lampe Arbeitszimmer Power-on behavior"},"last_changed":"2026-04-10T16:20:00.687422+00:00","last_reported":"2026-04-10T16:20:00.687422+00:00","last_updated":"2026-04-10T16:20:00.687422+00:00","context":{"id":"01KNW32XHFBMVD1BVQM2EF60GV","parent_id":null,"user_id":null}},
+      "extra_data": null,
+      "last_seen": "2026-04-13T18:37:33.163691+00:00"
+    },
+    {
+      "state": {"entity_id":"select.zigbee2mqtt_bridge_log_level","state":"info","attributes":{"options":["error","warning","info","debug"],"friendly_name":"Zigbee2MQTT Bridge Log level"},"last_changed":"2026-04-10T16:20:00.691087+00:00","last_reported":"2026-04-10T16:20:00.691087+00:00","last_updated":"2026-04-10T16:20:00.691087+00:00","context":{"id":"01KNW32XHK1G6SK0617WX8ES3W","parent_id":null,"user_id":null}},
+      "extra_data": null,
+      "last_seen": "2026-04-13T18:37:33.163691+00:00"
+    },
+    {
+      "state": {"entity_id":"select.lampe_schlafzimmer_power_on_behavior","state":"unknown","attributes":{"options":["off","on","toggle","previous"],"icon":"mdi:power-settings","friendly_name":"Lampe Schlafzimmer Power-on behavior"},"last_changed":"2026-04-10T16:20:00.685351+00:00","last_reported":"2026-04-10T16:20:00.685351+00:00","last_updated":"2026-04-10T16:20:00.685351+00:00","context":{"id":"01KNW32XHDKYMC2YY4WBFQRSTK","parent_id":null,"user_id":null}},
+      "extra_data": null,
+      "last_seen": "2026-04-13T18:37:33.163691+00:00"
+    },
+    {
+      "state": {"entity_id":"select.lampe_schlafzimmer_ambient_power_on_behavior","state":"unknown","attributes":{"options":["off","on","toggle","previous"],"icon":"mdi:power-settings","friendly_name":"Lampe Schlafzimmer Ambient Power-on behavior"},"last_changed":"2026-04-10T16:20:00.688154+00:00","last_reported":"2026-04-10T16:20:00.688154+00:00","last_updated":"2026-04-10T16:20:00.688154+00:00","context":{"id":"01KNW32XHG1G0M0K6CCZPCG5HN","parent_id":null,"user_id":null}},
+      "extra_data": null,
+      "last_seen": "2026-04-13T18:37:33.163691+00:00"
+    },
+    {
+      "state": {"entity_id":"select.steckdose_github_power_outage_memory","state":"unknown","attributes":{"options":["on","off","restore"],"icon":"mdi:power-settings","friendly_name":"Steckdose GitHub Power outage memory"},"last_changed":"2026-04-10T16:20:00.688720+00:00","last_reported":"2026-04-10T16:20:00.688720+00:00","last_updated":"2026-04-10T16:20:00.688720+00:00","context":{"id":"01KNW32XHGYWB52PZNB4SK85X0","parent_id":null,"user_id":null}},
+      "extra_data": null,
+      "last_seen": "2026-04-13T18:37:33.163691+00:00"
+    },
+    {
+      "state": {"entity_id":"select.steckdose_github_indicator_mode","state":"unknown","attributes":{"options":["off","off/on","on/off","on"],"friendly_name":"Steckdose GitHub Indicator mode"},"last_changed":"2026-04-10T16:20:00.682189+00:00","last_reported":"2026-04-10T16:20:00.682189+00:00","last_updated":"2026-04-10T16:20:00.682189+00:00","context":{"id":"01KNW32XHA5EPYFH88EH6HNYVC","parent_id":null,"user_id":null}},
+      "extra_data": null,
+      "last_seen": "2026-04-13T18:37:33.163691+00:00"
+    },
+    {
+      "state": {"entity_id":"select.steckdose_lichterkette_power_outage_memory","state":"unknown","attributes":{"options":["on","off","restore"],"icon":"mdi:power-settings","friendly_name":"Steckdose Lichterkette Power outage memory"},"last_changed":"2026-04-10T16:20:00.684689+00:00","last_reported":"2026-04-10T16:20:00.684689+00:00","last_updated":"2026-04-10T16:20:00.684689+00:00","context":{"id":"01KNW32XHCSDKRCBR4E088D8XZ","parent_id":null,"user_id":null}},
+      "extra_data": null,
+      "last_seen": "2026-04-13T18:37:33.163691+00:00"
+    },
+    {
+      "state": {"entity_id":"select.steckdose_lichterkette_indicator_mode","state":"unknown","attributes":{"options":["off","off/on","on/off","on"],"friendly_name":"Steckdose Lichterkette Indicator mode"},"last_changed":"2026-04-10T16:20:00.684645+00:00","last_reported":"2026-04-10T16:20:00.684645+00:00","last_updated":"2026-04-10T16:20:00.684645+00:00","context":{"id":"01KNW32XHCPJV4Q9FN3GXPJPRH","parent_id":null,"user_id":null}},
+      "extra_data": null,
+      "last_seen": "2026-04-13T18:37:33.163691+00:00"
+    },
+    {
+      "state": {"entity_id":"select.0x70b3d52b600a627d_power_outage_memory","state":"unknown","attributes":{"options":["on","off","restore"],"icon":"mdi:power-settings","friendly_name":"Steckdose HP Server Power outage memory"},"last_changed":"2026-04-10T16:20:00.686571+00:00","last_reported":"2026-04-10T16:20:00.686571+00:00","last_updated":"2026-04-10T16:20:00.686571+00:00","context":{"id":"01KNW32XHERXRGNH4YGQTW957N","parent_id":null,"user_id":null}},
+      "extra_data": null,
+      "last_seen": "2026-04-13T18:37:33.163691+00:00"
+    },
+    {
+      "state": {"entity_id":"select.0x70b3d52b600a627d_indicator_mode","state":"unknown","attributes":{"options":["off","off/on","on/off","on"],"friendly_name":"Steckdose HP Server Indicator mode"},"last_changed":"2026-04-10T16:20:00.682284+00:00","last_reported":"2026-04-10T16:20:00.682284+00:00","last_updated":"2026-04-10T16:20:00.682284+00:00","context":{"id":"01KNW32XHADJE9P5JYFBVB0JA8","parent_id":null,"user_id":null}},
+      "extra_data": null,
+      "last_seen": "2026-04-13T18:37:33.163691+00:00"
+    },
+    {
+      "state": {"entity_id":"sensor.lampe_wohnzimer_color_options","state":"","attributes":{"icon":"mdi:palette","friendly_name":"Lampe Wohnzimer Color options"},"last_changed":"2026-04-10T16:23:08.495492+00:00","last_reported":"2026-04-10T16:23:08.495492+00:00","last_updated":"2026-04-10T16:23:08.495492+00:00","context":{"id":"01KNW38MYFYTKRS3871RA08BA6","parent_id":null,"user_id":null}},
+      "extra_data": {
+        "native_value": "",
+        "native_unit_of_measurement": null
+      },
+      "last_seen": "2026-04-13T18:37:33.163691+00:00"
+    },
+    {
+      "state": {"entity_id":"sensor.lampe_arbeitszimmer_color_options","state":"","attributes":{"icon":"mdi:palette","friendly_name":"Lampe Arbeitszimmer Color options"},"last_changed":"2026-04-10T16:23:08.496677+00:00","last_reported":"2026-04-10T16:23:08.496677+00:00","last_updated":"2026-04-10T16:23:08.496677+00:00","context":{"id":"01KNW38MYGYEA0WQ4GT4MAX34G","parent_id":null,"user_id":null}},
+      "extra_data": {
+        "native_value": "",
+        "native_unit_of_measurement": null
+      },
+      "last_seen": "2026-04-13T18:37:33.163691+00:00"
+    },
+    {
+      "state": {"entity_id":"sensor.zigbee2mqtt_bridge_version","state":"1.40.1","attributes":{"icon":"mdi:zigbee","friendly_name":"Zigbee2MQTT Bridge Version"},"last_changed":"2026-04-10T16:20:00.691181+00:00","last_reported":"2026-04-10T16:20:00.691181+00:00","last_updated":"2026-04-10T16:20:00.691181+00:00","context":{"id":"01KNW32XHKM5AQ28H54V6F2AE4","parent_id":null,"user_id":null}},
+      "extra_data": {
+        "native_value": "1.40.1",
+        "native_unit_of_measurement": null
+      },
+      "last_seen": "2026-04-13T18:37:33.163691+00:00"
+    },
+    {
+      "state": {"entity_id":"sensor.zigbee2mqtt_bridge_permit_join_timeout","state":"unknown","attributes":{"unit_of_measurement":"s","device_class":"duration","friendly_name":"Zigbee2MQTT Bridge Permit join timeout"},"last_changed":"2026-04-10T16:38:35.426932+00:00","last_reported":"2026-04-10T16:38:35.426932+00:00","last_updated":"2026-04-10T16:38:35.426932+00:00","context":{"id":"01KNW44Y521ECWDZT2QG5BYN0J","parent_id":null,"user_id":null}},
+      "extra_data": {
+        "native_value": null,
+        "native_unit_of_measurement": "s"
+      },
+      "last_seen": "2026-04-13T18:37:33.163691+00:00"
+    },
+    {
+      "state": {"entity_id":"sensor.heizung_bad_error","state":"unknown","attributes":{"friendly_name":"Heizung Bad Error"},"last_changed":"2026-04-10T16:20:00.685794+00:00","last_reported":"2026-04-10T16:20:00.685794+00:00","last_updated":"2026-04-10T16:20:00.685794+00:00","context":{"id":"01KNW32XHD3FGS4C1A2ZSSVHEE","parent_id":null,"user_id":null}},
+      "extra_data": {
+        "native_value": null,
+        "native_unit_of_measurement": null
+      },
+      "last_seen": "2026-04-13T18:37:33.163691+00:00"
+    },
+    {
+      "state": {"entity_id":"sensor.heizung_flur_schedule_monday","state":"06:00/21.0 08:00/16.0 12:00/21.0 14:00/16.0","attributes":{"friendly_name":"Heizung Flur Schedule monday"},"last_changed":"2026-04-10T16:23:08.470020+00:00","last_reported":"2026-04-10T16:23:08.470020+00:00","last_updated":"2026-04-10T16:23:08.470020+00:00","context":{"id":"01KNW38MXP31WQBTRQXJNQZ1NZ","parent_id":null,"user_id":null}},
+      "extra_data": {
+        "native_value": "06:00/21.0 08:00/16.0 12:00/21.0 14:00/16.0",
+        "native_unit_of_measurement": null
+      },
+      "last_seen": "2026-04-13T18:37:33.163691+00:00"
+    },
+    {
+      "state": {"entity_id":"sensor.heizung_flur_schedule_tuesday","state":"06:00/21.0 08:00/16.0 12:00/21.0 14:00/16.0","attributes":{"friendly_name":"Heizung Flur Schedule tuesday"},"last_changed":"2026-04-10T16:23:08.469862+00:00","last_reported":"2026-04-10T16:23:08.469862+00:00","last_updated":"2026-04-10T16:23:08.469862+00:00","context":{"id":"01KNW38MXNDP90ZWFNR82FEP7T","parent_id":null,"user_id":null}},
+      "extra_data": {
+        "native_value": "06:00/21.0 08:00/16.0 12:00/21.0 14:00/16.0",
+        "native_unit_of_measurement": null
+      },
+      "last_seen": "2026-04-13T18:37:33.163691+00:00"
+    },
+    {
+      "state": {"entity_id":"sensor.heizung_flur_schedule_wednesday","state":"06:00/21.0 08:00/16.0 12:00/21.0 14:00/16.0","attributes":{"friendly_name":"Heizung Flur Schedule wednesday"},"last_changed":"2026-04-10T16:23:08.470882+00:00","last_reported":"2026-04-10T16:23:08.470882+00:00","last_updated":"2026-04-10T16:23:08.470882+00:00","context":{"id":"01KNW38MXPJW7A8TVN3W3TD3RC","parent_id":null,"user_id":null}},
+      "extra_data": {
+        "native_value": "06:00/21.0 08:00/16.0 12:00/21.0 14:00/16.0",
+        "native_unit_of_measurement": null
+      },
+      "last_seen": "2026-04-13T18:37:33.163691+00:00"
+    },
+    {
+      "state": {"entity_id":"sensor.heizung_flur_schedule_thursday","state":"06:00/21.0 08:00/16.0 12:00/21.0 14:00/16.0","attributes":{"friendly_name":"Heizung Flur Schedule thursday"},"last_changed":"2026-04-10T16:23:08.470708+00:00","last_reported":"2026-04-10T16:23:08.470708+00:00","last_updated":"2026-04-10T16:23:08.470708+00:00","context":{"id":"01KNW38MXP9BM0HTXYWFHPZ2VF","parent_id":null,"user_id":null}},
+      "extra_data": {
+        "native_value": "06:00/21.0 08:00/16.0 12:00/21.0 14:00/16.0",
+        "native_unit_of_measurement": null
+      },
+      "last_seen": "2026-04-13T18:37:33.163691+00:00"
+    },
+    {
+      "state": {"entity_id":"sensor.heizung_flur_schedule_friday","state":"06:00/21.0 08:00/16.0 12:00/21.0 14:00/16.0","attributes":{"friendly_name":"Heizung Flur Schedule friday"},"last_changed":"2026-04-10T16:23:08.470769+00:00","last_reported":"2026-04-10T16:23:08.470769+00:00","last_updated":"2026-04-10T16:23:08.470769+00:00","context":{"id":"01KNW38MXPESGMQ5A16XK03EVR","parent_id":null,"user_id":null}},
+      "extra_data": {
+        "native_value": "06:00/21.0 08:00/16.0 12:00/21.0 14:00/16.0",
+        "native_unit_of_measurement": null
+      },
+      "last_seen": "2026-04-13T18:37:33.163691+00:00"
+    },
+    {
+      "state": {"entity_id":"sensor.heizung_flur_schedule_saturday","state":"06:00/21.0 08:00/16.0 12:00/21.0 14:00/16.0","attributes":{"friendly_name":"Heizung Flur Schedule saturday"},"last_changed":"2026-04-10T16:23:08.471429+00:00","last_reported":"2026-04-10T16:23:08.471429+00:00","last_updated":"2026-04-10T16:23:08.471429+00:00","context":{"id":"01KNW38MXQAFAK9PCXVNYG1D82","parent_id":null,"user_id":null}},
+      "extra_data": {
+        "native_value": "06:00/21.0 08:00/16.0 12:00/21.0 14:00/16.0",
+        "native_unit_of_measurement": null
+      },
+      "last_seen": "2026-04-13T18:37:33.163691+00:00"
+    },
+    {
+      "state": {"entity_id":"sensor.heizung_flur_schedule_sunday","state":"06:00/21.0 08:00/16.0 12:00/21.0 14:00/16.0","attributes":{"friendly_name":"Heizung Flur Schedule sunday"},"last_changed":"2026-04-10T16:23:08.471307+00:00","last_reported":"2026-04-10T16:23:08.471307+00:00","last_updated":"2026-04-10T16:23:08.471307+00:00","context":{"id":"01KNW38MXQPJ5FRFHHCFQRNSRS","parent_id":null,"user_id":null}},
+      "extra_data": {
+        "native_value": "06:00/21.0 08:00/16.0 12:00/21.0 14:00/16.0",
+        "native_unit_of_measurement": null
+      },
+      "last_seen": "2026-04-13T18:37:33.163691+00:00"
+    },
+    {
+      "state": {"entity_id":"sensor.heizung_flur_error","state":"unknown","attributes":{"friendly_name":"Heizung Flur Error"},"last_changed":"2026-04-10T16:20:00.684601+00:00","last_reported":"2026-04-10T16:20:00.684601+00:00","last_updated":"2026-04-10T16:20:00.684601+00:00","context":{"id":"01KNW32XHC94HKM29CFNZ7W2MQ","parent_id":null,"user_id":null}},
+      "extra_data": {
+        "native_value": null,
+        "native_unit_of_measurement": null
+      },
+      "last_seen": "2026-04-13T18:37:33.163691+00:00"
+    },
+    {
+      "state": {"entity_id":"sensor.heizung_flur_linkquality","state":"87","attributes":{"state_class":"measurement","unit_of_measurement":"lqi","icon":"mdi:signal","friendly_name":"Heizung Flur Linkquality"},"last_changed":"2026-04-13T16:20:16.137010+00:00","last_reported":"2026-04-13T16:20:16.137010+00:00","last_updated":"2026-04-13T16:20:16.137010+00:00","context":{"id":"01KP3T9HM9JKWE6GAAJVQ736ET","parent_id":null,"user_id":null}},
+      "extra_data": {
+        "native_value": "87",
+        "native_unit_of_measurement": "lqi"
+      },
+      "last_seen": "2026-04-13T18:37:33.163691+00:00"
+    },
+    {
+      "state": {"entity_id":"sensor.heizung_kuche_error","state":"unknown","attributes":{"friendly_name":"Heizung Küche Error"},"last_changed":"2026-04-10T16:20:00.681419+00:00","last_reported":"2026-04-10T16:20:00.681419+00:00","last_updated":"2026-04-10T16:20:00.681419+00:00","context":{"id":"01KNW32XH9PEJWKNHC9SPM2ARR","parent_id":null,"user_id":null}},
+      "extra_data": {
+        "native_value": null,
+        "native_unit_of_measurement": null
+      },
+      "last_seen": "2026-04-13T18:37:33.163691+00:00"
+    },
+    {
+      "state": {"entity_id":"sensor.heizung_schlafzimmer_error","state":"unknown","attributes":{"friendly_name":"Heizung Schlafzimmer Error"},"last_changed":"2026-04-10T16:20:00.682090+00:00","last_reported":"2026-04-10T16:20:00.682090+00:00","last_updated":"2026-04-10T16:20:00.682090+00:00","context":{"id":"01KNW32XHA5978HTMRRY4BBZF8","parent_id":null,"user_id":null}},
+      "extra_data": {
+        "native_value": null,
+        "native_unit_of_measurement": null
+      },
+      "last_seen": "2026-04-13T18:37:33.163691+00:00"
+    },
+    {
+      "state": {"entity_id":"sensor.heizung_arbeitszimmer_error","state":"unknown","attributes":{"friendly_name":"Heizung Arbeitszimmer Error"},"last_changed":"2026-04-10T16:20:00.686949+00:00","last_reported":"2026-04-10T16:20:00.686949+00:00","last_updated":"2026-04-10T16:20:00.686949+00:00","context":{"id":"01KNW32XHEH81F2JKEVFD34359","parent_id":null,"user_id":null}},
+      "extra_data": {
+        "native_value": null,
+        "native_unit_of_measurement": null
+      },
+      "last_seen": "2026-04-13T18:37:33.163691+00:00"
+    },
+    {
+      "state": {"entity_id":"sensor.heizung_wohnzimmer_error","state":"unknown","attributes":{"friendly_name":"Heizung Wohnzimmer Error"},"last_changed":"2026-04-10T16:20:00.681670+00:00","last_reported":"2026-04-10T16:20:00.681670+00:00","last_updated":"2026-04-10T16:20:00.681670+00:00","context":{"id":"01KNW32XH9BT51HTWATT82NSM4","parent_id":null,"user_id":null}},
+      "extra_data": {
+        "native_value": null,
+        "native_unit_of_measurement": null
+      },
+      "last_seen": "2026-04-13T18:37:33.163691+00:00"
+    },
+    {
+      "state": {"entity_id":"sensor.lampe_schlafzimmer_ambient_color_options","state":"","attributes":{"icon":"mdi:palette","friendly_name":"Lampe Schlafzimmer Ambient Color options"},"last_changed":"2026-04-10T16:23:08.491675+00:00","last_reported":"2026-04-10T16:23:08.491675+00:00","last_updated":"2026-04-10T16:23:08.491675+00:00","context":{"id":"01KNW38MYB3QC3Y61VC0VV675T","parent_id":null,"user_id":null}},
+      "extra_data": {
+        "native_value": "",
+        "native_unit_of_measurement": null
+      },
+      "last_seen": "2026-04-13T18:37:33.163691+00:00"
+    },
+    {
+      "state": {"entity_id":"sensor.steckdose_github_power","state":"0","attributes":{"state_class":"measurement","unit_of_measurement":"W","device_class":"power","friendly_name":"Steckdose GitHub Power"},"last_changed":"2026-04-10T17:11:39.413729+00:00","last_reported":"2026-04-10T17:11:39.413729+00:00","last_updated":"2026-04-10T17:11:39.413729+00:00","context":{"id":"01KNW61FMNXNKGMYNKNECH369V","parent_id":null,"user_id":null}},
+      "extra_data": {
+        "native_value": "0",
+        "native_unit_of_measurement": "W"
+      },
+      "last_seen": "2026-04-13T18:37:33.163691+00:00"
+    },
+    {
+      "state": {"entity_id":"sensor.steckdose_github_energy","state":"0","attributes":{"state_class":"total_increasing","unit_of_measurement":"kWh","device_class":"energy","friendly_name":"Steckdose GitHub Energy"},"last_changed":"2026-04-10T16:20:30.377488+00:00","last_reported":"2026-04-10T16:20:30.377488+00:00","last_updated":"2026-04-10T16:20:30.377488+00:00","context":{"id":"01KNW33TH9ANZWEVASRCZ5X9WE","parent_id":null,"user_id":null}},
+      "extra_data": {
+        "native_value": "0",
+        "native_unit_of_measurement": "kWh"
+      },
+      "last_seen": "2026-04-13T18:37:33.163691+00:00"
+    },
+    {
+      "state": {"entity_id":"sensor.steckdose_lichterkette_power","state":"0","attributes":{"state_class":"measurement","unit_of_measurement":"W","device_class":"power","friendly_name":"Steckdose Lichterkette Power"},"last_changed":"2026-04-10T16:23:08.493949+00:00","last_reported":"2026-04-10T16:23:08.493949+00:00","last_updated":"2026-04-10T16:23:08.493949+00:00","context":{"id":"01KNW38MYDGEQVH3X81PB2Z2FN","parent_id":null,"user_id":null}},
+      "extra_data": {
+        "native_value": "0",
+        "native_unit_of_measurement": "W"
+      },
+      "last_seen": "2026-04-13T18:37:33.163691+00:00"
+    },
+    {
+      "state": {"entity_id":"sensor.steckdose_lichterkette_energy","state":"2.19","attributes":{"state_class":"total_increasing","unit_of_measurement":"kWh","device_class":"energy","friendly_name":"Steckdose Lichterkette Energy"},"last_changed":"2026-04-10T16:23:08.493874+00:00","last_reported":"2026-04-10T16:23:08.493874+00:00","last_updated":"2026-04-10T16:23:08.493874+00:00","context":{"id":"01KNW38MYD41CM1REAEXBZM8HM","parent_id":null,"user_id":null}},
+      "extra_data": {
+        "native_value": "2.19",
+        "native_unit_of_measurement": "kWh"
+      },
+      "last_seen": "2026-04-13T18:37:33.163691+00:00"
+    },
+    {
+      "state": {"entity_id":"sensor.0x70b3d52b600a627d_power","state":"14","attributes":{"state_class":"measurement","unit_of_measurement":"W","device_class":"power","friendly_name":"Steckdose HP Server Power"},"last_changed":"2026-04-13T18:30:43.618454+00:00","last_reported":"2026-04-13T18:30:43.618454+00:00","last_updated":"2026-04-13T18:30:43.618454+00:00","context":{"id":"01KP41RDN27YBWKD6QGVAZQ91F","parent_id":null,"user_id":null}},
+      "extra_data": {
+        "native_value": "14",
+        "native_unit_of_measurement": "W"
+      },
+      "last_seen": "2026-04-13T18:37:33.163691+00:00"
+    },
+    {
+      "state": {"entity_id":"sensor.0x70b3d52b600a627d_energy","state":"1.05","attributes":{"state_class":"total_increasing","unit_of_measurement":"kWh","device_class":"energy","friendly_name":"Steckdose HP Server Energy"},"last_changed":"2026-04-13T18:05:09.865770+00:00","last_reported":"2026-04-13T18:05:09.865770+00:00","last_updated":"2026-04-13T18:05:09.865770+00:00","context":{"id":"01KP409KV9KMJ33V9475JP76Q8","parent_id":null,"user_id":null}},
+      "extra_data": {
+        "native_value": "1.05",
+        "native_unit_of_measurement": "kWh"
+      },
+      "last_seen": "2026-04-13T18:37:33.163691+00:00"
+    },
+    {
+      "state": {"entity_id":"switch.zigbee2mqtt_bridge_permit_join","state":"off","attributes":{"icon":"mdi:human-greeting-proximity","friendly_name":"Zigbee2MQTT Bridge Permit join"},"last_changed":"2026-04-10T16:38:35.427089+00:00","last_reported":"2026-04-10T16:38:35.427089+00:00","last_updated":"2026-04-10T16:38:35.427089+00:00","context":{"id":"01KNW44Y53M9FKGT1BMAZWYMDQ","parent_id":null,"user_id":null}},
+      "extra_data": null,
+      "last_seen": "2026-04-13T18:37:33.163691+00:00"
+    },
+    {
+      "state": {"entity_id":"switch.heizung_bad_scale_protection","state":"off","attributes":{"friendly_name":"Heizung Bad Scale protection"},"last_changed":"2026-04-10T16:23:08.429572+00:00","last_reported":"2026-04-10T16:23:08.429572+00:00","last_updated":"2026-04-10T16:23:08.429572+00:00","context":{"id":"01KNW38MWDQ86QZ0P6AKYMNXP8","parent_id":null,"user_id":null}},
+      "extra_data": null,
+      "last_seen": "2026-04-13T18:37:33.163691+00:00"
+    },
+    {
+      "state": {"entity_id":"switch.heizung_bad_frost_protection","state":"on","attributes":{"friendly_name":"Heizung Bad Frost protection"},"last_changed":"2026-04-10T16:23:08.429448+00:00","last_reported":"2026-04-10T16:23:08.429448+00:00","last_updated":"2026-04-10T16:23:08.429448+00:00","context":{"id":"01KNW38MWD85S2ZEP308TK9A7M","parent_id":null,"user_id":null}},
+      "extra_data": null,
+      "last_seen": "2026-04-13T18:37:33.163691+00:00"
+    },
+    {
+      "state": {"entity_id":"switch.heizung_flur_scale_protection","state":"off","attributes":{"friendly_name":"Heizung Flur Scale protection"},"last_changed":"2026-04-10T16:23:08.470818+00:00","last_reported":"2026-04-10T16:23:08.470818+00:00","last_updated":"2026-04-10T16:23:08.470818+00:00","context":{"id":"01KNW38MXPCD94WAV1SHRQZDX2","parent_id":null,"user_id":null}},
+      "extra_data": null,
+      "last_seen": "2026-04-13T18:37:33.163691+00:00"
+    },
+    {
+      "state": {"entity_id":"switch.heizung_flur_frost_protection","state":"off","attributes":{"friendly_name":"Heizung Flur Frost protection"},"last_changed":"2026-04-10T16:23:08.470238+00:00","last_reported":"2026-04-10T16:23:08.470238+00:00","last_updated":"2026-04-10T16:23:08.470238+00:00","context":{"id":"01KNW38MXPJK5T6YM5HW7HQBM3","parent_id":null,"user_id":null}},
+      "extra_data": null,
+      "last_seen": "2026-04-13T18:37:33.163691+00:00"
+    },
+    {
+      "state": {"entity_id":"switch.heizung_kuche_scale_protection","state":"off","attributes":{"friendly_name":"Heizung Küche Scale protection"},"last_changed":"2026-04-10T16:23:08.474680+00:00","last_reported":"2026-04-10T16:23:08.474680+00:00","last_updated":"2026-04-10T16:23:08.474680+00:00","context":{"id":"01KNW38MXTV7DK4QZTJMTDPBYZ","parent_id":null,"user_id":null}},
+      "extra_data": null,
+      "last_seen": "2026-04-13T18:37:33.163691+00:00"
+    },
+    {
+      "state": {"entity_id":"switch.heizung_kuche_frost_protection","state":"on","attributes":{"friendly_name":"Heizung Küche Frost protection"},"last_changed":"2026-04-10T16:23:08.474977+00:00","last_reported":"2026-04-10T16:23:08.474977+00:00","last_updated":"2026-04-10T16:23:08.474977+00:00","context":{"id":"01KNW38MXTCE3GB3R0VY0XV142","parent_id":null,"user_id":null}},
+      "extra_data": null,
+      "last_seen": "2026-04-13T18:37:33.163691+00:00"
+    },
+    {
+      "state": {"entity_id":"switch.heizung_schlafzimmer_scale_protection","state":"off","attributes":{"friendly_name":"Heizung Schlafzimmer Scale protection"},"last_changed":"2026-04-10T16:23:08.477924+00:00","last_reported":"2026-04-10T16:23:08.477924+00:00","last_updated":"2026-04-10T16:23:08.477924+00:00","context":{"id":"01KNW38MXX8S9HKGGKTBZVJS8Z","parent_id":null,"user_id":null}},
+      "extra_data": null,
+      "last_seen": "2026-04-13T18:37:33.163691+00:00"
+    },
+    {
+      "state": {"entity_id":"switch.heizung_schlafzimmer_frost_protection","state":"off","attributes":{"friendly_name":"Heizung Schlafzimmer Frost protection"},"last_changed":"2026-04-10T16:23:08.477977+00:00","last_reported":"2026-04-10T16:23:08.477977+00:00","last_updated":"2026-04-10T16:23:08.477977+00:00","context":{"id":"01KNW38MXX1EE4FQD3TAPN35SE","parent_id":null,"user_id":null}},
+      "extra_data": null,
+      "last_seen": "2026-04-13T18:37:33.163691+00:00"
+    },
+    {
+      "state": {"entity_id":"switch.heizung_arbeitszimmer_scale_protection","state":"off","attributes":{"friendly_name":"Heizung Arbeitszimmer Scale protection"},"last_changed":"2026-04-10T16:23:08.481163+00:00","last_reported":"2026-04-10T16:23:08.481163+00:00","last_updated":"2026-04-10T16:23:08.481163+00:00","context":{"id":"01KNW38MY1TB29JWTFGKWK5GEQ","parent_id":null,"user_id":null}},
+      "extra_data": null,
+      "last_seen": "2026-04-13T18:37:33.163691+00:00"
+    },
+    {
+      "state": {"entity_id":"switch.heizung_arbeitszimmer_frost_protection","state":"off","attributes":{"friendly_name":"Heizung Arbeitszimmer Frost protection"},"last_changed":"2026-04-10T16:23:08.480674+00:00","last_reported":"2026-04-10T16:23:08.480674+00:00","last_updated":"2026-04-10T16:23:08.480674+00:00","context":{"id":"01KNW38MY0Y3R4CM0TYJTKDJ0J","parent_id":null,"user_id":null}},
+      "extra_data": null,
+      "last_seen": "2026-04-13T18:37:33.163691+00:00"
+    },
+    {
+      "state": {"entity_id":"switch.heizung_wohnzimmer_scale_protection","state":"off","attributes":{"friendly_name":"Heizung Wohnzimmer Scale protection"},"last_changed":"2026-04-10T16:23:08.484826+00:00","last_reported":"2026-04-10T16:23:08.484826+00:00","last_updated":"2026-04-10T16:23:08.484826+00:00","context":{"id":"01KNW38MY49JFR7495A9Y6ZBAJ","parent_id":null,"user_id":null}},
+      "extra_data": null,
+      "last_seen": "2026-04-13T18:37:33.163691+00:00"
+    },
+    {
+      "state": {"entity_id":"switch.heizung_wohnzimmer_frost_protection","state":"off","attributes":{"friendly_name":"Heizung Wohnzimmer Frost protection"},"last_changed":"2026-04-10T16:23:08.484953+00:00","last_reported":"2026-04-10T16:23:08.484953+00:00","last_updated":"2026-04-10T16:23:08.484953+00:00","context":{"id":"01KNW38MY4BKW7HRQ4E27JWQRK","parent_id":null,"user_id":null}},
+      "extra_data": null,
+      "last_seen": "2026-04-13T18:37:33.163691+00:00"
+    },
+    {
+      "state": {"entity_id":"switch.steckdose_github","state":"off","attributes":{"friendly_name":"Steckdose GitHub"},"last_changed":"2026-04-10T17:11:25.394300+00:00","last_reported":"2026-04-10T17:11:25.394300+00:00","last_updated":"2026-04-10T17:11:25.394300+00:00","context":{"id":"01KNW611VMT9Z8AVHTHJ91WFGQ","parent_id":null,"user_id":"65a369b02a184ce2a82c00a032eb765a"}},
+      "extra_data": null,
+      "last_seen": "2026-04-13T18:37:33.163691+00:00"
+    },
+    {
+      "state": {"entity_id":"switch.steckdose_lichterkette","state":"off","attributes":{"friendly_name":"Steckdose Lichterkette"},"last_changed":"2026-04-10T16:23:08.493669+00:00","last_reported":"2026-04-10T16:23:08.493669+00:00","last_updated":"2026-04-10T16:23:08.493669+00:00","context":{"id":"01KNW38MYDVX46BC2B2TG7R2NQ","parent_id":null,"user_id":null}},
+      "extra_data": null,
+      "last_seen": "2026-04-13T18:37:33.163691+00:00"
+    },
+    {
+      "state": {"entity_id":"switch.0x70b3d52b600a627d","state":"on","attributes":{"friendly_name":"Steckdose HP Server"},"last_changed":"2026-04-10T16:20:30.121511+00:00","last_reported":"2026-04-10T16:20:30.121511+00:00","last_updated":"2026-04-10T16:20:30.121511+00:00","context":{"id":"01KNW33T99GXDXR6N3DZP6WG0N","parent_id":null,"user_id":null}},
+      "extra_data": null,
+      "last_seen": "2026-04-13T18:37:33.163691+00:00"
+    },
+    {
+      "state": {"entity_id":"update.lampe_wohnzimer","state":"off","attributes":{"auto_update":false,"display_precision":0,"installed_version":"65554","in_progress":false,"latest_version":"65554","release_summary":null,"release_url":null,"skipped_version":null,"title":null,"update_percentage":null,"device_class":"firmware","entity_picture":"https://github.com/Koenkk/zigbee2mqtt/raw/master/images/logo.png","friendly_name":"Lampe Wohnzimer","supported_features":5},"last_changed":"2026-04-10T16:23:08.495378+00:00","last_reported":"2026-04-10T16:23:08.495378+00:00","last_updated":"2026-04-10T16:23:08.495378+00:00","context":{"id":"01KNW38MYFYJ2THYBH764E5WC3","parent_id":null,"user_id":null}},
+      "extra_data": null,
+      "last_seen": "2026-04-13T18:37:33.163691+00:00"
+    },
+    {
+      "state": {"entity_id":"update.lampe_arbeitszimmer","state":"off","attributes":{"auto_update":false,"display_precision":0,"installed_version":"65554","in_progress":false,"latest_version":"65554","release_summary":null,"release_url":null,"skipped_version":null,"title":null,"update_percentage":null,"device_class":"firmware","entity_picture":"https://github.com/Koenkk/zigbee2mqtt/raw/master/images/logo.png","friendly_name":"Lampe Arbeitszimmer","supported_features":5},"last_changed":"2026-04-10T16:23:08.496588+00:00","last_reported":"2026-04-10T16:23:08.496588+00:00","last_updated":"2026-04-10T16:23:08.496588+00:00","context":{"id":"01KNW38MYGQ2YZTHRMAJV3M0XP","parent_id":null,"user_id":null}},
+      "extra_data": null,
+      "last_seen": "2026-04-13T18:37:33.163691+00:00"
+    },
+    {
+      "state": {"entity_id":"update.lampe_schlafzimmer","state":"off","attributes":{"auto_update":false,"display_precision":0,"installed_version":"16787202","in_progress":false,"latest_version":"16787202","release_summary":null,"release_url":null,"skipped_version":null,"title":null,"update_percentage":null,"device_class":"firmware","entity_picture":"https://github.com/Koenkk/zigbee2mqtt/raw/master/images/logo.png","friendly_name":"Lampe Schlafzimmer","supported_features":5},"last_changed":"2026-04-10T16:23:08.487715+00:00","last_reported":"2026-04-10T16:23:08.487715+00:00","last_updated":"2026-04-10T16:23:08.487715+00:00","context":{"id":"01KNW38MY7SGCJ7K9TZEFF8B7E","parent_id":null,"user_id":null}},
+      "extra_data": null,
+      "last_seen": "2026-04-13T18:37:33.163691+00:00"
+    },
+    {
+      "state": {"entity_id":"update.lampe_schlafzimmer_ambient","state":"off","attributes":{"auto_update":false,"display_precision":0,"installed_version":"268572245","in_progress":false,"latest_version":"268572245","release_summary":null,"release_url":null,"skipped_version":null,"title":null,"update_percentage":null,"device_class":"firmware","entity_picture":"https://github.com/Koenkk/zigbee2mqtt/raw/master/images/logo.png","friendly_name":"Lampe Schlafzimmer Ambient","supported_features":5},"last_changed":"2026-04-10T16:23:08.491544+00:00","last_reported":"2026-04-10T16:23:08.491544+00:00","last_updated":"2026-04-10T16:23:08.491544+00:00","context":{"id":"01KNW38MYBZ43570NZYZ4D72HD","parent_id":null,"user_id":null}},
+      "extra_data": null,
+      "last_seen": "2026-04-13T18:37:33.163691+00:00"
+    },
+    {
+      "state": {"entity_id":"update.steckdose_github","state":"off","attributes":{"auto_update":false,"display_precision":0,"installed_version":"-1","in_progress":false,"latest_version":"-1","release_summary":null,"release_url":null,"skipped_version":null,"title":null,"update_percentage":null,"device_class":"firmware","entity_picture":"https://github.com/Koenkk/zigbee2mqtt/raw/master/images/logo.png","friendly_name":"Steckdose GitHub","supported_features":5},"last_changed":"2026-04-10T16:20:30.377759+00:00","last_reported":"2026-04-10T16:20:30.377759+00:00","last_updated":"2026-04-10T16:20:30.377759+00:00","context":{"id":"01KNW33TH9KC05S6VNAV1TWBCF","parent_id":null,"user_id":null}},
+      "extra_data": null,
+      "last_seen": "2026-04-13T18:37:33.163691+00:00"
+    },
+    {
+      "state": {"entity_id":"update.steckdose_lichterkette","state":"off","attributes":{"auto_update":false,"display_precision":0,"installed_version":"-1","in_progress":false,"latest_version":"-1","release_summary":null,"release_url":null,"skipped_version":null,"title":null,"update_percentage":null,"device_class":"firmware","entity_picture":"https://github.com/Koenkk/zigbee2mqtt/raw/master/images/logo.png","friendly_name":"Steckdose Lichterkette","supported_features":5},"last_changed":"2026-04-10T16:23:08.493768+00:00","last_reported":"2026-04-10T16:23:08.493768+00:00","last_updated":"2026-04-10T16:23:08.493768+00:00","context":{"id":"01KNW38MYD38Q4AT4N5Y7F5EXC","parent_id":null,"user_id":null}},
+      "extra_data": null,
+      "last_seen": "2026-04-13T18:37:33.163691+00:00"
+    },
+    {
+      "state": {"entity_id":"update.0x70b3d52b600a627d","state":"off","attributes":{"auto_update":false,"display_precision":0,"installed_version":"-1","in_progress":false,"latest_version":"-1","release_summary":null,"release_url":null,"skipped_version":null,"title":null,"update_percentage":null,"device_class":"firmware","entity_picture":"https://github.com/Koenkk/zigbee2mqtt/raw/master/images/logo.png","friendly_name":"Steckdose HP Server","supported_features":5},"last_changed":"2026-04-10T16:20:30.121751+00:00","last_reported":"2026-04-10T16:20:30.121751+00:00","last_updated":"2026-04-10T16:20:30.121751+00:00","context":{"id":"01KNW33T99E72KCRJP8Y89MYP8","parent_id":null,"user_id":null}},
+      "extra_data": null,
+      "last_seen": "2026-04-13T18:37:33.163691+00:00"
+    },
+    {
+      "state": {"entity_id":"button.putzknecht_reset_sensor_consumable","state":"unknown","attributes":{"device_class":"update","friendly_name":"Putzknecht Reset sensor consumable"},"last_changed":"2026-04-13T01:52:58.750881+00:00","last_reported":"2026-04-13T02:07:28.736059+00:00","last_updated":"2026-04-13T01:52:58.750881+00:00","context":{"id":"01KP28NFVYKDAW5XTYW04ETQ8F","parent_id":null,"user_id":null}},
+      "extra_data": null,
+      "last_seen": "2026-04-13T18:37:33.163691+00:00"
+    },
+    {
+      "state": {"entity_id":"button.putzknecht_reset_filter_consumable","state":"unknown","attributes":{"device_class":"update","friendly_name":"Putzknecht Reset filter consumable"},"last_changed":"2026-04-13T01:52:58.750938+00:00","last_reported":"2026-04-13T02:07:28.736115+00:00","last_updated":"2026-04-13T01:52:58.750938+00:00","context":{"id":"01KP28NFVYC0YB0GFMBCF3XN23","parent_id":null,"user_id":null}},
+      "extra_data": null,
+      "last_seen": "2026-04-13T18:37:33.163691+00:00"
+    },
+    {
+      "state": {"entity_id":"button.putzknecht_reset_side_brush_consumable","state":"unknown","attributes":{"device_class":"update","friendly_name":"Putzknecht Reset side brush consumable"},"last_changed":"2026-04-13T01:52:58.750961+00:00","last_reported":"2026-04-13T02:07:28.736142+00:00","last_updated":"2026-04-13T01:52:58.750961+00:00","context":{"id":"01KP28NFVYTW3F7ZRDYDG31TP1","parent_id":null,"user_id":null}},
+      "extra_data": null,
+      "last_seen": "2026-04-13T18:37:33.163691+00:00"
+    },
+    {
+      "state": {"entity_id":"button.putzknecht_reset_main_brush_consumable","state":"unknown","attributes":{"device_class":"update","friendly_name":"Putzknecht Reset main brush consumable"},"last_changed":"2026-04-13T01:52:58.750980+00:00","last_reported":"2026-04-13T02:07:28.736162+00:00","last_updated":"2026-04-13T01:52:58.750980+00:00","context":{"id":"01KP28NFVYFDEXMKAB3XR4WK56","parent_id":null,"user_id":null}},
+      "extra_data": null,
+      "last_seen": "2026-04-13T18:37:33.163691+00:00"
+    },
+    {
+      "state": {"entity_id":"switch.steckdose_schreibtisch","state":"on","attributes":{"friendly_name":"Steckdose Schreibtisch"},"last_changed":"2026-04-10T16:34:45.687332+00:00","last_reported":"2026-04-10T16:34:45.687332+00:00","last_updated":"2026-04-10T16:34:45.687332+00:00","context":{"id":"01KNW3XXSQA5N5RT0VC8Z8EBKP","parent_id":null,"user_id":null}},
+      "extra_data": null,
+      "last_seen": "2026-04-13T18:37:33.163691+00:00"
+    },
+    {
+      "state": {"entity_id":"select.steckdose_schreibtisch_power_outage_memory","state":"unknown","attributes":{"options":["on","off","restore"],"icon":"mdi:power-settings","friendly_name":"Steckdose Schreibtisch Power outage memory"},"last_changed":"2026-04-10T16:34:40.845903+00:00","last_reported":"2026-04-10T16:34:40.845903+00:00","last_updated":"2026-04-10T16:34:40.845903+00:00","context":{"id":"01KNW3XS2DB70JD470B2DEDJ0A","parent_id":null,"user_id":null}},
+      "extra_data": null,
+      "last_seen": "2026-04-13T18:37:33.163691+00:00"
+    },
+    {
+      "state": {"entity_id":"select.steckdose_schreibtisch_indicator_mode","state":"unknown","attributes":{"options":["off","off/on","on/off","on"],"friendly_name":"Steckdose Schreibtisch Indicator mode"},"last_changed":"2026-04-10T16:34:41.200150+00:00","last_reported":"2026-04-10T16:34:41.200150+00:00","last_updated":"2026-04-10T16:34:41.200150+00:00","context":{"id":"01KNW3XSDG2RNJX0V829QE7C4M","parent_id":null,"user_id":null}},
+      "extra_data": null,
+      "last_seen": "2026-04-13T18:37:33.163691+00:00"
+    },
+    {
+      "state": {"entity_id":"sensor.steckdose_schreibtisch_power","state":"271","attributes":{"state_class":"measurement","unit_of_measurement":"W","device_class":"power","friendly_name":"Steckdose Schreibtisch Power"},"last_changed":"2026-04-13T18:37:18.942944+00:00","last_reported":"2026-04-13T18:37:18.942944+00:00","last_updated":"2026-04-13T18:37:18.942944+00:00","context":{"id":"01KP424FPYXKEKJAK5NPKZCVWQ","parent_id":null,"user_id":null}},
+      "extra_data": {
+        "native_value": "271",
+        "native_unit_of_measurement": "W"
+      },
+      "last_seen": "2026-04-13T18:37:33.163691+00:00"
+    },
+    {
+      "state": {"entity_id":"sensor.steckdose_schreibtisch_energy","state":"258.29","attributes":{"state_class":"total_increasing","unit_of_measurement":"kWh","device_class":"energy","friendly_name":"Steckdose Schreibtisch Energy"},"last_changed":"2026-04-13T18:36:18.855486+00:00","last_reported":"2026-04-13T18:36:18.855486+00:00","last_updated":"2026-04-13T18:36:18.855486+00:00","context":{"id":"01KP422N173G7YE0RN1QFSSHV8","parent_id":null,"user_id":null}},
+      "extra_data": {
+        "native_value": "258.29",
+        "native_unit_of_measurement": "kWh"
+      },
+      "last_seen": "2026-04-13T18:37:33.163691+00:00"
+    },
+    {
+      "state": {"entity_id":"update.steckdose_schreibtisch","state":"off","attributes":{"auto_update":false,"display_precision":0,"installed_version":"-1","in_progress":false,"latest_version":"-1","release_summary":null,"release_url":null,"skipped_version":null,"title":null,"update_percentage":null,"device_class":"firmware","entity_picture":"https://github.com/Koenkk/zigbee2mqtt/raw/master/images/logo.png","friendly_name":"Steckdose Schreibtisch","supported_features":5},"last_changed":"2026-04-10T16:34:45.687224+00:00","last_reported":"2026-04-10T16:34:45.687224+00:00","last_updated":"2026-04-10T16:34:45.687224+00:00","context":{"id":"01KNW3XXSQDRV0JMHP9NWW69A2","parent_id":null,"user_id":null}},
+      "extra_data": null,
+      "last_seen": "2026-04-13T18:37:33.163691+00:00"
+    }
+  ]
+}

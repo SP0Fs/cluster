@@ -1,0 +1,2072 @@
+{
+  "version": 1,
+  "minor_version": 1,
+  "key": "trace.saved_traces",
+  "data": {
+    "automation.1736506280300": [
+      {
+        "extended_dict": {
+          "last_step": "condition/0/entity_id/0",
+          "run_id": "31d82cf9216d33af0a4301d4287114d0",
+          "state": "stopped",
+          "script_execution": "failed_conditions",
+          "timestamp": {
+            "start": "2026-04-06T03:30:00.367749+00:00",
+            "finish": "2026-04-06T03:30:00.367989+00:00"
+          },
+          "domain": "automation",
+          "item_id": "1736506280300",
+          "trigger": "time",
+          "trace": {
+            "trigger/0": [
+              {
+                "path": "trigger/0",
+                "timestamp": "2026-04-06T03:30:00.367817+00:00",
+                "changed_variables": {
+                  "this": {
+                    "entity_id": "automation.aufheizen_morgens",
+                    "state": "on",
+                    "attributes": {
+                      "id": "1736506280300",
+                      "last_triggered": "2026-04-02T03:30:00.280809+00:00",
+                      "mode": "single",
+                      "current": 0,
+                      "friendly_name": "Aufheizen morgens"
+                    },
+                    "last_changed": "2026-04-05T17:32:56.570353+00:00",
+                    "last_reported": "2026-04-05T17:32:56.570353+00:00",
+                    "last_updated": "2026-04-05T17:32:56.570353+00:00",
+                    "context": {
+                      "id": "01KNFB8VVTT8THEX8QAGTH0NP5",
+                      "parent_id": null,
+                      "user_id": null
+                    }
+                  },
+                  "trigger": {
+                    "id": "0",
+                    "idx": "0",
+                    "alias": null,
+                    "platform": "time",
+                    "now": "2026-04-06T05:30:00.367491+02:00",
+                    "description": "time",
+                    "entity_id": null
+                  }
+                }
+              }
+            ],
+            "condition/0": [
+              {
+                "path": "condition/0",
+                "timestamp": "2026-04-06T03:30:00.367869+00:00",
+                "result": {
+                  "result": false
+                }
+              },
+              {
+                "path": "condition/0",
+                "timestamp": "2026-04-06T03:30:00.367898+00:00",
+                "result": {
+                  "result": false
+                }
+              }
+            ],
+            "condition/0/entity_id/0": [
+              {
+                "path": "condition/0/entity_id/0",
+                "timestamp": "2026-04-06T03:30:00.367921+00:00",
+                "result": {
+                  "result": false,
+                  "state": "off",
+                  "wanted_state": "on"
+                }
+              }
+            ]
+          },
+          "config": {
+            "id": "1736506280300",
+            "alias": "Aufheizen morgens",
+            "description": "",
+            "triggers": [
+              {
+                "trigger": "time",
+                "at": "05:30:00"
+              }
+            ],
+            "conditions": [
+              {
+                "type": "is_on",
+                "condition": "device",
+                "device_id": "3fca7ac19d849a579c831a77f19322e7",
+                "entity_id": "4bf35772a5d59a58f11678c4003d74da",
+                "domain": "binary_sensor"
+              },
+              {
+                "condition": "state",
+                "entity_id": "sensor.home_nearest_direction_of_travel",
+                "state": "arrived"
+              }
+            ],
+            "actions": [
+              {
+                "action": "climate.set_temperature",
+                "metadata": {},
+                "data": {
+                  "temperature": 22,
+                  "hvac_mode": "heat"
+                },
+                "target": {
+                  "device_id": [
+                    "ca20828a0ed458540bd1d661213fb141",
+                    "4b1ac75ccc5217494edc3dd41e6e7fda"
+                  ]
+                }
+              }
+            ],
+            "mode": "single"
+          },
+          "blueprint_inputs": null,
+          "context": {
+            "id": "01KNGDE41FR0DR1AVYZ5347840",
+            "parent_id": null,
+            "user_id": null
+          }
+        },
+        "short_dict": {
+          "last_step": "condition/0/entity_id/0",
+          "run_id": "31d82cf9216d33af0a4301d4287114d0",
+          "state": "stopped",
+          "script_execution": "failed_conditions",
+          "timestamp": {
+            "start": "2026-04-06T03:30:00.367749+00:00",
+            "finish": "2026-04-06T03:30:00.367989+00:00"
+          },
+          "domain": "automation",
+          "item_id": "1736506280300",
+          "trigger": "time"
+        }
+      },
+      {
+        "extended_dict": {
+          "last_step": "action/0",
+          "run_id": "91a1584d6d60ab84058e453c9edba079",
+          "state": "stopped",
+          "script_execution": "finished",
+          "timestamp": {
+            "start": "2026-04-07T03:30:00.368146+00:00",
+            "finish": "2026-04-07T03:30:00.371159+00:00"
+          },
+          "domain": "automation",
+          "item_id": "1736506280300",
+          "trigger": "time",
+          "trace": {
+            "trigger/0": [
+              {
+                "path": "trigger/0",
+                "timestamp": "2026-04-07T03:30:00.368188+00:00",
+                "changed_variables": {
+                  "this": {
+                    "entity_id": "automation.aufheizen_morgens",
+                    "state": "on",
+                    "attributes": {
+                      "id": "1736506280300",
+                      "last_triggered": "2026-04-02T03:30:00.280809+00:00",
+                      "mode": "single",
+                      "current": 0,
+                      "friendly_name": "Aufheizen morgens"
+                    },
+                    "last_changed": "2026-04-05T17:32:56.570353+00:00",
+                    "last_reported": "2026-04-05T17:32:56.570353+00:00",
+                    "last_updated": "2026-04-05T17:32:56.570353+00:00",
+                    "context": {
+                      "id": "01KNFB8VVTT8THEX8QAGTH0NP5",
+                      "parent_id": null,
+                      "user_id": null
+                    }
+                  },
+                  "trigger": {
+                    "id": "0",
+                    "idx": "0",
+                    "alias": null,
+                    "platform": "time",
+                    "now": "2026-04-07T05:30:00.367974+02:00",
+                    "description": "time",
+                    "entity_id": null
+                  }
+                }
+              }
+            ],
+            "condition/0": [
+              {
+                "path": "condition/0",
+                "timestamp": "2026-04-07T03:30:00.368222+00:00",
+                "result": {
+                  "result": true
+                }
+              },
+              {
+                "path": "condition/0",
+                "timestamp": "2026-04-07T03:30:00.368242+00:00",
+                "result": {
+                  "result": true
+                }
+              }
+            ],
+            "condition/0/entity_id/0": [
+              {
+                "path": "condition/0/entity_id/0",
+                "timestamp": "2026-04-07T03:30:00.368258+00:00",
+                "result": {
+                  "result": true,
+                  "state": "on",
+                  "wanted_state": "on"
+                }
+              }
+            ],
+            "condition/1": [
+              {
+                "path": "condition/1",
+                "timestamp": "2026-04-07T03:30:00.368317+00:00",
+                "result": {
+                  "result": true
+                }
+              }
+            ],
+            "condition/1/entity_id/0": [
+              {
+                "path": "condition/1/entity_id/0",
+                "timestamp": "2026-04-07T03:30:00.368331+00:00",
+                "result": {
+                  "result": true,
+                  "state": "arrived",
+                  "wanted_state": "arrived"
+                }
+              }
+            ],
+            "action/0": [
+              {
+                "path": "action/0",
+                "timestamp": "2026-04-07T03:30:00.368680+00:00",
+                "changed_variables": {
+                  "context": {
+                    "id": "01KNJZTV1G2A8QSQWTEGBW8NP2",
+                    "parent_id": null,
+                    "user_id": null
+                  }
+                },
+                "result": {
+                  "params": {
+                    "domain": "climate",
+                    "service": "set_temperature",
+                    "service_data": {
+                      "temperature": 22,
+                      "hvac_mode": "heat",
+                      "device_id": [
+                        "ca20828a0ed458540bd1d661213fb141",
+                        "4b1ac75ccc5217494edc3dd41e6e7fda"
+                      ]
+                    },
+                    "target": {
+                      "device_id": [
+                        "ca20828a0ed458540bd1d661213fb141",
+                        "4b1ac75ccc5217494edc3dd41e6e7fda"
+                      ]
+                    }
+                  },
+                  "running_script": false
+                }
+              }
+            ]
+          },
+          "config": {
+            "id": "1736506280300",
+            "alias": "Aufheizen morgens",
+            "description": "",
+            "triggers": [
+              {
+                "trigger": "time",
+                "at": "05:30:00"
+              }
+            ],
+            "conditions": [
+              {
+                "type": "is_on",
+                "condition": "device",
+                "device_id": "3fca7ac19d849a579c831a77f19322e7",
+                "entity_id": "4bf35772a5d59a58f11678c4003d74da",
+                "domain": "binary_sensor"
+              },
+              {
+                "condition": "state",
+                "entity_id": "sensor.home_nearest_direction_of_travel",
+                "state": "arrived"
+              }
+            ],
+            "actions": [
+              {
+                "action": "climate.set_temperature",
+                "metadata": {},
+                "data": {
+                  "temperature": 22,
+                  "hvac_mode": "heat"
+                },
+                "target": {
+                  "device_id": [
+                    "ca20828a0ed458540bd1d661213fb141",
+                    "4b1ac75ccc5217494edc3dd41e6e7fda"
+                  ]
+                }
+              }
+            ],
+            "mode": "single"
+          },
+          "blueprint_inputs": null,
+          "context": {
+            "id": "01KNJZTV1G2A8QSQWTEGBW8NP2",
+            "parent_id": null,
+            "user_id": null
+          }
+        },
+        "short_dict": {
+          "last_step": "action/0",
+          "run_id": "91a1584d6d60ab84058e453c9edba079",
+          "state": "stopped",
+          "script_execution": "finished",
+          "timestamp": {
+            "start": "2026-04-07T03:30:00.368146+00:00",
+            "finish": "2026-04-07T03:30:00.371159+00:00"
+          },
+          "domain": "automation",
+          "item_id": "1736506280300",
+          "trigger": "time"
+        }
+      },
+      {
+        "extended_dict": {
+          "last_step": "action/0",
+          "run_id": "f33784ea8078cc9977d8c621752e0b5d",
+          "state": "stopped",
+          "script_execution": "finished",
+          "timestamp": {
+            "start": "2026-04-08T03:30:00.368240+00:00",
+            "finish": "2026-04-08T03:30:00.370677+00:00"
+          },
+          "domain": "automation",
+          "item_id": "1736506280300",
+          "trigger": "time",
+          "trace": {
+            "trigger/0": [
+              {
+                "path": "trigger/0",
+                "timestamp": "2026-04-08T03:30:00.368288+00:00",
+                "changed_variables": {
+                  "this": {
+                    "entity_id": "automation.aufheizen_morgens",
+                    "state": "on",
+                    "attributes": {
+                      "id": "1736506280300",
+                      "last_triggered": "2026-04-07T03:30:00.368514+00:00",
+                      "mode": "single",
+                      "current": 0,
+                      "friendly_name": "Aufheizen morgens"
+                    },
+                    "last_changed": "2026-04-05T17:32:56.570353+00:00",
+                    "last_reported": "2026-04-07T03:30:00.371016+00:00",
+                    "last_updated": "2026-04-07T03:30:00.371016+00:00",
+                    "context": {
+                      "id": "01KNJZTV1G2A8QSQWTEGBW8NP2",
+                      "parent_id": null,
+                      "user_id": null
+                    }
+                  },
+                  "trigger": {
+                    "id": "0",
+                    "idx": "0",
+                    "alias": null,
+                    "platform": "time",
+                    "now": "2026-04-08T05:30:00.368065+02:00",
+                    "description": "time",
+                    "entity_id": null
+                  }
+                }
+              }
+            ],
+            "condition/0": [
+              {
+                "path": "condition/0",
+                "timestamp": "2026-04-08T03:30:00.368323+00:00",
+                "result": {
+                  "result": true
+                }
+              },
+              {
+                "path": "condition/0",
+                "timestamp": "2026-04-08T03:30:00.368342+00:00",
+                "result": {
+                  "result": true
+                }
+              }
+            ],
+            "condition/0/entity_id/0": [
+              {
+                "path": "condition/0/entity_id/0",
+                "timestamp": "2026-04-08T03:30:00.368357+00:00",
+                "result": {
+                  "result": true,
+                  "state": "on",
+                  "wanted_state": "on"
+                }
+              }
+            ],
+            "condition/1": [
+              {
+                "path": "condition/1",
+                "timestamp": "2026-04-08T03:30:00.368428+00:00",
+                "result": {
+                  "result": true
+                }
+              }
+            ],
+            "condition/1/entity_id/0": [
+              {
+                "path": "condition/1/entity_id/0",
+                "timestamp": "2026-04-08T03:30:00.368443+00:00",
+                "result": {
+                  "result": true,
+                  "state": "arrived",
+                  "wanted_state": "arrived"
+                }
+              }
+            ],
+            "action/0": [
+              {
+                "path": "action/0",
+                "timestamp": "2026-04-08T03:30:00.368678+00:00",
+                "changed_variables": {
+                  "context": {
+                    "id": "01KNNJ7J1GFFESFBFANTA4HHNN",
+                    "parent_id": null,
+                    "user_id": null
+                  }
+                },
+                "result": {
+                  "params": {
+                    "domain": "climate",
+                    "service": "set_temperature",
+                    "service_data": {
+                      "temperature": 22,
+                      "hvac_mode": "heat",
+                      "device_id": [
+                        "ca20828a0ed458540bd1d661213fb141",
+                        "4b1ac75ccc5217494edc3dd41e6e7fda"
+                      ]
+                    },
+                    "target": {
+                      "device_id": [
+                        "ca20828a0ed458540bd1d661213fb141",
+                        "4b1ac75ccc5217494edc3dd41e6e7fda"
+                      ]
+                    }
+                  },
+                  "running_script": false
+                }
+              }
+            ]
+          },
+          "config": {
+            "id": "1736506280300",
+            "alias": "Aufheizen morgens",
+            "description": "",
+            "triggers": [
+              {
+                "trigger": "time",
+                "at": "05:30:00"
+              }
+            ],
+            "conditions": [
+              {
+                "type": "is_on",
+                "condition": "device",
+                "device_id": "3fca7ac19d849a579c831a77f19322e7",
+                "entity_id": "4bf35772a5d59a58f11678c4003d74da",
+                "domain": "binary_sensor"
+              },
+              {
+                "condition": "state",
+                "entity_id": "sensor.home_nearest_direction_of_travel",
+                "state": "arrived"
+              }
+            ],
+            "actions": [
+              {
+                "action": "climate.set_temperature",
+                "metadata": {},
+                "data": {
+                  "temperature": 22,
+                  "hvac_mode": "heat"
+                },
+                "target": {
+                  "device_id": [
+                    "ca20828a0ed458540bd1d661213fb141",
+                    "4b1ac75ccc5217494edc3dd41e6e7fda"
+                  ]
+                }
+              }
+            ],
+            "mode": "single"
+          },
+          "blueprint_inputs": null,
+          "context": {
+            "id": "01KNNJ7J1GFFESFBFANTA4HHNN",
+            "parent_id": null,
+            "user_id": null
+          }
+        },
+        "short_dict": {
+          "last_step": "action/0",
+          "run_id": "f33784ea8078cc9977d8c621752e0b5d",
+          "state": "stopped",
+          "script_execution": "finished",
+          "timestamp": {
+            "start": "2026-04-08T03:30:00.368240+00:00",
+            "finish": "2026-04-08T03:30:00.370677+00:00"
+          },
+          "domain": "automation",
+          "item_id": "1736506280300",
+          "trigger": "time"
+        }
+      },
+      {
+        "extended_dict": {
+          "last_step": "action/0",
+          "run_id": "f412b10dbb6e2e8ec373af5afd589615",
+          "state": "stopped",
+          "script_execution": "finished",
+          "timestamp": {
+            "start": "2026-04-09T03:30:00.368170+00:00",
+            "finish": "2026-04-09T03:30:00.370837+00:00"
+          },
+          "domain": "automation",
+          "item_id": "1736506280300",
+          "trigger": "time",
+          "trace": {
+            "trigger/0": [
+              {
+                "path": "trigger/0",
+                "timestamp": "2026-04-09T03:30:00.368216+00:00",
+                "changed_variables": {
+                  "this": {
+                    "entity_id": "automation.aufheizen_morgens",
+                    "state": "on",
+                    "attributes": {
+                      "id": "1736506280300",
+                      "last_triggered": "2026-04-08T03:30:00.368548+00:00",
+                      "mode": "single",
+                      "current": 0,
+                      "friendly_name": "Aufheizen morgens"
+                    },
+                    "last_changed": "2026-04-05T17:32:56.570353+00:00",
+                    "last_reported": "2026-04-08T03:30:00.370580+00:00",
+                    "last_updated": "2026-04-08T03:30:00.370580+00:00",
+                    "context": {
+                      "id": "01KNNJ7J1GFFESFBFANTA4HHNN",
+                      "parent_id": null,
+                      "user_id": null
+                    }
+                  },
+                  "trigger": {
+                    "id": "0",
+                    "idx": "0",
+                    "alias": null,
+                    "platform": "time",
+                    "now": "2026-04-09T05:30:00.367982+02:00",
+                    "description": "time",
+                    "entity_id": null
+                  }
+                }
+              }
+            ],
+            "condition/0": [
+              {
+                "path": "condition/0",
+                "timestamp": "2026-04-09T03:30:00.368249+00:00",
+                "result": {
+                  "result": true
+                }
+              },
+              {
+                "path": "condition/0",
+                "timestamp": "2026-04-09T03:30:00.368266+00:00",
+                "result": {
+                  "result": true
+                }
+              }
+            ],
+            "condition/0/entity_id/0": [
+              {
+                "path": "condition/0/entity_id/0",
+                "timestamp": "2026-04-09T03:30:00.368294+00:00",
+                "result": {
+                  "result": true,
+                  "state": "on",
+                  "wanted_state": "on"
+                }
+              }
+            ],
+            "condition/1": [
+              {
+                "path": "condition/1",
+                "timestamp": "2026-04-09T03:30:00.368345+00:00",
+                "result": {
+                  "result": true
+                }
+              }
+            ],
+            "condition/1/entity_id/0": [
+              {
+                "path": "condition/1/entity_id/0",
+                "timestamp": "2026-04-09T03:30:00.368358+00:00",
+                "result": {
+                  "result": true,
+                  "state": "arrived",
+                  "wanted_state": "arrived"
+                }
+              }
+            ],
+            "action/0": [
+              {
+                "path": "action/0",
+                "timestamp": "2026-04-09T03:30:00.368602+00:00",
+                "changed_variables": {
+                  "context": {
+                    "id": "01KNR4M91GSD2BZDKVPHF7AFNP",
+                    "parent_id": null,
+                    "user_id": null
+                  }
+                },
+                "result": {
+                  "params": {
+                    "domain": "climate",
+                    "service": "set_temperature",
+                    "service_data": {
+                      "temperature": 22,
+                      "hvac_mode": "heat",
+                      "device_id": [
+                        "ca20828a0ed458540bd1d661213fb141",
+                        "4b1ac75ccc5217494edc3dd41e6e7fda"
+                      ]
+                    },
+                    "target": {
+                      "device_id": [
+                        "ca20828a0ed458540bd1d661213fb141",
+                        "4b1ac75ccc5217494edc3dd41e6e7fda"
+                      ]
+                    }
+                  },
+                  "running_script": false
+                }
+              }
+            ]
+          },
+          "config": {
+            "id": "1736506280300",
+            "alias": "Aufheizen morgens",
+            "description": "",
+            "triggers": [
+              {
+                "trigger": "time",
+                "at": "05:30:00"
+              }
+            ],
+            "conditions": [
+              {
+                "type": "is_on",
+                "condition": "device",
+                "device_id": "3fca7ac19d849a579c831a77f19322e7",
+                "entity_id": "4bf35772a5d59a58f11678c4003d74da",
+                "domain": "binary_sensor"
+              },
+              {
+                "condition": "state",
+                "entity_id": "sensor.home_nearest_direction_of_travel",
+                "state": "arrived"
+              }
+            ],
+            "actions": [
+              {
+                "action": "climate.set_temperature",
+                "metadata": {},
+                "data": {
+                  "temperature": 22,
+                  "hvac_mode": "heat"
+                },
+                "target": {
+                  "device_id": [
+                    "ca20828a0ed458540bd1d661213fb141",
+                    "4b1ac75ccc5217494edc3dd41e6e7fda"
+                  ]
+                }
+              }
+            ],
+            "mode": "single"
+          },
+          "blueprint_inputs": null,
+          "context": {
+            "id": "01KNR4M91GSD2BZDKVPHF7AFNP",
+            "parent_id": null,
+            "user_id": null
+          }
+        },
+        "short_dict": {
+          "last_step": "action/0",
+          "run_id": "f412b10dbb6e2e8ec373af5afd589615",
+          "state": "stopped",
+          "script_execution": "finished",
+          "timestamp": {
+            "start": "2026-04-09T03:30:00.368170+00:00",
+            "finish": "2026-04-09T03:30:00.370837+00:00"
+          },
+          "domain": "automation",
+          "item_id": "1736506280300",
+          "trigger": "time"
+        }
+      },
+      {
+        "extended_dict": {
+          "last_step": "action/0",
+          "run_id": "23b2aa3430f5c51ac4ec37c28bceb79e",
+          "state": "stopped",
+          "script_execution": "finished",
+          "timestamp": {
+            "start": "2026-04-10T03:30:00.368168+00:00",
+            "finish": "2026-04-10T03:30:00.370729+00:00"
+          },
+          "domain": "automation",
+          "item_id": "1736506280300",
+          "trigger": "time",
+          "trace": {
+            "trigger/0": [
+              {
+                "path": "trigger/0",
+                "timestamp": "2026-04-10T03:30:00.368217+00:00",
+                "changed_variables": {
+                  "this": {
+                    "entity_id": "automation.aufheizen_morgens",
+                    "state": "on",
+                    "attributes": {
+                      "id": "1736506280300",
+                      "last_triggered": "2026-04-09T03:30:00.368476+00:00",
+                      "mode": "single",
+                      "current": 0,
+                      "friendly_name": "Aufheizen morgens"
+                    },
+                    "last_changed": "2026-04-05T17:32:56.570353+00:00",
+                    "last_reported": "2026-04-09T03:30:00.370664+00:00",
+                    "last_updated": "2026-04-09T03:30:00.370664+00:00",
+                    "context": {
+                      "id": "01KNR4M91GSD2BZDKVPHF7AFNP",
+                      "parent_id": null,
+                      "user_id": null
+                    }
+                  },
+                  "trigger": {
+                    "id": "0",
+                    "idx": "0",
+                    "alias": null,
+                    "platform": "time",
+                    "now": "2026-04-10T05:30:00.367986+02:00",
+                    "description": "time",
+                    "entity_id": null
+                  }
+                }
+              }
+            ],
+            "condition/0": [
+              {
+                "path": "condition/0",
+                "timestamp": "2026-04-10T03:30:00.368251+00:00",
+                "result": {
+                  "result": true
+                }
+              },
+              {
+                "path": "condition/0",
+                "timestamp": "2026-04-10T03:30:00.368271+00:00",
+                "result": {
+                  "result": true
+                }
+              }
+            ],
+            "condition/0/entity_id/0": [
+              {
+                "path": "condition/0/entity_id/0",
+                "timestamp": "2026-04-10T03:30:00.368286+00:00",
+                "result": {
+                  "result": true,
+                  "state": "on",
+                  "wanted_state": "on"
+                }
+              }
+            ],
+            "condition/1": [
+              {
+                "path": "condition/1",
+                "timestamp": "2026-04-10T03:30:00.368339+00:00",
+                "result": {
+                  "result": true
+                }
+              }
+            ],
+            "condition/1/entity_id/0": [
+              {
+                "path": "condition/1/entity_id/0",
+                "timestamp": "2026-04-10T03:30:00.368353+00:00",
+                "result": {
+                  "result": true,
+                  "state": "arrived",
+                  "wanted_state": "arrived"
+                }
+              }
+            ],
+            "action/0": [
+              {
+                "path": "action/0",
+                "timestamp": "2026-04-10T03:30:00.368624+00:00",
+                "changed_variables": {
+                  "context": {
+                    "id": "01KNTQ101G4CFA2KF0Z6J3Z8E4",
+                    "parent_id": null,
+                    "user_id": null
+                  }
+                },
+                "result": {
+                  "params": {
+                    "domain": "climate",
+                    "service": "set_temperature",
+                    "service_data": {
+                      "temperature": 22,
+                      "hvac_mode": "heat",
+                      "device_id": [
+                        "ca20828a0ed458540bd1d661213fb141",
+                        "4b1ac75ccc5217494edc3dd41e6e7fda"
+                      ]
+                    },
+                    "target": {
+                      "device_id": [
+                        "ca20828a0ed458540bd1d661213fb141",
+                        "4b1ac75ccc5217494edc3dd41e6e7fda"
+                      ]
+                    }
+                  },
+                  "running_script": false
+                }
+              }
+            ]
+          },
+          "config": {
+            "id": "1736506280300",
+            "alias": "Aufheizen morgens",
+            "description": "",
+            "triggers": [
+              {
+                "trigger": "time",
+                "at": "05:30:00"
+              }
+            ],
+            "conditions": [
+              {
+                "type": "is_on",
+                "condition": "device",
+                "device_id": "3fca7ac19d849a579c831a77f19322e7",
+                "entity_id": "4bf35772a5d59a58f11678c4003d74da",
+                "domain": "binary_sensor"
+              },
+              {
+                "condition": "state",
+                "entity_id": "sensor.home_nearest_direction_of_travel",
+                "state": "arrived"
+              }
+            ],
+            "actions": [
+              {
+                "action": "climate.set_temperature",
+                "metadata": {},
+                "data": {
+                  "temperature": 22,
+                  "hvac_mode": "heat"
+                },
+                "target": {
+                  "device_id": [
+                    "ca20828a0ed458540bd1d661213fb141",
+                    "4b1ac75ccc5217494edc3dd41e6e7fda"
+                  ]
+                }
+              }
+            ],
+            "mode": "single"
+          },
+          "blueprint_inputs": null,
+          "context": {
+            "id": "01KNTQ101G4CFA2KF0Z6J3Z8E4",
+            "parent_id": null,
+            "user_id": null
+          }
+        },
+        "short_dict": {
+          "last_step": "action/0",
+          "run_id": "23b2aa3430f5c51ac4ec37c28bceb79e",
+          "state": "stopped",
+          "script_execution": "finished",
+          "timestamp": {
+            "start": "2026-04-10T03:30:00.368168+00:00",
+            "finish": "2026-04-10T03:30:00.370729+00:00"
+          },
+          "domain": "automation",
+          "item_id": "1736506280300",
+          "trigger": "time"
+        }
+      }
+    ],
+    "automation.1737737346099": [
+      {
+        "extended_dict": {
+          "last_step": "action/1",
+          "run_id": "47bb82e55c292877201405b208c440d9",
+          "state": "stopped",
+          "script_execution": "finished",
+          "timestamp": {
+            "start": "2026-04-08T19:13:34.223533+00:00",
+            "finish": "2026-04-08T19:13:34.226338+00:00"
+          },
+          "domain": "automation",
+          "item_id": "1737737346099",
+          "trigger": "numeric state of sensor.home_nearest_distance",
+          "trace": {
+            "trigger/0": [
+              {
+                "path": "trigger/0",
+                "timestamp": "2026-04-08T19:13:34.223565+00:00",
+                "changed_variables": {
+                  "this": {
+                    "entity_id": "automation.gehen_heizung_aus",
+                    "state": "on",
+                    "attributes": {
+                      "id": "1737737346099",
+                      "last_triggered": "2026-04-08T06:44:15.328167+00:00",
+                      "mode": "single",
+                      "current": 0,
+                      "friendly_name": "Gehen - Heizung & Licht aus"
+                    },
+                    "last_changed": "2026-04-05T17:32:56.570592+00:00",
+                    "last_reported": "2026-04-08T06:44:15.333632+00:00",
+                    "last_updated": "2026-04-08T06:44:15.333632+00:00",
+                    "context": {
+                      "id": "01KNNXB7TZZT6DVMSDJ62R7D87",
+                      "parent_id": "01KNNX9D7X66FC4ETA75NW1GHH",
+                      "user_id": null
+                    }
+                  },
+                  "trigger": {
+                    "id": "0",
+                    "idx": "0",
+                    "alias": null,
+                    "platform": "numeric_state",
+                    "entity_id": "sensor.home_nearest_distance",
+                    "below": null,
+                    "above": 200.0,
+                    "from_state": {
+                      "entity_id": "sensor.home_nearest_distance",
+                      "state": "183",
+                      "attributes": {
+                        "unit_of_measurement": "m",
+                        "device_class": "distance",
+                        "friendly_name": "Home Nearest distance"
+                      },
+                      "last_changed": "2026-04-08T19:11:29.414174+00:00",
+                      "last_reported": "2026-04-08T19:11:29.414174+00:00",
+                      "last_updated": "2026-04-08T19:11:29.414174+00:00",
+                      "context": {
+                        "id": "01KNQ83F46A1M5HE9DVHXKRH7K",
+                        "parent_id": null,
+                        "user_id": null
+                      }
+                    },
+                    "to_state": {
+                      "entity_id": "sensor.home_nearest_distance",
+                      "state": "232",
+                      "attributes": {
+                        "unit_of_measurement": "m",
+                        "device_class": "distance",
+                        "friendly_name": "Home Nearest distance"
+                      },
+                      "last_changed": "2026-04-08T19:12:34.222497+00:00",
+                      "last_reported": "2026-04-08T19:12:34.222497+00:00",
+                      "last_updated": "2026-04-08T19:12:34.222497+00:00",
+                      "context": {
+                        "id": "01KNQ85EDE3YMNYC8T0RNKW3N0",
+                        "parent_id": null,
+                        "user_id": null
+                      }
+                    },
+                    "for": {
+                      "__type": "<class 'datetime.timedelta'>",
+                      "total_seconds": 60.0
+                    },
+                    "description": "numeric state of sensor.home_nearest_distance"
+                  }
+                }
+              }
+            ],
+            "action/0": [
+              {
+                "path": "action/0",
+                "timestamp": "2026-04-08T19:13:34.223710+00:00",
+                "changed_variables": {
+                  "context": {
+                    "id": "01KNQ8790FYK0S4ZRY99X87HWT",
+                    "parent_id": "01KNQ85EDE3YMNYC8T0RNKW3N0",
+                    "user_id": null
+                  }
+                },
+                "result": {
+                  "params": {
+                    "domain": "climate",
+                    "service": "set_temperature",
+                    "service_data": {
+                      "temperature": 18,
+                      "entity_id": [
+                        "climate.heizung_arbeitszimmer",
+                        "climate.heizung_bad",
+                        "climate.heizung_flur",
+                        "climate.heizung_kuche",
+                        "climate.heizung_schlafzimmer",
+                        "climate.heizung_wohnzimmer",
+                        "climate.heizungen"
+                      ]
+                    },
+                    "target": {
+                      "entity_id": [
+                        "climate.heizung_arbeitszimmer",
+                        "climate.heizung_bad",
+                        "climate.heizung_flur",
+                        "climate.heizung_kuche",
+                        "climate.heizung_schlafzimmer",
+                        "climate.heizung_wohnzimmer",
+                        "climate.heizungen"
+                      ]
+                    }
+                  },
+                  "running_script": false
+                }
+              }
+            ],
+            "action/1": [
+              {
+                "path": "action/1",
+                "timestamp": "2026-04-08T19:13:34.225612+00:00",
+                "result": {
+                  "params": {
+                    "domain": "light",
+                    "service": "turn_off",
+                    "service_data": {},
+                    "target": {
+                      "device_id": [
+                        "1791bc7243786f5aac6c0d8caa515e45",
+                        "d2a504bf0cbcef1b182f6dcc88ced50f",
+                        "a34923f055d1516c0671595fafe788ce"
+                      ]
+                    }
+                  },
+                  "running_script": false
+                }
+              }
+            ]
+          },
+          "config": {
+            "id": "1737737346099",
+            "alias": "Gehen - Heizung & Licht aus",
+            "description": "",
+            "triggers": [
+              {
+                "trigger": "numeric_state",
+                "entity_id": [
+                  "sensor.home_nearest_distance"
+                ],
+                "for": {
+                  "hours": 0,
+                  "minutes": 1,
+                  "seconds": 0
+                },
+                "above": 200
+              }
+            ],
+            "conditions": [],
+            "actions": [
+              {
+                "action": "climate.set_temperature",
+                "metadata": {},
+                "data": {
+                  "temperature": 18
+                },
+                "target": {
+                  "entity_id": [
+                    "climate.heizung_arbeitszimmer",
+                    "climate.heizung_bad",
+                    "climate.heizung_flur",
+                    "climate.heizung_kuche",
+                    "climate.heizung_schlafzimmer",
+                    "climate.heizung_wohnzimmer",
+                    "climate.heizungen"
+                  ]
+                }
+              },
+              {
+                "action": "light.turn_off",
+                "metadata": {},
+                "data": {},
+                "target": {
+                  "device_id": [
+                    "1791bc7243786f5aac6c0d8caa515e45",
+                    "d2a504bf0cbcef1b182f6dcc88ced50f",
+                    "a34923f055d1516c0671595fafe788ce"
+                  ]
+                }
+              }
+            ],
+            "mode": "single"
+          },
+          "blueprint_inputs": null,
+          "context": {
+            "id": "01KNQ8790FYK0S4ZRY99X87HWT",
+            "parent_id": "01KNQ85EDE3YMNYC8T0RNKW3N0",
+            "user_id": null
+          }
+        },
+        "short_dict": {
+          "last_step": "action/1",
+          "run_id": "47bb82e55c292877201405b208c440d9",
+          "state": "stopped",
+          "script_execution": "finished",
+          "timestamp": {
+            "start": "2026-04-08T19:13:34.223533+00:00",
+            "finish": "2026-04-08T19:13:34.226338+00:00"
+          },
+          "domain": "automation",
+          "item_id": "1737737346099",
+          "trigger": "numeric state of sensor.home_nearest_distance"
+        }
+      },
+      {
+        "extended_dict": {
+          "last_step": "action/1",
+          "run_id": "a6d137b1e0497c73baee2dcaf11e7397",
+          "state": "stopped",
+          "script_execution": "finished",
+          "timestamp": {
+            "start": "2026-04-09T06:28:49.062163+00:00",
+            "finish": "2026-04-09T06:28:49.067269+00:00"
+          },
+          "domain": "automation",
+          "item_id": "1737737346099",
+          "trigger": "numeric state of sensor.home_nearest_distance",
+          "trace": {
+            "trigger/0": [
+              {
+                "path": "trigger/0",
+                "timestamp": "2026-04-09T06:28:49.062237+00:00",
+                "changed_variables": {
+                  "this": {
+                    "entity_id": "automation.gehen_heizung_aus",
+                    "state": "on",
+                    "attributes": {
+                      "id": "1737737346099",
+                      "last_triggered": "2026-04-08T19:13:34.223628+00:00",
+                      "mode": "single",
+                      "current": 0,
+                      "friendly_name": "Gehen - Heizung & Licht aus"
+                    },
+                    "last_changed": "2026-04-05T17:32:56.570592+00:00",
+                    "last_reported": "2026-04-08T19:13:34.226288+00:00",
+                    "last_updated": "2026-04-08T19:13:34.226288+00:00",
+                    "context": {
+                      "id": "01KNQ8790FYK0S4ZRY99X87HWT",
+                      "parent_id": "01KNQ85EDE3YMNYC8T0RNKW3N0",
+                      "user_id": null
+                    }
+                  },
+                  "trigger": {
+                    "id": "0",
+                    "idx": "0",
+                    "alias": null,
+                    "platform": "numeric_state",
+                    "entity_id": "sensor.home_nearest_distance",
+                    "below": null,
+                    "above": 200.0,
+                    "from_state": {
+                      "entity_id": "sensor.home_nearest_distance",
+                      "state": "163",
+                      "attributes": {
+                        "unit_of_measurement": "m",
+                        "device_class": "distance",
+                        "friendly_name": "Home Nearest distance"
+                      },
+                      "last_changed": "2026-04-09T06:27:21.418642+00:00",
+                      "last_reported": "2026-04-09T06:27:21.418642+00:00",
+                      "last_updated": "2026-04-09T06:27:21.418642+00:00",
+                      "context": {
+                        "id": "01KNRES0PAN0PVHFA1DZWTHC7R",
+                        "parent_id": null,
+                        "user_id": null
+                      }
+                    },
+                    "to_state": {
+                      "entity_id": "sensor.home_nearest_distance",
+                      "state": "214",
+                      "attributes": {
+                        "unit_of_measurement": "m",
+                        "device_class": "distance",
+                        "friendly_name": "Home Nearest distance"
+                      },
+                      "last_changed": "2026-04-09T06:27:49.059204+00:00",
+                      "last_reported": "2026-04-09T06:27:49.059204+00:00",
+                      "last_updated": "2026-04-09T06:27:49.059204+00:00",
+                      "context": {
+                        "id": "01KNRESVP3PY45256RVDZEBVBX",
+                        "parent_id": null,
+                        "user_id": null
+                      }
+                    },
+                    "for": {
+                      "__type": "<class 'datetime.timedelta'>",
+                      "total_seconds": 60.0
+                    },
+                    "description": "numeric state of sensor.home_nearest_distance"
+                  }
+                }
+              }
+            ],
+            "action/0": [
+              {
+                "path": "action/0",
+                "timestamp": "2026-04-09T06:28:49.062474+00:00",
+                "changed_variables": {
+                  "context": {
+                    "id": "01KNREVP96NARM7Y7AXS4AAMYX",
+                    "parent_id": "01KNRESVP3PY45256RVDZEBVBX",
+                    "user_id": null
+                  }
+                },
+                "result": {
+                  "params": {
+                    "domain": "climate",
+                    "service": "set_temperature",
+                    "service_data": {
+                      "temperature": 18,
+                      "entity_id": [
+                        "climate.heizung_arbeitszimmer",
+                        "climate.heizung_bad",
+                        "climate.heizung_flur",
+                        "climate.heizung_kuche",
+                        "climate.heizung_schlafzimmer",
+                        "climate.heizung_wohnzimmer",
+                        "climate.heizungen"
+                      ]
+                    },
+                    "target": {
+                      "entity_id": [
+                        "climate.heizung_arbeitszimmer",
+                        "climate.heizung_bad",
+                        "climate.heizung_flur",
+                        "climate.heizung_kuche",
+                        "climate.heizung_schlafzimmer",
+                        "climate.heizung_wohnzimmer",
+                        "climate.heizungen"
+                      ]
+                    }
+                  },
+                  "running_script": false
+                }
+              }
+            ],
+            "action/1": [
+              {
+                "path": "action/1",
+                "timestamp": "2026-04-09T06:28:49.065971+00:00",
+                "result": {
+                  "params": {
+                    "domain": "light",
+                    "service": "turn_off",
+                    "service_data": {},
+                    "target": {
+                      "device_id": [
+                        "1791bc7243786f5aac6c0d8caa515e45",
+                        "d2a504bf0cbcef1b182f6dcc88ced50f",
+                        "a34923f055d1516c0671595fafe788ce"
+                      ]
+                    }
+                  },
+                  "running_script": false
+                }
+              }
+            ]
+          },
+          "config": {
+            "id": "1737737346099",
+            "alias": "Gehen - Heizung & Licht aus",
+            "description": "",
+            "triggers": [
+              {
+                "trigger": "numeric_state",
+                "entity_id": [
+                  "sensor.home_nearest_distance"
+                ],
+                "for": {
+                  "hours": 0,
+                  "minutes": 1,
+                  "seconds": 0
+                },
+                "above": 200
+              }
+            ],
+            "conditions": [],
+            "actions": [
+              {
+                "action": "climate.set_temperature",
+                "metadata": {},
+                "data": {
+                  "temperature": 18
+                },
+                "target": {
+                  "entity_id": [
+                    "climate.heizung_arbeitszimmer",
+                    "climate.heizung_bad",
+                    "climate.heizung_flur",
+                    "climate.heizung_kuche",
+                    "climate.heizung_schlafzimmer",
+                    "climate.heizung_wohnzimmer",
+                    "climate.heizungen"
+                  ]
+                }
+              },
+              {
+                "action": "light.turn_off",
+                "metadata": {},
+                "data": {},
+                "target": {
+                  "device_id": [
+                    "1791bc7243786f5aac6c0d8caa515e45",
+                    "d2a504bf0cbcef1b182f6dcc88ced50f",
+                    "a34923f055d1516c0671595fafe788ce"
+                  ]
+                }
+              }
+            ],
+            "mode": "single"
+          },
+          "blueprint_inputs": null,
+          "context": {
+            "id": "01KNREVP96NARM7Y7AXS4AAMYX",
+            "parent_id": "01KNRESVP3PY45256RVDZEBVBX",
+            "user_id": null
+          }
+        },
+        "short_dict": {
+          "last_step": "action/1",
+          "run_id": "a6d137b1e0497c73baee2dcaf11e7397",
+          "state": "stopped",
+          "script_execution": "finished",
+          "timestamp": {
+            "start": "2026-04-09T06:28:49.062163+00:00",
+            "finish": "2026-04-09T06:28:49.067269+00:00"
+          },
+          "domain": "automation",
+          "item_id": "1737737346099",
+          "trigger": "numeric state of sensor.home_nearest_distance"
+        }
+      },
+      {
+        "extended_dict": {
+          "last_step": "action/1",
+          "run_id": "f2e48fbb9d19708be49f61d4648a1651",
+          "state": "stopped",
+          "script_execution": "finished",
+          "timestamp": {
+            "start": "2026-04-09T15:39:39.460757+00:00",
+            "finish": "2026-04-09T15:39:39.466131+00:00"
+          },
+          "domain": "automation",
+          "item_id": "1737737346099",
+          "trigger": "numeric state of sensor.home_nearest_distance",
+          "trace": {
+            "trigger/0": [
+              {
+                "path": "trigger/0",
+                "timestamp": "2026-04-09T15:39:39.460878+00:00",
+                "changed_variables": {
+                  "this": {
+                    "entity_id": "automation.gehen_heizung_aus",
+                    "state": "on",
+                    "attributes": {
+                      "id": "1737737346099",
+                      "last_triggered": "2026-04-09T06:28:49.062330+00:00",
+                      "mode": "single",
+                      "current": 0,
+                      "friendly_name": "Gehen - Heizung & Licht aus"
+                    },
+                    "last_changed": "2026-04-05T17:32:56.570592+00:00",
+                    "last_reported": "2026-04-09T06:28:49.067182+00:00",
+                    "last_updated": "2026-04-09T06:28:49.067182+00:00",
+                    "context": {
+                      "id": "01KNREVP96NARM7Y7AXS4AAMYX",
+                      "parent_id": "01KNRESVP3PY45256RVDZEBVBX",
+                      "user_id": null
+                    }
+                  },
+                  "trigger": {
+                    "id": "0",
+                    "idx": "0",
+                    "alias": null,
+                    "platform": "numeric_state",
+                    "entity_id": "sensor.home_nearest_distance",
+                    "below": null,
+                    "above": 200.0,
+                    "from_state": {
+                      "entity_id": "sensor.home_nearest_distance",
+                      "state": "199",
+                      "attributes": {
+                        "unit_of_measurement": "m",
+                        "device_class": "distance",
+                        "friendly_name": "Home Nearest distance"
+                      },
+                      "last_changed": "2026-04-09T15:38:39.398041+00:00",
+                      "last_reported": "2026-04-09T15:38:39.398041+00:00",
+                      "last_updated": "2026-04-09T15:38:39.398041+00:00",
+                      "context": {
+                        "id": "01KNSEAFD6N9ZKWERF8XMPZM8R",
+                        "parent_id": null,
+                        "user_id": null
+                      }
+                    },
+                    "to_state": {
+                      "entity_id": "sensor.home_nearest_distance",
+                      "state": "203",
+                      "attributes": {
+                        "unit_of_measurement": "m",
+                        "device_class": "distance",
+                        "friendly_name": "Home Nearest distance"
+                      },
+                      "last_changed": "2026-04-09T15:38:39.457978+00:00",
+                      "last_reported": "2026-04-09T15:38:39.457978+00:00",
+                      "last_updated": "2026-04-09T15:38:39.457978+00:00",
+                      "context": {
+                        "id": "01KNSEAFF16B64VVDS4T0KHZ55",
+                        "parent_id": null,
+                        "user_id": null
+                      }
+                    },
+                    "for": {
+                      "__type": "<class 'datetime.timedelta'>",
+                      "total_seconds": 60.0
+                    },
+                    "description": "numeric state of sensor.home_nearest_distance"
+                  }
+                }
+              }
+            ],
+            "action/0": [
+              {
+                "path": "action/0",
+                "timestamp": "2026-04-09T15:39:39.461152+00:00",
+                "changed_variables": {
+                  "context": {
+                    "id": "01KNSECA248ARX1M33TZQSKDZC",
+                    "parent_id": "01KNSEAFF16B64VVDS4T0KHZ55",
+                    "user_id": null
+                  }
+                },
+                "result": {
+                  "params": {
+                    "domain": "climate",
+                    "service": "set_temperature",
+                    "service_data": {
+                      "temperature": 18,
+                      "entity_id": [
+                        "climate.heizung_arbeitszimmer",
+                        "climate.heizung_bad",
+                        "climate.heizung_flur",
+                        "climate.heizung_kuche",
+                        "climate.heizung_schlafzimmer",
+                        "climate.heizung_wohnzimmer",
+                        "climate.heizungen"
+                      ]
+                    },
+                    "target": {
+                      "entity_id": [
+                        "climate.heizung_arbeitszimmer",
+                        "climate.heizung_bad",
+                        "climate.heizung_flur",
+                        "climate.heizung_kuche",
+                        "climate.heizung_schlafzimmer",
+                        "climate.heizung_wohnzimmer",
+                        "climate.heizungen"
+                      ]
+                    }
+                  },
+                  "running_script": false
+                }
+              }
+            ],
+            "action/1": [
+              {
+                "path": "action/1",
+                "timestamp": "2026-04-09T15:39:39.464830+00:00",
+                "result": {
+                  "params": {
+                    "domain": "light",
+                    "service": "turn_off",
+                    "service_data": {},
+                    "target": {
+                      "device_id": [
+                        "1791bc7243786f5aac6c0d8caa515e45",
+                        "d2a504bf0cbcef1b182f6dcc88ced50f",
+                        "a34923f055d1516c0671595fafe788ce"
+                      ]
+                    }
+                  },
+                  "running_script": false
+                }
+              }
+            ]
+          },
+          "config": {
+            "id": "1737737346099",
+            "alias": "Gehen - Heizung & Licht aus",
+            "description": "",
+            "triggers": [
+              {
+                "trigger": "numeric_state",
+                "entity_id": [
+                  "sensor.home_nearest_distance"
+                ],
+                "for": {
+                  "hours": 0,
+                  "minutes": 1,
+                  "seconds": 0
+                },
+                "above": 200
+              }
+            ],
+            "conditions": [],
+            "actions": [
+              {
+                "action": "climate.set_temperature",
+                "metadata": {},
+                "data": {
+                  "temperature": 18
+                },
+                "target": {
+                  "entity_id": [
+                    "climate.heizung_arbeitszimmer",
+                    "climate.heizung_bad",
+                    "climate.heizung_flur",
+                    "climate.heizung_kuche",
+                    "climate.heizung_schlafzimmer",
+                    "climate.heizung_wohnzimmer",
+                    "climate.heizungen"
+                  ]
+                }
+              },
+              {
+                "action": "light.turn_off",
+                "metadata": {},
+                "data": {},
+                "target": {
+                  "device_id": [
+                    "1791bc7243786f5aac6c0d8caa515e45",
+                    "d2a504bf0cbcef1b182f6dcc88ced50f",
+                    "a34923f055d1516c0671595fafe788ce"
+                  ]
+                }
+              }
+            ],
+            "mode": "single"
+          },
+          "blueprint_inputs": null,
+          "context": {
+            "id": "01KNSECA248ARX1M33TZQSKDZC",
+            "parent_id": "01KNSEAFF16B64VVDS4T0KHZ55",
+            "user_id": null
+          }
+        },
+        "short_dict": {
+          "last_step": "action/1",
+          "run_id": "f2e48fbb9d19708be49f61d4648a1651",
+          "state": "stopped",
+          "script_execution": "finished",
+          "timestamp": {
+            "start": "2026-04-09T15:39:39.460757+00:00",
+            "finish": "2026-04-09T15:39:39.466131+00:00"
+          },
+          "domain": "automation",
+          "item_id": "1737737346099",
+          "trigger": "numeric state of sensor.home_nearest_distance"
+        }
+      },
+      {
+        "extended_dict": {
+          "last_step": "action/1",
+          "run_id": "86a4953b82e4e65c62475edc0aabda60",
+          "state": "stopped",
+          "script_execution": "finished",
+          "timestamp": {
+            "start": "2026-04-09T16:43:04.105743+00:00",
+            "finish": "2026-04-09T16:43:04.111473+00:00"
+          },
+          "domain": "automation",
+          "item_id": "1737737346099",
+          "trigger": "numeric state of sensor.home_nearest_distance",
+          "trace": {
+            "trigger/0": [
+              {
+                "path": "trigger/0",
+                "timestamp": "2026-04-09T16:43:04.105854+00:00",
+                "changed_variables": {
+                  "this": {
+                    "entity_id": "automation.gehen_heizung_aus",
+                    "state": "on",
+                    "attributes": {
+                      "id": "1737737346099",
+                      "last_triggered": "2026-04-09T15:39:39.460997+00:00",
+                      "mode": "single",
+                      "current": 0,
+                      "friendly_name": "Gehen - Heizung & Licht aus"
+                    },
+                    "last_changed": "2026-04-05T17:32:56.570592+00:00",
+                    "last_reported": "2026-04-09T15:39:39.466043+00:00",
+                    "last_updated": "2026-04-09T15:39:39.466043+00:00",
+                    "context": {
+                      "id": "01KNSECA248ARX1M33TZQSKDZC",
+                      "parent_id": "01KNSEAFF16B64VVDS4T0KHZ55",
+                      "user_id": null
+                    }
+                  },
+                  "trigger": {
+                    "id": "0",
+                    "idx": "0",
+                    "alias": null,
+                    "platform": "numeric_state",
+                    "entity_id": "sensor.home_nearest_distance",
+                    "below": null,
+                    "above": 200.0,
+                    "from_state": {
+                      "entity_id": "sensor.home_nearest_distance",
+                      "state": "84",
+                      "attributes": {
+                        "unit_of_measurement": "m",
+                        "device_class": "distance",
+                        "friendly_name": "Home Nearest distance"
+                      },
+                      "last_changed": "2026-04-09T16:41:37.146065+00:00",
+                      "last_reported": "2026-04-09T16:41:37.146065+00:00",
+                      "last_updated": "2026-04-09T16:41:37.146065+00:00",
+                      "context": {
+                        "id": "01KNSHXRKTT0XSMTWJY77SNDMV",
+                        "parent_id": null,
+                        "user_id": null
+                      }
+                    },
+                    "to_state": {
+                      "entity_id": "sensor.home_nearest_distance",
+                      "state": "218",
+                      "attributes": {
+                        "unit_of_measurement": "m",
+                        "device_class": "distance",
+                        "friendly_name": "Home Nearest distance"
+                      },
+                      "last_changed": "2026-04-09T16:42:04.102690+00:00",
+                      "last_reported": "2026-04-09T16:42:04.102690+00:00",
+                      "last_updated": "2026-04-09T16:42:04.102690+00:00",
+                      "context": {
+                        "id": "01KNSHYJY6Q9NA628KTDRA06NZ",
+                        "parent_id": null,
+                        "user_id": null
+                      }
+                    },
+                    "for": {
+                      "__type": "<class 'datetime.timedelta'>",
+                      "total_seconds": 60.0
+                    },
+                    "description": "numeric state of sensor.home_nearest_distance"
+                  }
+                }
+              }
+            ],
+            "action/0": [
+              {
+                "path": "action/0",
+                "timestamp": "2026-04-09T16:43:04.106194+00:00",
+                "changed_variables": {
+                  "context": {
+                    "id": "01KNSJ0DH9FM1ZF28KT0K85DFW",
+                    "parent_id": "01KNSHYJY6Q9NA628KTDRA06NZ",
+                    "user_id": null
+                  }
+                },
+                "result": {
+                  "params": {
+                    "domain": "climate",
+                    "service": "set_temperature",
+                    "service_data": {
+                      "temperature": 18,
+                      "entity_id": [
+                        "climate.heizung_arbeitszimmer",
+                        "climate.heizung_bad",
+                        "climate.heizung_flur",
+                        "climate.heizung_kuche",
+                        "climate.heizung_schlafzimmer",
+                        "climate.heizung_wohnzimmer",
+                        "climate.heizungen"
+                      ]
+                    },
+                    "target": {
+                      "entity_id": [
+                        "climate.heizung_arbeitszimmer",
+                        "climate.heizung_bad",
+                        "climate.heizung_flur",
+                        "climate.heizung_kuche",
+                        "climate.heizung_schlafzimmer",
+                        "climate.heizung_wohnzimmer",
+                        "climate.heizungen"
+                      ]
+                    }
+                  },
+                  "running_script": false
+                }
+              }
+            ],
+            "action/1": [
+              {
+                "path": "action/1",
+                "timestamp": "2026-04-09T16:43:04.110774+00:00",
+                "result": {
+                  "params": {
+                    "domain": "light",
+                    "service": "turn_off",
+                    "service_data": {},
+                    "target": {
+                      "device_id": [
+                        "1791bc7243786f5aac6c0d8caa515e45",
+                        "d2a504bf0cbcef1b182f6dcc88ced50f",
+                        "a34923f055d1516c0671595fafe788ce"
+                      ]
+                    }
+                  },
+                  "running_script": false
+                }
+              }
+            ]
+          },
+          "config": {
+            "id": "1737737346099",
+            "alias": "Gehen - Heizung & Licht aus",
+            "description": "",
+            "triggers": [
+              {
+                "trigger": "numeric_state",
+                "entity_id": [
+                  "sensor.home_nearest_distance"
+                ],
+                "for": {
+                  "hours": 0,
+                  "minutes": 1,
+                  "seconds": 0
+                },
+                "above": 200
+              }
+            ],
+            "conditions": [],
+            "actions": [
+              {
+                "action": "climate.set_temperature",
+                "metadata": {},
+                "data": {
+                  "temperature": 18
+                },
+                "target": {
+                  "entity_id": [
+                    "climate.heizung_arbeitszimmer",
+                    "climate.heizung_bad",
+                    "climate.heizung_flur",
+                    "climate.heizung_kuche",
+                    "climate.heizung_schlafzimmer",
+                    "climate.heizung_wohnzimmer",
+                    "climate.heizungen"
+                  ]
+                }
+              },
+              {
+                "action": "light.turn_off",
+                "metadata": {},
+                "data": {},
+                "target": {
+                  "device_id": [
+                    "1791bc7243786f5aac6c0d8caa515e45",
+                    "d2a504bf0cbcef1b182f6dcc88ced50f",
+                    "a34923f055d1516c0671595fafe788ce"
+                  ]
+                }
+              }
+            ],
+            "mode": "single"
+          },
+          "blueprint_inputs": null,
+          "context": {
+            "id": "01KNSJ0DH9FM1ZF28KT0K85DFW",
+            "parent_id": "01KNSHYJY6Q9NA628KTDRA06NZ",
+            "user_id": null
+          }
+        },
+        "short_dict": {
+          "last_step": "action/1",
+          "run_id": "86a4953b82e4e65c62475edc0aabda60",
+          "state": "stopped",
+          "script_execution": "finished",
+          "timestamp": {
+            "start": "2026-04-09T16:43:04.105743+00:00",
+            "finish": "2026-04-09T16:43:04.111473+00:00"
+          },
+          "domain": "automation",
+          "item_id": "1737737346099",
+          "trigger": "numeric state of sensor.home_nearest_distance"
+        }
+      },
+      {
+        "extended_dict": {
+          "last_step": "action/1",
+          "run_id": "517b72122f0d571b3c6c7220c31b3ac6",
+          "state": "stopped",
+          "script_execution": "finished",
+          "timestamp": {
+            "start": "2026-04-10T10:36:41.113327+00:00",
+            "finish": "2026-04-10T10:36:41.119803+00:00"
+          },
+          "domain": "automation",
+          "item_id": "1737737346099",
+          "trigger": "numeric state of sensor.home_nearest_distance",
+          "trace": {
+            "trigger/0": [
+              {
+                "path": "trigger/0",
+                "timestamp": "2026-04-10T10:36:41.113471+00:00",
+                "changed_variables": {
+                  "this": {
+                    "entity_id": "automation.gehen_heizung_aus",
+                    "state": "on",
+                    "attributes": {
+                      "id": "1737737346099",
+                      "last_triggered": "2026-04-09T16:43:04.106005+00:00",
+                      "mode": "single",
+                      "current": 0,
+                      "friendly_name": "Gehen - Heizung & Licht aus"
+                    },
+                    "last_changed": "2026-04-05T17:32:56.570592+00:00",
+                    "last_reported": "2026-04-09T16:43:04.111422+00:00",
+                    "last_updated": "2026-04-09T16:43:04.111422+00:00",
+                    "context": {
+                      "id": "01KNSJ0DH9FM1ZF28KT0K85DFW",
+                      "parent_id": "01KNSHYJY6Q9NA628KTDRA06NZ",
+                      "user_id": null
+                    }
+                  },
+                  "trigger": {
+                    "id": "0",
+                    "idx": "0",
+                    "alias": null,
+                    "platform": "numeric_state",
+                    "entity_id": "sensor.home_nearest_distance",
+                    "below": null,
+                    "above": 200.0,
+                    "from_state": {
+                      "entity_id": "sensor.home_nearest_distance",
+                      "state": "0",
+                      "attributes": {
+                        "unit_of_measurement": "m",
+                        "device_class": "distance",
+                        "friendly_name": "Home Nearest distance"
+                      },
+                      "last_changed": "2026-04-09T19:36:20.166319+00:00",
+                      "last_reported": "2026-04-10T10:30:26.006925+00:00",
+                      "last_updated": "2026-04-09T19:36:20.166319+00:00",
+                      "context": {
+                        "id": "01KNSVXNY6CA9FPF8WS1Y99YCD",
+                        "parent_id": null,
+                        "user_id": null
+                      }
+                    },
+                    "to_state": {
+                      "entity_id": "sensor.home_nearest_distance",
+                      "state": "247",
+                      "attributes": {
+                        "unit_of_measurement": "m",
+                        "device_class": "distance",
+                        "friendly_name": "Home Nearest distance"
+                      },
+                      "last_changed": "2026-04-10T10:35:41.110437+00:00",
+                      "last_reported": "2026-04-10T10:35:41.110437+00:00",
+                      "last_updated": "2026-04-10T10:35:41.110437+00:00",
+                      "context": {
+                        "id": "01KNVFCE5P8F4GDQ7J8RTCYAEJ",
+                        "parent_id": null,
+                        "user_id": null
+                      }
+                    },
+                    "for": {
+                      "__type": "<class 'datetime.timedelta'>",
+                      "total_seconds": 60.0
+                    },
+                    "description": "numeric state of sensor.home_nearest_distance"
+                  }
+                }
+              }
+            ],
+            "action/0": [
+              {
+                "path": "action/0",
+                "timestamp": "2026-04-10T10:36:41.113801+00:00",
+                "changed_variables": {
+                  "context": {
+                    "id": "01KNVFE8RSSP3M18SM3T7M7BYG",
+                    "parent_id": "01KNVFCE5P8F4GDQ7J8RTCYAEJ",
+                    "user_id": null
+                  }
+                },
+                "result": {
+                  "params": {
+                    "domain": "climate",
+                    "service": "set_temperature",
+                    "service_data": {
+                      "temperature": 18,
+                      "entity_id": [
+                        "climate.heizung_arbeitszimmer",
+                        "climate.heizung_bad",
+                        "climate.heizung_flur",
+                        "climate.heizung_kuche",
+                        "climate.heizung_schlafzimmer",
+                        "climate.heizung_wohnzimmer",
+                        "climate.heizungen"
+                      ]
+                    },
+                    "target": {
+                      "entity_id": [
+                        "climate.heizung_arbeitszimmer",
+                        "climate.heizung_bad",
+                        "climate.heizung_flur",
+                        "climate.heizung_kuche",
+                        "climate.heizung_schlafzimmer",
+                        "climate.heizung_wohnzimmer",
+                        "climate.heizungen"
+                      ]
+                    }
+                  },
+                  "running_script": false
+                }
+              }
+            ],
+            "action/1": [
+              {
+                "path": "action/1",
+                "timestamp": "2026-04-10T10:36:41.118175+00:00",
+                "result": {
+                  "params": {
+                    "domain": "light",
+                    "service": "turn_off",
+                    "service_data": {},
+                    "target": {
+                      "device_id": [
+                        "1791bc7243786f5aac6c0d8caa515e45",
+                        "d2a504bf0cbcef1b182f6dcc88ced50f",
+                        "a34923f055d1516c0671595fafe788ce"
+                      ]
+                    }
+                  },
+                  "running_script": false
+                }
+              }
+            ]
+          },
+          "config": {
+            "id": "1737737346099",
+            "alias": "Gehen - Heizung & Licht aus",
+            "description": "",
+            "triggers": [
+              {
+                "trigger": "numeric_state",
+                "entity_id": [
+                  "sensor.home_nearest_distance"
+                ],
+                "for": {
+                  "hours": 0,
+                  "minutes": 1,
+                  "seconds": 0
+                },
+                "above": 200
+              }
+            ],
+            "conditions": [],
+            "actions": [
+              {
+                "action": "climate.set_temperature",
+                "metadata": {},
+                "data": {
+                  "temperature": 18
+                },
+                "target": {
+                  "entity_id": [
+                    "climate.heizung_arbeitszimmer",
+                    "climate.heizung_bad",
+                    "climate.heizung_flur",
+                    "climate.heizung_kuche",
+                    "climate.heizung_schlafzimmer",
+                    "climate.heizung_wohnzimmer",
+                    "climate.heizungen"
+                  ]
+                }
+              },
+              {
+                "action": "light.turn_off",
+                "metadata": {},
+                "data": {},
+                "target": {
+                  "device_id": [
+                    "1791bc7243786f5aac6c0d8caa515e45",
+                    "d2a504bf0cbcef1b182f6dcc88ced50f",
+                    "a34923f055d1516c0671595fafe788ce"
+                  ]
+                }
+              }
+            ],
+            "mode": "single"
+          },
+          "blueprint_inputs": null,
+          "context": {
+            "id": "01KNVFE8RSSP3M18SM3T7M7BYG",
+            "parent_id": "01KNVFCE5P8F4GDQ7J8RTCYAEJ",
+            "user_id": null
+          }
+        },
+        "short_dict": {
+          "last_step": "action/1",
+          "run_id": "517b72122f0d571b3c6c7220c31b3ac6",
+          "state": "stopped",
+          "script_execution": "finished",
+          "timestamp": {
+            "start": "2026-04-10T10:36:41.113327+00:00",
+            "finish": "2026-04-10T10:36:41.119803+00:00"
+          },
+          "domain": "automation",
+          "item_id": "1737737346099",
+          "trigger": "numeric state of sensor.home_nearest_distance"
+        }
+      }
+    ]
+  }
+}

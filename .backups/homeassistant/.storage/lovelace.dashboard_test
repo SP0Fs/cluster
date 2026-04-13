@@ -1,0 +1,41 @@
+{
+  "version": 1,
+  "minor_version": 1,
+  "key": "lovelace.dashboard_test",
+  "data": {
+    "config": {
+      "views": [
+        {
+          "title": "Home",
+          "type": "panel",
+          "cards": [
+            {
+              "type": "picture-elements",
+              "elements": [
+                {
+                  "type": "state-badge",
+                  "entity": "sensor.backup_backup_manager_state",
+                  "style": {
+                    "top": "32%",
+                    "left": "40%"
+                  }
+                },
+                {
+                  "type": "state-badge",
+                  "style": {
+                    "left": "40%",
+                    "top": "70%"
+                  },
+                  "entity": "climate.heizung_wohnzimmer"
+                }
+              ],
+              "image": "https://demo.home-assistant.io/stub_config/floorplan.png",
+              "camera_image": "camera.putzknecht_map",
+              "camera_view": "auto"
+            }
+          ]
+        }
+      ]
+    }
+  }
+}

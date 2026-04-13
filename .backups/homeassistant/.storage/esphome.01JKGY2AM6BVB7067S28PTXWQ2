@@ -1,0 +1,101 @@
+{
+  "version": 1,
+  "minor_version": 1,
+  "key": "esphome.01JKGY2AM6BVB7067S28PTXWQ2",
+  "data": {
+    "device_info": {
+      "uses_password": false,
+      "name": "esp-tv",
+      "friendly_name": "ESP TV",
+      "mac_address": "08:3A:8D:CF:C4:2E",
+      "compilation_time": "May 25 2025, 14:30:41",
+      "model": "esp01_1m",
+      "manufacturer": "Espressif",
+      "has_deep_sleep": false,
+      "esphome_version": "2024.10.3",
+      "project_name": "",
+      "project_version": "",
+      "webserver_port": 0,
+      "legacy_voice_assistant_version": 0,
+      "voice_assistant_feature_flags": 0,
+      "legacy_bluetooth_proxy_version": 0,
+      "bluetooth_proxy_feature_flags": 0,
+      "zwave_proxy_feature_flags": 0,
+      "zwave_home_id": 0,
+      "suggested_area": "",
+      "bluetooth_mac_address": "",
+      "api_encryption_supported": false,
+      "devices": [],
+      "areas": [],
+      "area": {
+        "area_id": 0,
+        "name": ""
+      },
+      "serial_proxies": []
+    },
+    "services": [],
+    "api_version": {
+      "major": 1,
+      "minor": 10
+    },
+    "light": [
+      {
+        "object_id": "background_light",
+        "key": 3519245976,
+        "name": "Background Light",
+        "disabled_by_default": false,
+        "icon": "",
+        "entity_category": 0,
+        "device_id": 0,
+        "supported_color_modes": [
+          39
+        ],
+        "min_mireds": 0.0,
+        "max_mireds": 0.0,
+        "effects": [],
+        "legacy_supports_brightness": true,
+        "legacy_supports_rgb": true,
+        "legacy_supports_white_value": true,
+        "legacy_supports_color_temperature": false
+      },
+      {
+        "object_id": "background_light_r",
+        "key": 1745649479,
+        "name": "Background Light R",
+        "disabled_by_default": false,
+        "icon": "",
+        "entity_category": 0,
+        "device_id": 0,
+        "supported_color_modes": [
+          39
+        ],
+        "min_mireds": 0.0,
+        "max_mireds": 0.0,
+        "effects": [],
+        "legacy_supports_brightness": true,
+        "legacy_supports_rgb": true,
+        "legacy_supports_white_value": true,
+        "legacy_supports_color_temperature": false
+      },
+      {
+        "object_id": "background_light_l",
+        "key": 1745649497,
+        "name": "Background Light L",
+        "disabled_by_default": false,
+        "icon": "",
+        "entity_category": 0,
+        "device_id": 0,
+        "supported_color_modes": [
+          39
+        ],
+        "min_mireds": 0.0,
+        "max_mireds": 0.0,
+        "effects": [],
+        "legacy_supports_brightness": true,
+        "legacy_supports_rgb": true,
+        "legacy_supports_white_value": true,
+        "legacy_supports_color_temperature": false
+      }
+    ]
+  }
+}
