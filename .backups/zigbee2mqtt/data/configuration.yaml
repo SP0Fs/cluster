@@ -1,0 +1,76 @@
+homeassistant: true
+frontend: true
+mqtt:
+  base_topic: zigbee2mqtt
+  server: mqtt://mosquitto.mosquitto.svc.cluster.local
+serial:
+  port: /dev/ttyUSB0
+advanced:
+  network_key:
+    - 143
+    - 58
+    - 230
+    - 11
+    - 99
+    - 220
+    - 175
+    - 84
+    - 16
+    - 251
+    - 202
+    - 37
+    - 19
+    - 56
+    - 137
+    - 182
+  pan_id: 24001
+  ext_pan_id:
+    - 206
+    - 231
+    - 37
+    - 172
+    - 24
+    - 167
+    - 215
+    - 212
+  homeassistant_legacy_entity_attributes: false
+  legacy_api: false
+  legacy_availability_payload: false
+permit_join: false
+device_options:
+  legacy: false
+devices:
+  '0xa4c1380aaa7d40da':
+    friendly_name: Heizung Flur
+  '0xa4c1385b4d486352':
+    friendly_name: Heizung Arbeitszimmer
+  '0xa4c13882eb018ab9':
+    friendly_name: Heizung Bad
+  '0xa4c138d8cc397e00':
+    friendly_name: Heizung Schlafzimmer
+  '0xa4c138b7b8e0aa31':
+    friendly_name: Heizung Wohnzimmer
+  '0xa4c138f6dbf43a3f':
+    friendly_name: Heizung Küche
+  '0x70b3d52b600bb71e':
+    friendly_name: Steckdose TV
+  '0x70b3d52b600b82f7':
+    friendly_name: Steckdose Küchengeräte
+  '0x70b3d52b600b88cd':
+    friendly_name: Steckdose Schreibtisch
+  '0x70b3d52b600bbb35':
+    friendly_name: Steckdose Lichterkette
+  '0x001788010bfb907a':
+    friendly_name: Lampe Schlafzimmer
+  '0xb43a31fffef6c201':
+    friendly_name: Lampe Schlafzimmer Ambient
+  '0x8c65a3fffededc0e':
+    friendly_name: Lampe Wohnzimmer
+  '0x70b3d52b600a6548':
+    friendly_name: Steckdose GitHub
+  '0x6c5cb1fffe619941':
+    friendly_name: Lampe Wohnzimer
+  '0xbc026efffed55abf':
+    friendly_name: Lampe Arbeitszimmer
+  '0x70b3d52b600a627d':
+    friendly_name: Steckdose HP Server

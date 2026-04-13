@@ -1,0 +1,10 @@
+[2024-12-14 19:25:46] info: 	z2m: Logging to console, file (filename: log.log)
+[2024-12-14 19:25:46] info: 	z2m: Starting Zigbee2MQTT version 1.40.1 (commit #403d3c0)
+[2024-12-14 19:25:46] info: 	z2m: Starting zigbee-herdsman (0.57.3)
+[2024-12-14 19:25:46] error: 	zh:zstack:znp: Failed to determine if path is valid: 'Error: ENOENT: no such file or directory, lstat '/dev/ttyUSB0''
+[2024-12-14 19:25:46] info: 	zh:zstack:znp: Opening SerialPort with {"path":"/dev/ttyUSB0","baudRate":115200,"rtscts":false,"autoOpen":false}
+[2024-12-14 19:25:46] error: 	z2m: Error while starting zigbee-herdsman
+[2024-12-14 19:25:46] error: 	z2m: Failed to start zigbee
+[2024-12-14 19:25:46] error: 	z2m: Check https://www.zigbee2mqtt.io/guide/installation/20_zigbee2mqtt-fails-to-start.html for possible solutions
+[2024-12-14 19:25:46] error: 	z2m: Exiting...
+[2024-12-14 19:25:46] error: 	z2m: Error: Error: No such file or directory, cannot open /dev/ttyUSB0

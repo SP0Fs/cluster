@@ -1,0 +1,1 @@
+{"version":3,"file":"develco.d.ts","sourceRoot":"","sources":["../src/lib/develco.ts"],"names":[],"mappings":"AAIA,OAAO,EAEH,WAAW,EAMd,MAAM,gBAAgB,CAAC;AACxB,OAAO,EAAS,YAAY,EAAY,MAAM,SAAS,CAAC;AAKxD,eAAO,MAAM,mBAAmB;;;uCAyBK,YAAY;iBA+BhC,OAAO,CAAC,WAAW,CAAC;sBAoBjB,YAAY;wBA+CV,YAAY;yBA8BT,OAAO,CAAC,WAAW,CAAC;+BAKd,OAAO,CAAC,WAAW,CAAC;CAMlD,CAAC"}

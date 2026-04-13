@@ -1,0 +1,65 @@
+Metadata-Version: 2.1
+Name: python-roborock
+Version: 2.5.0
+Summary: A package to control Roborock vacuums.
+Home-page: https://github.com/humbertogontijo/python-roborock
+License: GPL-3.0-only
+Keywords: roborock,vacuum,homeassistant
+Author: humbertogontijo
+Author-email: humbertogontijo@users.noreply.github.com
+Requires-Python: >=3.10,<4.0
+Classifier: Development Status :: 5 - Production/Stable
+Classifier: Intended Audience :: Developers
+Classifier: License :: OSI Approved :: GNU General Public License v3 (GPLv3)
+Classifier: Natural Language :: English
+Classifier: Operating System :: OS Independent
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.10
+Classifier: Programming Language :: Python :: 3.11
+Classifier: Programming Language :: Python :: 3.12
+Classifier: Topic :: Software Development :: Libraries
+Requires-Dist: aiohttp (>=3.8.2,<4.0.0)
+Requires-Dist: async-timeout
+Requires-Dist: click (>=8)
+Requires-Dist: construct (>=2.10.57,<3.0.0)
+Requires-Dist: dacite (>=1.8.0,<2.0.0)
+Requires-Dist: paho-mqtt (>=1.6.1,<2.0.0)
+Requires-Dist: pycryptodome (>=3.18,<4.0)
+Requires-Dist: pycryptodomex (>=3.18,<4.0) ; sys_platform == "darwin"
+Project-URL: Documentation, https://python-roborock.readthedocs.io/
+Project-URL: Repository, https://github.com/humbertogontijo/python-roborock
+Description-Content-Type: text/markdown
+
+# Roborock
+
+<p align="center">
+  <a href="https://pypi.org/project/python-roborock/">
+    <img src="https://img.shields.io/pypi/v/python-roborock.svg?logo=python&logoColor=fff&style=flat-square" alt="PyPI Version">
+  </a>
+  <img src="https://img.shields.io/pypi/pyversions/python-roborock.svg?style=flat-square&logo=python&amp;logoColor=fff" alt="Supported Python versions">
+  <img src="https://img.shields.io/pypi/l/python-roborock.svg?style=flat-square" alt="License">
+</p>
+
+Roborock library for online and offline control of your vacuums.
+
+## Installation
+
+Install this via pip (or your favourite package manager):
+
+`pip install python-roborock`
+
+## Functionality
+
+You can see all of the commands supported [here]("https://python-roborock.readthedocs.io/en/latest/api_commands.html")
+
+## Supported devices
+
+You can find what devices are supported
+[here]("https://python-roborock.readthedocs.io/en/latest/supported_devices.html").
+Please note this may not immediately contain the latest devices.
+
+
+## Credits
+
+Thanks @rovo89 for https://gist.github.com/rovo89/dff47ed19fca0dfdda77503e66c2b7c7 And thanks @PiotrMachowski for https://github.com/PiotrMachowski/Home-Assistant-custom-components-Xiaomi-Cloud-Map-Extractor
+

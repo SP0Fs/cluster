@@ -1,0 +1,52 @@
+{
+  "version": 1,
+  "minor_version": 1,
+  "key": "esphome.500e7a2dff2b499ca332364133e406b0",
+  "data": {
+    "device_info": {
+      "uses_password": false,
+      "name": "esp-flurbeleuchtung",
+      "friendly_name": "ESP Flurbeleuchtung",
+      "mac_address": "50:02:91:FD:EB:59",
+      "compilation_time": "Jun 16 2024, 16:14:00",
+      "model": "esp01_1m",
+      "manufacturer": "Espressif",
+      "has_deep_sleep": false,
+      "esphome_version": "2024.3.1",
+      "project_name": "",
+      "project_version": "",
+      "webserver_port": 0,
+      "legacy_voice_assistant_version": 0,
+      "voice_assistant_feature_flags": 0,
+      "legacy_bluetooth_proxy_version": 0,
+      "bluetooth_proxy_feature_flags": 0,
+      "suggested_area": ""
+    },
+    "services": [],
+    "api_version": {
+      "major": 1,
+      "minor": 9
+    },
+    "light": [
+      {
+        "object_id": "led_flur",
+        "key": 3760881540,
+        "name": "LED Flur",
+        "unique_id": "esp-flurbeleuchtunglightled_flur",
+        "disabled_by_default": false,
+        "icon": "",
+        "entity_category": 0,
+        "supported_color_modes": [
+          35
+        ],
+        "min_mireds": 0.0,
+        "max_mireds": 0.0,
+        "effects": [],
+        "legacy_supports_brightness": true,
+        "legacy_supports_rgb": true,
+        "legacy_supports_white_value": false,
+        "legacy_supports_color_temperature": false
+      }
+    ]
+  }
+}

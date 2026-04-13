@@ -1,0 +1,201 @@
+{
+    "0xa4c1380aaa7d40da": {
+        "schedule_tuesday": "06:00/21.0 08:00/16.0 12:00/21.0 14:00/16.0",
+        "schedule_wednesday": "06:00/21.0 08:00/16.0 12:00/21.0 14:00/16.0",
+        "schedule_thursday": "06:00/21.0 08:00/16.0 12:00/21.0 14:00/16.0",
+        "schedule_friday": "06:00/21.0 08:00/16.0 12:00/21.0 14:00/16.0",
+        "schedule_saturday": "06:00/21.0 08:00/16.0 12:00/21.0 14:00/16.0",
+        "schedule_sunday": "06:00/21.0 08:00/16.0 12:00/21.0 14:00/16.0",
+        "battery_low": false,
+        "linkquality": 69,
+        "system_mode": "heat",
+        "current_heating_setpoint": 22,
+        "local_temperature": 22,
+        "child_lock": "UNLOCK",
+        "running_state": "idle",
+        "local_temperature_calibration": 4,
+        "frost_protection": "OFF",
+        "schedule_monday": "06:00/21.0 08:00/16.0 12:00/21.0 14:00/16.0",
+        "scale_protection": "OFF"
+    },
+    "0xa4c1385b4d486352": {
+        "child_lock": "UNLOCK",
+        "schedule_monday": "06:00/21.0 08:00/16.0 12:00/21.0 14:00/16.0",
+        "schedule_tuesday": "06:00/21.0 08:00/16.0 12:00/21.0 14:00/16.0",
+        "schedule_wednesday": "06:00/21.0 08:00/16.0 12:00/21.0 14:00/16.0",
+        "schedule_thursday": "06:00/21.0 08:00/16.0 12:00/21.0 14:00/16.0",
+        "schedule_friday": "06:00/21.0 08:00/16.0 12:00/21.0 14:00/16.0",
+        "schedule_saturday": "06:00/21.0 08:00/16.0 12:00/21.0 14:00/16.0",
+        "schedule_sunday": "06:00/21.0 08:00/16.0 12:00/21.0 14:00/16.0",
+        "battery_low": false,
+        "linkquality": 45,
+        "system_mode": "heat",
+        "running_state": "heat",
+        "current_heating_setpoint": 22,
+        "local_temperature": 20,
+        "local_temperature_calibration": 0,
+        "frost_protection": "OFF",
+        "scale_protection": "OFF"
+    },
+    "0xa4c13882eb018ab9": {
+        "schedule_monday": "06:00/21.0 08:00/16.0 12:00/21.0 14:00/16.0",
+        "schedule_tuesday": "06:00/21.0 08:00/16.0 12:00/21.0 14:00/16.0",
+        "schedule_wednesday": "06:00/21.0 08:00/16.0 12:00/21.0 14:00/16.0",
+        "schedule_thursday": "06:00/21.0 08:00/16.0 12:00/21.0 14:00/16.0",
+        "schedule_friday": "06:00/21.0 08:00/16.0 12:00/21.0 14:00/16.0",
+        "schedule_saturday": "06:00/21.0 08:00/16.0 12:00/21.0 14:00/16.0",
+        "schedule_sunday": "06:00/21.0 08:00/16.0 12:00/21.0 14:00/16.0",
+        "battery_low": false,
+        "local_temperature_calibration": 4,
+        "linkquality": 108,
+        "system_mode": "heat",
+        "running_state": "idle",
+        "current_heating_setpoint": 22,
+        "child_lock": "UNLOCK",
+        "local_temperature": 23,
+        "frost_protection": "ON",
+        "scale_protection": "OFF"
+    },
+    "0xa4c138d8cc397e00": {
+        "local_temperature": 17,
+        "child_lock": "UNLOCK",
+        "schedule_monday": "06:00/21.0 08:00/16.0 12:00/21.0 14:00/16.0",
+        "schedule_tuesday": "06:00/21.0 08:00/16.0 12:00/21.0 14:00/16.0",
+        "schedule_wednesday": "06:00/21.0 08:00/16.0 12:00/21.0 14:00/16.0",
+        "schedule_thursday": "06:00/21.0 08:00/16.0 12:00/21.0 14:00/16.0",
+        "schedule_friday": "06:00/21.0 08:00/16.0 12:00/21.0 14:00/16.0",
+        "schedule_saturday": "06:00/21.0 08:00/16.0 12:00/21.0 14:00/16.0",
+        "schedule_sunday": "06:00/21.0 08:00/16.0 12:00/21.0 14:00/16.0",
+        "battery_low": false,
+        "frost_protection": "OFF",
+        "linkquality": 75,
+        "system_mode": "heat",
+        "running_state": "idle",
+        "current_heating_setpoint": 18,
+        "scale_protection": "OFF",
+        "local_temperature_calibration": 0
+    },
+    "0xa4c138b7b8e0aa31": {
+        "local_temperature": 17,
+        "child_lock": "UNLOCK",
+        "schedule_monday": "06:00/21.0 08:00/16.0 12:00/21.0 14:00/16.0",
+        "schedule_tuesday": "06:00/21.0 08:00/16.0 12:00/21.0 14:00/16.0",
+        "schedule_wednesday": "06:00/21.0 08:00/16.0 12:00/21.0 14:00/16.0",
+        "schedule_thursday": "06:00/21.0 08:00/16.0 12:00/21.0 14:00/16.0",
+        "schedule_friday": "06:00/21.0 08:00/16.0 12:00/21.0 14:00/16.0",
+        "schedule_saturday": "06:00/21.0 08:00/16.0 12:00/21.0 14:00/16.0",
+        "schedule_sunday": "06:00/21.0 08:00/16.0 12:00/21.0 14:00/16.0",
+        "battery_low": false,
+        "linkquality": 66,
+        "system_mode": "heat",
+        "running_state": "idle",
+        "current_heating_setpoint": 18,
+        "local_temperature_calibration": 0,
+        "frost_protection": "OFF",
+        "scale_protection": "OFF"
+    },
+    "0xa4c138f6dbf43a3f": {
+        "schedule_monday": "06:00/21.0 08:00/16.0 12:00/21.0 14:00/16.0",
+        "schedule_tuesday": "06:00/21.0 08:00/16.0 12:00/21.0 14:00/16.0",
+        "schedule_wednesday": "06:00/21.0 08:00/16.0 12:00/21.0 14:00/16.0",
+        "schedule_thursday": "06:00/21.0 08:00/16.0 12:00/21.0 14:00/16.0",
+        "schedule_friday": "06:00/21.0 08:00/16.0 12:00/21.0 14:00/16.0",
+        "schedule_saturday": "06:00/21.0 08:00/16.0 12:00/21.0 14:00/16.0",
+        "schedule_sunday": "06:00/21.0 08:00/16.0 12:00/21.0 14:00/16.0",
+        "battery_low": false,
+        "linkquality": 102,
+        "system_mode": "heat",
+        "running_state": "heat",
+        "local_temperature": 21,
+        "current_heating_setpoint": 22,
+        "child_lock": "UNLOCK",
+        "local_temperature_calibration": 0,
+        "frost_protection": "ON",
+        "scale_protection": "OFF"
+    },
+    "0x70b3d52b600bbb35": {
+        "state": "OFF",
+        "power": 0,
+        "current": 0,
+        "voltage": 230,
+        "energy": 2.19,
+        "linkquality": 66,
+        "child_lock": "UNLOCK"
+    },
+    "0x001788010bfb907a": {
+        "color_mode": "color_temp",
+        "state": "ON",
+        "update": {
+            "state": "idle",
+            "installed_version": 16787202,
+            "latest_version": 16787202
+        },
+        "linkquality": 105,
+        "brightness": 254,
+        "color_temp": 366
+    },
+    "0xb43a31fffef6c201": {
+        "color_mode": "color_temp",
+        "update": {
+            "state": "idle",
+            "installed_version": 268572245,
+            "latest_version": 268572245
+        },
+        "state": "OFF",
+        "color": {
+            "x": 0.5056,
+            "y": 0.4152
+        },
+        "linkquality": 69,
+        "brightness": 84,
+        "color_temp": 454
+    },
+    "0x70b3d52b600a6548": {
+        "state": "OFF",
+        "power": 0,
+        "current": 0,
+        "voltage": 232,
+        "energy": 0,
+        "linkquality": 54,
+        "child_lock": "UNLOCK"
+    },
+    "0x6c5cb1fffe619941": {
+        "color_mode": "color_temp",
+        "state": "OFF",
+        "color_temp": 347,
+        "brightness": 254,
+        "update": {
+            "state": "idle",
+            "installed_version": 65554,
+            "latest_version": 65554
+        },
+        "linkquality": 81
+    },
+    "0xbc026efffed55abf": {
+        "color_mode": "color_temp",
+        "linkquality": 72,
+        "state": "ON",
+        "update": {
+            "state": "idle",
+            "installed_version": 65554,
+            "latest_version": 65554
+        },
+        "brightness": 254,
+        "color_temp": 370
+    },
+    "0x70b3d52b600a627d": {
+        "state": "ON",
+        "power": 20,
+        "current": 0.18,
+        "voltage": 231,
+        "energy": 1.06,
+        "linkquality": 165
+    },
+    "0x70b3d52b600b88cd": {
+        "state": "ON",
+        "power": 268,
+        "current": 1.25,
+        "voltage": 232,
+        "energy": 258.35
+    }
+}

@@ -1,0 +1,397 @@
+{
+  "version": 1,
+  "minor_version": 1,
+  "key": "lovelace.lovelace",
+  "data": {
+    "config": {
+      "views": [
+        {
+          "title": "Home",
+          "sections": [
+            {
+              "type": "grid",
+              "cards": [
+                {
+                  "type": "heading",
+                  "heading_style": "title",
+                  "heading": "Lampen"
+                },
+                {
+                  "type": "custom:mushroom-light-card",
+                  "entity": "light.lampe_schlafzimmer",
+                  "icon": "mdi:ceiling-light",
+                  "show_brightness_control": true,
+                  "show_color_temp_control": true,
+                  "collapsible_controls": true,
+                  "use_light_color": false
+                },
+                {
+                  "type": "custom:mushroom-light-card",
+                  "entity": "light.lampe_schlafzimmer_ambient",
+                  "show_brightness_control": true,
+                  "show_color_control": true,
+                  "use_light_color": true,
+                  "collapsible_controls": true,
+                  "name": "Lampe Ambient"
+                },
+                {
+                  "type": "custom:mushroom-light-card",
+                  "entity": "light.lampe_wohnzimer",
+                  "name": "Wohnzimmer",
+                  "icon": "mdi:chandelier",
+                  "fill_container": false,
+                  "use_light_color": true,
+                  "show_brightness_control": true,
+                  "show_color_temp_control": true,
+                  "collapsible_controls": true
+                },
+                {
+                  "type": "custom:mushroom-light-card",
+                  "entity": "light.esp_flurschrank_bodenbeleuchtung",
+                  "icon": "mdi:led-strip-variant",
+                  "name": "Flur",
+                  "show_color_control": true,
+                  "collapsible_controls": true,
+                  "use_light_color": true,
+                  "show_brightness_control": true
+                },
+                {
+                  "show_name": false,
+                  "show_icon": true,
+                  "type": "button",
+                  "tap_action": {
+                    "action": "toggle"
+                  },
+                  "entity": "switch.steckdose_lichterkette",
+                  "icon": "mdi:string-lights",
+                  "show_state": false
+                },
+                {
+                  "show_name": false,
+                  "show_icon": true,
+                  "type": "button",
+                  "tap_action": {
+                    "action": "toggle"
+                  },
+                  "entity": "switch.steckdose_github",
+                  "icon": "mdi:github"
+                },
+                {
+                  "show_name": false,
+                  "show_icon": true,
+                  "type": "button",
+                  "tap_action": {
+                    "action": "toggle"
+                  },
+                  "entity": "light.esp_tv_background_light",
+                  "icon": "mdi:television-ambient-light"
+                },
+                {
+                  "type": "custom:bubble-card",
+                  "card_type": "button",
+                  "button_type": "slider",
+                  "entity": "climate.heizungen",
+                  "tap_action": {
+                    "action": "toggle"
+                  },
+                  "hold_action": {
+                    "action": "more-info"
+                  },
+                  "double_tap_action": {
+                    "action": "perform-action",
+                    "perform_action": "climate.set_hvac_mode",
+                    "target": {
+                      "device_id": "4b1ac75ccc5217494edc3dd41e6e7fda"
+                    },
+                    "data": {
+                      "hvac_mode": "auto"
+                    }
+                  },
+                  "show_state": true,
+                  "show_attribute": true,
+                  "sub_button": [
+                    {
+                      "entity": "climate.heizungen",
+                      "select_attribute": "hvac_modes"
+                    }
+                  ],
+                  "styles": ".bubble-range-fill {\n  transform: ${hass.states['climate.heizungen'].state == \"heat\" ? \"\" : \"translateX(0%)\"} !important;\n}",
+                  "name": "Heizungen",
+                  "attribute": "temperature",
+                  "card_layout": "large"
+                }
+              ]
+            },
+            {
+              "type": "grid",
+              "cards": [
+                {
+                  "type": "heading",
+                  "heading": "Heizungen",
+                  "heading_style": "title"
+                },
+                {
+                  "type": "custom:bubble-card",
+                  "card_type": "button",
+                  "button_type": "slider",
+                  "entity": "climate.heizung_flur",
+                  "tap_action": {
+                    "action": "toggle"
+                  },
+                  "hold_action": {
+                    "action": "more-info"
+                  },
+                  "double_tap_action": {
+                    "action": "perform-action",
+                    "perform_action": "climate.set_hvac_mode",
+                    "target": {
+                      "device_id": "4b1ac75ccc5217494edc3dd41e6e7fda"
+                    },
+                    "data": {
+                      "hvac_mode": "auto"
+                    }
+                  },
+                  "show_state": true,
+                  "show_attribute": true,
+                  "sub_button": [
+                    {
+                      "entity": "climate.heizung_flur",
+                      "select_attribute": "hvac_modes"
+                    }
+                  ],
+                  "styles": ".bubble-range-fill {\n  transform: ${hass.states['climate.heizung_flur'].state == \"heat\" ? \"\" : \"translateX(0%)\"} !important;\n}",
+                  "name": "Flur",
+                  "attribute": "temperature"
+                },
+                {
+                  "type": "custom:bubble-card",
+                  "card_type": "button",
+                  "button_type": "slider",
+                  "entity": "climate.heizung_kuche",
+                  "tap_action": {
+                    "action": "toggle"
+                  },
+                  "hold_action": {
+                    "action": "more-info"
+                  },
+                  "double_tap_action": {
+                    "action": "perform-action",
+                    "perform_action": "climate.set_hvac_mode",
+                    "target": {
+                      "device_id": "4b1ac75ccc5217494edc3dd41e6e7fda"
+                    },
+                    "data": {
+                      "hvac_mode": "auto"
+                    }
+                  },
+                  "show_state": true,
+                  "show_attribute": true,
+                  "sub_button": [
+                    {
+                      "entity": "climate.heizung_kuche",
+                      "select_attribute": "hvac_modes"
+                    }
+                  ],
+                  "styles": ".bubble-range-fill {\n  transform: ${hass.states['climate.heizung_kuche'].state == \"heat\" ? \"\" : \"translateX(0%)\"} !important;\n}",
+                  "name": "Küche",
+                  "attribute": "temperature"
+                },
+                {
+                  "type": "custom:bubble-card",
+                  "card_type": "button",
+                  "button_type": "slider",
+                  "entity": "climate.heizung_schlafzimmer",
+                  "tap_action": {
+                    "action": "toggle"
+                  },
+                  "hold_action": {
+                    "action": "more-info"
+                  },
+                  "double_tap_action": {
+                    "action": "perform-action",
+                    "perform_action": "climate.set_hvac_mode",
+                    "target": {
+                      "device_id": "4b1ac75ccc5217494edc3dd41e6e7fda"
+                    },
+                    "data": {
+                      "hvac_mode": "auto"
+                    }
+                  },
+                  "show_state": true,
+                  "show_attribute": true,
+                  "sub_button": [
+                    {
+                      "entity": "climate.heizung_schlafzimmer",
+                      "select_attribute": "hvac_modes"
+                    }
+                  ],
+                  "styles": ".bubble-range-fill {\n  transform: ${hass.states['climate.heizung_schlafzimmer'].state == \"heat\" ? \"\" : \"translateX(0%)\"} !important;\n}",
+                  "name": "Schlafzimmer",
+                  "show_last_changed": false,
+                  "attribute": "temperature"
+                },
+                {
+                  "type": "custom:bubble-card",
+                  "card_type": "button",
+                  "button_type": "slider",
+                  "entity": "climate.heizung_bad",
+                  "tap_action": {
+                    "action": "toggle"
+                  },
+                  "hold_action": {
+                    "action": "more-info"
+                  },
+                  "double_tap_action": {
+                    "action": "perform-action",
+                    "perform_action": "climate.set_hvac_mode",
+                    "target": {
+                      "device_id": "4b1ac75ccc5217494edc3dd41e6e7fda"
+                    },
+                    "data": {
+                      "hvac_mode": "auto"
+                    }
+                  },
+                  "show_state": true,
+                  "show_attribute": true,
+                  "sub_button": [
+                    {
+                      "entity": "climate.heizung_bad",
+                      "select_attribute": "hvac_modes"
+                    }
+                  ],
+                  "styles": ".bubble-range-fill {\n  transform: ${hass.states['climate.heizung_bad'].state == \"heat\" ? \"\" : \"translateX(0%)\"} !important;\n}",
+                  "name": "Bad",
+                  "attribute": "temperature"
+                },
+                {
+                  "type": "custom:bubble-card",
+                  "card_type": "button",
+                  "button_type": "slider",
+                  "entity": "climate.heizung_wohnzimmer",
+                  "tap_action": {
+                    "action": "toggle"
+                  },
+                  "hold_action": {
+                    "action": "more-info"
+                  },
+                  "double_tap_action": {
+                    "action": "perform-action",
+                    "perform_action": "climate.set_hvac_mode",
+                    "target": {
+                      "device_id": "4b1ac75ccc5217494edc3dd41e6e7fda"
+                    },
+                    "data": {
+                      "hvac_mode": "auto"
+                    }
+                  },
+                  "show_state": true,
+                  "show_attribute": true,
+                  "sub_button": [
+                    {
+                      "entity": "climate.heizung_wohnzimmer",
+                      "select_attribute": "hvac_modes"
+                    }
+                  ],
+                  "styles": ".bubble-range-fill {\n  transform: ${hass.states['climate.heizung_wohnzimmer'].state == \"heat\" ? \"\" : \"translateX(0%)\"} !important;\n}",
+                  "name": "Wohnzimmer",
+                  "attribute": "temperature"
+                },
+                {
+                  "type": "custom:bubble-card",
+                  "card_type": "button",
+                  "button_type": "slider",
+                  "entity": "climate.heizung_arbeitszimmer",
+                  "tap_action": {
+                    "action": "toggle"
+                  },
+                  "hold_action": {
+                    "action": "more-info"
+                  },
+                  "double_tap_action": {
+                    "action": "perform-action",
+                    "perform_action": "climate.set_hvac_mode",
+                    "target": {
+                      "device_id": "4b1ac75ccc5217494edc3dd41e6e7fda"
+                    },
+                    "data": {
+                      "hvac_mode": "auto"
+                    }
+                  },
+                  "show_state": true,
+                  "show_attribute": true,
+                  "sub_button": [
+                    {
+                      "entity": "climate.heizung_arbeitszimmer",
+                      "select_attribute": "hvac_modes"
+                    }
+                  ],
+                  "styles": ".bubble-range-fill {\n  transform: ${hass.states['climate.heizung_arbeitszimmer'].state == \"heat\" ? \"\" : \"translateX(0%)\"} !important;\n}",
+                  "name": "Arbeitszimmer",
+                  "attribute": "temperature"
+                }
+              ]
+            }
+          ],
+          "badges": [
+            {
+              "type": "entity",
+              "show_name": false,
+              "show_state": true,
+              "show_icon": true,
+              "entity": "sensor.home_marc_leibold_distance",
+              "color": ""
+            },
+            {
+              "type": "entity",
+              "show_name": false,
+              "show_state": true,
+              "show_icon": true,
+              "color": "",
+              "entity": "sensor.sm_s911b_daily_steps"
+            },
+            {
+              "type": "entity",
+              "show_name": false,
+              "show_state": true,
+              "show_icon": true,
+              "entity": "sensor.home_marc_leibold_direction_of_travel",
+              "color": ""
+            },
+            {
+              "type": "entity",
+              "show_name": false,
+              "show_state": true,
+              "show_icon": true,
+              "entity": "weather.forecast_home",
+              "color": ""
+            },
+            {
+              "type": "custom:mushroom-template-badge",
+              "content": "{{ state_attr('weather.forecast_home', 'temperature') }} °C",
+              "icon": "mdi:temperature-celsius",
+              "color": "accent"
+            },
+            {
+              "type": "entity",
+              "show_name": false,
+              "show_state": true,
+              "show_icon": true,
+              "color": "",
+              "entity": "sensor.temperatur_innen_2",
+              "icon": "mdi:home-thermometer",
+              "show_entity_picture": false
+            },
+            {
+              "type": "entity",
+              "show_name": false,
+              "show_state": true,
+              "show_icon": true,
+              "color": "",
+              "entity": "sensor.sm_s911b_sleep_segment"
+            }
+          ]
+        }
+      ]
+    }
+  }
+}

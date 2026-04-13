@@ -1,0 +1,248 @@
+{
+  "version": 1,
+  "minor_version": 1,
+  "key": "auth",
+  "data": {
+    "users": [
+      {
+        "id": "6b0dfdd4de53442b9f592149fea5cdae",
+        "group_ids": [
+          "system-read-only"
+        ],
+        "is_owner": false,
+        "is_active": true,
+        "name": "Home Assistant Content",
+        "system_generated": true,
+        "local_only": false
+      },
+      {
+        "id": "16678233a36d408c97b1dff64f437879",
+        "group_ids": [
+          "system-admin"
+        ],
+        "is_owner": true,
+        "is_active": true,
+        "name": "Marc Leibold",
+        "system_generated": false,
+        "local_only": false
+      },
+      {
+        "id": "54f1329af3474b2485e4c467d31961f9",
+        "group_ids": [
+          "system-users"
+        ],
+        "is_owner": false,
+        "is_active": true,
+        "name": "Christian Veit",
+        "system_generated": false,
+        "local_only": false
+      }
+    ],
+    "groups": [
+      {
+        "id": "system-admin",
+        "name": "Administrators"
+      },
+      {
+        "id": "system-users",
+        "name": "Users"
+      },
+      {
+        "id": "system-read-only",
+        "name": "Read Only"
+      }
+    ],
+    "credentials": [
+      {
+        "id": "af223f54778147db8df6a00b49d30cb3",
+        "user_id": "16678233a36d408c97b1dff64f437879",
+        "auth_provider_type": "homeassistant",
+        "auth_provider_id": null,
+        "data": {
+          "username": "mleibold"
+        }
+      },
+      {
+        "id": "bf5f0cf7298c46af9a0171d3e7d36606",
+        "user_id": "54f1329af3474b2485e4c467d31961f9",
+        "auth_provider_type": "homeassistant",
+        "auth_provider_id": null,
+        "data": {
+          "username": "cveit"
+        }
+      }
+    ],
+    "refresh_tokens": [
+      {
+        "id": "24e7c7e052a44d0389720089c90f915b",
+        "user_id": "6b0dfdd4de53442b9f592149fea5cdae",
+        "client_id": null,
+        "client_name": null,
+        "client_icon": null,
+        "token_type": "system",
+        "created_at": "2024-03-12T21:32:16.135385+00:00",
+        "access_token_expiration": 1800.0,
+        "token": "b3152c1af0d5f967a51a7ea9e5e3ad0dd41622087269b6df6fddfa1fc1e08e526d1788bdca818a145ac726bb463981b7a8b86726199d1d5592dc51ac20003ba7",
+        "jwt_key": "41ea385a03dcfe7fe32de695b80137b6d73397b7e9346025ac9b6f4852c074c028dc27e1e663600055f23960dd7d76fa7db881968049b594f38f1aa55f33a734",
+        "last_used_at": null,
+        "last_used_ip": null,
+        "expire_at": null,
+        "credential_id": null,
+        "version": "2024.1.6"
+      },
+      {
+        "id": "d38b1d97ee8d4c5b83876ca7ffee3e5b",
+        "user_id": "16678233a36d408c97b1dff64f437879",
+        "client_id": "https://home.leibold.tech/",
+        "client_name": null,
+        "client_icon": null,
+        "token_type": "normal",
+        "created_at": "2024-05-12T15:02:11.877649+00:00",
+        "access_token_expiration": 1800.0,
+        "token": "bc59ab69062eefd6adb5526f44603b5b2419cc55b1e96b4e088ff9a2939457f8e361dcd64d4812e69b43d75f68c30aeeb9b337113522010b7cfc8b7749664970",
+        "jwt_key": "9a08f4264bcc486b61284870518975f24f6104cfe2ac90f35ccd3bbf66a809f39c8458b5216a87039f8fa6a26f5bf69c846a50fdf6c24951bc70889f8787ceb4",
+        "last_used_at": "2024-05-12T16:28:17.763739+00:00",
+        "last_used_ip": "10.42.0.1",
+        "expire_at": null,
+        "credential_id": "af223f54778147db8df6a00b49d30cb3",
+        "version": "2024.1.6"
+      },
+      {
+        "id": "a913386e07584c92b8e0c7997e09ebbe",
+        "user_id": "16678233a36d408c97b1dff64f437879",
+        "client_id": "https://home.leibold.tech/",
+        "client_name": null,
+        "client_icon": null,
+        "token_type": "normal",
+        "created_at": "2024-05-12T18:01:38.104794+00:00",
+        "access_token_expiration": 1800.0,
+        "token": "3d4a2065ce9a38b956e9ce0b5ee9085f5da21a34c719deecce822aa37756682d8921c4840b53d5f13b26cdc6fe5668027c5d27ec43d4b51752ff4e4dcfd343fc",
+        "jwt_key": "7aabc4234822716408cc16e475d463d299732daaec7a960b4e4055847c318142e8ded4dc297eae2e15ccf7c0a84cab606d0223a6a01091426ed5a8dfeeda07e5",
+        "last_used_at": "2024-05-12T18:01:38.105015+00:00",
+        "last_used_ip": "10.42.0.1",
+        "expire_at": null,
+        "credential_id": "af223f54778147db8df6a00b49d30cb3",
+        "version": "2024.1.6"
+      },
+      {
+        "id": "6eaa1166763b48f3874810def69dae3a",
+        "user_id": "16678233a36d408c97b1dff64f437879",
+        "client_id": "https://home.leibold.tech/",
+        "client_name": null,
+        "client_icon": null,
+        "token_type": "normal",
+        "created_at": "2024-05-12T18:05:05.961000+00:00",
+        "access_token_expiration": 1800.0,
+        "token": "022ace1249f050b039ce678245e74fc54037c6e73c2feb6bb8ce3dc80f2a1f7b140578856f7ac7d41a62303e9fa5f866d2b6c1cca1268380da0a54cf8383bd79",
+        "jwt_key": "b6c2063996d90a28afe1b9f95ffeffeb5ab18efa7e9756a326d2c526f705983c6478939088ecae65cba44780884113b5673498aaf503829a0ff0e9c8b240e71f",
+        "last_used_at": "2024-05-12T18:05:05.961189+00:00",
+        "last_used_ip": "10.42.0.1",
+        "expire_at": null,
+        "credential_id": "af223f54778147db8df6a00b49d30cb3",
+        "version": "2024.1.6"
+      },
+      {
+        "id": "83c9335a3a1f467d87805d8040a9afa2",
+        "user_id": "16678233a36d408c97b1dff64f437879",
+        "client_id": "https://home.leibold.tech/",
+        "client_name": null,
+        "client_icon": null,
+        "token_type": "normal",
+        "created_at": "2024-05-12T18:05:14.056995+00:00",
+        "access_token_expiration": 1800.0,
+        "token": "36976bdf6fb11da1c98c4f4a5d1c16325813a3a05f181f9ab2647d37a51394d2071578e82ee92c81498afb97a6f7afb1167a12ca31162e0208c0c9d0b0f22d6b",
+        "jwt_key": "1330471d02fbfe00c1d447e78bba48a9e39874649da327c0f58e412a70676a76b51a7a4011a1aea244024e8b3e3fbcfcbb0b46474f8fed3357f0e9460698d586",
+        "last_used_at": "2024-11-22T06:35:36.315743+00:00",
+        "last_used_ip": "10.42.0.1",
+        "expire_at": null,
+        "credential_id": "af223f54778147db8df6a00b49d30cb3",
+        "version": "2024.1.6"
+      },
+      {
+        "id": "bb8a55238acf40bdbdee1bbddce8ada5",
+        "user_id": "16678233a36d408c97b1dff64f437879",
+        "client_id": "https://home-assistant.io/android",
+        "client_name": null,
+        "client_icon": null,
+        "token_type": "normal",
+        "created_at": "2024-05-14T14:03:02.719361+00:00",
+        "access_token_expiration": 1800.0,
+        "token": "1a1c6d4862ede4b8dd9e382fb88e6889d8eef4f7537904598322134b7ba54700d63e66a44e67dc3a3783a79f7eeb62f98b7f50b7cc048c16a9c29896dfa47ccc",
+        "jwt_key": "66a05e53c5458734fff747d7fb81ce7ec80f6938c5344cea7711d4db87197b0f497cdc70a70e70109750ed7284cf345bb75a43894a9299542d6c526530a79db7",
+        "last_used_at": "2024-11-28T21:54:49.855404+00:00",
+        "last_used_ip": "10.42.0.1",
+        "expire_at": null,
+        "credential_id": "af223f54778147db8df6a00b49d30cb3",
+        "version": "2024.1.6"
+      },
+      {
+        "id": "2460131977194ad2bfee34f7a41f82cf",
+        "user_id": "16678233a36d408c97b1dff64f437879",
+        "client_id": "https://home.leibold.tech/",
+        "client_name": null,
+        "client_icon": null,
+        "token_type": "normal",
+        "created_at": "2024-05-17T21:59:21.615689+00:00",
+        "access_token_expiration": 1800.0,
+        "token": "df68cb6aa98e079e8bcf00fcda488fde7cee1d4671e8b4372fe6f80e468e6ffa7a6ef512621afbb822313774908417891ed620b263b12258592ac86617b33d01",
+        "jwt_key": "f80145319b9ef3140797e82a10d4cba316f79c789ae688469d60f945da9b1ccd632715df1e41844285debb4372122a64611b22e3752aa09a441dd595a3ea8ea7",
+        "last_used_at": "2024-11-07T19:19:42.485874+00:00",
+        "last_used_ip": "10.42.0.1",
+        "expire_at": null,
+        "credential_id": "af223f54778147db8df6a00b49d30cb3",
+        "version": "2024.1.6"
+      },
+      {
+        "id": "b7c3fe6f781147f58ba71729ae25a289",
+        "user_id": "16678233a36d408c97b1dff64f437879",
+        "client_id": "https://home.leibold.tech/",
+        "client_name": null,
+        "client_icon": null,
+        "token_type": "normal",
+        "created_at": "2024-10-04T16:25:05.079867+00:00",
+        "access_token_expiration": 1800.0,
+        "token": "2fad7f6a272406569f784802d3377c7a1258bb8baa82913858688c1d76de0cd85a0dac4dccf21a3f690465e7bacf48f3ead3662602d9c95fd7b709bf446fb648",
+        "jwt_key": "2956e549bbf9285791fc9a14978c39c586531e073eb64d3179f244c098ff07d3f53374b5be626d4fee3f434f362cdce0eb9c4b00434cd14b20148ca7930c0908",
+        "last_used_at": "2024-11-28T08:57:31.331147+00:00",
+        "last_used_ip": "10.42.0.1",
+        "expire_at": 1740560251.331147,
+        "credential_id": "af223f54778147db8df6a00b49d30cb3",
+        "version": "2024.8.2"
+      },
+      {
+        "id": "ad2e06e7c7a1443c9feebad98f4366a8",
+        "user_id": "16678233a36d408c97b1dff64f437879",
+        "client_id": "https://home.leibold.tech/",
+        "client_name": null,
+        "client_icon": null,
+        "token_type": "normal",
+        "created_at": "2024-10-25T08:20:48.775940+00:00",
+        "access_token_expiration": 1800.0,
+        "token": "c1b7fc06bee6fc60304d9f9244ff9e212b7f43d3f3f14d7ead6fc3c8003bdfe63875e57f1e54186f9fb160444a3e6ad13b11f5c450c76d156e9b2fcc1901bd1d",
+        "jwt_key": "6a70097896fb3fb27e093d1c224f736476bdd6f3805635a715c14abac2dadb7d0ae0d04e49d94f634f64307eb2ee4e292931e0ab63c71255f1a22756b6d2fcd0",
+        "last_used_at": "2024-11-28T10:22:11.662735+00:00",
+        "last_used_ip": "10.42.0.1",
+        "expire_at": 1740565331.662735,
+        "credential_id": "af223f54778147db8df6a00b49d30cb3",
+        "version": "2024.8.2"
+      },
+      {
+        "id": "334068630f234a659463df39d363a057",
+        "user_id": "54f1329af3474b2485e4c467d31961f9",
+        "client_id": "https://home.leibold.tech/",
+        "client_name": null,
+        "client_icon": null,
+        "token_type": "normal",
+        "created_at": "2024-11-28T21:58:02.657790+00:00",
+        "access_token_expiration": 1800.0,
+        "token": "ba43ff19051f1ada4eca11703f124112498a6b87c3c2acf9aa3e9a9c954a18cbd2407b0eb826306fa3b31759bd759775e200f897da9b9d6a8a6d1d7990c6db02",
+        "jwt_key": "4aec1631e93dfa458d9a0a308e05e71abf00e336291ce6ce19f2fb74f3682263feecb2d3e7ee52ff8706587ac724e00aa74f0cd9c70302ff56d9dba35a6cb620",
+        "last_used_at": "2024-11-28T21:58:02.657861+00:00",
+        "last_used_ip": "10.42.0.1",
+        "expire_at": 1740607082.657861,
+        "credential_id": "bf5f0cf7298c46af9a0171d3e7d36606",
+        "version": "2024.8.2"
+      }
+    ]
+  }
+}

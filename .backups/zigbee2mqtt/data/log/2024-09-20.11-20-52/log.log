@@ -1,0 +1,24 @@
+[2024-09-20 11:20:52] info: 	z2m: Logging to console, file (filename: log.log)
+[2024-09-20 11:20:52] info: 	z2m: Starting Zigbee2MQTT version 1.40.1 (commit #403d3c0)
+[2024-09-20 11:20:52] info: 	z2m: Starting zigbee-herdsman (0.57.3)
+[2024-09-20 11:20:52] info: 	zh:zstack:znp: Opening SerialPort with {"path":"/dev/ttyUSB0","baudRate":115200,"rtscts":false,"autoOpen":false}
+[2024-09-20 11:20:52] info: 	zh:zstack:znp: Serialport opened
+[2024-09-20 11:20:52] info: 	z2m: zigbee-herdsman started (resumed)
+[2024-09-20 11:20:52] info: 	z2m: Coordinator firmware version: '{"meta":{"maintrel":1,"majorrel":2,"minorrel":7,"product":1,"revision":20210708,"transportrev":2},"type":"zStack3x0"}'
+[2024-09-20 11:20:52] info: 	z2m: Heizung Flur (0xa4c1380aaa7d40da): ME168 - AVATTO Thermostatic radiator valve (EndDevice)
+[2024-09-20 11:20:52] info: 	z2m: Heizung Arbeitszimmer (0xa4c1385b4d486352): ME168 - AVATTO Thermostatic radiator valve (EndDevice)
+[2024-09-20 11:20:52] info: 	z2m: Heizung Bad (0xa4c13882eb018ab9): ME168 - AVATTO Thermostatic radiator valve (EndDevice)
+[2024-09-20 11:20:52] info: 	z2m: Heizung Schlafzimmer (0xa4c138d8cc397e00): ME168 - AVATTO Thermostatic radiator valve (EndDevice)
+[2024-09-20 11:20:52] info: 	z2m: Heizung Wohnzimmer (0xa4c138b7b8e0aa31): ME168 - AVATTO Thermostatic radiator valve (EndDevice)
+[2024-09-20 11:20:52] info: 	z2m: Heizung Küche (0xa4c138f6dbf43a3f): ME168 - AVATTO Thermostatic radiator valve (EndDevice)
+[2024-09-20 11:20:52] info: 	z2m: Currently 6 devices are joined.
+[2024-09-20 11:20:52] info: 	z2m: Zigbee: disabling joining new devices.
+[2024-09-20 11:20:52] info: 	z2m: Connecting to MQTT server at mqtt://mosquitto.mosquitto.svc.cluster.local
+[2024-09-20 11:20:58] error: 	z2m: MQTT error: getaddrinfo EAI_AGAIN mosquitto.mosquitto.svc.cluster.local
+[2024-09-20 11:20:58] error: 	z2m: MQTT failed to connect, exiting... (getaddrinfo EAI_AGAIN mosquitto.mosquitto.svc.cluster.local)
+[2024-09-20 11:20:58] info: 	z2m: Stopping zigbee-herdsman...
+[2024-09-20 11:21:04] error: 	z2m: MQTT error: getaddrinfo EAI_AGAIN mosquitto.mosquitto.svc.cluster.local
+[2024-09-20 11:21:07] info: 	zh:controller: Wrote coordinator backup to '/data/coordinator_backup.json'
+[2024-09-20 11:21:07] info: 	zh:zstack:znp: closing
+[2024-09-20 11:21:07] info: 	zh:zstack:znp: Port closed
+[2024-09-20 11:21:07] info: 	z2m: Stopped zigbee-herdsman

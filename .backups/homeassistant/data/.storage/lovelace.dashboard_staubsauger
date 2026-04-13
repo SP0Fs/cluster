@@ -1,0 +1,21 @@
+{
+  "version": 1,
+  "minor_version": 1,
+  "key": "lovelace.dashboard_staubsauger",
+  "data": {
+    "config": {
+      "views": [
+        {
+          "title": "Home",
+          "cards": [
+            {
+              "type": "custom:vacuum-card",
+              "entity": "vacuum.putzknecht",
+              "map": "image.putzknecht_home"
+            }
+          ]
+        }
+      ]
+    }
+  }
+}

@@ -1,0 +1,205 @@
+{
+  "version": 1,
+  "minor_version": 1,
+  "key": "lovelace.dashboard_landscape",
+  "data": {
+    "config": {
+      "views": [
+        {
+          "title": "Home",
+          "cards": [
+            {
+              "type": "horizontal-stack",
+              "cards": [
+                {
+                  "type": "vertical-stack",
+                  "cards": [
+                    {
+                      "type": "custom:mushroom-light-card",
+                      "entity": "light.lampe_wohnzimmer",
+                      "name": "Wohnzimmer",
+                      "show_brightness_control": true,
+                      "show_color_temp_control": false,
+                      "use_light_color": false,
+                      "icon": "mdi:chandelier"
+                    },
+                    {
+                      "type": "custom:mushroom-light-card",
+                      "entity": "light.lampe_schlafzimmer",
+                      "name": "Schlafzimmer",
+                      "icon": "mdi:ceiling-light",
+                      "show_brightness_control": true,
+                      "show_color_temp_control": true
+                    },
+                    {
+                      "type": "custom:mushroom-light-card",
+                      "entity": "light.lampe_schlafzimmer_ambient",
+                      "name": "Ambient",
+                      "icon": "mdi:lamp",
+                      "show_color_control": true,
+                      "show_color_temp_control": true,
+                      "use_light_color": true,
+                      "show_brightness_control": true
+                    },
+                    {
+                      "type": "custom:mushroom-light-card",
+                      "entity": "light.esp_flurbeleuchtung_led_flur",
+                      "name": "Flurbeleuchtung",
+                      "icon": "mdi:led-strip-variant",
+                      "show_color_control": true,
+                      "use_light_color": true,
+                      "show_brightness_control": true
+                    }
+                  ]
+                },
+                {
+                  "type": "vertical-stack",
+                  "cards": [
+                    {
+                      "square": true,
+                      "type": "grid",
+                      "columns": 6,
+                      "cards": [
+                        {
+                          "show_name": false,
+                          "show_icon": true,
+                          "type": "button",
+                          "tap_action": {
+                            "action": "toggle"
+                          },
+                          "entity": "light.lampe_schlafzimmer",
+                          "icon": "mdi:ceiling-light"
+                        },
+                        {
+                          "show_name": false,
+                          "show_icon": true,
+                          "type": "button",
+                          "tap_action": {
+                            "action": "toggle"
+                          },
+                          "entity": "light.lampe_schlafzimmer_ambient",
+                          "icon": "mdi:lamp"
+                        },
+                        {
+                          "show_name": false,
+                          "show_icon": true,
+                          "type": "button",
+                          "tap_action": {
+                            "action": "toggle"
+                          },
+                          "entity": "switch.steckdose_lichterkette",
+                          "icon": "mdi:string-lights"
+                        },
+                        {
+                          "show_name": false,
+                          "show_icon": true,
+                          "type": "button",
+                          "tap_action": {
+                            "action": "toggle"
+                          },
+                          "entity": "switch.steckdose_tv",
+                          "icon": "mdi:television"
+                        },
+                        {
+                          "show_name": false,
+                          "show_icon": true,
+                          "type": "button",
+                          "tap_action": {
+                            "action": "toggle"
+                          },
+                          "entity": "light.esp_flurbeleuchtung_led_flur",
+                          "icon": "mdi:led-strip-variant"
+                        },
+                        {
+                          "show_name": false,
+                          "show_icon": true,
+                          "type": "button",
+                          "tap_action": {
+                            "action": "toggle"
+                          },
+                          "entity": "light.lampe_wohnzimmer",
+                          "icon": "mdi:chandelier"
+                        },
+                        {
+                          "show_name": false,
+                          "show_icon": true,
+                          "type": "button",
+                          "tap_action": {
+                            "action": "toggle"
+                          },
+                          "entity": "switch.steckdose_github",
+                          "icon": "mdi:github",
+                          "show_state": false
+                        }
+                      ]
+                    },
+                    {
+                      "type": "thermostat",
+                      "entity": "climate.heizungen",
+                      "features": [
+                        {
+                          "type": "climate-hvac-modes"
+                        }
+                      ]
+                    },
+                    {
+                      "square": false,
+                      "type": "grid",
+                      "cards": [
+                        {
+                          "type": "custom:mushroom-climate-card",
+                          "entity": "climate.heizung_flur",
+                          "primary_info": "none",
+                          "secondary_info": "none",
+                          "fill_container": false,
+                          "collapsible_controls": false
+                        },
+                        {
+                          "type": "custom:mushroom-climate-card",
+                          "entity": "climate.heizung_kuche",
+                          "primary_info": "none",
+                          "secondary_info": "none",
+                          "fill_container": false
+                        },
+                        {
+                          "type": "custom:mushroom-climate-card",
+                          "entity": "climate.heizung_schlafzimmer",
+                          "primary_info": "none",
+                          "secondary_info": "none",
+                          "fill_container": false
+                        },
+                        {
+                          "type": "custom:mushroom-climate-card",
+                          "entity": "climate.heizung_bad",
+                          "primary_info": "none",
+                          "secondary_info": "none",
+                          "fill_container": false
+                        },
+                        {
+                          "type": "custom:mushroom-climate-card",
+                          "entity": "climate.heizung_wohnzimmer",
+                          "primary_info": "none",
+                          "secondary_info": "none",
+                          "fill_container": false
+                        },
+                        {
+                          "type": "custom:mushroom-climate-card",
+                          "entity": "climate.heizung_arbeitszimmer",
+                          "primary_info": "none",
+                          "secondary_info": "none",
+                          "fill_container": false
+                        }
+                      ],
+                      "columns": 6
+                    }
+                  ]
+                }
+              ]
+            }
+          ],
+          "type": "panel"
+        }
+      ]
+    }
+  }
+}
