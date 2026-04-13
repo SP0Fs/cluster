@@ -12,11 +12,10 @@ spec:
       helm:
         releaseName: registry
         valueFiles:
-          - $values/values.yaml
+          - $values/infra/container-registry/values.yaml
     - repoURL: "https://github.com/SP0Fs/cluster.git"
       targetRevision: HEAD
       ref: values
-      path: infra/container-registry
     - repoURL: "https://github.com/SP0Fs/cluster.git"
       targetRevision: HEAD
       path: infra/container-registry/resources

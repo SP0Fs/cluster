@@ -75,3 +75,17 @@ primary:
           WHERE NOT EXISTS (SELECT FROM pg_database WHERE datname = 'homeassistant_db')\gexec
           GRANT ALL PRIVILEGES ON DATABASE homeassistant_db TO homeassistant;
         EOSQL
+
+      03-mas.sh: |
+        #!/bin/bash
+        set -e
+        psql -v ON_ERROR_STOP=1 --username postgres --dbname postgres <<-EOSQL
+          SELECT 'CREATE DATABASE mas
+            ENCODING ''UTF8''
+            LC_COLLATE = ''C''
+            LC_CTYPE = ''C''
+            TEMPLATE template0
+            OWNER synapse'
+          WHERE NOT EXISTS (SELECT FROM pg_database WHERE datname = 'mas')\gexec
+          GRANT ALL PRIVILEGES ON DATABASE mas TO synapse;
+        EOSQL
