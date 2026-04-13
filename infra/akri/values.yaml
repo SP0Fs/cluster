@@ -1,8 +1,14 @@
 kubernetesDistro: k3s
 useLatestContainers: true
 udev:
-  discovery:
+  configuration:
     enabled: true
+    name: akri-zigbee-usb
+    capacity: 1
+    discoveryDetails: |
+      groupRecursive: true
+      udevRules:
+      - ATTRS{idVendor}=="10c4", ATTRS{idProduct}=="ea60"
 agent:
   securityContext:
     allowPrivilegeEscalation: false
