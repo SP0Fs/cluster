@@ -12,7 +12,7 @@ spec:
       helm:
         releaseName: postgres
         valueFiles:
-          - $values/values.yaml
+          - $values/apps/postgres/values.yaml
     - repoURL: "https://github.com/SP0Fs/cluster.git"
       targetRevision: HEAD
       ref: values

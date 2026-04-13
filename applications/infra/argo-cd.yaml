@@ -12,10 +12,9 @@ spec:
       helm:
         releaseName: argo-cd
         valueFiles:
-          - $values/values.yaml
+          - $values/infra/argo-cd/values.yaml
     - repoURL: "https://github.com/SP0Fs/cluster.git"
       targetRevision: HEAD
-      path: infra/argo-cd
       ref: values
   destination:
     server: "https://kubernetes.default.svc"

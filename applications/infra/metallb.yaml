@@ -12,11 +12,10 @@ spec:
       helm:
         releaseName: metallb
         valueFiles:
-          - $values/values.yaml
+          - $values/infra/metallb/values.yaml
     - repoURL: "https://github.com/SP0Fs/cluster.git"
       targetRevision: HEAD
       ref: values
-      path: infra/metallb
     - repoURL: "https://github.com/SP0Fs/cluster.git"
       targetRevision: HEAD
       path: infra/metallb/resources

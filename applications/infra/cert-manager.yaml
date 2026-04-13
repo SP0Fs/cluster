@@ -12,11 +12,10 @@ spec:
       helm:
         releaseName: cert-manager
         valueFiles:
-          - $values/values.yaml
+          - $values/infra/cert-manager/values.yaml
     - repoURL: "https://github.com/SP0Fs/cluster.git"
       targetRevision: HEAD
       ref: values
-      path: infra/cert-manager
     - repoURL: "https://github.com/SP0Fs/cluster.git"
       targetRevision: HEAD
       path: infra/cert-manager/resources

@@ -12,11 +12,10 @@ spec:
       helm:
         releaseName: ingress-nginx
         valueFiles:
-          - $values/values.yaml
+          - $values/infra/ingress-nginx/values.yaml
     - repoURL: "https://github.com/SP0Fs/cluster.git"
       targetRevision: HEAD
       ref: values
-      path: infra/ingress-nginx
   destination:
     server: "https://kubernetes.default.svc"
     namespace: ingress-nginx
