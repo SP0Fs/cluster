@@ -16,6 +16,7 @@ spec:
     - repoURL: "https://github.com/SP0Fs/cluster.git"
       targetRevision: HEAD
       ref: values
+      path: infra/sealed-secrets-web
   destination:
     server: "https://kubernetes.default.svc"
     namespace: sealed-secrets
