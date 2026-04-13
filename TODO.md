@@ -16,6 +16,16 @@
 - [ ] Document backup/restore procedures
 - [ ] Pin nanobot image to a specific tag (not `latest`) in `apps/nanobot/resources/deployment.yaml`
 
+### openclaw
+
+- [ ] Replace placeholder secrets in `openclaw-secrets` with real API keys (MINIMAX_API_KEY)
+- [ ] Configure Matrix channel in `openclaw.json` (homeserver, userId, accessToken)
+- [ ] Verify Control UI accessible at http://localhost:18789
+- [ ] Verify Matrix connection — bot joins and responds to DMs
+- [ ] Verify Matrix E2EE works (encrypted DM, verify device in Element)
+- [ ] Verify PVC data persists across pod restarts
+- [ ] Pin openclaw image to SHA tag in `apps/openclaw/resources/deployment.yaml`
+
 ## Low Priority
 
 - [ ] Set up Vault for additional secret management
@@ -33,8 +43,9 @@
 
 ## Deprecations
 
+- [ ] Remove separate openclaw repo after migration complete
 - [ ] Remove separate app repos after migration complete
 
 ---
 
-*Last updated: 2026-04-06*
+*Last updated: 2026-04-13*
