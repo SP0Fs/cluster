@@ -16,9 +16,6 @@ spec:
     - repoURL: "https://github.com/SP0Fs/cluster.git"
       targetRevision: HEAD
       ref: values
-    - repoURL: "https://github.com/SP0Fs/cluster.git"
-      targetRevision: HEAD
-      path: infra/akri/resources
   destination:
     server: "https://kubernetes.default.svc"
     namespace: akri
