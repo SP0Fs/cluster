@@ -1,0 +1,66 @@
+name: Sync ArgoCD Apps
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'apps/**'
+      - 'infra/**'
+  workflow_dispatch:
+    inputs:
+      app_name:
+        description: 'App name to sync (empty = all)'
+        required: false
+        type: string
+      force:
+        description: 'Force sync (ignore sync policy)'
+        required: false
+        type: boolean
+        default: false
+
+jobs:
+  sync-argocd:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          sparse-checkout: |
+            applications
+          sparse-checkout-cone-mode: false
+
+      - name: Install ArgoCD CLI
+        run: |
+          wget -O argocd-linux-amd64 https://github.com/argoproj/argo-cd/releases/latest/download/argocd-linux-amd64
+          sudo mv argocd-linux-amd64 /usr/local/bin/argocd
+          sudo chmod +x /usr/local/bin/argocd
+
+      - name: Login to ArgoCD
+        env:
+          ARGOCD_TOKEN: ${{ secrets.ARGOCD_TOKEN }}
+          ARGOCD_SERVER: ${{ secrets.ARGOCD_SERVER }}
+        run: |
+          argocd login $ARGOCD_SERVER --token $ARGOCD_TOKEN --insecure
+
+      - name: Get app list
+        env:
+          ARGOCD_SERVER: ${{ secrets.ARGOCD_SERVER }}
+        run: |
+          if [ -n "${{ github.event.inputs.app_name }}" ]; then
+            echo "Syncing single app: ${{ github.event.inputs.app_name }}"
+            argocd app sync ${{ github.event.inputs.app_name }} --force=${{ github.event.inputs.force || 'false' }}
+          else
+            echo "Syncing all apps..."
+            argocd app list -o name | while read app; do
+              echo "Syncing $app"
+              argocd app sync "$app" --force=${{ github.event.inputs.force || 'false' }}
+            done
+          fi
+
+      - name: Wait for sync to complete
+        if: github.event.inputs.app_name == ''
+        env:
+          ARGOCD_SERVER: ${{ secrets.ARGOCD_SERVER }}
+        run: |
+          sleep 30
+          argocd app list
+          argocd app list --orphaned-ignore | grep -v Synced && exit 1 || echo "All apps synced"</

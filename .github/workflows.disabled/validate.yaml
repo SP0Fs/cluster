@@ -1,0 +1,80 @@
+name: Validate K8s Manifests
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    paths:
+      - 'apps/**'
+      - 'infra/**'
+      - 'archive/**'
+
+jobs:
+  validate-manifests:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install kubectl
+        uses: azure/setup-kubectl@v4
+        with:
+          version: 'latest'
+
+      - name: Install kubeval
+        run: |
+          wget -O kubeval.tar.gz https://github.com/instrumenta/kubeval/releases/latest/download/kubeval-linux-amd64.tar.gz
+          tar -xf kubeval.tar.gz
+          sudo mv kubeval /usr/local/bin/
+
+      - name: Install kube-score
+        run: |
+          wget https://github.com/zegl/kube-score/releases/download/v1.17.0/kube-score_1.17.0_linux_amd64.tar.gz
+          tar -xf kube-score_1.17.0_linux_amd64.tar.gz
+          sudo mv kube-score /usr/local/bin/
+
+      - name: Validate YAML syntax
+        run: |
+          find apps infra archive -name '*.yaml' -o -name '*.yml' | while read f; do
+            echo "Checking $f"
+            python3 -c "import yaml; yaml.safe_load(open('$f'))" || exit 1
+          done
+
+      - name: Validate manifests with kubeval
+        run: |
+          find apps infra -name '*.yaml' -o -name '*.yml' | xargs kubeval --strict --ignore-missing-schemas || true
+
+      - name: Validate with kube-score
+        run: |
+          find apps infra -name '*.yaml' -type f | head -20 | xargs -I {} kube-score score {} || true
+
+  validate-helm:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install Helm
+        uses: azure/setup-helm@v4
+        with:
+          version: 'latest'
+
+      - name: Lint Helm charts in infra/argo-cd-k8s
+        if: contains(github.event.head_commit.message, 'argo') || github.event_name == 'pull_request'
+        run: |
+          helm lint infra/argo-cd-k8s || true
+
+  check-app-structure:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Check app directories have application.yaml
+        run: |
+          for dir in apps/*/ infra/*/; do
+            if [ -d "$dir" ] && [ ! "$(basename $dir)" = "resources" ]; then
+              if [ ! -f "$dir/application.yaml" ]; then
+                echo "Missing application.yaml in $dir"
+                exit 1
+              fi
+            fi
+          done
+          echo "All app directories have application.yaml"</

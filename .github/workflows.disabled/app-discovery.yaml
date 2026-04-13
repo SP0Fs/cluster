@@ -1,0 +1,111 @@
+name: App Discovery
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+jobs:
+  discover-apps:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install yq
+        run: |
+          wget -O /usr/local/bin/yq https://github.com/mikefarah/yq/releases/download/v4.35.1/yq_linux_amd64
+          chmod +x /usr/local/bin/yq
+
+      - name: Check for missing application.yaml files
+        run: |
+          mkdir -p applications/apps applications/infra
+
+          # Process apps
+          for dir in apps/*/; do
+            name=$(basename "$dir" | sed 's/-k8s$//')
+            if [ -f "$dir/application.yaml" ]; then
+              echo "App $name already has application.yaml"
+              cp "$dir/application.yaml" "applications/apps/${name}.yaml"
+            else
+              echo "Missing application.yaml in $dir"
+              # Create one based on the directory structure
+              if [ -f "$dir/deployment.yaml" ] || [ -f "$dir/deployment.yml" ]; then
+                echo "Creating application.yaml for $name..."
+              fi
+            fi
+          done
+
+          # Process infra
+          for dir in infra/*/; do
+            name=$(basename "$dir" | sed 's/-k8s$//')
+            if [ -f "$dir/application.yaml" ]; then
+              echo "Infra $name already has application.yaml"
+              cp "$dir/application.yaml" "applications/infra/${name}.yaml"
+            else
+              echo "Missing application.yaml in $dir"
+            fi
+          done
+
+      - name: List discovered apps
+        run: |
+          echo "=== Discovered Apps ==="
+          ls -la applications/apps/ 2>/dev/null || echo "No apps found"
+          echo "=== Discovered Infra ==="
+          ls -la applications/infra/ 2>/dev/null || echo "No infra found"
+
+      - name: Create PR with new applications
+        if: github.event_name == 'workflow_dispatch'
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          git config --local user.email "github-actions[bot]@users.noreply.github.com"
+          git config --local user.name "github-actions[bot]"
+          
+          if [ -n "$(git status --porcelain)" ]; then
+            git add -A
+            git commit -m "chore: update ArgoCD application definitions"
+            git push
+          else
+            echo "No changes to commit"
+          fi
+
+  generate-app-of-apps:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Generate root application
+        run: |
+          cat > applications/root-application.yaml << 'EOF'
+          apiVersion: argoproj.io/v1alpha1
+          kind: Application
+          metadata:
+            name: cluster-root
+            namespace: argo-cd
+            finalizers:
+              - resources-finalizer.argocd.argoproj.io
+          spec:
+            project: spof-cluster
+            source:
+              repoURL: "https://github.com/SP0Fs/cluster.git"
+              targetRevision: HEAD
+              path: applications
+              directory:
+                recurse: true
+                include: "application.yaml"
+            destination:
+              server: "https://kubernetes.default.svc"
+              namespace: argo-cd
+            syncPolicy:
+              automated:
+                prune: true
+                selfHeal: true
+              syncOptions:
+                - CreateNamespace=true
+          EOF
+          echo "Generated root-application.yaml"
+
+      - name: Display generated structure
+        run: |
+          echo "=== Applications directory structure ==="
+          find applications -type f -name '*.yaml' | sort

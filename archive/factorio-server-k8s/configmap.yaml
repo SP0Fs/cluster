@@ -1,0 +1,9 @@
+kind: ConfigMap
+apiVersion: v1
+metadata:
+  name: factorio-config
+  namespace: factorio-server
+data:
+  UPDATE_MODS_ON_START: "true"
+  GENERATE_NEW_SAVE: "false"
+  SAVE_NAME: "SPoF"

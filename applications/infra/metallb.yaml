@@ -1,0 +1,30 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: metallb
+  namespace: argo-cd
+spec:
+  project: spof-cluster
+  sources:
+    - chart: metallb
+      repoURL: https://metallb.github.io/metallb
+      targetRevision: v0.14.9
+      helm:
+        releaseName: metallb
+        valueFiles:
+          - $values/values.yaml
+    - repoURL: "https://github.com/SP0Fs/cluster.git"
+      targetRevision: HEAD
+      ref: values
+    - repoURL: "https://github.com/SP0Fs/cluster.git"
+      targetRevision: HEAD
+      path: infra/metallb/resources
+  destination:
+    server: "https://kubernetes.default.svc"
+    namespace: metallb
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+    syncOptions:
+      - CreateNamespace=true

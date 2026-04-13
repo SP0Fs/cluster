@@ -1,0 +1,30 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: container-registry
+  namespace: argo-cd
+spec:
+  project: spof-cluster
+  sources:
+    - chart: docker-registry
+      repoURL: https://helm.docker-registry.io
+      targetRevision: 2.10.2
+      helm:
+        releaseName: registry
+        valueFiles:
+          - $values/values.yaml
+    - repoURL: "https://github.com/SP0Fs/cluster.git"
+      targetRevision: HEAD
+      ref: values
+    - repoURL: "https://github.com/SP0Fs/cluster.git"
+      targetRevision: HEAD
+      path: infra/container-registry/resources
+  destination:
+    server: "https://kubernetes.default.svc"
+    namespace: registry
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+    syncOptions:
+      - CreateNamespace=true

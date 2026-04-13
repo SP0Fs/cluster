@@ -1,0 +1,27 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: mosquitto
+  namespace: argo-cd
+spec:
+  project: spof-cluster
+  sources:
+    - chart: mosquitto
+      repoURL: https://storage.googleapis.com/t3n-helm-charts
+      targetRevision: 2.4.1
+      helm:
+        releaseName: mosquitto
+        valueFiles:
+          - $values/values.yaml
+    - repoURL: "https://github.com/SP0Fs/cluster.git"
+      targetRevision: HEAD
+      ref: values
+  destination:
+    server: "https://kubernetes.default.svc"
+    namespace: mosquitto
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+    syncOptions:
+      - CreateNamespace=true

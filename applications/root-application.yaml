@@ -1,0 +1,26 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: cluster-root
+  namespace: argo-cd
+  finalizers:
+    - resources-finalizer.argocd.argoproj.io
+spec:
+  project: spof-cluster
+  source:
+    repoURL: "https://github.com/SP0Fs/cluster.git"
+    targetRevision: HEAD
+    path: applications
+    directory:
+      recurse: true
+      include: "application.yaml"
+      exclude: "root-application.yaml"
+  destination:
+    server: "https://kubernetes.default.svc"
+    namespace: argo-cd
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+    syncOptions:
+      - CreateNamespace=true

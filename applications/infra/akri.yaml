@@ -1,0 +1,30 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: akri
+  namespace: argo-cd
+spec:
+  project: spof-cluster
+  sources:
+    - chart: akri
+      repoURL: https://deislabs.github.io/akri
+      targetRevision: 0.13.2
+      helm:
+        releaseName: akri
+        valueFiles:
+          - $values/values.yaml
+    - repoURL: "https://github.com/SP0Fs/cluster.git"
+      targetRevision: HEAD
+      ref: values
+    - repoURL: "https://github.com/SP0Fs/cluster.git"
+      targetRevision: HEAD
+      path: infra/akri/resources
+  destination:
+    server: "https://kubernetes.default.svc"
+    namespace: akri-system
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+    syncOptions:
+      - CreateNamespace=true

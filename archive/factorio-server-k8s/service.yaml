@@ -1,0 +1,20 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: factorio-server
+  namespace: factorio-server
+  labels:
+    app: factorio-server
+spec:
+  type: NodePort
+  ports:
+    - name: factorio-udp
+      port: 32197
+      targetPort: 34197
+      protocol: UDP
+    - name: factorio-tcp
+      port: 32015
+      targetPort: 27015
+      protocol: TCP
+  selector:
+    app: factorio-server
