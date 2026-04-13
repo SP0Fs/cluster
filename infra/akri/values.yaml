@@ -5,7 +5,7 @@ udev:
     enabled: true
     name: akri-zigbee-usb
     capacity: 1
-    discoveryDetails: |
+    discoveryDetails:
       groupRecursive: true
       udevRules:
       - ATTRS{idVendor}=="10c4", ATTRS{idProduct}=="ea60"
