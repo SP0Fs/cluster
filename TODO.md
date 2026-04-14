@@ -10,6 +10,15 @@
 - [ ] Verify all apps sync correctly in Argo CD
 - [ ] Test disaster recovery (restore from Git)
 
+### your-spotify
+
+- [ ] Create sealed secret `your-spotify-secrets` in `your-spotify` namespace with:
+  - `SPOTIFY_CLIENT_ID`
+  - `SPOTIFY_CLIENT_SECRET`
+  - `JWT_SECRET`
+  (credentials must come from your Spotify developer app at https://developer.spotify.com)
+- [ ] Fix image pull: `yooooomi/your_spotify_server` and `yooooomi/your_spotify_client` are on docker.io and subject to rate limiting. Consider mirroring to the internal registry or GHCR.
+
 ## Medium Priority
 
 ### Matrix / ESS
