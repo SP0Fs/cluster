@@ -1,0 +1,28 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: longhorn
+  namespace: argo-cd
+spec:
+  project: spof-cluster
+  sources:
+    - chart: longhorn
+      repoURL: https://charts.longhorn.io
+      targetRevision: 1.7.2
+      helm:
+        releaseName: longhorn
+        valueFiles:
+          - $values/values.yaml
+    - repoURL: "https://github.com/SP0Fs/cluster.git"
+      targetRevision: HEAD
+      ref: values
+      path: infra/longhorn
+  destination:
+    server: "https://kubernetes.default.svc"
+    namespace: longhorn-system
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+    syncOptions:
+      - CreateNamespace=true
