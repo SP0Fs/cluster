@@ -1,0 +1,10 @@
+apiVersion: networking.k8s.io/v1
+kind: IngressClass
+metadata:
+  name: nginx-acme
+  # Annotations for cert-manager HTTP01 solver
+  annotations:
+    # cert-manager uses this class for ACME HTTP01 challenges
+    ingressclass.kubernetes.io/is-default-class: "false"
+spec:
+  controller: k8s.io/ingress-nginx
