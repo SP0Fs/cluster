@@ -5,18 +5,14 @@ metadata:
   namespace: pihole
   annotations:
     cert-manager.io/cluster-issuer: ca-issuer
+    # Use dedicated IngressClass for ACME HTTP01 challenges (no mTLS interference)
+    acme.cert-manager.io/http01-ingress-ingressclassname: nginx-acme
     nginx.ingress.kubernetes.io/backend-protocol: HTTP
-    nginx.ingress.kubernetes.io/server-snippet: |
-      set $do_mtls 1;
-      if ($uri ~* "^/.well-known/acme-challenge/") {
-        set $do_mtls 0;
-      }
-    nginx.ingress.kubernetes.io/auth-tls-verify-client: $do_mtls
+    nginx.ingress.kubernetes.io/auth-tls-verify-client: "on"
     nginx.ingress.kubernetes.io/auth-tls-secret: "ingress-nginx/spof-cert"
     nginx.ingress.kubernetes.io/auth-tls-verify-depth: "1"
     nginx.ingress.kubernetes.io/auth-tls-error-page: "https://wompampsupport.azureedge.net/fetchimage?siteId=7575&v=2&jpgQuality=100&width=700&url=https%3A%2F%2Fi.kym-cdn.com%2Fentries%2Ficons%2Fmobile%2F000%2F002%2F144%2FYou_Shall_Not_Pass!_0-1_screenshot.jpg"
     nginx.ingress.kubernetes.io/auth-tls-pass-certificate-to-upstream: "true"
-    # nginx.ingress.kubernetes.io/rewrite-target: /
 spec:
   ingressClassName: nginx
   tls:
