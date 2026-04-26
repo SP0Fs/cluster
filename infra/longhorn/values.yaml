@@ -4,6 +4,9 @@
 namespace: longhorn-system
 
 persistence:
+  defaultDataPath: /longhorn
+
+persistence:
   reclaimPolicy: Delete
   defaultClass: true
   defaultClassReplicaCount: 3
