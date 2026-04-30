@@ -2,6 +2,7 @@ namespace: "sealed-secrets"
 
 secretName: "sealed-secrets-key"
 
-# image:
-#   repository: "ghcr.io/bitnami-labs/sealed-secrets-controller"
-#   tag: "0.26.0"
+image:
+  registry: docker.io
+  repository: bitnami/sealed-secrets-controller
+  tag: 0.36.6
