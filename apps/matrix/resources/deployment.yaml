@@ -23,10 +23,32 @@ spec:
           args:
             - run
             - --config-path=/data/homeserver.yaml
-            - --config-path=/data/secrets.yaml
           env:
             - name: TZ
               value: "Europe/Berlin"
+            - name: SYNAPSE_DATABASE_HOST
+              value: "postgres.postgres.svc.cluster.local"
+            - name: SYNAPSE_DATABASE_USER
+              value: "postgres"
+            - name: SYNAPSE_DATABASE_NAME
+              value: "matrix"
+            - name: SYNAPSE_DATABASE_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: ess-secrets
+                  key: db_password
+            - name: SYNAPSE_REGISTRATION_SHARED_SECRET
+              valueFrom:
+                secretKeyRef:
+                  name: ess-secrets
+                  key: registration_shared_secret
+            - name: SYNAPSE_MACAROON_SECRET_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: ess-secrets
+                  key: macaroon_secret_key
+            - name: SYNAPSE_SIGNING_KEY_PATH
+              value: "/data/matrix.leibold.tech.signing.key"
           ports:
             - containerPort: 8008
               name: http
@@ -61,10 +83,11 @@ spec:
               mountPath: /data/log.config
               subPath: log.config
               readOnly: true
-            - name: secrets
-              mountPath: /data/secrets.yaml
-              subPath: secrets.yaml
+            - name: signing-key
+              mountPath: /data/matrix.leibold.tech.signing.key
+              subPath: signing.key
               readOnly: true
+            
           resources:
             requests:
               cpu: 500m
@@ -82,7 +105,10 @@ spec:
         - name: secrets
           secret:
             secretName: ess-secrets
+        - name: signing-key
+          secret:
+            secretName: ess-secrets
             items:
-              - key: secrets.yaml
-                path: secrets.yaml
+              - key: signing_key
+                path: signing.key
       restartPolicy: Always
