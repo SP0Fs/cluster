@@ -81,7 +81,7 @@ spec:
             name: matrix-config
         - name: secrets
           secret:
-            secretName: matrix-secret
+            secretName: ess-secrets
             items:
               - key: secrets.yaml
                 path: secrets.yaml
