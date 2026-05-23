@@ -29,9 +29,9 @@ spec:
             - name: SYNAPSE_DATABASE_HOST
               value: "postgres.postgres.svc.cluster.local"
             - name: SYNAPSE_DATABASE_USER
-              value: "postgres"
+              value: "synapse"
             - name: SYNAPSE_DATABASE_NAME
-              value: "matrix"
+              value: "synapse"
             - name: SYNAPSE_DATABASE_PASSWORD
               valueFrom:
                 secretKeyRef:
