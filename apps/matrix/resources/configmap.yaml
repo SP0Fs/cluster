@@ -20,17 +20,6 @@ data:
           - names: [client]
             compress: false
 
-    database:
-      name: "psycopg2"
-      args:
-        database: synapse
-        user: synapse
-        host: "postgres.postgres.svc.cluster.local"
-        password: "${SYNAPSE_DATABASE_PASSWORD}"
-        port: 5432
-        cp_min: 5
-        cp_max: 10
-
     log_config: "/data/log.config"
 
     media_store_path: /data/media_store
@@ -39,10 +28,6 @@ data:
     enable_registration: true
     enable_registration_without_verification: true
     registration_requires_token: true
-
-    registration_shared_secret: "${SYNAPSE_REGISTRATION_SHARED_SECRET}"
-
-    macaroon_secret_key: "${SYNAPSE_MACAROON_SECRET_KEY}"
 
     url_preview_enabled: true
     url_preview_ip_range_blacklist:
