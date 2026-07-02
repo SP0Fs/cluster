@@ -1,0 +1,28 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: ai-agent
+  namespace: argo-cd
+  annotations:
+    notes: |
+      Self-managing. The actual manifests (Deployment, ConfigMap, RBAC, ServiceAccount)
+      live in the marcleibold/openclaw repo under resources/. This Application
+      manifest itself is bootstrapped from the marcleibold/openclaw repo (see
+      application.yaml at the repo root) and is reconciled by ArgoCD against
+      the personal repo. This file is a UI pointer only — it does not own the
+      sync, the personal repo does.
+spec:
+  project: spof-cluster
+  source:
+    repoURL: "https://github.com/marcleibold/openclaw.git"
+    targetRevision: HEAD
+    path: resources
+  destination:
+    server: "https://kubernetes.default.svc"
+    namespace: ai-agent
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+    syncOptions:
+      - CreateNamespace=true
