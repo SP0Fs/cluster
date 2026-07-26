@@ -1,5 +1,13 @@
 kubernetesDistro: k3s
 useLatestContainers: true
+webhookConfiguration:
+  # Pre-existing 100-year self-signed cert from 2025-12-04 (still valid).
+  # Setting caBundle disables the helm webhook-cert-autogen hook chain
+  # (the create/patch Jobs and their SA + ClusterRoleBinding + Role +
+  # RoleBinding hooks) which was getting killed mid-run by ArgoCD's
+  # before-hook-creation,hook-succeeded deletion policy, leaving the
+  # operation stuck on a Terminating Job.
+  caBundle: LS0tLS1CRUdJTiBDRVJUSUZJQ0FURS0tLS0tCk1JSUJkRENDQVJ1Z0F3SUJBZ0lRVWhjLys1dzBNQWJZY2ZYRWhVYW9rakFLQmdncWhrak9QUVFEQWpBUE1RMHcKQ3dZRFZRUUtFd1J1YVd3eE1DQVhEVEkxTVRJd05ERTVNRFl6TVZvWUR6SXhNalV4TVRFd01Ua3dOak14V2pBUApNUTB3Q3dZRFZRUUtFd1J1YVd3eE1Ga3dFd1lIS29aSXpqMENBUVlJS29aSXpqMERBUWNEUWdBRVZMYlBlUlozClNsdWJEUnA5OXQ1cTN1OWlqUFRhM2NiQVp5d2E3OWphSk9vSEs4R2ZxYkJMd3N5QVhLblRPRVZ2alh4SDRzOEoKRWpsd3JGRUNIZjgzQ0tOWE1GVXdEZ1lEVlIwUEFRSC9CQVFEQWdJRU1CTUdBMVVkSlFRTU1Bb0dDQ3NHQVFVRgpCd01CTUE4R0ExVWRFd0VCL3dRRk1BTUJBZjh3SFFZRFZSME9CQllFRkp4NUJMVTVSQVg4WXMxY0RpcUNWaExqCmFpalhNQW9HQ0NxR1NNNDlCQU1DQTBjQU1FUUNJRmRhUkFZTWJrNzEwbGdPKzhFN2NXOGhFdVQ3dXM3ZWlhemkKYlo3S3lJYXFBaUFCUWkzUVVBV09WRWQrTERyaGZSSUZ2L2hHQUN1bnhIWEVBc1dOM2RTUWlRPT0KLS0tLS1FTkQgQ0VSVElGSUNBVEUtLS0tLQo=
 udev:
   discovery:
     enabled: true

@@ -14,11 +14,11 @@ spec:
         valueFiles:
           - $values/values.yaml
     - repoURL: "https://github.com/SP0Fs/cluster.git"
-      targetRevision: HEAD
+      targetRevision: main
       ref: values
       path: infra/cert-manager
     - repoURL: "https://github.com/SP0Fs/cluster.git"
-      targetRevision: HEAD
+      targetRevision: main
       path: infra/cert-manager/resources
   destination:
     server: "https://kubernetes.default.svc"

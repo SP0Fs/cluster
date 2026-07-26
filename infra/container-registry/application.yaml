@@ -14,11 +14,11 @@ spec:
         valueFiles:
           - $values/values.yaml
     - repoURL: "https://github.com/SP0Fs/cluster.git"
-      targetRevision: HEAD
+      targetRevision: main
       ref: values
       path: infra/container-registry
     - repoURL: "https://github.com/SP0Fs/cluster.git"
-      targetRevision: HEAD
+      targetRevision: main
       path: infra/container-registry/resources
   destination:
     server: "https://kubernetes.default.svc"

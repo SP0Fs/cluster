@@ -14,7 +14,7 @@ spec:
         valueFiles:
           - $values/values.yaml
     - repoURL: "https://github.com/SP0Fs/cluster.git"
-      targetRevision: HEAD
+      targetRevision: main
       path: infra/argo-cd
       ref: values
   destination:

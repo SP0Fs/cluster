@@ -7,7 +7,7 @@ spec:
   project: spof-cluster
   source:
     repoURL: "https://github.com/SP0Fs/cluster.git"
-    targetRevision: HEAD
+    targetRevision: main
     path: apps/mongodb/resources
   destination:
     server: "https://kubernetes.default.svc"
