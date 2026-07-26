@@ -1,6 +1,8 @@
 kubernetesDistro: k3s
 useLatestContainers: true
 udev:
+  discovery:
+    enabled: true
   configuration:
     enabled: true
     name: akri-zigbee-usb
