@@ -14,7 +14,7 @@ spec:
         valueFiles:
           - $values/infra/ingress-nginx/values.yaml
     - repoURL: "https://github.com/SP0Fs/cluster.git"
-      targetRevision: HEAD
+      targetRevision: main
       ref: values
   destination:
     server: "https://kubernetes.default.svc"

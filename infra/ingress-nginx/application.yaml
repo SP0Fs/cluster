@@ -14,7 +14,7 @@ spec:
         valueFiles:
           - $values/values.yaml
     - repoURL: "https://github.com/SP0Fs/cluster.git"
-      targetRevision: HEAD
+      targetRevision: main
       ref: values
       path: infra/ingress-nginx
   destination:
