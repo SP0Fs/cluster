@@ -11,11 +11,19 @@ spec:
       targetRevision: v0.13.8
       helm:
         releaseName: akri
+        # skipCrds: the CRDs are managed from infra/akri/resources/crds.yaml
+        # (source 3 below) so the live state and the chart's slightly-different
+        # spec don't keep ArgoCD in a self-heal loop. Update crds.yaml on
+        # upstream CRD changes.
+        skipCrds: true
         valueFiles:
           - $values/infra/akri/values.yaml
     - repoURL: "https://github.com/SP0Fs/cluster.git"
       targetRevision: main
       ref: values
+    - repoURL: "https://github.com/SP0Fs/cluster.git"
+      targetRevision: main
+      path: infra/akri/resources/crds
   destination:
     server: "https://kubernetes.default.svc"
     namespace: akri

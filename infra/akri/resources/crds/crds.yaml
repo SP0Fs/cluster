@@ -1,0 +1,226 @@
+apiVersion: apiextensions.k8s.io/v1
+kind: CustomResourceDefinition
+metadata:
+  name: configurations.akri.sh
+spec:
+  conversion:
+    strategy: None
+  group: akri.sh
+  names:
+    kind: Configuration
+    listKind: ConfigurationList
+    plural: configurations
+    shortNames:
+    - akric
+    singular: configuration
+  scope: Namespaced
+  versions:
+  - additionalPrinterColumns:
+    - description: The capacity for each Instance discovered
+      jsonPath: .spec.capacity
+      name: Capacity
+      type: string
+    - jsonPath: .metadata.creationTimestamp
+      name: Age
+      type: date
+    name: v0
+    schema:
+      openAPIV3Schema:
+        properties:
+          spec:
+            properties:
+              brokerProperties:
+                additionalProperties:
+                  type: string
+                type: object
+              brokerSpec:
+                properties:
+                  brokerJobSpec:
+                    nullable: true
+                    type: object
+                    x-kubernetes-preserve-unknown-fields: true
+                  brokerPodSpec:
+                    nullable: true
+                    type: object
+                    x-kubernetes-preserve-unknown-fields: true
+                type: object
+              capacity:
+                type: integer
+              configurationServiceSpec:
+                nullable: true
+                type: object
+                x-kubernetes-preserve-unknown-fields: true
+              discoveryHandler:
+                properties:
+                  discoveryDetails:
+                    type: string
+                  discoveryProperties:
+                    items:
+                      oneOf:
+                      - required:
+                        - value
+                      - required:
+                        - valueFrom
+                      properties:
+                        name:
+                          pattern: ^[_A-Za-z][_A-Za-z0-9]*$
+                          type: string
+                        value:
+                          nullable: true
+                          type: string
+                        valueFrom:
+                          oneOf:
+                          - required:
+                            - secretKeyRef
+                          - required:
+                            - configMapKeyRef
+                          properties:
+                            configMapKeyRef:
+                              properties:
+                                key:
+                                  type: string
+                                name:
+                                  type: string
+                                namespace:
+                                  type: string
+                                optional:
+                                  type: boolean
+                              required:
+                              - name
+                              type: object
+                            secretKeyRef:
+                              properties:
+                                key:
+                                  type: string
+                                name:
+                                  type: string
+                                namespace:
+                                  type: string
+                                optional:
+                                  type: boolean
+                              required:
+                              - name
+                              type: object
+                          type: object
+                      required:
+                      - name
+                      type: object
+                    nullable: true
+                    type: array
+                  name:
+                    type: string
+                type: object
+              instanceServiceSpec:
+                nullable: true
+                type: object
+                x-kubernetes-preserve-unknown-fields: true
+            type: object
+        type: object
+    served: true
+    storage: true
+---
+apiVersion: apiextensions.k8s.io/v1
+kind: CustomResourceDefinition
+metadata:
+  name: instances.akri.sh
+spec:
+  conversion:
+    strategy: None
+  group: akri.sh
+  names:
+    kind: Instance
+    listKind: InstanceList
+    plural: instances
+    shortNames:
+    - akrii
+    singular: instance
+  scope: Namespaced
+  versions:
+  - additionalPrinterColumns:
+    - description: The Configuration this Instance belongs to
+      jsonPath: .spec.configurationName
+      name: Config
+      type: string
+    - description: Describes whether this Instance is shared
+      jsonPath: .spec.shared
+      name: Shared
+      type: boolean
+    - description: Nodes that expose this Instance
+      jsonPath: .spec.nodes
+      name: Nodes
+      type: string
+    - jsonPath: .metadata.creationTimestamp
+      name: Age
+      type: date
+    name: v0
+    schema:
+      openAPIV3Schema:
+        description: Auto-generated derived type for InstanceSpec via `CustomResource`
+        properties:
+          spec:
+            description: 'Defines the information in the Instance CRD
+
+
+              An Instance is a specific instance described by a Configuration.  For
+              example, a Configuration may describe many cameras, each camera will
+              be represented by a Instance.'
+            properties:
+              brokerProperties:
+                additionalProperties:
+                  type: string
+                default: {}
+                description: This defines some properties that will be set as environment
+                  variables in broker Pods that request the resource this Instance
+                  represents. It contains the `Configuration.broker_properties` from
+                  this Instance's Configuration and the `Device.properties` set by
+                  the Discovery Handler that discovered the resource this Instance
+                  represents.
+                type: object
+              capacity:
+                description: This contains the number of slots for the Instance
+                format: uint
+                minimum: 0
+                type: integer
+              cdiName:
+                description: This contains the CDI fully qualified name of the device
+                  linked to the Instance
+                type: string
+              configurationName:
+                description: This contains the name of the corresponding Configuration
+                type: string
+              deviceUsage:
+                additionalProperties:
+                  type: string
+                default: {}
+                description: This contains a map of capability slots to node names.  The
+                  number of slots corresponds to the associated Configuration.capacity
+                  field.  Each slot will either map to an empty string (if the slot
+                  has not been claimed) or to a node name (corresponding to the node
+                  that has claimed the slot)
+                type: object
+                x-kubernetes-map-type: granular
+              nodes:
+                default: []
+                description: This contains a list of the nodes that can access this
+                  capability instance
+                items:
+                  type: string
+                type: array
+                x-kubernetes-list-type: set
+              shared:
+                default: false
+                description: This defines whether the capability is to be shared by
+                  multiple nodes
+                type: boolean
+            required:
+            - capacity
+            - cdiName
+            - configurationName
+            type: object
+        required:
+        - spec
+        title: Instance
+        type: object
+    served: true
+    storage: true
+    subresources: {}
