@@ -15,7 +15,7 @@ spec:
   project: spof-cluster
   source:
     repoURL: "https://github.com/marcleibold/openclaw.git"
-    targetRevision: main
+    targetRevision: master
     path: resources
   destination:
     server: "https://kubernetes.default.svc"
