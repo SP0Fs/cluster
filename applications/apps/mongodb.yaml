@@ -3,6 +3,12 @@ kind: Application
 metadata:
   name: mongodb
   namespace: argo-cd
+  annotations:
+    # Disabled: mongodb has an unresolved NFS lock issue. The live Deployment
+    # crash-loops on "/data/db/mongod.lock (No locks available)". The repo
+    # manifests are kept for future re-enabling (PVC + data preserved). To
+    # re-enable: remove this annotation and the app will reconcile normally.
+    argocd.argoproj.io/disabled: "true"
 spec:
   project: spof-cluster
   source:
@@ -14,7 +20,7 @@ spec:
     namespace: mongodb
   syncPolicy:
     automated:
-      prune: true
-      selfHeal: true
+      prune: false
+      selfHeal: false
     syncOptions:
       - CreateNamespace=true
