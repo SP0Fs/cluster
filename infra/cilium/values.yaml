@@ -1,0 +1,80 @@
+# Cilium Helm values for the SP0Fs cluster.
+#
+# Replaces the embedded flannel + kube-proxy in k3s.
+# Hubble is enabled (relay + ui + metrics); cilium's own ingress controller is
+# disabled because ingress-nginx already covers that role.
+#
+# Wireguard transparent encryption is enabled to keep parity with the previous
+# flannel-backend=wireguard-native inter-node transport.
+
+kubeProxyReplacement: true
+k8sServiceHost: 192.168.178.99
+k8sServicePort: 6443
+
+bpf:
+  masquerade: true
+
+ipv4:
+  enabled: true
+ipv6:
+  enabled: false
+
+# Match the cluster's existing pod CIDR (k3s default for this install).
+ipv4NativeRoutingCIDR: 10.42.0.0/16
+
+# Wireguard encryption for inter-node pod traffic (parity with flannel wireguard-native).
+encryption:
+  enabled: true
+  type: wireguard
+
+# Cilium's own ingress controller is NOT used — ingress-nginx already covers this.
+ingressController:
+  enabled: false
+
+# Hubble observability stack.
+# hubble.metrics.enabled is a LIST of metric names (e.g. drop, tcp, flow, http, icmp), not a boolean.
+hubble:
+  enabled: true
+  relay:
+    enabled: true
+  ui:
+    enabled: true
+  metrics:
+    enabled:
+      - drop
+      - tcp
+      - flow
+      - http
+      - icmp
+      - port-distribution
+    enableOpenMetrics: true
+
+# Cilium agent scheduling.
+# The default tolerations already include operator: Exists, so the control-plane
+# taint on hp-elitedesk is tolerated. nodeSelector is set to linux/amd64.
+nodeSelector:
+  kubernetes.io/os: linux
+  kubernetes.io/arch: amd64
+
+# nodeinit prepares the BPF mounts and cgroup2 setup on each node before the
+# agent starts. Without this, cilium-agent may fail to start with "cgroup not mounted".
+nodeinit:
+  enabled: true
+  nodeSelector:
+    kubernetes.io/os: linux
+    kubernetes.io/arch: amd64
+
+# Cilium operator (single replica is fine for a 2-node cluster).
+operator:
+  replicas: 1
+  nodeSelector:
+    kubernetes.io/os: linux
+    kubernetes.io/arch: amd64
+
+image:
+  pullPolicy: IfNotPresent
+
+# Workaround for cilium 1.17.18 chart bug with helm 3.9.x: chart's debug.verbose
+# defaults to {} but the template expects string. Set explicitly to empty.
+debug:
+  verbose: ""

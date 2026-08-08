@@ -1,0 +1,30 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: cilium
+  namespace: argo-cd
+spec:
+  project: spof-cluster
+  sources:
+    - chart: cilium
+      repoURL: https://helm.cilium.io
+      targetRevision: 1.17.18
+      helm:
+        releaseName: cilium
+        valueFiles:
+          - $values/infra/cilium/values.yaml
+    - repoURL: "https://github.com/SP0Fs/cluster.git"
+      targetRevision: main
+      ref: values
+    - repoURL: "https://github.com/SP0Fs/cluster.git"
+      targetRevision: main
+      path: infra/cilium/resources
+  destination:
+    server: "https://kubernetes.default.svc"
+    namespace: cilium
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+    syncOptions:
+      - CreateNamespace=true
