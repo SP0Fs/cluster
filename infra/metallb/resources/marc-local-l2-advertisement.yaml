@@ -6,3 +6,9 @@ metadata:
 spec:
   ipAddressPools:
     - marc-local
+  # Pin L2 announcements to the .178-segment node. c-nuc7 has no .178 interface,
+  # so an L2 announcer there sends gratuitous ARPs the .178 switch ignores.
+  # The 'network=marc' label is set on hp-elitedesk only (c-nuc7 has no 'network' label).
+  nodeSelectors:
+    - matchLabels:
+        network: marc
