@@ -6,16 +6,16 @@ metadata:
   annotations:
     notes: |
       Self-managing. The actual manifests (Deployment, ConfigMap, RBAC, ServiceAccount)
-      live in the marcleibold/openclaw repo under resources/. This Application
-      manifest itself is bootstrapped from the marcleibold/openclaw repo (see
+      live in the marcleibold/ai-agent repo under resources/. This Application
+      manifest itself is bootstrapped from the marcleibold/ai-agent repo (see
       application.yaml at the repo root) and is reconciled by ArgoCD against
       the personal repo. This file is a UI pointer only — it does not own the
       sync, the personal repo does.
 spec:
   project: spof-cluster
   source:
-    repoURL: "https://github.com/marcleibold/openclaw.git"
-    targetRevision: master
+    repoURL: "https://github.com/marcleibold/ai-agent.git"
+    targetRevision: main
     path: resources
   destination:
     server: "https://kubernetes.default.svc"
