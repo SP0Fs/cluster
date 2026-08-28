@@ -1,0 +1,47 @@
+# Longhorn Storage Configuration
+# https://longhorn.io/docs/
+
+namespace: longhorn-system
+
+persistence:
+  defaultDataPath: /longhorn
+
+persistence:
+  reclaimPolicy: Delete
+  defaultClass: true
+  defaultClassReplicaCount: 3
+  defaultDataLocality: disabled
+  replicaSoftAntiAffinity: false
+  replicaZoneSoftAntiAffinity: false
+  nodeDrainPolicy: block-for-eviction
+
+storageClass:
+  name: longhorn
+  allowVolumeExpansion: true
+  reclaimPolicy: Delete
+  volumeBindingMode: immediate
+
+csi:
+  attacherReplicaCount: 3
+  provisionerReplicaCount: 3
+  resizerReplicaCount: 3
+  snapshotterReplicaCount: 3
+
+longhornUI:
+  replicas: 2
+
+instanceManager:
+  replicas: 3
+
+backingImage:
+  enable: false
+
+snapshot:
+  resourceTicketing: false
+
+conditions:
+  taintToleration: |
+    cattle.io/os=linux:NoSchedule
+
+systemManagedComponentsNodeSelector:
+  kubernetes.io/os: linux
