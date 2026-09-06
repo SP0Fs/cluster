@@ -54,7 +54,13 @@ volumes:
     hostPath:
       path: /var/run/docker.sock
       type: Socket
+  - name: containerd-sock
+    hostPath:
+      path: /run/k3s/containerd/containerd.sock
+      type: Socket
 
 volumeMounts:
   - name: docker-sock
     mountPath: /var/run/docker.sock
+  - name: containerd-sock
+    mountPath: /run/k3s/containerd/containerd.sock
