@@ -2,9 +2,6 @@
 # SSH keypairs). The chart will reuse the PVC by name and skip creating a new one.
 persistentVolumeClaim:
   enabled: true
-  existingClaim: beszel-pvc
-  # storageClass and size are ignored when existingClaim is set, but kept here
-  # as documentation in case the PVC ever needs to be re-created.
   storageClass: ssd
   size: 500Mi
 
