@@ -48,8 +48,6 @@ tolerations:
   - operator: Exists
     effect: NoExecute
 
-hostNetwork: true
-
 # Expose the Docker socket so the agent can discover and monitor containers.
 volumes:
   - name: docker-sock
