@@ -1,0 +1,39 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: beszel
+  namespace: argo-cd
+spec:
+  project: spof-cluster
+  sources:
+    # Hub chart (henrygd's official supplemental Helm chart). The chart's
+    # built-in ingress template supports a free-form annotations map, so
+    # the cert-manager + nginx mTLS Ingress is declared in values-hub.yaml.
+    - chart: beszel-hub
+      repoURL: ghcr.io/henrygd/beszel-charts
+      targetRevision: 0.1.6
+      helm:
+        releaseName: beszel-hub
+        valueFiles:
+          - $values/apps/beszel/values-hub.yaml
+    # Agent chart (DaemonSet, references the chart-managed Secret).
+    - chart: beszel-agent
+      repoURL: ghcr.io/henrygd/beszel-charts
+      targetRevision: 0.1.6
+      helm:
+        releaseName: beszel-agent
+        valueFiles:
+          - $values/apps/beszel/values-agent.yaml
+    # Cluster-specific overrides for both charts.
+    - repoURL: "https://github.com/SP0Fs/cluster.git"
+      targetRevision: main
+      ref: values
+  destination:
+    server: "https://kubernetes.default.svc"
+    namespace: monitoring
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+    syncOptions:
+      - CreateNamespace=true
