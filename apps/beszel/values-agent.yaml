@@ -31,17 +31,14 @@ daemonset:
 #
 #   3. ArgoCD's self-heal picks up the new Secret within seconds and
 #      starts the agent DaemonSet on both nodes.
-# secret:
-#   existingSecret: beszel-hub-public-key
-#   sshKey: ssh-key
-#   tokenKey: token
+secret:
+  existingSecret: beszel-hub-auth
+  sshKey: ssh-key
+  tokenKey: token
 
 # Hub URL (service DNS inside the same namespace).
 env:
   HUB_URL: "http://beszel-hub.monitoring.svc.cluster.local:8090"
-  # KEY stays empty on purpose — see secret.existingSecret docs above.
-  KEY: "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIJ5d/cxt9ZuCewUXwhOr5CcusM9/c1sr490apppBfab4 mleibold@DESKTOP-428TRKT"
-  TOKEN: ""
 
 # Tolerate control-plane taints — k3s labels nodes with
 # node-role.kubernetes.io/control-plane, and we want metrics from them too.
