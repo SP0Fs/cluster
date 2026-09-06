@@ -11,39 +11,28 @@ image:
 daemonset:
   enabled: true
 
-# Reference the chart-managed Secret by leaving both env.KEY and
-# secret.existingSecret empty. The chart's template/secret.yaml fails the
-# render with "env.KEY is required when not using an existingSecret" if no
-# Secret named after the chart's fullname (`beszel-agent`) exists in the
-# `monitoring` namespace yet.
+# Reference the Secret by name — it must exist before the agent chart
+# can render. The Secret is managed out-of-band as a SealedSecret (see
+# apps/beszel/secrets/beszel-hub-public-key.yaml) so the SSH public key
+# never lives in plain text in the cluster repo.
 #
-# Bootstrap procedure (one-time, before the first ArgoCD sync succeeds):
-#
-#   1. Make sure the hub pod has started at least once and generated its
-#      SSH keypair (PVC /beszel_data contains a `*.pub_key` file).
-#   2. From your laptop, create the chart-managed Secret directly:
+# Bootstrap procedure:
+#   1. Get the hub's public key (one-time, after the first sync creates
+#      the hub and it has generated its ed25519 keypair on the PVC):
 #
 #        HUB_POD=$(kubectl -n monitoring get pod \
-#          -l app.kubernetes.io/name=beszel-hub \
+#          -l app=beszel-hub \
 #          -o jsonpath='{.items[0].metadata.name}')
 #        kubectl -n monitoring exec "$HUB_POD" -- \
-#          cat /beszel_data/*pub_key | \
-#          kubectl -n monitoring create secret generic beszel-agent \
-#            --from-file=ssh-key=/dev/stdin
+#          cat /beszel_data/id_ed25519.pub
 #
-#      Alternative: copy the public key from the hub UI (Settings → Key,
-#      exact path depends on hub version) and paste it into:
-#
-#        kubectl -n monitoring create secret generic beszel-agent \
-#          --from-literal=ssh-key='ssh-ed25519 ...'
+#   2. Re-seal the key into apps/beszel/secrets/beszel-hub-public-key.yaml
+#      and commit.
 #
 #   3. ArgoCD's self-heal picks up the new Secret within seconds and
-#      the agent DaemonSet starts on both nodes.
-#
-# The chart then manages the Secret (re-renders it on every sync to
-# match its declared state). You don't need to touch it again.
+#      starts the agent DaemonSet on both nodes.
 secret:
-  existingSecret: ""
+  existingSecret: beszel-hub-public-key
   sshKey: ssh-key
   tokenKey: token
 
