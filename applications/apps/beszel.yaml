@@ -28,6 +28,9 @@ spec:
     - repoURL: "https://github.com/SP0Fs/cluster.git"
       targetRevision: main
       ref: values
+    - repoURL: "https://github.com/SP0Fs/cluster.git"
+      targetRevision: main
+      path: apps/beszel/resources
   destination:
     server: "https://kubernetes.default.svc"
     namespace: monitoring
