@@ -6,7 +6,7 @@ metadata:
 spec:
   project: spof-cluster
   sources:
-    # Hub chart (HenrikGD's official supplemental Helm chart). The chart's
+    # Hub chart (henrygd's official supplemental Helm chart). The chart's
     # built-in ingress template supports a free-form annotations map, so
     # the cert-manager + nginx mTLS Ingress is declared in values-hub.yaml.
     - chart: beszel-hub
