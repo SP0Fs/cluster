@@ -18,12 +18,7 @@ per node (DaemonSet) streaming CPU/memory/disk/network/ZFS/GPU metrics.
 apps/beszel/
 ├── README.md          # this file
 ├── values-hub.yaml    # overrides for the official beszel-hub Helm chart
-├── values-agent.yaml  # overrides for the official beszel-agent Helm chart
-└── resources/         # raw manifests synced alongside the charts
-    ├── ingress.yaml   # cert-manager + nginx mTLS ingress (chart's template
-    │                  # doesn't expose auth-tls-* annotations)
-    └── appproject-patch.yaml  # (optional) if the spof-cluster AppProject
-                               # needs an additional destination namespace
+└── values-agent.yaml  # overrides for the official beszel-agent Helm chart
 ```
 
 The two Helm charts live in the official `henrygd/beszel` repo under
