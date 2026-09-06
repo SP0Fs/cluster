@@ -27,6 +27,7 @@ persistentVolumeClaim:
 resources:
   requests:
     cpu: 500m
+    memory: 500Mi
 
 # Ingress: cert-manager issues the server cert (ca-issuer), nginx-ingress
 # enforces mTLS client-cert validation against the spof-cluster CA. All
