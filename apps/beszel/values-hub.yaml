@@ -1,38 +1,43 @@
-# Match the existing PVC so we don't lose the hub's data (PocketBase DB +
-# SSH keypairs). The chart will reuse the PVC by name and skip creating a new one.
+# Bind to a LocalPath-backed volume on the node at /mnt/beszel so the hub's
+# PocketBase DB and SSH keypairs persist on the designated host.
+# The backing PV/PVC must use storageClassName: local-path and a hostPath of
+# /mnt/beszel, otherwise the claim will remain Pending.
 persistentVolumeClaim:
-  enabled: false
-  storageClass: ssd
+  enabled: true
+  storageClass: local-path
   size: 500Mi
 
-# resources:
-#   requests:
-#     cpu: 500m
+nodeSelector:
+  kubernetes.io/hostname: hp-elitedesk
+
+resources:
+  requests:
+    cpu: 500m
 
 # Ingress: cert-manager issues the server cert (ca-issuer), nginx-ingress
 # enforces mTLS client-cert validation against the spof-cluster CA. All
 # nginx.ingress.kubernetes.io/auth-tls-* annotations are exposed as a
 # free-form map by the chart's templates/ingress.yaml, so we can declare
 # the full mTLS setup directly here.
-# ingress:
-#   enabled: true
-#   className: nginx
-#   annotations:
-#     cert-manager.io/cluster-issuer: ca-issuer
-#     nginx.ingress.kubernetes.io/backend-protocol: HTTP
-#     nginx.ingress.kubernetes.io/auth-tls-verify-client: "on"
-#     nginx.ingress.kubernetes.io/auth-tls-secret: "ingress-nginx/spof-cert"
-#     nginx.ingress.kubernetes.io/auth-tls-verify-depth: "1"
-#     nginx.ingress.kubernetes.io/auth-tls-error-page: "https://insult.mattbas.org/api/insult.html"
-#     nginx.ingress.kubernetes.io/auth-tls-pass-certificate-to-upstream: "true"
-#   hosts:
-#     - host: beszel.leibold.tech
-#       paths:
-#         - path: /
-#           pathType: Prefix
-#   tls:
-#     - secretName: beszel-certs
-#       hosts:
-#         - beszel.leibold.tech
+ingress:
+  enabled: true
+  className: nginx
+  annotations:
+    cert-manager.io/cluster-issuer: ca-issuer
+    nginx.ingress.kubernetes.io/backend-protocol: HTTP
+    nginx.ingress.kubernetes.io/auth-tls-verify-client: "on"
+    nginx.ingress.kubernetes.io/auth-tls-secret: "ingress-nginx/spof-cert"
+    nginx.ingress.kubernetes.io/auth-tls-verify-depth: "1"
+    nginx.ingress.kubernetes.io/auth-tls-error-page: "https://insult.mattbas.org/api/insult.html"
+    nginx.ingress.kubernetes.io/auth-tls-pass-certificate-to-upstream: "true"
+  hosts:
+    - host: beszel.leibold.tech
+      paths:
+        - path: /
+          pathType: Prefix
+  tls:
+    - secretName: beszel-certs
+      hosts:
+        - beszel.leibold.tech
 
 # Default probes (HTTP GET /) are fine; the chart already provides them.
