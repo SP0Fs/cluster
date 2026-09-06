@@ -4,7 +4,8 @@
 # Pin to a specific image tag instead of `:latest`.
 image:
   repository: henrygd/beszel-agent
-  tag: "" # falls back to chart appVersion (currently 0.19.0)
+  # :alpine bundles smartctl (required for S.M.A.R.T. data collection)
+  tag: "alpine"
   pullPolicy: IfNotPresent
 
 # DaemonSet (one agent per node) — matches the previous raw manifest.
@@ -47,6 +48,14 @@ tolerations:
     effect: NoSchedule
   - operator: Exists
     effect: NoExecute
+
+hostNetwork: true
+
+# privileged gives access to all host block/char devices on both nodes
+# (hp-elitedesk has /dev/sda, c-nuc7 has /dev/nvme0 — per-device hostPath
+# mounts in a DaemonSet crash pods on nodes where those paths don't exist).
+securityContext:
+  privileged: true
 
 # Expose the Docker socket so the agent can discover and monitor containers.
 volumes:
