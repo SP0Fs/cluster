@@ -5,7 +5,7 @@
 # in the raw manifest → silent CVE drift since April 2026).
 image:
   repository: henrygd/beszel
-  tag: ""           # falls back to chart appVersion (currently 0.19.0)
+  tag: "" # falls back to chart appVersion (currently 0.19.0)
   pullPolicy: IfNotPresent
 
 replicaCount: 1
@@ -39,11 +39,11 @@ ingress:
   annotations:
     cert-manager.io/cluster-issuer: ca-issuer
     nginx.ingress.kubernetes.io/backend-protocol: HTTP
-    nginx.ingress.kubernetes.io/auth-tls-verify-client: "on"
-    nginx.ingress.kubernetes.io/auth-tls-secret: "ingress-nginx/spof-cert"
-    nginx.ingress.kubernetes.io/auth-tls-verify-depth: "1"
-    nginx.ingress.kubernetes.io/auth-tls-error-page: "https://insult.mattbas.org/api/insult.html"
-    nginx.ingress.kubernetes.io/auth-tls-pass-certificate-to-upstream: "true"
+    # nginx.ingress.kubernetes.io/auth-tls-verify-client: "on"
+    # nginx.ingress.kubernetes.io/auth-tls-secret: "ingress-nginx/spof-cert"
+    # nginx.ingress.kubernetes.io/auth-tls-verify-depth: "1"
+    # nginx.ingress.kubernetes.io/auth-tls-error-page: "https://insult.mattbas.org/api/insult.html"
+    # nginx.ingress.kubernetes.io/auth-tls-pass-certificate-to-upstream: "true"
   hosts:
     - host: beszel.leibold.tech
       paths:
