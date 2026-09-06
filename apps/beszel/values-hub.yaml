@@ -1,7 +1,7 @@
 # Match the existing PVC so we don't lose the hub's data (PocketBase DB +
 # SSH keypairs). The chart will reuse the PVC by name and skip creating a new one.
 persistentVolumeClaim:
-  enabled: true
+  enabled: false
   storageClass: ssd
   size: 500Mi
 
