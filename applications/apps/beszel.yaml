@@ -1,0 +1,41 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: beszel
+  namespace: argo-cd
+spec:
+  project: spof-cluster
+  sources:
+    # Hub chart (HenrikGD's official supplemental Helm chart)
+    - chart: beszel-hub
+      repoURL: ghcr.io/henrygd/beszel-charts
+      targetRevision: 0.1.6
+      helm:
+        releaseName: beszel-hub
+        valueFiles:
+          - $values/apps/beszel/values-hub.yaml
+    # Agent chart (DaemonSet, references the hub's exported public-key secret)
+    - chart: beszel-agent
+      repoURL: ghcr.io/henrygd/beszel-charts
+      targetRevision: 0.1.6
+      helm:
+        releaseName: beszel-agent
+        valueFiles:
+          - $values/apps/beszel/values-agent.yaml
+    # Cluster-specific overrides + raw Ingress (cert-manager + mTLS stays custom,
+    # the chart's ingress template doesn't expose nginx.ingress.kubernetes.io/auth-tls-*)
+    - repoURL: "https://github.com/SP0Fs/cluster.git"
+      targetRevision: main
+      ref: values
+    - repoURL: "https://github.com/SP0Fs/cluster.git"
+      targetRevision: main
+      path: apps/beszel/resources
+  destination:
+    server: "https://kubernetes.default.svc"
+    namespace: monitoring
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+    syncOptions:
+      - CreateNamespace=true

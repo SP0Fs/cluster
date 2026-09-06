@@ -1,0 +1,63 @@
+# Cluster-specific overrides for the official beszel-agent Helm chart.
+# Reference upstream values: https://github.com/henrygd/beszel/blob/main/supplemental/helm/beszel-agent/values.yaml
+
+# Pin to a specific image tag instead of `:latest`.
+image:
+  repository: henrygd/beszel-agent
+  tag: ""           # falls back to chart appVersion (currently 0.19.0)
+  pullPolicy: IfNotPresent
+
+# DaemonSet (one agent per node) — matches the previous raw manifest.
+daemonset:
+  enabled: true
+
+# Reference the chart-managed Secret by leaving both env.KEY and
+# secret.existingSecret empty. The chart's template/secret.yaml fails the
+# render with "env.KEY is required when not using an existingSecret" if no
+# Secret named after the chart's fullname (`beszel-agent`) exists in the
+# `monitoring` namespace yet.
+#
+# Bootstrap procedure (one-time, before the first ArgoCD sync succeeds):
+#
+#   1. Make sure the hub pod has started at least once and generated its
+#      SSH keypair (PVC /beszel_data contains a `*.pub_key` file).
+#   2. From your laptop, create the chart-managed Secret directly:
+#
+#        HUB_POD=$(kubectl -n monitoring get pod \
+#          -l app.kubernetes.io/name=beszel-hub \
+#          -o jsonpath='{.items[0].metadata.name}')
+#        kubectl -n monitoring exec "$HUB_POD" -- \
+#          cat /beszel_data/*pub_key | \
+#          kubectl -n monitoring create secret generic beszel-agent \
+#            --from-file=ssh-key=/dev/stdin
+#
+#      Alternative: copy the public key from the hub UI (Settings → Key,
+#      exact path depends on hub version) and paste it into:
+#
+#        kubectl -n monitoring create secret generic beszel-agent \
+#          --from-literal=ssh-key='ssh-ed25519 ...'
+#
+#   3. ArgoCD's self-heal picks up the new Secret within seconds and
+#      the agent DaemonSet starts on both nodes.
+#
+# The chart then manages the Secret (re-renders it on every sync to
+# match its declared state). You don't need to touch it again.
+secret:
+  existingSecret: ""
+  sshKey: ssh-key
+  tokenKey: token
+
+# Hub URL (service DNS inside the same namespace).
+env:
+  HUB_URL: "http://beszel-hub.monitoring.svc.cluster.local:8090"
+  # KEY stays empty on purpose — see secret.existingSecret docs above.
+  KEY: ""
+  TOKEN: ""
+
+# Tolerate control-plane taints — k3s labels nodes with
+# node-role.kubernetes.io/control-plane, and we want metrics from them too.
+tolerations:
+  - operator: Exists
+    effect: NoSchedule
+  - operator: Exists
+    effect: NoExecute

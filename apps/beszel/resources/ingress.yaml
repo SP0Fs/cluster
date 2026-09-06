@@ -25,6 +25,10 @@ spec:
             path: /
             backend:
               service:
+                # Service is created by the beszel-hub Helm chart with
+                # releaseName "beszel-hub", so the service name is just
+                # "beszel-hub" (no release-name prefix because the chart
+                # defaults to fullname = releaseName).
                 name: beszel-hub
                 port:
                   number: 8090

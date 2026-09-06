@@ -1,0 +1,40 @@
+# Cluster-specific overrides for the official beszel-hub Helm chart.
+# Reference upstream values: https://github.com/henrygd/beszel/blob/main/supplemental/helm/beszel-hub/values.yaml
+
+# Pin to a specific image tag instead of `:latest` (was henrygd/beszel:latest
+# in the raw manifest → silent CVE drift since April 2026).
+image:
+  repository: henrygd/beszel
+  tag: ""           # falls back to chart appVersion (currently 0.19.0)
+  pullPolicy: IfNotPresent
+
+replicaCount: 1
+
+service:
+  type: ClusterIP
+  port: 8090
+
+# Match the existing PVC so we don't lose the hub's data (PocketBase DB +
+# SSH keypairs). The chart will reuse the PVC by name and skip creating a new one.
+persistentVolumeClaim:
+  enabled: true
+  existingClaim: beszel-pvc
+  # storageClass and size are ignored when existingClaim is set, but kept here
+  # as documentation in case the PVC ever needs to be re-created.
+  storageClass: ssd
+  size: 500Mi
+
+resources:
+  requests:
+    cpu: 500m
+
+# Disable the chart's built-in ingress — the chart's ingress template
+# supports custom annotations and ingressClassName but doesn't expose
+# nginx-specific mTLS knobs (auth-tls-secret, verify-client, etc.) in a
+# typed way. The mTLS Ingress lives in apps/beszel/resources/ingress.yaml
+# (raw manifest synced alongside the charts) so we can use the full
+# nginx.ingress.kubernetes.io/auth-tls-* annotation set.
+ingress:
+  enabled: false
+
+# Default probes (HTTP GET /) are fine; the chart already provides them.
