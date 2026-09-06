@@ -28,13 +28,30 @@ resources:
   requests:
     cpu: 500m
 
-# Disable the chart's built-in ingress — the chart's ingress template
-# supports custom annotations and ingressClassName but doesn't expose
-# nginx-specific mTLS knobs (auth-tls-secret, verify-client, etc.) in a
-# typed way. The mTLS Ingress lives in apps/beszel/resources/ingress.yaml
-# (raw manifest synced alongside the charts) so we can use the full
-# nginx.ingress.kubernetes.io/auth-tls-* annotation set.
+# Ingress: cert-manager issues the server cert (ca-issuer), nginx-ingress
+# enforces mTLS client-cert validation against the spof-cluster CA. All
+# nginx.ingress.kubernetes.io/auth-tls-* annotations are exposed as a
+# free-form map by the chart's templates/ingress.yaml, so we can declare
+# the full mTLS setup directly here.
 ingress:
-  enabled: false
+  enabled: true
+  className: nginx
+  annotations:
+    cert-manager.io/cluster-issuer: ca-issuer
+    nginx.ingress.kubernetes.io/backend-protocol: HTTP
+    nginx.ingress.kubernetes.io/auth-tls-verify-client: "on"
+    nginx.ingress.kubernetes.io/auth-tls-secret: "ingress-nginx/spof-cert"
+    nginx.ingress.kubernetes.io/auth-tls-verify-depth: "1"
+    nginx.ingress.kubernetes.io/auth-tls-error-page: "https://wompampsupport.azureedge.net/fetchimage?siteId=7575&v=2&jpgQuality=100&width=700&url=https%3A%2F%2Fi.kym-cdn.com%2Fentries%2Ficons%2Fmobile%2F000%2F002%2F144%2FYou_Shall_Not_Pass!_0-1_screenshot.jpg"
+    nginx.ingress.kubernetes.io/auth-tls-pass-certificate-to-upstream: "true"
+  hosts:
+    - host: beszel.leibold.tech
+      paths:
+        - path: /
+          pathType: Prefix
+  tls:
+    - secretName: beszel-certs
+      hosts:
+        - beszel.leibold.tech
 
 # Default probes (HTTP GET /) are fine; the chart already provides them.
