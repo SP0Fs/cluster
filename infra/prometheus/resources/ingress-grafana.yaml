@@ -1,0 +1,34 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: grafana-ingress
+  namespace: monitoring
+  annotations:
+    cert-manager.io/cluster-issuer: ca-issuer
+    nginx.ingress.kubernetes.io/backend-protocol: HTTP
+    nginx.ingress.kubernetes.io/auth-tls-verify-client: "on"
+    nginx.ingress.kubernetes.io/auth-tls-secret: "ingress-nginx/spof-cert"
+    nginx.ingress.kubernetes.io/auth-tls-verify-depth: "1"
+    nginx.ingress.kubernetes.io/auth-tls-error-page: "https://insult.mattbas.org/api/insult.html"
+    nginx.ingress.kubernetes.io/auth-tls-pass-certificate-to-upstream: "true"
+    # Grafana uses websockets for live tailing — match the homeassistant
+    # ingress settings so connections stay open.
+    nginx.ingress.kubernetes.io/proxy-read-timeout: "3600"
+    nginx.ingress.kubernetes.io/proxy-send-timeout: "3600"
+spec:
+  ingressClassName: nginx
+  tls:
+    - hosts:
+        - grafana.leibold.tech
+      secretName: grafana-certs
+  rules:
+    - host: grafana.leibold.tech
+      http:
+        paths:
+          - pathType: Prefix
+            path: /
+            backend:
+              service:
+                name: kube-prometheus-stack-grafana
+                port:
+                  number: 80

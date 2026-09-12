@@ -1,0 +1,40 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: prometheus
+  namespace: argo-cd
+spec:
+  project: spof-cluster
+  sources:
+    # kube-prometheus-stack (Prometheus Operator + Prometheus + Grafana +
+    # Alertmanager + node-exporter + kube-state-metrics). Only Grafana is
+    # externally exposed (via the raw Ingress below).
+    - chart: kube-prometheus-stack
+      repoURL: https://prometheus-community.github.io/helm-charts
+      targetRevision: "77.6.1"
+      helm:
+        releaseName: kube-prometheus-stack
+        valueFiles:
+          - $values/infra/prometheus/values-prometheus.yaml
+    # Cluster-specific overrides for the chart.
+    - repoURL: "https://github.com/SP0Fs/cluster.git"
+      targetRevision: main
+      ref: values
+    # Raw manifests: Grafana mTLS Ingress + admin Secret (managed via
+    # SealedSecret in this folder).
+    - repoURL: "https://github.com/SP0Fs/cluster.git"
+      targetRevision: main
+      path: infra/prometheus/resources
+  destination:
+    server: "https://kubernetes.default.svc"
+    namespace: monitoring
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+    syncOptions:
+      - CreateNamespace=true
+      # Server-side apply is safer for the Prometheus Operator CRDs it
+      # manages (ServiceMonitor, PrometheusRule, etc.) — avoids drift
+      # detection fighting the operator's reconciliation.
+      - ServerSideApply=true

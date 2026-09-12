@@ -1,0 +1,169 @@
+# Cluster-specific overrides for the prometheus-community/kube-prometheus-stack
+# Helm chart. Reference: https://github.com/prometheus-community/helm-charts/tree/main/charts/kube-prometheus-stack
+#
+# This is the "infra" tier of monitoring — Node/Pod/Container metrics scraped
+# from /metrics endpoints of every workload in the cluster, plus a curated
+# set of default dashboards. Beszel keeps its niche for per-host hardware
+# metrics (S.M.A.R.T., ZFS, temperature, fan speed) which Prometheus doesn't
+# see out of the box.
+
+# Chart version: 77.x targets Prometheus v3 and k8s 1.25+. Check
+# https://github.com/prometheus-community/helm-charts/releases for the
+# latest stable that matches your k3s version (1.36.x as of Sep 2026).
+kubeVersionOverride: ""
+
+# -- Prometheus Operator --
+prometheusOperator:
+  enabled: true
+  # The operator manages Prometheus/Alertmanager/ThanosRuler CRDs. No
+  # external exposure — only the kubelet cluster role it needs.
+  serviceMonitor:
+    selfMonitor: false
+  prometheusConfigReloader:
+    resources:
+      requests:
+        cpu: 50m
+        memory: 32Mi
+      limits:
+        memory: 64Mi
+
+# -- Prometheus --
+prometheus:
+  enabled: true
+  # Single replica is enough for a 2-node home cluster.
+  replicaCount: 1
+  retention: 15d
+  retentionSize: "8GB"
+  resources:
+    requests:
+      cpu: 200m
+      memory: 512Mi
+    limits:
+      memory: 1Gi
+  service:
+    type: ClusterIP  # no external Ingress — access via Grafana
+  # Persist TSDB to local-path so a node reboot doesn't lose history.
+  persistentVolume:
+    enabled: true
+    size: 20Gi
+    storageClass: local-path
+  # Scrape config: discover PodMonitor / ServiceMonitor / Probe CRDs in
+  # every namespace.
+  serviceMonitorSelectorNilUsesHelmValues: false
+  serviceMonitorSelector: {}
+  podMonitorSelectorNilUsesHelmValues: false
+  podMonitorSelector: {}
+  probeSelectorNilUsesHelmValues: false
+  probeSelector: {}
+  # Rule files: pre-baked alerts + recording rules from the chart.
+  ruleSelectorNilUsesHelmValues: false
+  ruleSelector: {}
+  additionalServiceMonitors: {}
+
+# -- Alertmanager --
+alertmanager:
+  enabled: true
+  alertmanagerSpec:
+    replicas: 1
+    resources:
+      requests:
+        cpu: 50m
+        memory: 64Mi
+      limits:
+        memory: 128Mi
+    # No external UI exposure — alerts route via Grafana unified alerting.
+    storage:
+      volumeClaimTemplate:
+        spec:
+          storageClassName: local-path
+          accessModes: ["ReadWriteOnce"]
+          resources:
+            requests:
+              storage: 2Gi
+
+# -- Grafana (the only externally-exposed UI) --
+grafana:
+  enabled: true
+  replicaCount: 1
+  image:
+    repository: grafana/grafana
+    tag: ""  # chart appVersion (currently 11.x)
+  resources:
+    requests:
+      cpu: 100m
+      memory: 128Mi
+    limits:
+      memory: 256Mi
+  persistence:
+    enabled: true
+    size: 5Gi
+    storageClassName: local-path
+    # Access modes match local-path default.
+    accessModes: ["ReadWriteOnce"]
+  # Disable the chart's built-in Ingress — we declare it as a raw manifest
+  # in infra/prometheus/resources/ingress-grafana.yaml so we can attach the
+  # spof-cert mTLS client-cert validation (the chart's ingress template
+  # doesn't expose auth-tls-* annotations).
+  ingress:
+    enabled: false
+  # Admin credentials come from an existing Kubernetes Secret (managed
+  # out-of-band via SealedSecret in infra/prometheus/resources/grafana-admin-secret.yaml).
+  # The chart will mount it as admin-user and admin-password.
+  adminUser: admin
+  adminPassword: ""  # overridden by existingSecret below
+  adminExistingSecret: grafana-admin
+  adminPasswordKey: admin-password
+  # Grafana's own Prometheus datasource points at the in-cluster Prometheus.
+  datasources:
+    datasources.yaml:
+      apiVersion: 1
+      datasources:
+        - name: Prometheus
+          type: prometheus
+          uid: prometheus
+          access: proxy
+          url: http://kube-prometheus-stack-prometheus.monitoring.svc.cluster.local:9090
+          isDefault: true
+          jsonData:
+            timeInterval: "30s"
+            httpMethod: POST
+  # Pre-load a curated set of dashboards from the chart's defaults.
+  defaultDashboardsEnabled: true
+
+# -- kube-state-metrics --
+kubeStateMetrics:
+  enabled: true
+  resources:
+    requests:
+      cpu: 50m
+      memory: 32Mi
+    limits:
+      memory: 64Mi
+
+# -- node-exporter (DaemonSet for node-level metrics) --
+nodeExporter:
+  enabled: true
+  resources:
+    requests:
+      cpu: 50m
+      memory: 32Mi
+    limits:
+      memory: 64Mi
+  # Mount host /proc, /sys, / to expose host metrics. Required for
+  # filesystem, network and load average metrics.
+  hostRootFsMount: true
+
+# -- Windows node metrics (unused on k3s) --
+windowsExporter:
+  enabled: false
+
+# -- Kubernetes API server metrics --
+kubeApiServer:
+  enabled: true
+
+# -- kubelet metrics --
+kubelet:
+  enabled: true
+  serviceMonitor:
+    # Scrape kubelet on every node via the apiserver proxy.
+    https: true
