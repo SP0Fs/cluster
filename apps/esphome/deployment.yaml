@@ -20,7 +20,7 @@ spec:
       dnsPolicy: ClusterFirstWithHostNet
       containers:
         - name: esphome
-          image: "esphome/esphome:2024.10"
+          image: "esphome/esphome:stable"
           imagePullPolicy: IfNotPresent
           resources:
             requests:
