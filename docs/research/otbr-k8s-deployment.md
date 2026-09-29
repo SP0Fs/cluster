@@ -12,14 +12,13 @@
 - **Architectures:** `linux/amd64`, `linux/arm64`, `linux/arm/v7` (multi-arch manifest list, source: https://github.com/openthread/ot-br-posix/blob/main/.github/workflows/docker-border-router.yml)
 - **Tags available (verified live, 2026-09-29):**
   - `latest` — rebuilt on every push to `main`
-  - `stable` — assigned to official monthly CalVer releases (e.g. `2026.09.0` was the most recent at the time of writing; release v2026.09.0 was tagged 2026-09-01, source: https://github.com/openthread/ot-br-posix/releases/tag/v2026.09.0)
   - `main` — same image as `latest` (re-tagged on push)
   - `sha-<short>` — immutable digests, useful for reproducibility
-  - `2026.09.0`, `2026.08.0`, `2026.07.0`, etc. — explicit CalVer tags
+  - `v2026.09.0`, `v2026.07.0`, … — CalVer tags prefixed with **`v`** (NOT bare `2026.09.0` — there are no such tags)
 
-  > **Recommendation:** pin a CalVer tag (e.g. `openthread/border-router:2026.09.0` or `:stable`) in production. Avoid `:latest` because it shifts with each main-branch build (release cadence is monthly).
+  > **Recommendation:** pin a CalVer tag (e.g. `openthread/border-router:v2026.09.0` or `:sha-<digest>`) in production. Avoid `:latest` because it shifts with each main-branch build (release cadence is monthly).
 
-- **Latest verified stable release:** `v2026.09.0` (2026-09-01), Docker image `openthread/border-router:2026.09.0` (Digest `sha256:2be5082e7dea0e55fde95e2aea6e6176c162b3097f62a530a27593aa6b609455` on amd64 — confirmed via Docker Hub API).
+- **Latest verified stable release:** `v2026.09.0` (released around 2026-09-01). Docker image: `openthread/border-router:v2026.09.0`.
 
 ---
 
