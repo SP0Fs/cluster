@@ -1,0 +1,18 @@
+apiVersion: akri.sh/v0
+kind: Configuration
+metadata:
+  name: akri-openthread-usb
+spec:
+  capacity: 1
+  discoveryHandler:
+    discoveryDetails: |
+      groupRecursive: true # Recommended unless using very exact udev rules
+      udevRules:
+      # ZBDongle-E (Silicon Labs EFR32MG21 flashed with OTBR RCP firmware).
+      # VID/PID 10c4:ea60 is shared with the ZBDongle-P on Zigbee2MQTT (both
+      # use a Silicon Labs CP210x USB-UART bridge), so we add the device's
+      # unique serial to distinguish them. If this dongle is replaced,
+      # update the serial — `udevadm info -a -n /dev/ttyUSB1 | grep serial`
+      # on the new stick.
+      - ATTRS{idVendor}=="10c4", ATTRS{idProduct}=="ea60", ATTRS{serial}=="966327398678f011b9e1a6e70ba521c7"
+    name: udev

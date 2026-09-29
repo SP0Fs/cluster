@@ -8,5 +8,11 @@ spec:
     discoveryDetails: |
       groupRecursive: true # Recommended unless using very exact udev rules
       udevRules:
-      - ATTRS{idVendor}=="10c4", ATTRS{idProduct}=="ea60"
+      # ZBDongle-P (TI CC2652P, Z-Stack 3 Zigbee coordinator for Zigbee2MQTT).
+      # VID/PID 10c4:ea60 is shared with the ZBDongle-E on OTBR (both use a
+      # Silicon Labs CP210x USB-UART bridge), so we add the device's unique
+      # serial to pin Z2M to *this* stick. If the P dongle is replaced, update
+      # the serial — `udevadm info -a -n /dev/ttyUSB0 | grep serial` on the
+      # new stick.
+      - ATTRS{idVendor}=="10c4", ATTRS{idProduct}=="ea60", ATTRS{serial}=="6ea5312e2a27ee11b66f8fc1f49e3369"
     name: udev
