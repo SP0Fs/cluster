@@ -11,14 +11,11 @@ webhookConfiguration:
 udev:
   discovery:
     enabled: true
-  configuration:
-    enabled: true
-    name: akri-zigbee-usb
-    capacity: 1
-    discoveryDetails:
-      groupRecursive: true
-      udevRules:
-      - ATTRS{idVendor}=="10c4", ATTRS{idProduct}=="ea60"
+  # Note: Akri Configurations are managed as GitOps resources in
+  # infra/akri/resources/*.yaml (see zigbee-usb.yaml, openthread-usb.yaml).
+  # Do NOT add a `configuration:` block here — it would create duplicate
+  # Instances for the same physical device (one from Helm-managed config,
+  # one from the GitOps Configuration) and confuse the device-plugin broker.
 agent:
   securityContext:
     allowPrivilegeEscalation: false
