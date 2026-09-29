@@ -1,0 +1,30 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: openthread-border-router
+  namespace: openthread
+  annotations:
+    cert-manager.io/cluster-issuer: ca-issuer
+    nginx.ingress.kubernetes.io/backend-protocol: HTTP
+    nginx.ingress.kubernetes.io/auth-tls-verify-client: "on"
+    nginx.ingress.kubernetes.io/auth-tls-secret: "openthread/spof-cert"
+    nginx.ingress.kubernetes.io/auth-tls-verify-depth: "1"
+    nginx.ingress.kubernetes.io/auth-tls-error-page: "https://insult.mattbas.org/api/insult.html"
+    nginx.ingress.kubernetes.io/auth-tls-pass-certificate-to-upstream: "true"
+spec:
+  ingressClassName: nginx
+  tls:
+    - hosts:
+        - otbr.leibold.tech
+      secretName: otbr-certs
+  rules:
+    - host: otbr.leibold.tech
+      http:
+        paths:
+          - pathType: Prefix
+            path: /
+            backend:
+              service:
+                name: openthread-border-router
+                port:
+                  number: 8080

@@ -1,0 +1,114 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: openthread-border-router
+  namespace: openthread
+  labels:
+    app: openthread-border-router
+spec:
+  selector:
+    matchLabels:
+      app: openthread-border-router
+  replicas: 1
+  # Recreate is mandatory: the serial device is exclusive to one pod, and
+  # the host's wpan0 interface cannot coexist across two replicas. Matches
+  # the zigbee2mqtt pattern.
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      labels:
+        app: openthread-border-router
+    spec:
+      # Schedule on hp-elitedesk — that's where both USB dongles live.
+      nodeSelector:
+        kubernetes.io/hostname: hp-elitedesk
+      # hostNetwork is REQUIRED by OTBR (s6 services bind to host's loopback,
+      # mDNSResponder publishes to host's interfaces). dnsPolicy preserves
+      # CoreDNS resolution so the pod can still resolve cluster service DNS.
+      hostNetwork: true
+      dnsPolicy: ClusterFirstWithHostNet
+      containers:
+        - name: otbr
+          image: openthread/border-router:2026.09.0
+          imagePullPolicy: IfNotPresent
+          resources:
+            requests:
+              # Akri resource — only schedule when the E dongle is present.
+              # Mirrors the zigbee2mqtt pattern.
+              akri.sh/akri-openthread-usb: "1"
+              cpu: 50m
+              memory: 64Mi
+            limits:
+              akri.sh/akri-openthread-usb: "1"
+              cpu: 200m
+              memory: 256Mi
+          env:
+            # RCP over the E dongle at /dev/ttyUSB1 (ZBDongle-E).
+            - name: OT_RCP_DEVICE
+              value: "spinel+hdlc+uart:///dev/ttyUSB1?uart-baudrate=1000000"
+            # Infra interface on hp-elitedesk is eno1 (verified via `ip route`).
+            # OTBR uses this for upstream IPv6 reachability to the LAN.
+            - name: OT_INFRA_IF
+              value: "eno1"
+            # Default, but explicit so future readers don't have to check.
+            - name: OT_THREAD_IF
+              value: "wpan0"
+            # 5 = notice (default is 7 = debug, way too chatty).
+            - name: OT_LOG_LEVEL
+              value: "5"
+            # Both HTTP ports default-bind to 127.0.0.1; override so HA and
+            # the browser can reach them. With hostNetwork=true, "0.0.0.0"
+            # binds to all host interfaces.
+            - name: OT_WEB_LISTEN_ADDR
+              value: "0.0.0.0"
+            - name: OT_REST_LISTEN_ADDR
+              value: "0.0.0.0"
+            # Use the modern nftables backend to avoid SYS_ADMIN requirement.
+            # Added in OTBR 2026.09 (PR #3325).
+            - name: OTBR_NFTABLES
+              value: "1"
+          ports:
+            # Documentation only — hostNetwork makes these bind to the host's
+            # interfaces directly. Service ports below match.
+            - containerPort: 8080
+              name: web
+              protocol: TCP
+            - containerPort: 8081
+              name: rest
+              protocol: TCP
+            - containerPort: 19791
+              name: meshcop
+              protocol: UDP
+          securityContext:
+            # NOT privileged — NET_ADMIN is sufficient with OTBR_NFTABLES=1.
+            capabilities:
+              add:
+                - NET_ADMIN
+                # IPC_LOCK lets mDNSResponder mlock() its pages; matches HA
+                # add-on's privilege list.
+                - IPC_LOCK
+          volumeMounts:
+            # OTBR's persistent state (Thread dataset, Border Agent ID).
+            - name: data
+              mountPath: /data
+            # TUN device — required for the wpan0 virtual interface.
+            - name: tun
+              mountPath: /dev/net/tun
+            # The E dongle's serial device — hostPath so we don't depend on
+            # Akri's broker doing device passthrough (Akri gives us scheduling,
+            # not the device itself).
+            - name: serial
+              mountPath: /dev/ttyUSB1
+      volumes:
+        - name: data
+          persistentVolumeClaim:
+            claimName: openthread-data
+        - name: tun
+          hostPath:
+            path: /dev/net/tun
+            type: CharDevice
+        - name: serial
+          hostPath:
+            path: /dev/ttyUSB1
+            type: CharDevice
