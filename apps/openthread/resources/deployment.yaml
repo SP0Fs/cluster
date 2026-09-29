@@ -30,7 +30,7 @@ spec:
       dnsPolicy: ClusterFirstWithHostNet
       containers:
         - name: otbr
-          image: openthread/border-router:2026.09.0
+          image: openthread/border-router:v2026.09.0
           imagePullPolicy: IfNotPresent
           resources:
             requests:
