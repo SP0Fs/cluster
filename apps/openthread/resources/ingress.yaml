@@ -6,11 +6,13 @@ metadata:
   annotations:
     cert-manager.io/cluster-issuer: ca-issuer
     nginx.ingress.kubernetes.io/backend-protocol: HTTP
-    nginx.ingress.kubernetes.io/auth-tls-verify-client: "on"
-    nginx.ingress.kubernetes.io/auth-tls-secret: "openthread/spof-cert"
-    nginx.ingress.kubernetes.io/auth-tls-verify-depth: "1"
-    nginx.ingress.kubernetes.io/auth-tls-error-page: "https://insult.mattbas.org/api/insult.html"
-    nginx.ingress.kubernetes.io/auth-tls-pass-certificate-to-upstream: "true"
+    # mTLS auth intentionally disabled for the OTBR web UI — this is an
+    # internal homelab admin tool, not a customer-facing surface. The
+    # /node REST API on port 8081 (used by HA's Matter integration) is
+    # NOT exposed via Ingress, only the Web GUI on port 8080.
+    # If you want mTLS back, follow the same pattern as
+    # apps/homeassistant/ingress.yaml and reference the shared CA secret
+    # via a SealedSecret (NOT a plain Secret in git).
 spec:
   ingressClassName: nginx
   tls:
