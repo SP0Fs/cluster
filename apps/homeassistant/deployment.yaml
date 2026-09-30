@@ -48,10 +48,10 @@ spec:
           name: home-assistant
           resources:
             requests:
-              cpu: 2
+              cpu: "2"
               memory: "3Gi"
             limits:
-              cpu: 4
+              cpu: "3"
               memory: "6Gi"
           volumeMounts:
             - mountPath: "/config"
