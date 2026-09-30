@@ -1,0 +1,87 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: matter-server
+  namespace: matter
+  labels:
+    app: matter-server
+spec:
+  selector:
+    matchLabels:
+      app: matter-server
+  replicas: 1
+  # Recreate: the Matter fabric is stateful (one controller per fabric),
+  # so we tear down the old pod before starting the new one. Mirrors the
+  # zigbee2mqtt and openthread patterns.
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      labels:
+        app: matter-server
+    spec:
+      containers:
+        - name: matter-server
+          # Open Home Foundation Matter Server. HA's Matter component
+          # (`matter-python-client==1.4.0` in HA core) speaks this server's
+          # WebSocket protocol. `:stable` tracks the latest 6.2.x release;
+          # pin to a digest in production.
+          image: ghcr.io/home-assistant-libs/python-matter-server:stable
+          imagePullPolicy: IfNotPresent
+          ports:
+            - containerPort: 5580
+              name: ws
+              protocol: TCP
+          env:
+            # Server reads /data on startup for persisted fabric state
+            # (commissioning credentials, device list). The PVC is mounted
+            # at this path.
+            - name: MATTER_SERVER_DATA_DIR
+              value: /data
+            # Optional: log level (info | debug | verbose)
+            - name: LOG_LEVEL
+              value: info
+            # Optional: thread network credentials. The server doesn't
+            # need these — HA's Thread integration owns them and shares
+            # via WebSocket. Left commented for documentation.
+            # - name: THREAD_NETWORK_NAME
+            #   value: "Home"
+          resources:
+            requests:
+              cpu: 50m
+              memory: 128Mi
+            limits:
+              cpu: 500m
+              memory: 512Mi
+          livenessProbe:
+            tcpSocket:
+              port: ws
+            initialDelaySeconds: 30
+            periodSeconds: 30
+            timeoutSeconds: 5
+            failureThreshold: 3
+          readinessProbe:
+            tcpSocket:
+              port: ws
+            initialDelaySeconds: 10
+            periodSeconds: 10
+            timeoutSeconds: 3
+            failureThreshold: 3
+          securityContext:
+            # Matter Server is a Python app; runs as non-root in the upstream
+            # image already. Pin the user explicitly for clarity.
+            runAsNonRoot: true
+            runAsUser: 1000
+            runAsGroup: 1000
+            allowPrivilegeEscalation: false
+            capabilities:
+              drop:
+                - ALL
+            readOnlyRootFilesystem: true
+          volumeMounts:
+            - name: data
+              mountPath: /data
+      volumes:
+        - name: data
+          persistentVolumeClaim:
+            claimName: matter-data
