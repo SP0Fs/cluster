@@ -68,10 +68,15 @@ spec:
               value: "0.0.0.0"
             - name: OT_REST_LISTEN_ADDR
               value: "0.0.0.0"
-            # Use the modern nftables backend to avoid SYS_ADMIN requirement.
-            # Added in OTBR 2026.09 (PR #3325).
-            - name: OTBR_NFTABLES
-              value: "1"
+            # NOTE: do NOT set OTBR_NFTABLES=1 here. The v2026.09.0 image was
+            # built WITHOUT nftables support (the marker file
+            # /usr/share/otbr/nftables-backend is absent). With OTBR_NFTABLES=1
+            # the wrapper script skips the legacy ipset/ip6tables init and
+            # expects an in-process nftables backend that doesn't exist, so
+            # the firewall setup silently fails — and OTBR's Border Agent
+            # MeshCoP service never becomes active. Leaving OTBR_NFTABLES
+            # unset (or =0) lets the wrapper use the working legacy path.
+            # Removed 2026-09-30 after diagnosis from cluster logs.
           ports:
             # Documentation only — hostNetwork makes these bind to the host's
             # interfaces directly. Service ports below match.
