@@ -81,7 +81,19 @@ spec:
           volumeMounts:
             - name: data
               mountPath: /data
+            # /tmp must be writable — the CHIP SDK writes its KVS file
+            # (chip_kvs-*) here at startup. With readOnlyRootFilesystem,
+            # /tmp would be on the (read-only) root FS and the server
+            # would crash on init with "Read-only file system". An
+            # emptyDir at /tmp gives it scratch space without making
+            # the image's own filesystem writable.
+            - name: tmp
+              mountPath: /tmp
       volumes:
         - name: data
           persistentVolumeClaim:
             claimName: matter-data
+        - name: tmp
+          emptyDir:
+            medium: Memory
+            sizeLimit: 64Mi
