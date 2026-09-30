@@ -104,6 +104,16 @@ spec:
             # not the device itself).
             - name: serial
               mountPath: /dev/ttyUSB1
+            # Override s6 otbr-agent run script to pass --auto-attach=1.
+            # The OTBR v2026.09.0 image's otbr-agent defaults to
+            # --auto-attach=0 (regression), which leaves the Border Agent
+            # MeshCoP service on UDP 19791 inactive, so HA's Thread
+            # integration can't find this router. Mounted read-only over
+            # the image's /etc/s6-overlay/s6-rc.d/otbr-agent/run.
+            - name: otbr-agent-run-override
+              mountPath: /etc/s6-overlay/s6-rc.d/otbr-agent/run
+              subPath: run
+              readOnly: true
       volumes:
         - name: data
           persistentVolumeClaim:
@@ -116,3 +126,9 @@ spec:
           hostPath:
             path: /dev/ttyUSB1
             type: CharDevice
+        - name: otbr-agent-run-override
+          configMap:
+            name: otbr-agent-run-override
+            items:
+              - key: run
+                path: run
