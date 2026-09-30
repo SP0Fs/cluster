@@ -44,7 +44,9 @@ spec:
               cpu: 200m
               memory: 256Mi
           env:
-            # RCP over the E dongle at /dev/ttyUSB1 (ZBDongle-E).
+            # RCP over the E dongle. With Akri handling device injection,
+            # /dev/ttyUSB1 is the kernel-assigned name on hp-elitedesk for
+            # the device matching the OTBR Akri Configuration's serial.
             # NOTE: baud rate must match the RCP firmware config. The default
             # upstream value is 1000000 (1 Mbaud); the ZBDongle-E's OTBR RCP
             # image uses 921600. Mismatch causes silent Init failure in
@@ -90,7 +92,7 @@ spec:
               name: meshcop
               protocol: UDP
           securityContext:
-            # NOT privileged — NET_ADMIN is sufficient with OTBR_NFTABLES=1.
+            # NOT privileged — NET_ADMIN is sufficient.
             capabilities:
               add:
                 - NET_ADMIN
@@ -104,11 +106,17 @@ spec:
             # TUN device — required for the wpan0 virtual interface.
             - name: tun
               mountPath: /dev/net/tun
-            # The E dongle's serial device — hostPath so we don't depend on
-            # Akri's broker doing device passthrough (Akri gives us scheduling,
-            # not the device itself).
-            - name: serial
-              mountPath: /dev/ttyUSB1
+            # Note: /dev/ttyUSB1 is NOT mounted here on purpose. Akri's
+            # device-plugin injects the E dongle into the pod's device
+            # cgroup + filesystem because we request
+            # akri.sh/akri-openthread-usb: "1" above. Adding an explicit
+            # hostPath mount would double-up the device and (worse) tie the
+            # deployment to the specific /dev/ttyUSB1 device name — which
+            # can shift to ttyUSB0/ttyUSB2 across reboots depending on USB
+            # enumeration order. Akri matches by the dongle's serial
+            # number, so the device shows up regardless of its /dev/ttyUSB*
+            # name. Mirrors apps/zigbee2mqtt/resources/deployment.yaml,
+            # which also relies on Akri alone.
       volumes:
         - name: data
           persistentVolumeClaim:
@@ -116,8 +124,4 @@ spec:
         - name: tun
           hostPath:
             path: /dev/net/tun
-            type: CharDevice
-        - name: serial
-          hostPath:
-            path: /dev/ttyUSB1
             type: CharDevice
