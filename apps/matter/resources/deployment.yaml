@@ -20,6 +20,21 @@ spec:
       labels:
         app: matter-server
     spec:
+      # Co-locate with the OTBR pod on hp-elitedesk. Matter Server needs
+      # to send IPv6 UDP traffic to devices sitting on the Thread mesh
+      # (mesh-local prefixes like fd74:ce3d:... or fd40:3d95:...); the
+      # only path from this pod to those addresses is via OTBR's wpan0
+      # + eno1 routes, which exist on the OTBR node. Without this
+      # nodeSelector Matter Server ends up on c-nuc7 (the kube-scheduler
+      # picks any node with capacity), gets "Network is unreachable" when
+      # it tries to commission Thread devices, and the Matter fabric
+      # can't grow.
+      #
+      # Bumping this when you spin up a second OTBR node: change this to
+      # match the new node, or remove the selector and add a topology
+      # spread constraint that keeps Matter on the same node as OTBR.
+      nodeSelector:
+        kubernetes.io/hostname: hp-elitedesk
       containers:
         - name: matter-server
           # Open Home Foundation Matter Server. HA's Matter component
