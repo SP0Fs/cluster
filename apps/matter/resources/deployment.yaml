@@ -58,6 +58,19 @@ spec:
           # pin to a digest in production.
           image: ghcr.io/home-assistant-libs/python-matter-server:stable
           imagePullPolicy: IfNotPresent
+          # Override CMD to point --ota-provider-dir at the dedicated
+          # matter-updates PVC. The default would be cwd/updates =
+          # /app/updates, which can't be created because the root FS
+          # is read-only (see securityContext below). Mirrors the
+          # official Home Assistant Matter add-on, which sets
+          # `--ota-provider-dir /config/updates`.
+          args:
+            - "--storage-path"
+            - "/data"
+            - "--paa-root-cert-dir"
+            - "/data/credentials"
+            - "--ota-provider-dir"
+            - "/data/updates"
           ports:
             - containerPort: 5580
               name: ws
@@ -119,6 +132,13 @@ spec:
             # the image's own filesystem writable.
             - name: tmp
               mountPath: /tmp
+            # OTA firmware blobs + provider KVS + per-update logs go
+            # here (see --ota-provider-dir above). Separate PVC from
+            # matter-data so a runaway OTA cache can't fill up the
+            # fabric storage, and so PVC resize cycles don't risk
+            # the Matter fabric's persistent state.
+            - name: updates
+              mountPath: /data/updates
       volumes:
         - name: data
           persistentVolumeClaim:
@@ -127,3 +147,6 @@ spec:
           emptyDir:
             medium: Memory
             sizeLimit: 64Mi
+        - name: updates
+          persistentVolumeClaim:
+            claimName: matter-updates
