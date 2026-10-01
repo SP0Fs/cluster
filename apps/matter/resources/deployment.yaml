@@ -35,6 +35,21 @@ spec:
       # spread constraint that keeps Matter on the same node as OTBR.
       nodeSelector:
         kubernetes.io/hostname: hp-elitedesk
+      # hostNetwork: Matter needs the host's network namespace so it can
+      # reach OTBR's wpan0 interface and route to Thread mesh-local
+      # prefixes (fd00::/8 etc.). Without hostNetwork, Matter sits in
+      # its own pod network namespace, can't see wpan0, and gets
+      # "Network is unreachable" when it tries to commission devices on
+      # the Thread mesh. This mirrors the OTBR Deployment's hostNetwork
+      # setting for the same reason. dnsPolicy: ClusterFirstWithHostNet
+      # preserves CoreDNS resolution from inside the host network stack
+      # so the pod can still resolve matter-server.matter.svc.cluster.local
+      # (used by the WebSocket URL HA connects to). zigbee2mqtt does NOT
+      # need hostNetwork — it talks to its dongle via Akri's device-plugin
+      # in the pod network namespace and communicates with HA over LAN,
+      # not over a custom mesh.
+      hostNetwork: true
+      dnsPolicy: ClusterFirstWithHostNet
       containers:
         - name: matter-server
           # Open Home Foundation Matter Server. HA's Matter component
