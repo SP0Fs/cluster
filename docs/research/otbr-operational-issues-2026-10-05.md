@@ -86,9 +86,16 @@ otbr-agent then failed on every start before talking to the RCP:
 otbr-agent exited with code 1 (by signal 0).
 ```
 
-So the current RCP firmware / dongle combination does not assert CTS.
-Hardware flow control is not usable without different firmware. The change
-was reverted.
+Likely reason: on the ZBDongle-E, the CP2102N's RTS/DTR lines are wired to
+the EFR32's reset and bootloader pins. That is the mechanism behind
+`universal-silabs-flasher --bootloader-reset sonoff`. With `crtscts` the host
+drives RTS as a flow-control line and keeps the radio in reset or the
+bootloader. So **hardware flow control is not an option on this dongle,
+whatever the firmware.** The change was reverted.
+
+Supporting evidence for the link-integrity hypothesis: after the revert, the
+RCP itself reported `RCP => Framing error 6` within the first seconds of
+operation. The radio received a corrupted HDLC frame from the host.
 
 Side effect seen during the rollout: kubelet rejected the new pod with
 `UnexpectedAdmissionError: Allocate failed ... Unable to claim slot`
@@ -102,8 +109,10 @@ rollout until the Akri agent issue is fixed.
 
 - **Lower the baud rate** (e.g. 460800). This needs RCP firmware built for
   that rate. Less throughput margin per frame means fewer overruns.
-- **Flash an RCP image built with hardware flow control** for the ZBDongle-E,
-  if one is available, then retry `uart-flow-control`.
+- **Use an adapter with working hardware flow control** (e.g. Home Assistant
+  Connect ZBT-1/ZBT-2) for Thread, if a lower baud rate does not help.
+- Count `RCP => Framing error` lines over time as a cheap health metric for
+  the link when trying any of the above.
 
 ## Open questions
 
