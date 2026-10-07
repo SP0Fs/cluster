@@ -105,10 +105,30 @@ Restarting the Akri agent pod on `hp-elitedesk` cleared the agent's stale
 in-memory slot state, and the pod was admitted. Expect this on every OTBR
 rollout until the Akri agent issue is fixed.
 
+## Experiment: 460800 baud firmware (2026-10-07)
+
+The ZBDongle-E was reflashed with "OpenThread RCP 2026.6.1_3.1.1" at 460800
+baud (`rcp version`: `SL-OPENTHREAD/3.1.1.0_GitHub-fb274efe6; EFR32; Sep 12
+2026`). `OT_RCP_DEVICE` was changed to match. The Thread network and Border
+Agent came up unchanged.
+
+Result: **not fixed.** During the reconnect burst after the rollout,
+otbr-agent crashed 4 times in ~5 min with the same signature: the RCP reports
+`Framing error 6`, then `radio tx timeout` → `RadioSpinelNoResponse`. After
+that it was stable while traffic was low. The corrupted frame was a
+host→RCP `STREAM_RAW` transmit frame (`84 03 71 …`, 72-byte 802.15.4 data
+frame) with a bad FCS. So bytes are lost **on the RCP's UART receive
+side**, at half the previous baud rate too.
+
+Ruled out on the host: only `otbr-agent` has `/dev/ttyUSB1` open, and
+ModemManager, brltty and gpsd are inactive.
+
 ### Remaining options for the RCP timeouts
 
-- **Lower the baud rate** (e.g. 460800). This needs RCP firmware built for
-  that rate. Less throughput margin per frame means fewer overruns.
+- ~~Lower the baud rate~~: tried at 460800, see above. It did not help.
+- **Try a different USB port or cable** (a USB 2.0 port directly on the host,
+  or a short extension cable away from USB 3 ports and the other dongle).
+  This rules out signal or power problems on the dongle.
 - **Use an adapter with working hardware flow control** (e.g. Home Assistant
   Connect ZBT-1/ZBT-2) for Thread, if a lower baud rate does not help.
 - Count `RCP => Framing error` lines over time as a cheap health metric for
