@@ -58,8 +58,8 @@ later. The provider's BDX session cannot survive that and times out
 - The RCP is a Sonoff ZBDongle-E V2 ("Sonoff Zigbee 3.0 USB Dongle Plus V2",
   CP2102N `10c4:ea60`) on `/dev/ttyUSB1`. It runs freshly flashed OpenThread
   RCP firmware (`SL-OPENTHREAD/3.1.1.0_GitHub-fb274efe6; EFR32`) at 921600 baud.
-- Until 2026-10-07 the RCP URL had **no `uart-flow-control`**, so the host
-  sent bursts at 921600 baud without RTS/CTS.
+- The RCP link runs at 921600 baud **without RTS/CTS flow control**. Enabling
+  it breaks RCP init with the current firmware; see the experiment below.
 - USB is stable: no disconnect or re-enumeration events in the kernel log.
   USB autosuspend is **not** active for the dongle (`power/control=on`).
 - CPU throttling of the OTBR container is negligible (9 throttle events,
@@ -73,15 +73,37 @@ PAN ID, ext PAN ID `93f4552d137d2206`, channel 25). It goes
 Devices reattach on their own. Border Agent state is `Active`, and SRP and
 the DNS-SD server are running.
 
-## Current experiment (2026-10-07)
+## Experiment: UART flow control (2026-10-07) — failed, reverted
 
-`uart-flow-control` was added to `OT_RCP_DEVICE`
-(`apps/openthread/resources/deployment.yaml`) to enable RTS/CTS. Hypothesis:
-the RCP's UART RX overruns under burst load and the Spinel stream
-desynchronizes. Success criteria: otbr-agent survives sustained traffic (a full
-OTA transfer of ~500 blocks) without `radio tx timeout`. If the RCP firmware
-does not drive CTS, otbr-agent fails to talk to the RCP at all right after
-startup. In that case, revert.
+Hypothesis: the RCP's UART RX overruns under burst load and the Spinel stream
+desynchronizes. To test it, `&uart-flow-control` was added to `OT_RCP_DEVICE`.
+The host side applied it (`stty` showed `crtscts` on `/dev/ttyUSB1`), but
+otbr-agent then failed on every start before talking to the RCP:
+
+```
+[NOTE]-AGENT---: Radio URL: spinel+hdlc+uart:///dev/ttyUSB1?uart-baudrate=921600&uart-flow-control
+00:00:00.000 [C] Platform------: Init() at spinel_driver.cpp:87: Failure
+otbr-agent exited with code 1 (by signal 0).
+```
+
+So the current RCP firmware / dongle combination does not assert CTS.
+Hardware flow control is not usable without different firmware. The change
+was reverted.
+
+Side effect seen during the rollout: kubelet rejected the new pod with
+`UnexpectedAdmissionError: Allocate failed ... Unable to claim slot`
+(Akri configuration-level slot `akri-openthread-usb-0`). The ReplicaSet
+created ~1,200 rejected pods. The Akri Instance CR showed the slot as free.
+Restarting the Akri agent pod on `hp-elitedesk` cleared the agent's stale
+in-memory slot state, and the pod was admitted. Expect this on every OTBR
+rollout until the Akri agent issue is fixed.
+
+### Remaining options for the RCP timeouts
+
+- **Lower the baud rate** (e.g. 460800). This needs RCP firmware built for
+  that rate. Less throughput margin per frame means fewer overruns.
+- **Flash an RCP image built with hardware flow control** for the ZBDongle-E,
+  if one is available, then retry `uart-flow-control`.
 
 ## Open questions
 
