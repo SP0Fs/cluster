@@ -51,8 +51,13 @@ spec:
             # upstream value is 1000000 (1 Mbaud); the ZBDongle-E's OTBR RCP
             # image uses 921600. Mismatch causes silent Init failure in
             # spinel_driver.cpp with no further error detail.
+            # uart-flow-control enables RTS/CTS (CRTSCTS) on the host side.
+            # Without it, sustained Spinel traffic (e.g. a Matter OTA BDX
+            # transfer) made otbr-agent die every 20-90s with "radio tx
+            # timeout" -> RadioSpinelNoResponse (exit 6). See
+            # docs/research/otbr-operational-issues-2026-10-05.md.
             - name: OT_RCP_DEVICE
-              value: "spinel+hdlc+uart:///dev/ttyUSB1?uart-baudrate=921600"
+              value: "spinel+hdlc+uart:///dev/ttyUSB1?uart-baudrate=921600&uart-flow-control"
             # Infra interface on hp-elitedesk is eno1 (verified via `ip route`).
             # OTBR uses this for upstream IPv6 reachability to the LAN.
             - name: OT_INFRA_IF
@@ -60,7 +65,8 @@ spec:
             # Default, but explicit so future readers don't have to check.
             - name: OT_THREAD_IF
               value: "wpan0"
-            # 5 = notice (default is 7 = debug, way too chatty).
+            # 7 = debug, kept temporarily to diagnose the RCP timeouts.
+            # Set back to 5 (notice) once the RCP link is stable.
             - name: OT_LOG_LEVEL
               value: "7"
             # Both HTTP ports default-bind to 127.0.0.1; override so HA and

@@ -11,3 +11,4 @@ how current it is.
 | Date | Topic | File |
 |------|-------|------|
 | 2026-09-29 | OpenThread Border Router on k3s — image, capabilities, ports, NetworkManager, HA Matter integration path | [otbr-k8s-deployment.md](otbr-k8s-deployment.md) |
+| 2026-10-05 (rev. 2026-10-07) | OTBR crash loop and failing Matter OTA — RCP stops responding under sustained Spinel load; UART flow-control experiment; withdrawn theses | [otbr-operational-issues-2026-10-05.md](otbr-operational-issues-2026-10-05.md) |
