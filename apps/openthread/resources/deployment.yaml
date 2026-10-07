@@ -48,15 +48,18 @@ spec:
             # /dev/ttyUSB1 is the kernel-assigned name on hp-elitedesk for
             # the device matching the OTBR Akri Configuration's serial.
             # NOTE: baud rate must match the RCP firmware config. The default
-            # upstream value is 1000000 (1 Mbaud); the ZBDongle-E's OTBR RCP
-            # image uses 921600. Mismatch causes silent Init failure in
-            # spinel_driver.cpp with no further error detail.
+            # upstream value is 1000000 (1 Mbaud). The ZBDongle-E runs the
+            # "OpenThread RCP 2026.6.1_3.1.1" 460800 baud build (flashed
+            # 2026-10-07). The previous 921600 build lost frames under
+            # sustained load (RCP "Framing error", then "radio tx timeout").
+            # Mismatch causes silent Init failure in spinel_driver.cpp with
+            # no further error detail.
             # Do NOT add &uart-flow-control: with the current RCP firmware
             # otbr-agent then fails immediately with "Init() at
             # spinel_driver.cpp:87: Failure" (tested 2026-10-07). See
             # docs/research/otbr-operational-issues-2026-10-05.md.
             - name: OT_RCP_DEVICE
-              value: "spinel+hdlc+uart:///dev/ttyUSB1?uart-baudrate=921600"
+              value: "spinel+hdlc+uart:///dev/ttyUSB1?uart-baudrate=460800"
             # Infra interface on hp-elitedesk is eno1 (verified via `ip route`).
             # OTBR uses this for upstream IPv6 reachability to the LAN.
             - name: OT_INFRA_IF
