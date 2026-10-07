@@ -1,5 +1,9 @@
 # OTBR Operational Issues — Investigation Notes (2026-10-05, revised 2026-10-07)
 
+> **Status 2026-10-07:** Root cause narrowed down to the ZBDongle-E RCP link
+> (dongle side). Firmware/baud, USB port and flow control were tested without
+> success. Next step: replace the Thread adapter. See [Conclusion](#conclusion-2026-10-07).
+
 Investigation of the OTBR pod crash loop and the failing Matter OTA update
 of the IKEA ALPSTUGA (Matter node 10). The first version of this document
 (2026-10-05) contained several theses that turned out to be wrong when checked
@@ -123,16 +127,54 @@ side**, at half the previous baud rate too.
 Ruled out on the host: only `otbr-agent` has `/dev/ttyUSB1` open, and
 ModemManager, brltty and gpsd are inactive.
 
-### Remaining options for the RCP timeouts
+## Experiment: different USB port (2026-10-07)
 
-- ~~Lower the baud rate~~: tried at 460800, see above. It did not help.
-- **Try a different USB port or cable** (a USB 2.0 port directly on the host,
-  or a short extension cable away from USB 3 ports and the other dongle).
-  This rules out signal or power problems on the dongle.
-- **Use an adapter with working hardware flow control** (e.g. Home Assistant
-  Connect ZBT-1/ZBT-2) for Thread, if a lower baud rate does not help.
-- Count `RCP => Framing error` lines over time as a cheap health metric for
-  the link when trying any of the above.
+The ZBDongle-E was moved from USB port `3-6` to `3-7` and the host was
+rebooted. Akri matched the stick by serial (new Instance
+`akri-openthread-usb-fae18f`). It still enumerated as `/dev/ttyUSB1`, so no
+config change was needed. OTBR came up on the existing network, the Border
+Agent was `Active`, and Matter nodes 7, 8, 10 and 11 resubscribed.
+
+Result: **not fixed.** otbr-agent restarted twice in ~8 min. The second crash
+came after 5.5 min of runtime with the same signature
+(`RCP => Framing error 6`, then `radio tx timeout` 5 s later →
+`RadioSpinelNoResponse`). The cause of the first restart was not captured.
+
+## Conclusion (2026-10-07)
+
+The fault follows the dongle. Data from the host to the RCP gets corrupted
+regardless of:
+
+| Variable              | Tried                                              |
+|-----------------------|----------------------------------------------------|
+| RCP firmware / baud   | 921600 build and 460800 build (config matching)    |
+| USB port              | `3-6` and `3-7`, before and after a host reboot    |
+| Host-side contention  | only `otbr-agent` holds the TTY; ModemManager, brltty, gpsd inactive |
+| Flow control          | not possible: RTS/DTR drive the EFR32 reset/bootloader |
+
+So this is a dongle-side problem: the individual stick, or the ZBDongle-E
+design without flow control. It can't be fixed in the cluster configuration.
+As long as it remains, Matter OTA transfers (several minutes of sustained
+traffic) will keep failing.
+
+### Next step
+
+Replace the Thread RCP with an adapter that has working hardware flow
+control, e.g. Home Assistant Connect ZBT-1/ZBT-2. Keep the ZBDongle-E for
+Zigbee or retire it. When swapping:
+
+- update the serial in `infra/akri/resources/openthread-usb.yaml`;
+- set `OT_RCP_DEVICE` to the new device path and baud rate
+  (`apps/openthread/resources/deployment.yaml`);
+- the Thread dataset lives in the `openthread-data` PVC (`/data`). If it's
+  kept, devices should rejoin the existing network; otherwise they need
+  re-pairing.
+
+Optional: testing the stick on another machine would show whether this one
+stick or the model is the problem.
+
+Use the count of `RCP => Framing error` lines over time as a cheap health
+metric for the RCP link.
 
 ## Open questions
 
