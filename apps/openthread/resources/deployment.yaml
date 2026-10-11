@@ -63,10 +63,10 @@ spec:
             # Default, but explicit so future readers don't have to check.
             - name: OT_THREAD_IF
               value: "wpan0"
-            # 7 = debug, kept temporarily to diagnose the RCP timeouts.
-            # Set back to 5 (notice) once the RCP link is stable.
+            # 5 = notice (7 = debug logs every Spinel frame, use only when
+            # diagnosing the RCP link).
             - name: OT_LOG_LEVEL
-              value: "7"
+              value: "5"
             # Both HTTP ports default-bind to 127.0.0.1; override so HA and
             # the browser can reach them. With hostNetwork=true, "0.0.0.0"
             # binds to all host interfaces.

@@ -1,8 +1,8 @@
 # OTBR Operational Issues — Investigation Notes (2026-10-05, revised 2026-10-07)
 
-> **Status 2026-10-11:** The ZBDongle-E (RCP link dropped bytes under load) was
-> replaced with an SMLIGHT SLZB-07Mg24 with hardware flow control. The link has
-> been clean since. See [Adapter swap](#adapter-swap-2026-10-11).
+> **Status 2026-10-11 — resolved.** The ZBDongle-E (RCP link dropped bytes under
+> load) was replaced with an SMLIGHT SLZB-07Mg24 with hardware flow control. The
+> ALPSTUGA OTA update then completed without issues. See [Adapter swap](#adapter-swap-2026-10-11).
 
 Investigation of the OTBR pod crash loop and the failing Matter OTA update
 of the IKEA ALPSTUGA (Matter node 10). The first version of this document
@@ -203,8 +203,16 @@ the SMLIGHT web flasher.
   13 min, including the reconnect burst that reliably crashed the
   ZBDongle-E.
 
-Pending: retry the ALPSTUGA OTA as the real load test, then set
-`OT_LOG_LEVEL` back to 5.
+**OTA verified 2026-10-11:** the ALPSTUGA (node 10) updated from 1.0.13 to
+1.0.26. The BDX download ran 11:33:30–11:37:18 UTC (~4 min) without any OTBR
+crash. `OT_LOG_LEVEL` was then set back to 5.
+
+Later the old ZBDongle-E was unplugged and the SLZB moved to USB port `3-7`.
+The running pod then failed with `CreateContainerError: lstat
+/dev/bus/usb/003/003: no such file or directory`: Akri injects the USB device
+node too, and replugging changes its device number. Deleting the pod (Akri
+injects the current node) fixed it. The network was restored automatically,
+because it is now stored in the SLZB's own settings file.
 
 ## Open questions
 
