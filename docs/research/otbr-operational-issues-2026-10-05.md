@@ -1,8 +1,8 @@
 # OTBR Operational Issues — Investigation Notes (2026-10-05, revised 2026-10-07)
 
-> **Status 2026-10-07:** Root cause narrowed down to the ZBDongle-E RCP link
-> (dongle side). Firmware/baud, USB port and flow control were tested without
-> success. Next step: replace the Thread adapter. See [Conclusion](#conclusion-2026-10-07).
+> **Status 2026-10-11:** The ZBDongle-E (RCP link dropped bytes under load) was
+> replaced with an SMLIGHT SLZB-07Mg24 with hardware flow control. The link has
+> been clean since. See [Adapter swap](#adapter-swap-2026-10-11).
 
 Investigation of the OTBR pod crash loop and the failing Matter OTA update
 of the IKEA ALPSTUGA (Matter node 10). The first version of this document
@@ -175,6 +175,36 @@ stick or the model is the problem.
 
 Use the count of `RCP => Framing error` lines over time as a cheap health
 metric for the RCP link.
+
+## Adapter swap (2026-10-11)
+
+The Thread RCP is now an **SMLIGHT SLZB-07Mg24** (EFR32MG24, CP2102N with
+RTS/CTS wired), serial `3e0565ef23adef11a9e18a4ba8793231`. It runs OpenThread
+RCP `SL-OPENTHREAD/2.7.2.0_GitHub-fb0446f53` at 460800 baud, flashed with
+the SMLIGHT web flasher.
+
+- `OT_RCP_DEVICE`:
+  `spinel+hdlc+uart:///dev/ttyUSB1?uart-baudrate=460800&uart-flow-control`.
+  Hardware flow control works on this stick (`crtscts` set, RCP answers at
+  init), as SMLIGHT documents.
+- Akri `akri-openthread-usb` now matches the new serial.
+- **Settings did not carry over automatically.** OpenThread posix names its
+  settings file after the radio's EUI-64 (`/data/thread/0_<eui64>.data`).
+  The new radio started with an empty file (`ot-ctl state` → `disabled`). The
+  old network is still in `0_e456acfffe605022.data`. It was restored by
+  entering the existing active dataset with `ot-ctl dataset …` /
+  `dataset commit active` / `ifconfig up` / `thread start`. The BR rejoined
+  partition `779020406` as router.
+- Side effect: the BR generated a new OMR prefix (`fdc7:443:5dba:1::/64`,
+  previously `fd40:3d95:1ac5:1::/64`), because that's stored in the
+  per-radio settings, not in the dataset. Devices re-registered via SRP on their own.
+- Result after the swap: Matter nodes 7, 8, 10 and 11 resubscribed within
+  ~30 s. 0 framing errors, 0 `radio tx timeout`, 0 restarts in the first
+  13 min, including the reconnect burst that reliably crashed the
+  ZBDongle-E.
+
+Pending: retry the ALPSTUGA OTA as the real load test, then set
+`OT_LOG_LEVEL` back to 5.
 
 ## Open questions
 
