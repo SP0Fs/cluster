@@ -8,11 +8,12 @@ spec:
     discoveryDetails: |
       groupRecursive: true # Recommended unless using very exact udev rules
       udevRules:
-      # ZBDongle-E (Silicon Labs EFR32MG21 flashed with OTBR RCP firmware).
+      # SMLIGHT SLZB-07Mg24 (Silicon Labs EFR32MG24 flashed with OpenThread
+      # RCP firmware, 460800 baud, hardware flow control). Replaced the
+      # ZBDongle-E on 2026-10-11, whose RCP link dropped bytes under load.
       # VID/PID 10c4:ea60 is shared with the ZBDongle-P on Zigbee2MQTT (both
       # use a Silicon Labs CP210x USB-UART bridge), so we add the device's
       # unique serial to distinguish them. If this dongle is replaced,
-      # update the serial — `udevadm info -a -n /dev/ttyUSB1 | grep serial`
-      # on the new stick.
-      - ATTRS{idVendor}=="10c4", ATTRS{idProduct}=="ea60", ATTRS{serial}=="966327398678f011b9e1a6e70ba521c7"
+      # update the serial — `ls -l /dev/serial/by-id/` on hp-elitedesk.
+      - ATTRS{idVendor}=="10c4", ATTRS{idProduct}=="ea60", ATTRS{serial}=="3e0565ef23adef11a9e18a4ba8793231"
     name: udev

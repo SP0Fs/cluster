@@ -44,22 +44,18 @@ spec:
               cpu: 200m
               memory: 256Mi
           env:
-            # RCP over the E dongle. With Akri handling device injection,
-            # /dev/ttyUSB1 is the kernel-assigned name on hp-elitedesk for
-            # the device matching the OTBR Akri Configuration's serial.
-            # NOTE: baud rate must match the RCP firmware config. The default
-            # upstream value is 1000000 (1 Mbaud). The ZBDongle-E runs the
-            # "OpenThread RCP 2026.6.1_3.1.1" 460800 baud build (flashed
-            # 2026-10-07). The previous 921600 build lost frames under
-            # sustained load (RCP "Framing error", then "radio tx timeout").
-            # Mismatch causes silent Init failure in spinel_driver.cpp with
-            # no further error detail.
-            # Do NOT add &uart-flow-control: with the current RCP firmware
-            # otbr-agent then fails immediately with "Init() at
-            # spinel_driver.cpp:87: Failure" (tested 2026-10-07). See
-            # docs/research/otbr-operational-issues-2026-10-05.md.
+            # RCP over the SMLIGHT SLZB-07Mg24 (replaced the ZBDongle-E on
+            # 2026-10-11). Akri injects the device matching the OTBR Akri
+            # Configuration's serial at its host path; on hp-elitedesk that is
+            # /dev/ttyUSB1 (check `ls -l /dev/serial/by-id/` if USB devices
+            # are added or removed, the ttyUSB numbering can shift).
+            # Firmware: SL-OPENTHREAD/2.7.2.0 RCP at 460800 baud. SMLIGHT
+            # documents hardware flow control as ENABLED for SLZB-07Mg24,
+            # hence &uart-flow-control. Baud mismatch causes silent Init
+            # failure in spinel_driver.cpp with no further error detail.
+            # See docs/research/otbr-operational-issues-2026-10-05.md.
             - name: OT_RCP_DEVICE
-              value: "spinel+hdlc+uart:///dev/ttyUSB1?uart-baudrate=460800"
+              value: "spinel+hdlc+uart:///dev/ttyUSB1?uart-baudrate=460800&uart-flow-control"
             # Infra interface on hp-elitedesk is eno1 (verified via `ip route`).
             # OTBR uses this for upstream IPv6 reachability to the LAN.
             - name: OT_INFRA_IF
