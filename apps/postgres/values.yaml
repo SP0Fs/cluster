@@ -2,12 +2,12 @@ auth:
   username: spof
   existingSecret: postgres-auth
 
+# Single primary. The architecture stays "replication" because "standalone" renames the
+# StatefulSet (postgres-postgresql-primary -> postgres-postgresql) and would start on a new, empty PVC.
 architecture: replication
 
-replication:
-  synchronous_commit: "on"
-  numSynchronousReplicas: 1
-  application_name: spof_pgsql
+readReplicas:
+  replicaCount: 0
 
 persistence:
   storageClass: ssd

@@ -6,6 +6,7 @@ metadata:
 spec:
   selector:
     app.kubernetes.io/instance: postgres
+    app.kubernetes.io/component: primary
   type: ClusterIP
   trafficDistribution: PreferClose
   sessionAffinity: ClientIP

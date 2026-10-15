@@ -18,6 +18,7 @@ postgres-k8s/
 ## Configuration
 
 - Helm chart: bitnami/postgresql v15.5.31
+- Single primary, no read replica (`readReplicas.replicaCount: 0`)
 - Persistent storage enabled
 - Automated backups (if configured)
 
