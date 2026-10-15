@@ -18,6 +18,7 @@ zigbee2mqtt-k8s/
 
 - MQTT integration with mosquitto
 - USB Zigbee adapter passthrough
+- Availability tracking: mains devices offline after 10 min, battery devices (TRVs) after 25 h; HA alerts on offline TRVs
 
 ## Links
 
