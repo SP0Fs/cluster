@@ -4,7 +4,7 @@ Household inventory: groceries and consumables, best-before dates, minimum stock
 
 ## Overview
 
-[Grocy](https://grocy.info/) runs from the [linuxserver.io image](https://docs.linuxserver.io/images/docker-grocy/) as plain manifests. Its data (SQLite database, uploaded pictures, `config.php`) lives in `/config` on a `local-path` PVC. The NFS `ssd` class isn't used because SQLite needs reliable file locking.
+[Grocy](https://grocy.info/) runs from the [linuxserver.io image](https://docs.linuxserver.io/images/docker-grocy/) (`latest` = stable releases, pulled on every restart) as plain manifests. Its data (SQLite database, uploaded pictures, `config.php`) lives in `/config` on a `local-path` PVC. The NFS `ssd` class isn't used because SQLite needs reliable file locking.
 
 ## Repository Structure
 

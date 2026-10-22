@@ -21,8 +21,10 @@ spec:
     spec:
       containers:
         - name: grocy
-          image: lscr.io/linuxserver/grocy:v4.7.1-ls346
-          imagePullPolicy: IfNotPresent
+          # linuxserver's "latest" tracks stable Grocy releases (there is no "stable" tag);
+          # Always pulls the newest build on every pod restart, like Home Assistant
+          image: lscr.io/linuxserver/grocy:latest
+          imagePullPolicy: Always
           env:
             - name: PUID
               value: "1000"
