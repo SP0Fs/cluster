@@ -1,0 +1,13 @@
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: grocy-config
+  namespace: grocy
+spec:
+  accessModes:
+    - ReadWriteOnce
+  # local-path, not the NFS "ssd" class: Grocy keeps its data in SQLite, which needs real file locking
+  storageClassName: local-path
+  resources:
+    requests:
+      storage: 1Gi
