@@ -27,6 +27,9 @@ spec:
         - name: ha-lock
           emptyDir:
             medium: Memory
+        - name: kassenbon-card
+          configMap:
+            name: kassenbon-card
       initContainers:
         - name: fix-nfs-lock
           image: busybox
@@ -58,6 +61,9 @@ spec:
               name: ha-storage
             - mountPath: "/lock"
               name: ha-lock
+            - mountPath: "/config/www/kassenbon-card.js"
+              name: kassenbon-card
+              subPath: kassenbon-card.js
           ports:
             - containerPort: 8123
               name: http
