@@ -16,6 +16,16 @@ primary:
   nodeSelector:
     kubernetes.io/hostname: hp-elitedesk
 
+  # The chart's default "nano" preset (192Mi) got OOM-killed by a single large HA statistics update.
+  resources:
+    requests:
+      cpu: 100m
+      memory: 256Mi
+    limits:
+      cpu: "1"
+      memory: 1Gi
+      ephemeral-storage: 2Gi
+
   extraEnvVars:
     - name: SYNAPSE_DB_PASSWORD
       valueFrom:
