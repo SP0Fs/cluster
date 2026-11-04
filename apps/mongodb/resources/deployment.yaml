@@ -15,6 +15,9 @@ spec:
       labels:
         app: mongodb
     spec:
+      securityContext:
+        runAsUser: 999
+        runAsGroup: 999
       nodeSelector:
         kubernetes.io/hostname: c-nuc7
       containers:
