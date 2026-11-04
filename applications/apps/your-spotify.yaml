@@ -8,7 +8,7 @@ spec:
   source:
     repoURL: "https://github.com/SP0Fs/cluster.git"
     targetRevision: main
-    path: apps/myspotify/resources
+    path: apps/your-spotify/resources
   destination:
     server: "https://kubernetes.default.svc"
     namespace: your-spotify
