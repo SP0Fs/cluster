@@ -20,10 +20,10 @@ spec:
           image: yooooomi/your_spotify_client
           imagePullPolicy: Always
           ports:
-            - containerPort: 80
+            - containerPort: 3000
           env:
             - name: API_ENDPOINT
-              value: "https://spotify.leibold.tech"
+              value: "https://spotify.leibold.tech/api"
           resources:
             requests:
               cpu: "100m"
