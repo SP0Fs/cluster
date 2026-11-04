@@ -23,13 +23,6 @@ spec:
       containers:
         - name: mongodb
           image: mongo:6
-          command: ["mongod"]
-          args:
-            - "--dbpath"
-            - "/data/db"
-            - "--bind_ip"
-            - "127.0.0.1"
-            - "--noauth"
           ports:
             - containerPort: 27017
           envFrom:
@@ -38,34 +31,34 @@ spec:
           volumeMounts:
             - name: mongodb-data
               mountPath: /data/db
-          # startupProbe:
-          #   exec:
-          #     command:
-          #       - sh
-          #       - -c
-          #       - >-
-          #         mongosh --quiet --host 127.0.0.1
-          #         --username "$MONGO_INITDB_ROOT_USERNAME"
-          #         --password "$MONGO_INITDB_ROOT_PASSWORD"
-          #         --authenticationDatabase admin
-          #         --eval 'db.adminCommand({ ping: 1 }).ok' | grep -q '^1$'
-          #   periodSeconds: 10
-          #   timeoutSeconds: 5
-          #   failureThreshold: 30
-          # readinessProbe:
-          #   exec:
-          #     command:
-          #       - sh
-          #       - -c
-          #       - >-
-          #         mongosh --quiet --host 127.0.0.1
-          #         --username "$MONGO_INITDB_ROOT_USERNAME"
-          #         --password "$MONGO_INITDB_ROOT_PASSWORD"
-          #         --authenticationDatabase admin
-          #         --eval 'db.adminCommand({ ping: 1 }).ok' | grep -q '^1$'
-          #   periodSeconds: 10
-          #   timeoutSeconds: 5
-          #   failureThreshold: 3
+          startupProbe:
+            exec:
+              command:
+                - sh
+                - -c
+                - >-
+                  mongosh --quiet --host 127.0.0.1
+                  --username "$MONGO_INITDB_ROOT_USERNAME"
+                  --password "$MONGO_INITDB_ROOT_PASSWORD"
+                  --authenticationDatabase admin
+                  --eval 'db.adminCommand({ ping: 1 }).ok' | grep -q '^1$'
+            periodSeconds: 10
+            timeoutSeconds: 5
+            failureThreshold: 30
+          readinessProbe:
+            exec:
+              command:
+                - sh
+                - -c
+                - >-
+                  mongosh --quiet --host 127.0.0.1
+                  --username "$MONGO_INITDB_ROOT_USERNAME"
+                  --password "$MONGO_INITDB_ROOT_PASSWORD"
+                  --authenticationDatabase admin
+                  --eval 'db.adminCommand({ ping: 1 }).ok' | grep -q '^1$'
+            periodSeconds: 10
+            timeoutSeconds: 5
+            failureThreshold: 3
       volumes:
         - name: mongodb-data
           persistentVolumeClaim:
