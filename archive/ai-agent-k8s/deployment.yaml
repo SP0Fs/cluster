@@ -1,0 +1,214 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: ai-agent
+  namespace: ai-agent
+  labels:
+    app: ai-agent
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: ai-agent
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      labels:
+        app: ai-agent
+    spec:
+      serviceAccountName: wren
+      automountServiceAccountToken: true
+      securityContext:
+        fsGroup: 10000
+        seccompProfile:
+          type: RuntimeDefault
+      initContainers:
+        # Render the ConfigMap template (with ${MATRIX_ACCESS_TOKEN} etc.) into the
+        # persistent hermes home, then chown everything to uid 10000 (the hermes user).
+        # Also seeds custom plugins and skills from /opt/hermes/wren/ (baked into the
+        # image by Dockerfile.hermes-agent). Both steps are idempotent and fast on PVC.
+        - name: render-config
+          image: ghcr.io/marcleibold/hermes-agent:matrix
+          imagePullPolicy: Always
+          securityContext:
+            runAsUser: 0
+            runAsGroup: 0
+          command:
+            - /bin/sh
+            - -c
+            - |
+              set -eu
+              mkdir -p /opt/data/platforms/matrix/store
+              cp /config-template/config.yaml /opt/data/config.yaml
+              # NOTE: Persona files (IDENTITY/USER/MEMORY/TOOLS/AGENTS) live
+              # in the PVC (/opt/data/) and are NOT seeded by this init
+              # script. They are initialized once via `kubectl cp` from
+              # the persona/ directory in this repo, then live entirely
+              # in the PVC. If the PVC is wiped, re-seed manually — see
+              # the Dockerfile.hermes-agent comment for the policy.
+              # Custom plugins and skills (always seed; user edits not expected
+              # here, and we want the version-controlled copy to be canonical).
+              for d in /opt/hermes/wren/plugins/*/; do
+                [ -d "$d" ] || continue
+                name=$(basename "$d")
+                mkdir -p "/opt/data/plugins/$name"
+                cp -r "$d". "/opt/data/plugins/$name/"
+              done
+              for d in /opt/hermes/wren/skills/*/; do
+                [ -d "$d" ] || continue
+                name=$(basename "$d")
+                mkdir -p "/opt/data/skills/$name"
+                cp -r "$d". "/opt/data/skills/$name/"
+              done
+              python3 -c '
+              import os, pathlib
+              p = pathlib.Path("/opt/data/config.yaml")
+              t = p.read_text()
+              for k, v in os.environ.items():
+                  t = t.replace("${" + k + "}", v)
+              p.write_text(t)
+              '
+              # Build a kubeconfig from the projected SA token so the k8s
+              # plugin (and `kubectl` if invoked) can talk to the API server
+              # without relying on the slightly-broken in-cluster env-var
+              # auto-discovery (KUBERNETES_PORT is set to a URL, not a number,
+              # by k3s service env injection).
+              mkdir -p /opt/data/.kube
+              KUBE_TOKEN=$(cat /var/run/secrets/kubernetes.io/serviceaccount/token)
+              KUBE_CA=/var/run/secrets/kubernetes.io/serviceaccount/ca.crt
+              KUBE_NS=$(cat /var/run/secrets/kubernetes.io/serviceaccount/namespace)
+              cat > /opt/data/.kube/config <<EOF
+              apiVersion: v1
+              kind: Config
+              clusters:
+              - name: in-cluster
+                cluster:
+                  server: https://${KUBERNETES_SERVICE_HOST}:${KUBERNETES_SERVICE_PORT}
+                  certificate-authority: ${KUBE_CA}
+              contexts:
+              - name: wren
+                context:
+                  cluster: in-cluster
+                  namespace: ${KUBE_NS}
+                  user: wren
+              current-context: wren
+              users:
+              - name: wren
+                user:
+                  token: ${KUBE_TOKEN}
+              EOF
+              chown -R 10000:10000 /opt/data
+          env:
+            - name: MATRIX_ACCESS_TOKEN
+              valueFrom:
+                secretKeyRef:
+                  name: ai-agent-secrets
+                  key: MATRIX_ACCESS_TOKEN
+          volumeMounts:
+            - name: hermes-home
+              mountPath: /opt/data
+            - name: config-template
+              mountPath: /config-template
+              readOnly: true
+      containers:
+        - name: gateway
+          image: ghcr.io/marcleibold/hermes-agent:matrix
+          imagePullPolicy: Always
+          command:
+            - hermes
+            - gateway
+            - run
+          env:
+            - name: HOME
+              value: /opt/data
+            - name: NODE_ENV
+              value: production
+            - name: KUBECONFIG
+              value: /opt/data/.kube/config
+            - name: MATRIX_HOMESERVER
+              value: https://matrix.leibold.tech
+            - name: MATRIX_ACCESS_TOKEN
+              valueFrom:
+                secretKeyRef:
+                  name: ai-agent-secrets
+                  key: MATRIX_ACCESS_TOKEN
+            - name: MATRIX_ENCRYPTION
+              value: "true"
+            - name: MINIMAX_API_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: ai-agent-secrets
+                  key: MINIMAX_API_KEY
+            - name: HERMES_GATEWAY_TOKEN
+              valueFrom:
+                secretKeyRef:
+                  name: ai-agent-secrets
+                  key: HERMES_GATEWAY_TOKEN
+            - name: GATEWAY_ALLOW_ALL_USERS
+              value: "true"
+            - name: WREN_GITHUB_APP_DIR
+              value: /etc/wren/github-app
+            - name: HASS_URL
+              value: http://homeassistant.homeassistant:8123
+            - name: HASS_TOKEN
+              valueFrom:
+                secretKeyRef:
+                  name: hass-secrets
+                  key: HASS_TOKEN
+          resources:
+            requests:
+              memory: 512Mi
+              cpu: 250m
+            limits:
+              memory: 2Gi
+              cpu: "1"
+          livenessProbe:
+            exec:
+              command:
+                - /bin/sh
+                - -c
+                - kill -0 1
+            initialDelaySeconds: 60
+            periodSeconds: 30
+            timeoutSeconds: 5
+            failureThreshold: 3
+          volumeMounts:
+            - name: hermes-home
+              mountPath: /opt/data
+            - name: tmp-volume
+              mountPath: /tmp
+            - name: wren-github-app
+              mountPath: /etc/wren/github-app
+              readOnly: true
+          securityContext:
+            runAsUser: 10000
+            runAsGroup: 10000
+            runAsNonRoot: true
+            allowPrivilegeEscalation: false
+            capabilities:
+              drop:
+                - CAP_SYS_ADMIN
+                - CAP_NET_ADMIN
+                - CAP_SYS_RAWIO
+                - CAP_SYS_BOOT
+      volumes:
+        - name: hermes-home
+          persistentVolumeClaim:
+            claimName: ai-agent-home-pvc
+        - name: config-template
+          configMap:
+            name: ai-agent
+        - name: tmp-volume
+          emptyDir: {}
+        - name: wren-github-app
+          secret:
+            secretName: wren-github-app
+            defaultMode: 0440
+            items:
+              - key: githubAppID
+                path: github-app-id
+              - key: githubAppInstallationID
+                path: github-app-installation-id
+              - key: githubAppPrivateKey
+                path: github-app-private-key.pem
