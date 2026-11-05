@@ -33,3 +33,22 @@ metadata:
 spec:
   ca:
     secretName: mongo-express-root-ca
+
+---
+apiVersion: cert-manager.io/v1
+kind: Certificate
+metadata:
+  name: mongo-express-proxy-tls
+  namespace: mongodb
+spec:
+  secretName: mongo-express-proxy-tls
+  dnsNames:
+    - mongo.leibold.tech
+  issuerRef:
+    name: mongo-express-ca-issuer
+    kind: ClusterIssuer
+    group: cert-manager.io
+  usages:
+    - digital signature
+    - key encipherment
+    - server auth
