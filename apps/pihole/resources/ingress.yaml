@@ -6,11 +6,6 @@ metadata:
   annotations:
     cert-manager.io/cluster-issuer: ca-issuer
     nginx.ingress.kubernetes.io/backend-protocol: HTTP
-    nginx.ingress.kubernetes.io/server-snippet: |
-      set $do_mtls 1;
-      if ($uri ~* "^/.well-known/acme-challenge/") {
-        set $do_mtls 0;
-      }
     nginx.ingress.kubernetes.io/auth-tls-verify-client: $do_mtls
     nginx.ingress.kubernetes.io/auth-tls-secret: "ingress-nginx/spof-cert"
     nginx.ingress.kubernetes.io/auth-tls-verify-depth: "1"
