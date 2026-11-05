@@ -14,17 +14,4 @@ controller:
         topologyKey: "kubernetes.io/hostname"
 
   service:
-    type: NodePort
-    nodePorts:
-      http: 32366
-      https: 30197
-      tcp:
-        25565: 32565 # minecraft
-        # 27015: 32015 # factorio
-      #udp:
-      #34197: 32197 # factorio
-# tcp:
-# 25565: "minecraft-server/minecraft-server-minecraft:25565"
-#27015: "factorio-server/factorio-server:27015"
-#udp:
-#  34197: "factorio-server/factorio-server:34197"
+    type: LoadBalancer
