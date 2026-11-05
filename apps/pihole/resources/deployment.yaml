@@ -1,17 +1,16 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  labels:
-    app: pihole
   name: pihole
   namespace: pihole
+  labels:
+    app: pihole
 spec:
-  replicas: 1
+  replicas: 2 # one per network
   strategy:
     rollingUpdate:
-      maxSurge: 1
+      maxSurge: 0
       maxUnavailable: 1
-    type: RollingUpdate
   selector:
     matchLabels:
       app: pihole
@@ -20,20 +19,24 @@ spec:
       labels:
         app: pihole
     spec:
-      nodeSelector:
-        kubernetes.io/hostname: hp-elitedesk
-      dnsPolicy: ClusterFirst
-      restartPolicy: Always
+      affinity:
+        nodeAffinity:
+          requiredDuringSchedulingIgnoredDuringExecution:
+            nodeSelectorTerms:
+              - matchExpressions:
+                  - key: network
+                    operator: Exists
+        podAntiAffinity:
+          requiredDuringSchedulingIgnoredDuringExecution:
+            - topologyKey: network
+              labelSelector:
+                matchLabels:
+                  app: pihole
       volumes:
         - name: pihole-config
-          persistentVolumeClaim:
-            claimName: pihole-pvc-pihole
-        - name: pihole-dnsmasq
-          persistentVolumeClaim:
-            claimName: pihole-pvc-dnsmasq
-        - name: pihole-custom-list
-          configMap:
-            name: pihole-custom-list
+          hostPath:
+            path: /mnt/pihole
+            type: DirectoryOrCreate
         - name: pihole-adlists-list
           configMap:
             name: pihole-adlists-list
@@ -50,19 +53,12 @@ spec:
             limits:
               memory: "256Mi"
               cpu: "250m"
-          ports:
-            - containerPort: 5053
-              name: cf-tcp
-              protocol: TCP
-            - containerPort: 5053
-              name: cf-udp
-              protocol: UDP
         - name: pihole
           image: pihole/pihole:2026.10.1
           resources:
             requests:
-              memory: "500Mi"
-              cpu: "250m"
+              memory: "256Mi"
+              cpu: "100m"
             limits:
               memory: "1Gi"
               cpu: "500m"
@@ -80,22 +76,17 @@ spec:
                   key: WEBPASSWORD
           ports:
             - containerPort: 53
-              name: pihole-dns-tcp
+              name: dns-tcp
               protocol: TCP
             - containerPort: 53
-              name: pihole-dns-udp
-              protocol: UDP
-            - containerPort: 67
-              name: pihole-67-udp
+              name: dns-udp
               protocol: UDP
             - containerPort: 80
               name: http
               protocol: TCP
-            - containerPort: 443
-              name: https
-              protocol: TCP
           volumeMounts:
             - mountPath: /etc/pihole
               name: pihole-config
-            - mountPath: /etc/dnsmasq.d
-              name: pihole-dnsmasq
+            - mountPath: /etc/pihole/adlists.list
+              name: pihole-adlists-list
+              subPath: adlists.list
