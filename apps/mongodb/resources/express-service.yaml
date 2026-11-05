@@ -3,10 +3,14 @@ kind: Service
 metadata:
   name: mongo-express
   namespace: mongodb
+  annotations:
+    metallb.io/address-pool: chris-local
 spec:
+  type: LoadBalancer
   selector:
     app: mongo-express
   ports:
-    - protocol: TCP
-      port: 8081
+    - name: http
+      protocol: TCP
+      port: 80
       targetPort: 8081
