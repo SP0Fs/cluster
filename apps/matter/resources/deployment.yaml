@@ -52,23 +52,22 @@ spec:
       dnsPolicy: ClusterFirstWithHostNet
       containers:
         - name: matter-server
-          # Open Home Foundation Matter Server. HA's Matter component
-          # (`matter-python-client==1.4.0` in HA core) speaks this server's
-          # WebSocket protocol. `:stable` tracks the latest 6.2.x release;
-          # pin to a digest in production.
-          image: ghcr.io/home-assistant-libs/python-matter-server:stable
+          # Open Home Foundation Matter Server, matter.js rewrite. Drop-in
+          # replacement for the archived python-matter-server (same
+          # WebSocket API on 5580, reads/migrates the Python data files in
+          # /data on first start and keeps <fabric>.json in sync, so a
+          # rollback to python-matter-server on the same PVC is possible).
+          # Provides the Thread/WiFi network map in HA's Matter panel.
+          # Docs: https://github.com/matter-js/matterjs-server/blob/main/docs/docker.md
+          image: ghcr.io/matter-js/matterjs-server:stable
           imagePullPolicy: Always
-          # Override CMD to point --ota-provider-dir at the dedicated
-          # matter-updates PVC. The default would be cwd/updates =
-          # /app/updates, which can't be created because the root FS
-          # is read-only (see securityContext below). Mirrors the
-          # official Home Assistant Matter add-on, which sets
-          # `--ota-provider-dir /config/updates`.
+          # Same args as the Python server, minus --paa-root-cert-dir
+          # (unsupported in matter.js; DCL certificates are handled
+          # internally). --ota-provider-dir points at the dedicated
+          # matter-updates PVC.
           args:
             - "--storage-path"
             - "/data"
-            - "--paa-root-cert-dir"
-            - "/data/credentials"
             - "--ota-provider-dir"
             - "/data/updates"
           ports:
@@ -76,26 +75,30 @@ spec:
               name: ws
               protocol: TCP
           env:
-            # Server reads /data on startup for persisted fabric state
-            # (commissioning credentials, device list). The PVC is mounted
-            # at this path.
-            - name: MATTER_SERVER_DATA_DIR
-              value: /data
-            # Optional: log level (info | debug | verbose)
+            # Pin the interface used for mDNS/Matter traffic. With
+            # hostNetwork the pod sees eno1, wpan0, CNI bridges, etc.;
+            # auto-detect could pick the wrong one.
+            - name: PRIMARY_INTERFACE
+              value: eno1
             - name: LOG_LEVEL
               value: info
-            # Optional: thread network credentials. The server doesn't
-            # need these — HA's Thread integration owns them and shares
-            # via WebSocket. Left commented for documentation.
-            # - name: THREAD_NETWORK_NAME
-            #   value: "Home"
+            # Plain log output (no ANSI colours) for kubectl logs.
+            - name: MATTER_LOG_FORMAT
+              value: plain
+            - name: TZ
+              value: Europe/Berlin
+            # Node.js has no heap limit by default; cap V8 old-space at
+            # ~75 % of the container memory limit so GC kicks in before
+            # the kernel OOM-kills the pod.
+            - name: NODE_OPTIONS
+              value: "--max-old-space-size=768"
           resources:
             requests:
               cpu: 50m
               memory: 128Mi
             limits:
               cpu: 500m
-              memory: 512Mi
+              memory: 1Gi
           livenessProbe:
             tcpSocket:
               port: ws
@@ -111,8 +114,8 @@ spec:
             timeoutSeconds: 3
             failureThreshold: 3
           securityContext:
-            # Matter Server is a Python app; runs as non-root in the upstream
-            # image already. Pin the user explicitly for clarity.
+            # The matter.js image runs as unprivileged uid 1000 by default;
+            # existing /data files are already owned by 1000:1000.
             runAsNonRoot: true
             runAsUser: 1000
             runAsGroup: 1000
@@ -124,12 +127,8 @@ spec:
           volumeMounts:
             - name: data
               mountPath: /data
-            # /tmp must be writable — the CHIP SDK writes its KVS file
-            # (chip_kvs-*) here at startup. With readOnlyRootFilesystem,
-            # /tmp would be on the (read-only) root FS and the server
-            # would crash on init with "Read-only file system". An
-            # emptyDir at /tmp gives it scratch space without making
-            # the image's own filesystem writable.
+            # Writable scratch space for /tmp, since the root FS is
+            # read-only.
             - name: tmp
               mountPath: /tmp
             # OTA firmware blobs + provider KVS + per-update logs go
