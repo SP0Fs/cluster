@@ -20,6 +20,7 @@ spec:
       containers:
         - name: zigbee2mqtt
           image: koenkk/zigbee2mqtt:2
+          imagePullPolicy: Always
           resources:
             limits:
               akri.sh/akri-zigbee-usb: "1"
