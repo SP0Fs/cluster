@@ -57,7 +57,7 @@ spec:
           # WebSocket protocol. `:stable` tracks the latest 6.2.x release;
           # pin to a digest in production.
           image: ghcr.io/home-assistant-libs/python-matter-server:stable
-          imagePullPolicy: IfNotPresent
+          imagePullPolicy: Always
           # Override CMD to point --ota-provider-dir at the dedicated
           # matter-updates PVC. The default would be cwd/updates =
           # /app/updates, which can't be created because the root FS
