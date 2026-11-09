@@ -33,11 +33,9 @@ spec:
               value: "mqtt://mosquitto.mosquitto.svc.cluster.local"
             - name: "ZIGBEE2MQTT_CONFIG_MQTT_BASE_TOPIC"
               value: "zigbee2mqtt"
-            - name: "ZIGBEE2MQTT_CONFIG_PERMIT_JOIN"
-              value: "false"
             - name: "ZIGBEE2MQTT_CONFIG_SERIAL_PORT"
               value: "/dev/ttyUSB0"
-            - name: "ZIGBEE2MQTT_CONFIG_HOMEASSISTANT"
+            - name: "ZIGBEE2MQTT_CONFIG_HOMEASSISTANT_ENABLED"
               value: "true"
             # mark devices offline in HA: mains-powered after 10 min (pinged), battery after 25 h of silence
             - name: "ZIGBEE2MQTT_CONFIG_AVAILABILITY"
