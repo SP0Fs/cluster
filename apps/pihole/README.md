@@ -15,6 +15,10 @@ Network-wide ad blocker and DNS sinkhole, one instance per network.
   the IP is announced from the node running that network's Pi-hole.
 - State (`/etc/pihole`) is a hostPath `/mnt/pihole` on each node, so every
   instance has its own config (local records, lists, clients).
+- Each network has its own web password SealedSecret `<network>-pihole-webpassword`
+  (key `WEBPASSWORD`). All of them are mounted as `/run/secrets/pihole/<network>`,
+  and `WEBPASSWORD_FILE=pihole/$(ZONE)` picks the pod's own file. Without that
+  file, Pi-hole keeps the password hash in its `pihole.toml`.
 - Upstream DNS is cloudflared (DoH) as a sidecar on `127.0.0.1#5053`.
 - `listeningMode=all`, so either instance can serve the other network as a
   backup DNS (e.g. 192.168.179.8 as secondary DNS for marc).

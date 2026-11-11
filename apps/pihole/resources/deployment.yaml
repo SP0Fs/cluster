@@ -42,6 +42,23 @@ spec:
           hostPath:
             path: /mnt/pihole
             type: DirectoryOrCreate
+        # One web password Secret per network, mounted as files named after the
+        # network. Optional: a missing Secret never blocks startup.
+        - name: webpassword
+          projected:
+            sources:
+              - secret:
+                  name: marc-pihole-webpassword
+                  optional: true
+                  items:
+                    - key: WEBPASSWORD
+                      path: marc
+              - secret:
+                  name: chris-pihole-webpassword
+                  optional: true
+                  items:
+                    - key: WEBPASSWORD
+                      path: chris
       containers:
         - name: cloudflared
           image: visibilityspots/cloudflared:v2026.1.2
@@ -72,11 +89,15 @@ spec:
             # 'all' also answers clients from the other network (backup DNS).
             - name: FTLCONF_dns_listeningMode
               value: all
-            - name: FTLCONF_webserver_api_password
+            # Per-network web password: the pod's zone label (copied from the node)
+            # selects the file; the image reads /run/secrets/$WEBPASSWORD_FILE.
+            # If the file is missing, Pi-hole keeps the hash in pihole.toml.
+            - name: ZONE
               valueFrom:
-                secretKeyRef:
-                  name: pihole-webpassword
-                  key: WEBPASSWORD
+                fieldRef:
+                  fieldPath: metadata.labels['topology.kubernetes.io/zone']
+            - name: WEBPASSWORD_FILE
+              value: pihole/$(ZONE)
           ports:
             - containerPort: 53
               name: dns-tcp
@@ -93,3 +114,6 @@ spec:
           volumeMounts:
             - mountPath: /etc/pihole
               name: pihole-config
+            - mountPath: /run/secrets/pihole
+              name: webpassword
+              readOnly: true
