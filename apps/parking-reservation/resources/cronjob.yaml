@@ -1,0 +1,46 @@
+
+apiVersion: batch/v1
+kind: CronJob
+metadata:
+  name: reserve-parking-spot
+  namespace: parking
+  labels:
+    app: reserve-parking-spot
+
+spec:
+  schedule: "0 2 * * *"
+  timeZone: "Europe/Berlin"
+
+  concurrencyPolicy: Forbid
+
+  startingDeadlineSeconds: 300
+
+  successfulJobsHistoryLimit: 3
+  failedJobsHistoryLimit: 3
+
+  jobTemplate:
+    spec:
+      backoffLimit: 2
+      activeDeadlineSeconds: 600
+
+      template:
+        metadata:
+          labels:
+            app: reserve-parking-spot
+
+        spec:
+          restartPolicy: Never
+
+          imagePullSecrets:
+            - name: ghcr-pull
+
+          containers:
+            - name: reserve-parking-spot
+              image: ghcr.io/chr1s-code/parking-reservation:main
+              imagePullPolicy: Always
+
+              envFrom:
+                - configMapRef:
+                    name: parking-config
+                - secretRef:
+                    name: parking-credentials
