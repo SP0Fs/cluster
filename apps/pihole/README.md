@@ -6,8 +6,8 @@ Network-wide ad blocker and DNS sinkhole, one instance per network.
 
 - One Deployment, `replicas` = number of networks. Pod anti-affinity on
   `topology.kubernetes.io/zone` allows at most one Pi-hole per network.
-- Each node is labeled `topology.kubernetes.io/zone=<network>` (same value as its
-  `network` label, which MetalLB uses). When a pod is bound, the API server copies
+- Each node is labeled `topology.kubernetes.io/zone=<network>` (also used by the
+  MetalLB L2Advertisements). When a pod is bound, the API server copies
   that label onto the pod (`PodTopologyLabelsAdmission`, on by default since
   1.35), so the per-network Services select `topology.kubernetes.io/zone: <network>`.
   The label must be on the node **before** the pod is scheduled.
@@ -28,7 +28,7 @@ Network-wide ad blocker and DNS sinkhole, one instance per network.
 
 ## Adding a network
 
-1. Label the node `network=<name>` and `topology.kubernetes.io/zone=<name>`.
-2. Add a MetalLB pool + L2Advertisement pinned to `network=<name>`
+1. Label the node `topology.kubernetes.io/zone=<name>`.
+2. Add a MetalLB pool + L2Advertisement pinned to `topology.kubernetes.io/zone=<name>`
    (see `infra/metallb/resources`).
 3. Add `service-<name>.yaml` and bump `replicas` in `deployment.yaml`.

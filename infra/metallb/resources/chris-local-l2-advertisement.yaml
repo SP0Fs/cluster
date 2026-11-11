@@ -6,6 +6,7 @@ metadata:
 spec:
   ipAddressPools:
     - chris-local
+  # Only the .179-segment node (c-nuc7) can answer ARP for these IPs.
   nodeSelectors:
     - matchLabels:
-        network: chris
+        topology.kubernetes.io/zone: chris
