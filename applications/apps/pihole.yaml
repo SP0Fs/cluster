@@ -18,3 +18,8 @@ spec:
       selfHeal: true
     syncOptions:
       - CreateNamespace=true
+      # Client-side apply merges container/service ports by port number only, so
+      # the two port-53 entries (TCP + UDP) get mixed up on every apply and
+      # selfHeal re-rolls the Deployment forever. Server-side apply keys them by
+      # port + protocol.
+      - ServerSideApply=true
