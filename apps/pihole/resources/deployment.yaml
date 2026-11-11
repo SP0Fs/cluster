@@ -1,17 +1,20 @@
+# One Pi-hole per network. Nodes carry topology.kubernetes.io/zone=<network>;
+# the API server copies that label onto each pod when it is bound
+# (PodTopologyLabelsAdmission), and the per-network Services select on it.
+# replicas = number of networks; anti-affinity allows one pod per zone.
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  labels:
-    app: pihole
   name: pihole
   namespace: pihole
+  labels:
+    app: pihole
 spec:
-  replicas: 1
+  replicas: 2 # one per network
   strategy:
     rollingUpdate:
-      maxSurge: 1
+      maxSurge: 0 # a surge pod could never schedule (anti-affinity)
       maxUnavailable: 1
-    type: RollingUpdate
   selector:
     matchLabels:
       app: pihole
@@ -20,23 +23,25 @@ spec:
       labels:
         app: pihole
     spec:
-      nodeSelector:
-        kubernetes.io/hostname: hp-elitedesk
-      dnsPolicy: ClusterFirst
-      restartPolicy: Always
+      affinity:
+        nodeAffinity:
+          requiredDuringSchedulingIgnoredDuringExecution:
+            nodeSelectorTerms:
+              - matchExpressions:
+                  - key: topology.kubernetes.io/zone
+                    operator: Exists
+        podAntiAffinity:
+          requiredDuringSchedulingIgnoredDuringExecution:
+            - topologyKey: topology.kubernetes.io/zone
+              labelSelector:
+                matchLabels:
+                  app: pihole
       volumes:
+        # Per-node state: each network's Pi-hole keeps its own config.
         - name: pihole-config
-          persistentVolumeClaim:
-            claimName: pihole-pvc-pihole
-        - name: pihole-dnsmasq
-          persistentVolumeClaim:
-            claimName: pihole-pvc-dnsmasq
-        - name: pihole-custom-list
-          configMap:
-            name: pihole-custom-list
-        - name: pihole-adlists-list
-          configMap:
-            name: pihole-adlists-list
+          hostPath:
+            path: /mnt/pihole
+            type: DirectoryOrCreate
       containers:
         - name: cloudflared
           image: visibilityspots/cloudflared:v2026.1.2
@@ -50,19 +55,12 @@ spec:
             limits:
               memory: "256Mi"
               cpu: "250m"
-          ports:
-            - containerPort: 5053
-              name: cf-tcp
-              protocol: TCP
-            - containerPort: 5053
-              name: cf-udp
-              protocol: UDP
         - name: pihole
           image: pihole/pihole:2026.10.1
           resources:
             requests:
-              memory: "500Mi"
-              cpu: "250m"
+              memory: "256Mi"
+              cpu: "100m"
             limits:
               memory: "1Gi"
               cpu: "500m"
@@ -71,6 +69,7 @@ spec:
               value: Europe/Berlin
             - name: FTLCONF_dns_upstreams
               value: 127.0.0.1#5053
+            # 'all' also answers clients from the other network (backup DNS).
             - name: FTLCONF_dns_listeningMode
               value: all
             - name: FTLCONF_webserver_api_password
@@ -80,13 +79,10 @@ spec:
                   key: WEBPASSWORD
           ports:
             - containerPort: 53
-              name: pihole-dns-tcp
+              name: dns-tcp
               protocol: TCP
             - containerPort: 53
-              name: pihole-dns-udp
-              protocol: UDP
-            - containerPort: 67
-              name: pihole-67-udp
+              name: dns-udp
               protocol: UDP
             - containerPort: 80
               name: http
@@ -97,5 +93,3 @@ spec:
           volumeMounts:
             - mountPath: /etc/pihole
               name: pihole-config
-            - mountPath: /etc/dnsmasq.d
-              name: pihole-dnsmasq
