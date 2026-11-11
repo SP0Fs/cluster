@@ -1,0 +1,7 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: parking-config
+  namespace: parking
+data:
+  TIMESLOT_NAME: "Morning"
