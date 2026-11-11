@@ -17,14 +17,14 @@ Network-wide ad blocker and DNS sinkhole, one instance per network.
   instance has its own config (local records, lists, clients).
 - Upstream DNS is cloudflared (DoH) as a sidecar on `127.0.0.1#5053`.
 - `listeningMode=all`, so either instance can serve the other network as a
-  backup DNS (e.g. 192.168.179.240 as secondary DNS for marc).
+  backup DNS (e.g. 192.168.179.8 as secondary DNS for marc).
 
 ## Access
 
 | Network | Service | DNS / Web UI | Ingress |
 |---|---|---|---|
 | marc | `marc-pihole` | 192.168.178.128 (`/admin`) | https://pihole.leibold.tech/admin (mTLS) |
-| chris | `chris-pihole` | 192.168.179.240 (`/admin`) | - |
+| chris | `chris-pihole` | 192.168.179.8 (`/admin`) | - |
 
 ## Adding a network
 
