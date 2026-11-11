@@ -1,0 +1,57 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: ai-agent
+  namespace: ai-agent
+  labels:
+    app: ai-agent
+data:
+  config.yaml: |
+    model:
+      default: minimax/MiniMax-M3
+      provider: minimax
+
+    agent:
+      name: Wren
+
+    gateway:
+      allowAllUsers: true
+
+    platforms:
+      matrix:
+        enabled: true
+        homeserver: https://matrix.leibold.tech
+        accessToken: ${MATRIX_ACCESS_TOKEN}
+        encryption: true
+        user_id: "@wren:matrix.leibold.tech"
+        device_id: AXJVAHLNSS
+        dm:
+          policy: open
+        groupPolicy: open
+        sync_initial_state: true
+      homeassistant:
+        enabled: true
+        url: http://homeassistant.homeassistant:8123
+
+    memory:
+      memory_enabled: true
+      user_profile_enabled: true
+
+    tools:
+      enabled:
+        - web
+        - search
+        - terminal
+        - file
+        - code_execution
+        - vision
+        - delegation
+        - cronjob
+        - session_search
+        - memory
+        - skills
+        - k8s
+
+    plugins:
+      enabled:
+        - k8s

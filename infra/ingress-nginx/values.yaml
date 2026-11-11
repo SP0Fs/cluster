@@ -14,4 +14,7 @@ controller:
         topologyKey: "kubernetes.io/hostname"
 
   service:
-    type: LoadBalancer
+    type: NodePort
+    nodePorts:
+      http: 32366
+      https: 30197

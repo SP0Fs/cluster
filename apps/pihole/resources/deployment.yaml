@@ -39,17 +39,17 @@ spec:
             name: pihole-adlists-list
       containers:
         - name: cloudflared
-          image: visibilityspots/cloudflared
+          image: visibilityspots/cloudflared:v2026.1.2
           env:
             - name: PORT
               value: "5053"
           resources:
             requests:
-              memory: "500Mi"
-              cpu: "500m"
+              memory: "64Mi"
+              cpu: "50m"
             limits:
-              memory: "1Gi"
-              cpu: "1"
+              memory: "256Mi"
+              cpu: "250m"
           ports:
             - containerPort: 5053
               name: cf-tcp
@@ -58,8 +58,7 @@ spec:
               name: cf-udp
               protocol: UDP
         - name: pihole
-          image: pihole/pihole:latest
-          imagePullPolicy: Always
+          image: pihole/pihole:2026.10.1
           resources:
             requests:
               memory: "500Mi"
@@ -70,15 +69,15 @@ spec:
           env:
             - name: TZ
               value: Europe/Berlin
-            - name: DNS1
+            - name: FTLCONF_dns_upstreams
               value: 127.0.0.1#5053
-            - name: DNSMASQ_LISTENING
+            - name: FTLCONF_dns_listeningMode
               value: all
-            - name: FTLCONF_CHECK_DISK
-              value: "0"
-          envFrom:
-            - secretRef:
-                name: pihole-webpassword
+            - name: FTLCONF_webserver_api_password
+              valueFrom:
+                secretKeyRef:
+                  name: pihole-webpassword
+                  key: WEBPASSWORD
           ports:
             - containerPort: 53
               name: pihole-dns-tcp
