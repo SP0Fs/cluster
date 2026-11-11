@@ -87,7 +87,7 @@ External Network (192.168.178.0/24)
 | **Zigbee2MQTT** | zigbee2mqtt | Zigbee bridge | zigbee2mqtt.spof.local |
 | **Mosquitto** | mosquitto | MQTT broker | Internal only |
 | **ESPHome** | esphome | ESP device management | esphome.spof.local |
-| **Pi-hole** | pihole | DNS ad blocking | pihole.spof.local |
+| **Pi-hole** | pihole | DNS ad blocking, one per network (marc-pihole, chris-pihole) | pihole.leibold.tech (marc) |
 | **My Spotify** | your-spotify | Spotify statistics | spotify.spof.local |
 | **Bezel** | bezel | Digital signage | - |
 | **nanobot** | nanobot | AI assistant | Matrix channel |

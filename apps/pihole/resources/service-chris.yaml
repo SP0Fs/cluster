@@ -1,7 +1,8 @@
+# DNS + web UI of the chris Pi-hole (LAN only, no ingress).
 apiVersion: v1
 kind: Service
 metadata:
-  name: pihole-dns-chris
+  name: chris-pihole
   namespace: pihole
   annotations:
     metallb.io/address-pool: chris-local
@@ -11,12 +12,21 @@ spec:
   externalTrafficPolicy: Local
   selector:
     app: pihole
+    topology.kubernetes.io/zone: chris
   ports:
     - name: dns-udp
       port: 53
-      targetPort: 53
+      targetPort: dns-udp
       protocol: UDP
     - name: dns-tcp
       port: 53
-      targetPort: 53
+      targetPort: dns-tcp
+      protocol: TCP
+    - name: http
+      port: 80
+      targetPort: http
+      protocol: TCP
+    - name: https
+      port: 443
+      targetPort: https
       protocol: TCP

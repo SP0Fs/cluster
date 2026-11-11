@@ -1,3 +1,4 @@
+# Only the marc Pi-hole is exposed via the ingress; chris is reachable on its LB IP.
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
@@ -26,6 +27,6 @@ spec:
             path: /
             backend:
               service:
-                name: pihole-web
+                name: marc-pihole
                 port:
                   name: http

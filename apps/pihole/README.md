@@ -1,27 +1,34 @@
 # Pi-hole
 
-Network-wide ad blocker and DNS sinkhole.
+Network-wide ad blocker and DNS sinkhole, one instance per network.
 
-## Overview
+## How it works
 
-[Pi-hole](https://pi-hole.net/) blocks ads and trackers at the DNS level for the entire network.
+- One Deployment, `replicas` = number of networks. Pod anti-affinity on
+  `topology.kubernetes.io/zone` allows at most one Pi-hole per network.
+- Each node is labeled `topology.kubernetes.io/zone=<network>` (same value as its
+  `network` label, which MetalLB uses). When a pod is bound, the API server copies
+  that label onto the pod (`PodTopologyLabelsAdmission`, on by default since
+  1.35), so the per-network Services select `topology.kubernetes.io/zone: <network>`.
+  The label must be on the node **before** the pod is scheduled.
+- Services use `externalTrafficPolicy: Local`: clients keep their source IP and
+  the IP is announced from the node running that network's Pi-hole.
+- State (`/etc/pihole`) is a hostPath `/mnt/pihole` on each node, so every
+  instance has its own config (local records, lists, clients).
+- Upstream DNS is cloudflared (DoH) as a sidecar on `127.0.0.1#5053`.
+- `listeningMode=all`, so either instance can serve the other network as a
+  backup DNS (e.g. 192.168.179.240 as secondary DNS for marc).
 
-## Repository Structure
+## Access
 
-```
-pihole-k8s/
-├── application.yaml  # ArgoCD Application manifest
-├── resources/         # Additional resources
-└── values.yaml        # Helm values
-```
+| Network | Service | DNS / Web UI | Ingress |
+|---|---|---|---|
+| marc | `marc-pihole` | 192.168.178.128 (`/admin`) | https://pihole.leibold.tech/admin (mTLS) |
+| chris | `chris-pihole` | 192.168.179.240 (`/admin`) | - |
 
-## Configuration
+## Adding a network
 
-- DHCP server (optional)
-- Custom blocklists
-- DNS over HTTPS
-
-## Links
-
-- Admin UI: https://pihole.spof.local/admin
-- Namespace: `pihole`
+1. Label the node `network=<name>` and `topology.kubernetes.io/zone=<name>`.
+2. Add a MetalLB pool + L2Advertisement pinned to `network=<name>`
+   (see `infra/metallb/resources`).
+3. Add `service-<name>.yaml` and bump `replicas` in `deployment.yaml`.
