@@ -40,5 +40,7 @@ spec:
               imagePullPolicy: Always
 
               envFrom:
+                - configMapRef:
+                    name: parking-config
                 - secretRef:
                     name: parking-credentials
