@@ -20,15 +20,25 @@ spec:
       # Data lives on hp-elitedesk's local disk (pvc-db.yaml) — must stay on that node.
       nodeSelector:
         kubernetes.io/hostname: hp-elitedesk
-      # Start directly as the image's postgres user (uid/gid 70). As root, the entrypoint
-      # drops privileges via gosu, which hung at 100% CPU and never started postgres.
-      securityContext:
-        runAsUser: 70
-        runAsGroup: 70
-        runAsNonRoot: true
+      # hostPath DirectoryOrCreate makes /mnt/sparky-db root-owned; hand it to postgres (uid 70).
+      initContainers:
+        - name: chown-data
+          image: busybox:1.37
+          command: ["sh", "-c", "chown 70:70 /var/lib/postgresql && chmod 700 /var/lib/postgresql"]
+          securityContext:
+            runAsUser: 0
+          volumeMounts:
+            - name: data
+              mountPath: /var/lib/postgresql
       containers:
         - name: postgres
           image: postgres:18.3-alpine
+          # Start directly as the image's postgres user (uid/gid 70). As root, the entrypoint
+          # drops privileges via gosu, which hung at 100% CPU and never started postgres.
+          securityContext:
+            runAsUser: 70
+            runAsGroup: 70
+            runAsNonRoot: true
           ports:
             - containerPort: 5432
           env:

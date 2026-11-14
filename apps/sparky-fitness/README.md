@@ -14,7 +14,7 @@ Self-hosted nutrition / exercise / health tracker.
 
 Storage:
 - `sparkyfitness-data` — 10Gi NFS (`ssd` class), subPaths `uploads/`, `backup/`
-- `sparkyfitness-db` — `local-path` on hp-elitedesk (DB pinned there via nodeSelector)
+- `sparkyfitness-db` — static hostPath PV at `/mnt/sparky-db` on hp-elitedesk (Retain; DB pinned there via nodeSelector)
 
 Secrets: SealedSecret `sparkyfitness-secrets` (DB passwords, API encryption key, `BETTER_AUTH_SECRET`).
 `BETTER_AUTH_SECRET` must never change — rotating it logs everyone out and locks out 2FA users.
