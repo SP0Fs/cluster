@@ -1,0 +1,34 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: sparkyfitness
+  namespace: sparky-fitness
+  annotations:
+    cert-manager.io/cluster-issuer: ca-issuer
+    nginx.ingress.kubernetes.io/backend-protocol: HTTP
+    nginx.ingress.kubernetes.io/proxy-body-size: 50m # photo / import uploads
+    # mTLS TEMPORARILY DISABLED so the Let's Encrypt HTTP-01 challenge can pass.
+    # Re-enable once secret `sparky-fitness/sparkyfitness-certs` is issued.
+    # The CA secret `sparky-fitness/spof-cert` is copied out-of-band (see README).
+    # nginx.ingress.kubernetes.io/auth-tls-verify-client: "on"
+    # nginx.ingress.kubernetes.io/auth-tls-secret: "sparky-fitness/spof-cert"
+    # nginx.ingress.kubernetes.io/auth-tls-verify-depth: "1"
+    # nginx.ingress.kubernetes.io/auth-tls-error-page: "https://insult.mattbas.org/api/insult.html"
+    # nginx.ingress.kubernetes.io/auth-tls-pass-certificate-to-upstream: "true"
+spec:
+  ingressClassName: nginx
+  tls:
+    - hosts:
+        - sparky.leibold.tech
+      secretName: sparkyfitness-certs
+  rules:
+    - host: sparky.leibold.tech
+      http:
+        paths:
+          - pathType: Prefix
+            path: /
+            backend:
+              service:
+                name: sparkyfitness-frontend
+                port:
+                  number: 80

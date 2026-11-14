@@ -1,0 +1,37 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: sparkyfitness-frontend
+  namespace: sparky-fitness
+  labels:
+    app: sparkyfitness-frontend
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: sparkyfitness-frontend
+  template:
+    metadata:
+      labels:
+        app: sparkyfitness-frontend
+    spec:
+      containers:
+        - name: sparkyfitness-frontend
+          image: codewithcj/sparkyfitness:v1.12.1
+          ports:
+            - containerPort: 80
+          env:
+            - name: SPARKY_FITNESS_FRONTEND_URL
+              value: "https://sparky.leibold.tech"
+            # nginx in this container proxies /api, /health-data and /uploads here
+            - name: SPARKY_FITNESS_SERVER_HOST
+              value: sparkyfitness-server
+            - name: SPARKY_FITNESS_SERVER_PORT
+              value: "3010"
+          resources:
+            requests:
+              cpu: 10m
+              memory: 32Mi
+            limits:
+              cpu: 500m
+              memory: 256Mi

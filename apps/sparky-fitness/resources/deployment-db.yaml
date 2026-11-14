@@ -1,0 +1,55 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: sparkyfitness-db
+  namespace: sparky-fitness
+  labels:
+    app: sparkyfitness-db
+spec:
+  replicas: 1
+  strategy:
+    type: Recreate # never run two postgres instances on the same data dir
+  selector:
+    matchLabels:
+      app: sparkyfitness-db
+  template:
+    metadata:
+      labels:
+        app: sparkyfitness-db
+    spec:
+      containers:
+        - name: postgres
+          image: postgres:18.3-alpine
+          ports:
+            - containerPort: 5432
+          env:
+            # Only read on first init — do not change on an existing instance.
+            - name: POSTGRES_DB
+              value: sparkyfitness_db
+            - name: POSTGRES_USER
+              value: sparky
+            - name: POSTGRES_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: sparkyfitness-secrets
+                  key: SPARKY_FITNESS_DB_PASSWORD
+          readinessProbe:
+            exec:
+              command: ["pg_isready", "-U", "sparky", "-d", "sparkyfitness_db"]
+            initialDelaySeconds: 10
+            periodSeconds: 10
+          volumeMounts:
+            - name: data
+              mountPath: /var/lib/postgresql
+              subPath: postgresql
+          resources:
+            requests:
+              cpu: 50m
+              memory: 128Mi
+            limits:
+              cpu: "1"
+              memory: 512Mi
+      volumes:
+        - name: data
+          persistentVolumeClaim:
+            claimName: sparkyfitness-data

@@ -1,0 +1,92 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: sparkyfitness-server
+  namespace: sparky-fitness
+  labels:
+    app: sparkyfitness-server
+spec:
+  replicas: 1
+  strategy:
+    type: Recreate # runs migrations + scheduled jobs on start; keep a single instance
+  selector:
+    matchLabels:
+      app: sparkyfitness-server
+  template:
+    metadata:
+      labels:
+        app: sparkyfitness-server
+    spec:
+      terminationGracePeriodSeconds: 20
+      containers:
+        - name: sparkyfitness-server
+          image: codewithcj/sparkyfitness_server:v1.12.1
+          ports:
+            - containerPort: 3010
+          env:
+            # --- Database ---
+            - name: SPARKY_FITNESS_DB_HOST
+              value: sparkyfitness-db
+            - name: SPARKY_FITNESS_DB_PORT
+              value: "5432"
+            - name: SPARKY_FITNESS_DB_NAME
+              value: sparkyfitness_db
+            - name: SPARKY_FITNESS_DB_USER
+              value: sparky
+            - name: SPARKY_FITNESS_DB_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: sparkyfitness-secrets
+                  key: SPARKY_FITNESS_DB_PASSWORD
+            - name: SPARKY_FITNESS_APP_DB_USER
+              value: sparky_app
+            - name: SPARKY_FITNESS_APP_DB_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: sparkyfitness-secrets
+                  key: SPARKY_FITNESS_APP_DB_PASSWORD
+            # --- Security ---
+            - name: SPARKY_FITNESS_API_ENCRYPTION_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: sparkyfitness-secrets
+                  key: SPARKY_FITNESS_API_ENCRYPTION_KEY
+            - name: BETTER_AUTH_SECRET # must never change (sessions + 2FA secrets)
+              valueFrom:
+                secretKeyRef:
+                  name: sparkyfitness-secrets
+                  key: BETTER_AUTH_SECRET
+            # --- Runtime ---
+            - name: SPARKY_FITNESS_FRONTEND_URL
+              value: "https://sparky.leibold.tech"
+            - name: NODE_ENV
+              value: production
+            - name: TZ
+              value: Europe/Berlin
+            - name: SPARKY_FITNESS_LOG_LEVEL
+              value: ERROR
+            - name: SPARKY_FITNESS_SERVER_PORT
+              value: "3010"
+            - name: SPARKY_FITNESS_DISABLE_SIGNUP
+              value: "false" # flip to "true" once your account exists
+            # ingress-nginx + the frontend's bundled nginx
+            - name: SPARKY_FITNESS_TRUSTED_PROXY_HOPS
+              value: "2"
+          volumeMounts:
+            - name: data
+              mountPath: /app/SparkyFitnessServer/uploads
+              subPath: uploads
+            - name: data
+              mountPath: /app/SparkyFitnessServer/backup
+              subPath: backup
+          resources:
+            requests:
+              cpu: 50m
+              memory: 192Mi
+            limits:
+              cpu: "1"
+              memory: 1Gi
+      volumes:
+        - name: data
+          persistentVolumeClaim:
+            claimName: sparkyfitness-data

@@ -1,0 +1,13 @@
+# One NFS volume for everything: Postgres data, uploads and in-app backups (via subPath).
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: sparkyfitness-data
+  namespace: sparky-fitness
+spec:
+  accessModes:
+    - ReadWriteMany
+  resources:
+    requests:
+      storage: 10Gi
+  storageClassName: ssd
