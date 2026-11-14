@@ -1,0 +1,15 @@
+# Postgres data on the node's local disk (local-path provisioner, created on first
+# schedule under the node's local-path dir). The DB deployment is pinned to hp-elitedesk,
+# so this volume lives there. Uploads/backups stay on the NFS PVC (pvc.yaml).
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: sparkyfitness-db
+  namespace: sparky-fitness
+spec:
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 5Gi
+  storageClassName: local-path

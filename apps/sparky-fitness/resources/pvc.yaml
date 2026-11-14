@@ -1,4 +1,4 @@
-# One NFS volume for everything: Postgres data, uploads and in-app backups (via subPath).
+# NFS volume for uploads and in-app backups (via subPath). Postgres data is on local disk (pvc-db.yaml).
 apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:

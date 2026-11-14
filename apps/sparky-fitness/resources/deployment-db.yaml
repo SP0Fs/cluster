@@ -17,8 +17,11 @@ spec:
       labels:
         app: sparkyfitness-db
     spec:
+      # Data lives on hp-elitedesk's local disk (pvc-db.yaml) — must stay on that node.
+      nodeSelector:
+        kubernetes.io/hostname: hp-elitedesk
       # Start directly as the image's postgres user (uid/gid 70). As root, the entrypoint
-      # drops privileges via gosu, which hung at 100% CPU on c-nuc7 and never started postgres.
+      # drops privileges via gosu, which hung at 100% CPU and never started postgres.
       securityContext:
         runAsUser: 70
         runAsGroup: 70
@@ -47,7 +50,6 @@ spec:
           volumeMounts:
             - name: data
               mountPath: /var/lib/postgresql
-              subPath: postgresql
           resources:
             requests:
               cpu: 50m
@@ -58,4 +60,4 @@ spec:
       volumes:
         - name: data
           persistentVolumeClaim:
-            claimName: sparkyfitness-data
+            claimName: sparkyfitness-db
