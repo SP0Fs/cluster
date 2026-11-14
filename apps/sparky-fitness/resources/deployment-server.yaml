@@ -68,7 +68,7 @@ spec:
             - name: SPARKY_FITNESS_SERVER_PORT
               value: "3010"
             - name: SPARKY_FITNESS_DISABLE_SIGNUP
-              value: "false" # flip to "true" once your account exists
+              value: "true"
             # ingress-nginx + the frontend's bundled nginx
             - name: SPARKY_FITNESS_TRUSTED_PROXY_HOPS
               value: "2"
