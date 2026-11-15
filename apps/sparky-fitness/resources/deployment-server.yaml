@@ -20,7 +20,8 @@ spec:
       terminationGracePeriodSeconds: 20
       containers:
         - name: sparkyfitness-server
-          image: codewithcj/sparkyfitness_server:v1.12.1
+          image: codewithcj/sparkyfitness_server:latest
+          imagePullPolicy: Always
           ports:
             - containerPort: 3010
           env:
