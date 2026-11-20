@@ -1,14 +1,16 @@
 apiVersion: apps/v1
-kind: Deployment
+kind: StatefulSet
 metadata:
   name: sparkyfitness-db
   namespace: sparky-fitness
   labels:
     app: sparkyfitness-db
 spec:
-  replicas: 0 # step 1 of Deployment -> StatefulSet migration: stop postgres before the STS starts
-  strategy:
-    type: Recreate # never run two postgres instances on the same data dir
+  replicas: 1
+  # StatefulSet (not Deployment): a replacement pod is only created after the old one has fully
+  # terminated, so two postgres instances never run on the same data dir — not even when the
+  # pod is deleted or evicted (Deployment+Recreate only guarantees that during rollouts).
+  serviceName: sparkyfitness-db
   selector:
     matchLabels:
       app: sparkyfitness-db
@@ -17,6 +19,8 @@ spec:
       labels:
         app: sparkyfitness-db
     spec:
+      # Room for a clean shutdown checkpoint before SIGKILL (image stop signal = SIGINT, fast shutdown).
+      terminationGracePeriodSeconds: 120
       # Data lives on hp-elitedesk's local disk (pvc-db.yaml) — must stay on that node.
       nodeSelector:
         kubernetes.io/hostname: hp-elitedesk
