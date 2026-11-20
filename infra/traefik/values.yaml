@@ -72,3 +72,10 @@ service:
 ingressRoute:
   dashboard:
     enabled: false
+
+global:
+  # Drop request headers whose names alias a Traefik-managed header
+  # (X_Forwarded_For / X.Forwarded.For for X-Forwarded-For). Backends like
+  # nginx, PHP or Python/WSGI read those as the real header, so clients could
+  # spoof X-Forwarded-* or X-Forwarded-Tls-Client-Cert otherwise.
+  aliasHeadersStrategy: delete
