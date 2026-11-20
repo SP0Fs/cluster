@@ -9,8 +9,8 @@ metadata:
     nginx.ingress.kubernetes.io/proxy-body-size: 50m # photo / import uploads
     # Large health uploads can take minutes on a cold import; match the frontend
     # container's own nginx (300s) instead of the 60s ingress default.
-    nginx.ingress.kubernetes.io/proxy-read-timeout: "300"
-    nginx.ingress.kubernetes.io/proxy-send-timeout: "300"
+    nginx.ingress.kubernetes.io/proxy-read-timeout: "60"
+    nginx.ingress.kubernetes.io/proxy-send-timeout: "60"
     # mTLS DISABLED: the SparkyFitness app can't present a client certificate.
     # To re-enable, uncomment below; CA secret `sparky-fitness/spof-cert` is copied out-of-band (see README).
     # nginx.ingress.kubernetes.io/auth-tls-verify-client: "on"
