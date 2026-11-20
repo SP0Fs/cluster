@@ -6,7 +6,7 @@ metadata:
   labels:
     app: sparkyfitness-db
 spec:
-  replicas: 1
+  replicas: 0 # step 1 of Deployment -> StatefulSet migration: stop postgres before the STS starts
   strategy:
     type: Recreate # never run two postgres instances on the same data dir
   selector:
