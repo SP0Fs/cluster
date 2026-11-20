@@ -28,7 +28,7 @@ Shared building blocks (namespace `traefik`):
 | Resource | Replaces | Reference from an Ingress |
 |---|---|---|
 | `TLSOption mtls` + `SealedSecret spof-ca` (CA cert only) | `auth-tls-verify-client`, `auth-tls-secret`, `auth-tls-verify-depth` | `traefik.ingress.kubernetes.io/router.tls.options: traefik_mtls@kubernetescrd` |
-| `Middleware web-defaults` (chain: `redirect-https` + `security-headers`: HSTS, nosniff, referrer policy) | nginx's default ssl-redirect | `traefik.ingress.kubernetes.io/router.middlewares: traefik_web-defaults@kubernetescrd` |
+| `Middleware web-defaults` (chain: `redirect-https` + `security-headers`: HSTS, nosniff, referrer policy, X-Frame-Options SAMEORIGIN) | nginx's default ssl-redirect | `traefik.ingress.kubernetes.io/router.middlewares: traefik_web-defaults@kubernetescrd` |
 | `TLSOption default` (TLS ≥ 1.2, `sniStrict`) | nginx's TLS defaults | applies automatically to TLS routers without `router.tls.options` |
 
 ## Phases

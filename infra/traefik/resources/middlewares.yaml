@@ -25,8 +25,9 @@ spec:
     scheme: https
     permanent: true
 ---
-# Response headers safe for every app. Deliberately no X-Frame-Options / CSP:
-# HA embeds other apps (esphome, z2m, ...) as iframe panels across subdomains.
+# Response headers safe for every app.
+# X-Frame-Options SAMEORIGIN: no app is embedded cross-site (HA has no iframe
+# panels/cards). No CSP here: it would replace the apps' own CSP headers.
 apiVersion: traefik.io/v1alpha1
 kind: Middleware
 metadata:
@@ -38,3 +39,4 @@ spec:
     stsIncludeSubdomains: true
     contentTypeNosniff: true
     referrerPolicy: strict-origin-when-cross-origin
+    customFrameOptionsValue: SAMEORIGIN
