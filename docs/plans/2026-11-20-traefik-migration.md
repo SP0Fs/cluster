@@ -27,8 +27,8 @@ Shared building blocks (namespace `traefik`):
 
 | Resource | Replaces | Reference from an Ingress |
 |---|---|---|
-| `TLSOption mtls` + `SealedSecret spof-ca` (CA cert only) | `auth-tls-verify-client`, `auth-tls-secret`, `auth-tls-verify-depth` | `traefik.ingress.kubernetes.io/router.tls.options: traefik-mtls@kubernetescrd` |
-| `Middleware redirect-https` | nginx's default ssl-redirect | `traefik.ingress.kubernetes.io/router.middlewares: traefik-redirect-https@kubernetescrd` |
+| `TLSOption mtls` + `SealedSecret spof-ca` (CA cert only) | `auth-tls-verify-client`, `auth-tls-secret`, `auth-tls-verify-depth` | `traefik.ingress.kubernetes.io/router.tls.options: traefik_mtls@kubernetescrd` |
+| `Middleware redirect-https` | nginx's default ssl-redirect | `traefik.ingress.kubernetes.io/router.middlewares: traefik_redirect-https@kubernetescrd` |
 
 ## Phases
 
@@ -77,7 +77,7 @@ Per app:
 
 | nginx annotation | Traefik equivalent |
 |---|---|
-| `auth-tls-*` (verify-client, secret, depth) | `router.tls.options: traefik-mtls@kubernetescrd` |
+| `auth-tls-*` (verify-client, secret, depth) | `router.tls.options: traefik_mtls@kubernetescrd` |
 | `auth-tls-error-page` | none: the handshake fails before HTTP, so no redirect is possible (the browser shows a TLS error) |
 | `auth-tls-pass-certificate-to-upstream` | `PassTLSClientCert` middleware, only if an app actually reads the cert (none known) |
 | `backend-protocol: HTTP` | default, drop it |
@@ -92,8 +92,8 @@ Ingress template:
 metadata:
   annotations:
     cert-manager.io/cluster-issuer: ca-issuer
-    traefik.ingress.kubernetes.io/router.tls.options: traefik-mtls@kubernetescrd   # mTLS apps only
-    traefik.ingress.kubernetes.io/router.middlewares: traefik-redirect-https@kubernetescrd
+    traefik.ingress.kubernetes.io/router.tls.options: traefik_mtls@kubernetescrd   # mTLS apps only
+    traefik.ingress.kubernetes.io/router.middlewares: traefik_redirect-https@kubernetescrd
 spec:
   ingressClassName: traefik
 ```

@@ -2,7 +2,7 @@
 # nginx.ingress.kubernetes.io/auth-tls-* annotations.
 #
 # Use on an Ingress with:
-#   traefik.ingress.kubernetes.io/router.tls.options: traefik-mtls@kubernetescrd
+#   traefik.ingress.kubernetes.io/router.tls.options: traefik_mtls@kubernetescrd
 #
 # The CA certificate comes from the SealedSecret in secret.yaml
 # (Secret "spof-ca", key ca.crt). Only the public CA cert is needed for

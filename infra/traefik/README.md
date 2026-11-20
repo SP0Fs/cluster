@@ -26,8 +26,8 @@ infra/traefik/
 metadata:
   annotations:
     cert-manager.io/cluster-issuer: ca-issuer
-    traefik.ingress.kubernetes.io/router.tls.options: traefik-mtls@kubernetescrd   # require client cert
-    traefik.ingress.kubernetes.io/router.middlewares: traefik-redirect-https@kubernetescrd
+    traefik.ingress.kubernetes.io/router.tls.options: traefik_mtls@kubernetescrd   # require client cert
+    traefik.ingress.kubernetes.io/router.middlewares: traefik_redirect-https@kubernetescrd
 spec:
   ingressClassName: traefik
 ```

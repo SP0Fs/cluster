@@ -39,8 +39,13 @@ providers:
   kubernetesCRD:
     enabled: true
     # Ingresses reference the shared TLSOption/Middlewares in the traefik namespace
-    # by name (traefik-<name>@kubernetescrd); no cross-namespace service refs needed.
+    # by name (traefik_<name>@kubernetescrd); no cross-namespace service refs needed.
     allowCrossNamespace: false
+    # Collision-safe naming (recommended for new setups). References to CRD
+    # objects use "_": <namespace>_<name>@kubernetescrd, e.g.
+    # traefik_mtls@kubernetescrd. A reference in the legacy "-" form is not
+    # resolved and its router is not created (mTLS refs: handshake refused).
+    safeNaming: true
   kubernetesIngress:
     enabled: true
     publishedService:
