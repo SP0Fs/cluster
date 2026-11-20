@@ -28,7 +28,8 @@ Shared building blocks (namespace `traefik`):
 | Resource | Replaces | Reference from an Ingress |
 |---|---|---|
 | `TLSOption mtls` + `SealedSecret spof-ca` (CA cert only) | `auth-tls-verify-client`, `auth-tls-secret`, `auth-tls-verify-depth` | `traefik.ingress.kubernetes.io/router.tls.options: traefik_mtls@kubernetescrd` |
-| `Middleware redirect-https` | nginx's default ssl-redirect | `traefik.ingress.kubernetes.io/router.middlewares: traefik_redirect-https@kubernetescrd` |
+| `Middleware web-defaults` (chain: `redirect-https` + `security-headers`: HSTS, nosniff, referrer policy) | nginx's default ssl-redirect | `traefik.ingress.kubernetes.io/router.middlewares: traefik_web-defaults@kubernetescrd` |
+| `TLSOption default` (TLS ≥ 1.2, `sniStrict`) | nginx's TLS defaults | applies automatically to TLS routers without `router.tls.options` |
 
 ## Phases
 
@@ -85,7 +86,7 @@ Per app:
 | `proxy-body-size` | none needed (Traefik doesn't limit body size by default) |
 | `proxy-read-timeout` / `proxy-send-timeout` | none needed for responses (no default backend timeout); request reads limited by entrypoint `readTimeout: 600s` |
 | `rewrite-target: /$2` + `use-regex` (your-spotify `/api`) | `stripPrefix` Middleware `/api` in the app namespace, path `/api` with `pathType: Prefix` |
-| `force-ssl-redirect`, `ssl-passthrough` (argocd) | `redirect-https` middleware; passthrough was never active (it needs the controller flag `--enable-ssl-passthrough`) |
+| `force-ssl-redirect`, `ssl-passthrough` (argocd) | `web-defaults` middleware; passthrough was never active (it needs the controller flag `--enable-ssl-passthrough`) |
 
 Ingress template:
 ```yaml
@@ -93,7 +94,7 @@ metadata:
   annotations:
     cert-manager.io/cluster-issuer: ca-issuer
     traefik.ingress.kubernetes.io/router.tls.options: traefik_mtls@kubernetescrd   # mTLS apps only
-    traefik.ingress.kubernetes.io/router.middlewares: traefik_redirect-https@kubernetescrd
+    traefik.ingress.kubernetes.io/router.middlewares: traefik_web-defaults@kubernetescrd
 spec:
   ingressClassName: traefik
 ```

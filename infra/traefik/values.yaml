@@ -56,8 +56,32 @@ ports:
     # New NodePorts next to nginx (32366/30197) so both can run side by side.
     # Cutover = point the router's port-forward 80/443 at these.
     nodePort: 30080
+    http:
+      # Reject encoded characters that no app needs and that backends may
+      # decode differently than Traefik ("split view"): NUL and backslash.
+      # Encoded slash etc. stay allowed (ArgoCD puts URL-encoded repo URLs in paths).
+      encodedCharacters:
+        allowEncodedSlash: true
+        allowEncodedBackSlash: false
+        allowEncodedNullCharacter: false
+        allowEncodedSemicolon: true
+        allowEncodedPercent: true
+        allowEncodedQuestionMark: true
+        allowEncodedHash: true
   websecure:
     nodePort: 30443
+    http:
+      # Reject encoded characters that no app needs and that backends may
+      # decode differently than Traefik ("split view"): NUL and backslash.
+      # Encoded slash etc. stay allowed (ArgoCD puts URL-encoded repo URLs in paths).
+      encodedCharacters:
+        allowEncodedSlash: true
+        allowEncodedBackSlash: false
+        allowEncodedNullCharacter: false
+        allowEncodedSemicolon: true
+        allowEncodedPercent: true
+        allowEncodedQuestionMark: true
+        allowEncodedHash: true
     transport:
       respondingTimeouts:
         # Traefik v3 defaults to 60s for reading the request (incl. body).
@@ -68,12 +92,35 @@ service:
   spec:
     type: NodePort
 
-# Dashboard stays off (not exposed anywhere).
+# Dashboard/API off entirely (it was never exposed; less attack surface).
+api:
+  dashboard: false
 ingressRoute:
   dashboard:
     enabled: false
 
+# Measured idle usage ~1m CPU / 23Mi per pod.
+resources:
+  requests:
+    cpu: 50m
+    memory: 64Mi
+  limits:
+    memory: 256Mi
+
+# Access log only for failed requests (debugging the migration without
+# logging every request). Request headers are dropped by default.
+accessLog:
+  enabled: true
+  filters:
+    statusCodes: "400-599"
+
+log:
+  noColor: true
+
 global:
+  # No outbound calls to Traefik Labs (usage stats are already off by default).
+  checkNewVersion: false
+  sendAnonymousUsage: false
   # Drop request headers whose names alias a Traefik-managed header
   # (X_Forwarded_For / X.Forwarded.For for X-Forwarded-For). Backends like
   # nginx, PHP or Python/WSGI read those as the real header, so clients could

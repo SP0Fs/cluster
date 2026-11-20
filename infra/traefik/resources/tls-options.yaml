@@ -14,7 +14,20 @@ metadata:
   namespace: traefik
 spec:
   minVersion: VersionTLS12
+  sniStrict: true
   clientAuth:
     secretNames:
       - spof-ca
     clientAuthType: RequireAndVerifyClientCert
+---
+# Default for every TLS router without an explicit option (e.g. matrix, sparky):
+# TLS >= 1.2, and refuse handshakes for unknown host names instead of serving
+# Traefik's self-signed fallback cert. (Passthrough hosts are not affected.)
+apiVersion: traefik.io/v1alpha1
+kind: TLSOption
+metadata:
+  name: default
+  namespace: traefik
+spec:
+  minVersion: VersionTLS12
+  sniStrict: true

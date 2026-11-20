@@ -1,8 +1,19 @@
 # Shared middlewares, referenced from Ingresses as traefik_<name>@kubernetescrd.
 #
+# Every migrated Ingress gets the chain:
+#   traefik.ingress.kubernetes.io/router.middlewares: traefik_web-defaults@kubernetescrd
+apiVersion: traefik.io/v1alpha1
+kind: Middleware
+metadata:
+  name: web-defaults
+  namespace: traefik
+spec:
+  chain:
+    middlewares:
+      - name: redirect-https
+      - name: security-headers
+---
 # HTTP -> HTTPS (replaces nginx's default ssl-redirect for TLS Ingresses).
-# Attach to every migrated Ingress:
-#   traefik.ingress.kubernetes.io/router.middlewares: traefik_redirect-https@kubernetescrd
 # redirectScheme is a no-op for requests that already arrive over HTTPS.
 apiVersion: traefik.io/v1alpha1
 kind: Middleware
@@ -13,3 +24,17 @@ spec:
   redirectScheme:
     scheme: https
     permanent: true
+---
+# Response headers safe for every app. Deliberately no X-Frame-Options / CSP:
+# HA embeds other apps (esphome, z2m, ...) as iframe panels across subdomains.
+apiVersion: traefik.io/v1alpha1
+kind: Middleware
+metadata:
+  name: security-headers
+  namespace: traefik
+spec:
+  headers:
+    stsSeconds: 31536000
+    stsIncludeSubdomains: true
+    contentTypeNosniff: true
+    referrerPolicy: strict-origin-when-cross-origin
