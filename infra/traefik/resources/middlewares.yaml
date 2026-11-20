@@ -1,0 +1,15 @@
+# Shared middlewares, referenced from Ingresses as traefik-<name>@kubernetescrd.
+#
+# HTTP -> HTTPS (replaces nginx's default ssl-redirect for TLS Ingresses).
+# Attach to every migrated Ingress:
+#   traefik.ingress.kubernetes.io/router.middlewares: traefik-redirect-https@kubernetescrd
+# redirectScheme is a no-op for requests that already arrive over HTTPS.
+apiVersion: traefik.io/v1alpha1
+kind: Middleware
+metadata:
+  name: redirect-https
+  namespace: traefik
+spec:
+  redirectScheme:
+    scheme: https
+    permanent: true

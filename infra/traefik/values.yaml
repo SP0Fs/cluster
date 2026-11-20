@@ -1,0 +1,69 @@
+# Traefik replaces the retired community ingress-nginx controller.
+# Migration plan: docs/plans/2026-11-20-traefik-migration.md
+
+deployment:
+  replicas: 2
+
+# Same placement as ingress-nginx: nodes labelled ingress=true, one pod per node.
+nodeSelector:
+  ingress: "true"
+
+affinity:
+  podAntiAffinity:
+    requiredDuringSchedulingIgnoredDuringExecution:
+      - labelSelector:
+          matchLabels:
+            app.kubernetes.io/name: traefik
+            app.kubernetes.io/instance: traefik-traefik
+        topologyKey: kubernetes.io/hostname
+
+# Only 2 ingress nodes + required anti-affinity: a surge pod could never schedule,
+# so roll one pod at a time instead.
+updateStrategy:
+  type: RollingUpdate
+  rollingUpdate:
+    maxUnavailable: 1
+    maxSurge: 0
+
+podDisruptionBudget:
+  enabled: true
+  maxUnavailable: 1
+
+# nginx keeps the "nginx" class; migrated Ingresses opt in with ingressClassName: traefik.
+ingressClass:
+  enabled: true
+  isDefaultClass: false
+  name: traefik
+
+providers:
+  kubernetesCRD:
+    enabled: true
+    # Ingresses reference the shared TLSOption/Middlewares in the traefik namespace
+    # by name (traefik-<name>@kubernetescrd); no cross-namespace service refs needed.
+    allowCrossNamespace: false
+  kubernetesIngress:
+    enabled: true
+    publishedService:
+      enabled: true
+
+ports:
+  web:
+    # New NodePorts next to nginx (32366/30197) so both can run side by side.
+    # Cutover = point the router's port-forward 80/443 at these.
+    nodePort: 30080
+  websecure:
+    nodePort: 30443
+    transport:
+      respondingTimeouts:
+        # Traefik v3 defaults to 60s for reading the request (incl. body).
+        # sparky-fitness imports and registry pushes need longer.
+        readTimeout: 600s
+
+service:
+  spec:
+    type: NodePort
+
+# Dashboard stays off (not exposed anywhere).
+ingressRoute:
+  dashboard:
+    enabled: false

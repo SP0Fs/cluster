@@ -1,0 +1,20 @@
+# Shared client-certificate (mTLS) policy, replacing the per-Ingress
+# nginx.ingress.kubernetes.io/auth-tls-* annotations.
+#
+# Use on an Ingress with:
+#   traefik.ingress.kubernetes.io/router.tls.options: traefik-mtls@kubernetescrd
+#
+# The CA certificate comes from the SealedSecret in secret.yaml
+# (Secret "spof-ca", key ca.crt). Only the public CA cert is needed for
+# verification; the CA private key must never be put in it.
+apiVersion: traefik.io/v1alpha1
+kind: TLSOption
+metadata:
+  name: mtls
+  namespace: traefik
+spec:
+  minVersion: VersionTLS12
+  clientAuth:
+    secretNames:
+      - spof-ca
+    clientAuthType: RequireAndVerifyClientCert

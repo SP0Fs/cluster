@@ -1,0 +1,34 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: traefik
+  namespace: argo-cd
+spec:
+  project: spof-cluster
+  sources:
+    - chart: traefik
+      repoURL: https://traefik.github.io/charts
+      targetRevision: 42.4.1
+      helm:
+        releaseName: traefik
+        valueFiles:
+          - $values/infra/traefik/values.yaml
+    - repoURL: "https://github.com/SP0Fs/cluster.git"
+      targetRevision: main
+      ref: values
+    - repoURL: "https://github.com/SP0Fs/cluster.git"
+      targetRevision: main
+      path: infra/traefik/resources
+  destination:
+    server: "https://kubernetes.default.svc"
+    namespace: traefik
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+    syncOptions:
+      - CreateNamespace=true
+      # Traefik's CRDs are too large for client-side apply's last-applied annotation.
+      - ServerSideApply=true
+      # TLSOption / Middleware / IngressRouteTCP in resources/ need the chart's CRDs first.
+      - SkipDryRunOnMissingResource=true
